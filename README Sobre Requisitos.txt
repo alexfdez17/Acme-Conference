@@ -1,0 +1,3 @@
+Req 5. Referees no aparecen en ningún momento en la lista de actores, probablemente sea Reviewers
+Req funcionales (C). No aparece ningún caso de uso relativo a reviewers y reports
+Req 21 vs Req 24. En el requisito de información 21 dice que todos los actores tienen un finder y en los requisitos funcionales solo se menciona dicho finder en el 24, relativo a los authors y al uso que hacen de el. Probablemente el Req 21 quiera decir every author y no every actor
