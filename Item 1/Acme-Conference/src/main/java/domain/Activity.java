@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -28,6 +29,7 @@ public class Activity extends DomainEntity {
 	//Attributes
 
 	@NotBlank
+	@SafeHtml
 	public String getTitle() {
 		return this.title;
 	}
