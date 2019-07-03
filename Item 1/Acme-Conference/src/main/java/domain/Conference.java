@@ -37,7 +37,7 @@ public class Conference extends DomainEntity {
 	private Date					startDate;
 	private Date					endDate;
 	private String					summary;
-	private Double					fee;
+	private double					fee;
 
 	//Relationships
 	private Category				category;
@@ -141,13 +141,14 @@ public class Conference extends DomainEntity {
 		this.summary = summary;
 	}
 
+	@NotNull
 	@DecimalMin("0.0")
 	@Digits(fraction = 2, integer = 6)
-	public Double getFee() {
+	public double getFee() {
 		return this.fee;
 	}
 
-	public void setFee(final Double fee) {
+	public void setFee(final double fee) {
 		this.fee = fee;
 	}
 
