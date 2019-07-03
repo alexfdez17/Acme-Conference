@@ -6,8 +6,11 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
 import security.UserAccount;
@@ -32,6 +35,7 @@ public class Actor extends DomainEntity {
 	//Attributes
 
 	@NotBlank
+	@SafeHtml
 	public String getName() {
 		return this.name;
 	}
@@ -40,6 +44,7 @@ public class Actor extends DomainEntity {
 		this.name = name;
 	}
 
+	@SafeHtml
 	public String getMiddleName() {
 		return this.middleName;
 	}
@@ -49,6 +54,7 @@ public class Actor extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getSurname() {
 		return this.surname;
 	}
@@ -58,6 +64,7 @@ public class Actor extends DomainEntity {
 	}
 
 	@URL
+	@SafeHtml
 	public String getPhoto() {
 		return this.photo;
 	}
@@ -67,6 +74,7 @@ public class Actor extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getEmail() {
 		return this.email;
 	}
@@ -75,6 +83,7 @@ public class Actor extends DomainEntity {
 		this.email = email;
 	}
 
+	@SafeHtml
 	public String getPhone() {
 		return this.phone;
 	}
@@ -83,6 +92,7 @@ public class Actor extends DomainEntity {
 		this.phone = phone;
 	}
 
+	@SafeHtml
 	public String getAddress() {
 		return this.address;
 	}
@@ -94,6 +104,8 @@ public class Actor extends DomainEntity {
 	// Relationships
 
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@Valid
+	@NotNull
 	public UserAccount getUserAccount() {
 		return this.userAccount;
 	}

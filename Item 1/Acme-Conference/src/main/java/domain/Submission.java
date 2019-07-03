@@ -13,8 +13,10 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -37,6 +39,7 @@ public class Submission {
 
 	@Column(unique = true)
 	@NotBlank
+	@SafeHtml
 	public String getTicker() {
 		return this.ticker;
 	}
@@ -68,7 +71,6 @@ public class Submission {
 	}
 
 	@Valid
-	@NotNull
 	public Paper getCameraReadyPaper() {
 		return this.cameraReadyPaper;
 	}
@@ -78,6 +80,8 @@ public class Submission {
 	}
 
 	@NotBlank
+	@SafeHtml
+	@Pattern(regexp = "UNDER-REVIEW|ACCEPTED|REJECTED")
 	public String getStatus() {
 		return this.status;
 	}
@@ -89,6 +93,8 @@ public class Submission {
 	//Relationships
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Author getAuthor() {
 		return this.author;
 	}
@@ -98,6 +104,8 @@ public class Submission {
 	}
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Conference getConference() {
 		return this.conference;
 	}

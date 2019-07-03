@@ -11,8 +11,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import cz.jirutka.validator.collection.constraints.EachNotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -31,7 +38,7 @@ public class Finder extends DomainEntity {
 
 
 	//Attributes
-
+	@SafeHtml
 	public String getKeyword() {
 		return this.keyword;
 	}
@@ -39,7 +46,7 @@ public class Finder extends DomainEntity {
 	public void setKeyword(final String keyword) {
 		this.keyword = keyword;
 	}
-
+	@SafeHtml
 	public String getCategory() {
 		return this.category;
 	}
@@ -68,6 +75,8 @@ public class Finder extends DomainEntity {
 		this.endDate = endDate;
 	}
 
+	@DecimalMin("0.0")
+	@Digits(fraction = 2, integer = 6)
 	public Double getMaximumFee() {
 		return this.maximumFee;
 	}
@@ -79,6 +88,8 @@ public class Finder extends DomainEntity {
 	//Relationships
 
 	@OneToOne(optional = false)
+	@Valid
+	@NotNull
 	public Author getAuthor() {
 		return this.author;
 	}
@@ -88,6 +99,8 @@ public class Finder extends DomainEntity {
 	}
 
 	@ManyToMany
+	@NotNull
+	@EachNotNull
 	public Collection<Conference> getConferences() {
 		return this.conferences;
 	}

@@ -10,10 +10,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -45,6 +48,7 @@ public class Message extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getSubject() {
 		return this.subject;
 	}
@@ -54,6 +58,7 @@ public class Message extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getBody() {
 		return this.body;
 	}
@@ -65,6 +70,8 @@ public class Message extends DomainEntity {
 	//Relationships
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Actor getSender() {
 		return this.sender;
 	}
@@ -74,6 +81,8 @@ public class Message extends DomainEntity {
 	}
 
 	@ManyToMany
+	@Valid
+	@NotEmpty
 	public Actor getRecipient() {
 		return this.recipient;
 	}

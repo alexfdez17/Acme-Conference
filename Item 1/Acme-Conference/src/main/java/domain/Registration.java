@@ -35,6 +35,8 @@ public class Registration extends DomainEntity {
 	//Relationships
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Author getAuthor() {
 		return this.author;
 	}
@@ -44,6 +46,8 @@ public class Registration extends DomainEntity {
 	}
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Conference getConference() {
 		return this.conference;
 	}

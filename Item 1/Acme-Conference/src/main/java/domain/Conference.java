@@ -10,9 +10,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Min;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import cz.jirutka.validator.collection.constraints.EachNotNull;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -38,6 +47,7 @@ public class Conference extends DomainEntity {
 	//Attributes
 
 	@NotBlank
+	@SafeHtml
 	public String getTitle() {
 		return this.title;
 	}
@@ -47,6 +57,7 @@ public class Conference extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getAcronym() {
 		return this.acronym;
 	}
@@ -56,6 +67,7 @@ public class Conference extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getVenue() {
 		return this.venue;
 	}
@@ -64,6 +76,9 @@ public class Conference extends DomainEntity {
 		this.venue = venue;
 	}
 
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getSubmissionDeadline() {
 		return this.submissionDeadline;
 	}
@@ -72,6 +87,9 @@ public class Conference extends DomainEntity {
 		this.submissionDeadline = submissionDeadline;
 	}
 
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getNotificationDeadline() {
 		return this.notificationDeadline;
 	}
@@ -80,6 +98,9 @@ public class Conference extends DomainEntity {
 		this.notificationDeadline = notificationDeadline;
 	}
 
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getCameraReadyDeadline() {
 		return this.cameraReadyDeadline;
 	}
@@ -88,6 +109,9 @@ public class Conference extends DomainEntity {
 		this.cameraReadyDeadline = cameraReadyDeadline;
 	}
 
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -96,6 +120,9 @@ public class Conference extends DomainEntity {
 		this.startDate = startDate;
 	}
 
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	public Date getEndDate() {
 		return this.endDate;
 	}
@@ -105,6 +132,7 @@ public class Conference extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getSummary() {
 		return this.summary;
 	}
@@ -113,7 +141,8 @@ public class Conference extends DomainEntity {
 		this.summary = summary;
 	}
 
-	@Min(0)
+	@DecimalMin("0.0")
+	@Digits(fraction = 2, integer = 6)
 	public Double getFee() {
 		return this.fee;
 	}
@@ -125,6 +154,8 @@ public class Conference extends DomainEntity {
 	//Relationships
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Category getCategory() {
 		return this.category;
 	}
@@ -134,6 +165,8 @@ public class Conference extends DomainEntity {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
+	@NotNull
+	@EachNotNull
 	public Collection<Activity> getActivities() {
 		return this.activities;
 	}

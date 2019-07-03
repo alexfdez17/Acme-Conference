@@ -5,18 +5,26 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.SafeHtml;
+
+import cz.jirutka.validator.collection.constraints.EachNotBlank;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Report extends DomainEntity {
 
 	//Attributes
-	private int			originality;
-	private int			quality;
-	private int			readability;
+	private double		originality;
+	private double		quality;
+	private double		readability;
 	private String		decision;
 	private String		comments;
 
@@ -27,34 +35,44 @@ public class Report extends DomainEntity {
 
 	//Attributes
 
-	@Range(min = 0, max = 10)
-	public int getOriginality() {
+	@NotNull
+	@DecimalMax("0.0")
+	@DecimalMin("10.0")
+	@Digits(fraction = 2, integer = 2)
+	public double getOriginality() {
 		return this.originality;
 	}
 
-	public void setOriginality(final int originality) {
+	public void setOriginality(final double originality) {
 		this.originality = originality;
 	}
 
-	@Range(min = 0, max = 10)
-	public int getQuality() {
+	@NotNull
+	@DecimalMax("0.0")
+	@DecimalMin("10.0")
+	@Digits(fraction = 2, integer = 2)
+	public double getQuality() {
 		return this.quality;
 	}
 
-	public void setQuality(final int quality) {
+	public void setQuality(final double quality) {
 		this.quality = quality;
 	}
 
-	@Range(min = 0, max = 10)
-	public int getReadability() {
+	@NotNull
+	@DecimalMax("0.0")
+	@DecimalMin("10.0")
+	@Digits(fraction = 2, integer = 2)
+	public double getReadability() {
 		return this.readability;
 	}
 
-	public void setReadability(final int readability) {
+	public void setReadability(final double readability) {
 		this.readability = readability;
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getDecision() {
 		return this.decision;
 	}
@@ -63,6 +81,8 @@ public class Report extends DomainEntity {
 		this.decision = decision;
 	}
 
+	@EachNotBlank
+	@NotEmpty
 	public String getComments() {
 		return this.comments;
 	}
@@ -74,6 +94,8 @@ public class Report extends DomainEntity {
 	//Relationships
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Reviewer getReviewer() {
 		return this.reviewer;
 	}
@@ -83,6 +105,8 @@ public class Report extends DomainEntity {
 	}
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Submission getSubmission() {
 		return this.submission;
 	}

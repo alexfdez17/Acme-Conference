@@ -1,29 +1,37 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import cz.jirutka.validator.collection.constraints.EachNotBlank;
+import cz.jirutka.validator.collection.constraints.EachURL;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Activity extends DomainEntity {
 
 	//Attributes
-	private String	title;
-	private String	speakers;
-	private Date	startMoment;
-	private int		duration;
-	private String	room;
-	private String	summary;
-	private String	attachments;
+	private String				title;
+	private Collection<String>	speakers;
+	private Date				startMoment;
+	private int					duration;
+	private String				room;
+	private String				summary;
+	private Collection<String>	attachments;
 
 
 	//Attributes
@@ -38,15 +46,19 @@ public class Activity extends DomainEntity {
 		this.title = title;
 	}
 
-	@NotBlank
-	public String getSpeakers() {
+	@NotEmpty
+	@EachNotBlank
+	public Collection<String> getSpeakers() {
 		return this.speakers;
 	}
 
-	public void setSpeakers(final String speakers) {
+	public void setSpeakers(final Collection<String> speakers) {
 		this.speakers = speakers;
 	}
 
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	public Date getStartMoment() {
 		return this.startMoment;
 	}
@@ -65,6 +77,7 @@ public class Activity extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getRoom() {
 		return this.room;
 	}
@@ -74,6 +87,7 @@ public class Activity extends DomainEntity {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getSummary() {
 		return this.summary;
 	}
@@ -82,12 +96,13 @@ public class Activity extends DomainEntity {
 		this.summary = summary;
 	}
 
-	@URL
-	public String getAttachments() {
+	@EachURL
+	@NotNull
+	public Collection<String> getAttachments() {
 		return this.attachments;
 	}
 
-	public void setAttachments(final String attachments) {
+	public void setAttachments(final Collection<String> attachments) {
 		this.attachments = attachments;
 	}
 

@@ -5,8 +5,11 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -23,6 +26,7 @@ public class Topic {
 	//Attributes
 
 	@NotBlank
+	@SafeHtml
 	public String getName() {
 		return this.name;
 	}
@@ -32,6 +36,7 @@ public class Topic {
 	}
 
 	@NotBlank
+	@SafeHtml
 	public String getNameES() {
 		return this.nameES;
 	}
@@ -43,6 +48,8 @@ public class Topic {
 	//Relationships
 
 	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
 	public Message getMessage() {
 		return this.message;
 	}
