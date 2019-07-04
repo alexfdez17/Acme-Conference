@@ -38,6 +38,7 @@ public class Conference extends DomainEntity {
 	private Date					endDate;
 	private String					summary;
 	private double					fee;
+	private boolean					isFinal;
 
 	//Relationships
 	private Category				category;
@@ -150,6 +151,14 @@ public class Conference extends DomainEntity {
 
 	public void setFee(final double fee) {
 		this.fee = fee;
+	}
+
+	public boolean getIsFinal() {
+		return this.isFinal;
+	}
+
+	public void setIsFinal(final boolean isFinal) {
+		this.isFinal = isFinal;
 	}
 
 	//Relationships

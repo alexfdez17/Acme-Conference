@@ -1,8 +1,11 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
@@ -12,7 +15,6 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import cz.jirutka.validator.collection.constraints.EachNotBlank;
@@ -22,22 +24,22 @@ import cz.jirutka.validator.collection.constraints.EachNotBlank;
 public class Report extends DomainEntity {
 
 	//Attributes
-	private double		originality;
-	private double		quality;
-	private double		readability;
-	private String		decision;
-	private String		comments;
+	private double				originality;
+	private double				quality;
+	private double				readability;
+	private String				decision;
+	private Collection<String>	comments;
 
 	//Relationships
-	private Reviewer	reviewer;
-	private Submission	submission;
+	private Reviewer			reviewer;
+	private Submission			submission;
 
 
 	//Attributes
 
 	@NotNull
-	@DecimalMax("0.0")
-	@DecimalMin("10.0")
+	@DecimalMax("10.0")
+	@DecimalMin("0.0")
 	@Digits(fraction = 2, integer = 2)
 	public double getOriginality() {
 		return this.originality;
@@ -48,8 +50,8 @@ public class Report extends DomainEntity {
 	}
 
 	@NotNull
-	@DecimalMax("0.0")
-	@DecimalMin("10.0")
+	@DecimalMax("10.0")
+	@DecimalMin("0.0")
 	@Digits(fraction = 2, integer = 2)
 	public double getQuality() {
 		return this.quality;
@@ -60,8 +62,8 @@ public class Report extends DomainEntity {
 	}
 
 	@NotNull
-	@DecimalMax("0.0")
-	@DecimalMin("10.0")
+	@DecimalMax("10.0")
+	@DecimalMin("0.0")
 	@Digits(fraction = 2, integer = 2)
 	public double getReadability() {
 		return this.readability;
@@ -81,13 +83,14 @@ public class Report extends DomainEntity {
 		this.decision = decision;
 	}
 
+	@ElementCollection
 	@EachNotBlank
-	@NotEmpty
-	public String getComments() {
+	@NotNull
+	public Collection<String> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(final String comments) {
+	public void setComments(final Collection<String> comments) {
 		this.comments = comments;
 	}
 
