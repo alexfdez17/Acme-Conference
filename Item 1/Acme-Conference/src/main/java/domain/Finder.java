@@ -56,7 +56,7 @@ public class Finder extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -66,7 +66,7 @@ public class Finder extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	public Date getEndDate() {
 		return this.endDate;
 	}
