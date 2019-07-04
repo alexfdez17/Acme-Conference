@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -62,6 +65,7 @@ public class Submission extends DomainEntity {
 
 	@Valid
 	@NotNull
+	@Embedded
 	public Paper getPaper() {
 		return this.paper;
 	}
@@ -71,6 +75,11 @@ public class Submission extends DomainEntity {
 	}
 
 	@Valid
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "title", column = @Column(name = "cameraReadyTitle")), @AttributeOverride(name = "authors", column = @Column(name = "cameraReadyAuthors")),
+		@AttributeOverride(name = "summary", column = @Column(name = "cameraReadySummary")), @AttributeOverride(name = "document", column = @Column(name = "cameraReadyDocument")),
+	})
 	public Paper getCameraReadyPaper() {
 		return this.cameraReadyPaper;
 	}

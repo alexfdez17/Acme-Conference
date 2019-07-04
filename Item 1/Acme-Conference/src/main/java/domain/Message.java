@@ -1,6 +1,7 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -26,14 +27,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Message extends DomainEntity {
 
 	//Attributes
-	private Date	moment;
-	private String	subject;
-	private String	body;
+	private Date				moment;
+	private String				subject;
+	private String				body;
 
 	//Relationships
-	private Actor	sender;
-	private Actor	recipient;
-	private Topic	topic;
+	private Actor				sender;
+	private Collection<Actor>	recipients;
+	private Topic				topic;
 
 
 	//Attributes
@@ -86,12 +87,12 @@ public class Message extends DomainEntity {
 	@ManyToMany
 	@Valid
 	@NotEmpty
-	public Actor getRecipient() {
-		return this.recipient;
+	public Collection<Actor> getRecipients() {
+		return this.recipients;
 	}
 
-	public void setRecipient(final Actor recipient) {
-		this.recipient = recipient;
+	public void setRecipients(final Collection<Actor> recipients) {
+		this.recipients = recipients;
 	}
 
 	@ManyToOne(optional = false)

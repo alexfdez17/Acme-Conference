@@ -3,6 +3,10 @@ package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -19,6 +23,10 @@ public class Presentation extends Activity {
 
 	@Valid
 	@NotNull
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "title", column = @Column(name = "cameraReadyPaperTitle")), @AttributeOverride(name = "summary", column = @Column(name = "cameraReadyPaperSummary"))
+	})
 	public Paper getCameraReadyPaper() {
 		return this.cameraReadyPaper;
 	}

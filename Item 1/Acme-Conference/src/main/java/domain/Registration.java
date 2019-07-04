@@ -3,6 +3,7 @@ package domain;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
@@ -24,6 +25,7 @@ public class Registration extends DomainEntity {
 
 	@Valid
 	@NotNull
+	@Embedded
 	public CreditCard getCreditCard() {
 		return this.creditCard;
 	}
