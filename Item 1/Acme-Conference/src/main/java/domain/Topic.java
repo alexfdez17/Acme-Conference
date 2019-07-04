@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Topic {
+public class Topic extends DomainEntity {
 
 	//Attributes
 	private String	name;

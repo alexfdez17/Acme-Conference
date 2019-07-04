@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Section {
+public class Section extends DomainEntity {
 
 	//Attributes
 	private String	title;
