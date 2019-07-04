@@ -77,8 +77,8 @@ public class Conference extends DomainEntity {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
 	public Date getSubmissionDeadline() {
 		return this.submissionDeadline;
 	}
@@ -88,8 +88,8 @@ public class Conference extends DomainEntity {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
 	public Date getNotificationDeadline() {
 		return this.notificationDeadline;
 	}
@@ -99,8 +99,8 @@ public class Conference extends DomainEntity {
 	}
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
 	public Date getCameraReadyDeadline() {
 		return this.cameraReadyDeadline;
 	}
@@ -111,7 +111,7 @@ public class Conference extends DomainEntity {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -122,7 +122,7 @@ public class Conference extends DomainEntity {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	public Date getEndDate() {
 		return this.endDate;
 	}

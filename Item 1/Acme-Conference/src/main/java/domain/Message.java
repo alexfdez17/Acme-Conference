@@ -31,6 +31,7 @@ public class Message extends DomainEntity {
 	//Relationships
 	private Actor	sender;
 	private Actor	recipient;
+	private Topic	topic;
 
 
 	//Attributes
@@ -38,7 +39,7 @@ public class Message extends DomainEntity {
 	@Past
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy hh:MM")
+	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -89,6 +90,17 @@ public class Message extends DomainEntity {
 
 	public void setRecipient(final Actor recipient) {
 		this.recipient = recipient;
+	}
+
+	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
+	public Topic getTopic() {
+		return this.topic;
+	}
+
+	public void setTopic(final Topic topic) {
+		this.topic = topic;
 	}
 
 }

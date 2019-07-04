@@ -58,7 +58,7 @@ public class Activity extends DomainEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
 	public Date getStartMoment() {
 		return this.startMoment;
 	}

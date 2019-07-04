@@ -1,21 +1,25 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
+
+import cz.jirutka.validator.collection.constraints.EachNotBlank;
+import cz.jirutka.validator.collection.constraints.EachURL;
 
 @Entity
 @Access(AccessType.PROPERTY)
 public class Section {
 
 	//Attributes
-	private String	title;
-	private String	summary;
-	private String	pictures;
+	private String				title;
+	private String				summary;
+	private Collection<String>	pictures;
 
 
 	//Attributes
@@ -38,12 +42,13 @@ public class Section {
 		this.summary = summary;
 	}
 
-	@URL
-	public String getPictures() {
+	@EachNotBlank
+	@EachURL
+	public Collection<String> getPictures() {
 		return this.pictures;
 	}
 
-	public void setPictures(final String pictures) {
+	public void setPictures(final Collection<String> pictures) {
 		this.pictures = pictures;
 	}
 
