@@ -1066,7 +1066,7 @@
 		<property name="summary" value="Summary2" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
-		<property name="category" ref="category15"/>
+		<property name="category" ref="category2"/>
 		<property name="activities">
 			<list>
 				<ref bean="conference2tutorial1" />
