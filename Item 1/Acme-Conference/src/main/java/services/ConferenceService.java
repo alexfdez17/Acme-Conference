@@ -20,7 +20,11 @@ public class ConferenceService {
 	private ConferenceRepository	conferenceRepository;
 
 
-	//Supported services
+	// Supported services
+
+	// CRUD
+
+	// Other business methods
 
 	//Stats for dashboard
 
