@@ -31,7 +31,8 @@ public class AuthorController extends AbstractController {
 		registerAuthorForm = new RegisterAuthorForm();
 		result = new ModelAndView("actor/registerAuthor");
 
-		result.addObject("registerAuthorForm", registerAuthorForm);
+		result.addObject("registerForm", registerAuthorForm);
+		result.addObject("role", "author");
 
 		return result;
 	}

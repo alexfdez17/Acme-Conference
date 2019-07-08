@@ -31,7 +31,8 @@ public class SponsorController extends AbstractController {
 		registerSponsorForm = new RegisterSponsorForm();
 		result = new ModelAndView("actor/registerSponsor");
 
-		result.addObject("registerSponsorForm", registerSponsorForm);
+		result.addObject("registerForm", registerSponsorForm);
+		result.addObject("role", "sponsor");
 
 		return result;
 	}

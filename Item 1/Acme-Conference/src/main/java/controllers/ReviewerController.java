@@ -31,7 +31,8 @@ public class ReviewerController extends AbstractController {
 		registerReviewerForm = new RegisterReviewerForm();
 		result = new ModelAndView("actor/registerReviewer");
 
-		result.addObject("registerReviewerForm", registerReviewerForm);
+		result.addObject("registerForm", registerReviewerForm);
+		result.addObject("role", "reviewer");
 
 		return result;
 	}
