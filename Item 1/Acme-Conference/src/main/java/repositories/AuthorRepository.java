@@ -11,6 +11,6 @@ import domain.Author;
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
 	@Query("select a from Author a where a.userAccount.id = ?1")
-	Author findbyUserAccountID(int id);
+	Author findbyUserAccountID(Integer id);
 
 }

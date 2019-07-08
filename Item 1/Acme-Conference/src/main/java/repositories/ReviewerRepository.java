@@ -11,6 +11,6 @@ import domain.Reviewer;
 public interface ReviewerRepository extends JpaRepository<Reviewer, Integer> {
 
 	@Query("select r from Reviewer r where r.userAccount.id = ?1")
-	Reviewer findbyUserAccountID(int id);
+	Reviewer findbyUserAccountID(Integer id);
 
 }

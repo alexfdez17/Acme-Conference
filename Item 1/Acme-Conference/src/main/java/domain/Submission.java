@@ -11,8 +11,10 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -24,6 +26,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(uniqueConstraints = {
+	@UniqueConstraint(columnNames = {
+		"ticker"
+	})
+})
 public class Submission extends DomainEntity {
 
 	//Attributes
@@ -40,9 +47,9 @@ public class Submission extends DomainEntity {
 
 	//Attributes
 
-	@Column(unique = true)
 	@NotBlank
 	@SafeHtml
+	@Pattern(regexp = "^[A-Z]{3}-[A-Z0-9]{4}$")
 	public String getTicker() {
 		return this.ticker;
 	}

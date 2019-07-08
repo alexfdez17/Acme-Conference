@@ -11,6 +11,6 @@ import domain.Administrator;
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer> {
 
 	@Query("select a from Administrator a where a.userAccount.id = ?1")
-	Administrator findbyUserAccountID(int id);
+	Administrator findbyUserAccountID(Integer id);
 
 }
