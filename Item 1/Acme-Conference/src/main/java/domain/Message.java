@@ -32,6 +32,7 @@ public class Message extends DomainEntity {
 	private String				body;
 
 	//Relationships
+	private Actor				owner;
 	private Actor				sender;
 	private Collection<Actor>	recipients;
 	private Topic				topic;
@@ -72,6 +73,17 @@ public class Message extends DomainEntity {
 	}
 
 	//Relationships
+
+	@ManyToOne(optional = false)
+	@Valid
+	@NotNull
+	public Actor getOwner() {
+		return this.owner;
+	}
+
+	public void setOwner(final Actor owner) {
+		this.owner = owner;
+	}
 
 	@ManyToOne(optional = false)
 	@Valid

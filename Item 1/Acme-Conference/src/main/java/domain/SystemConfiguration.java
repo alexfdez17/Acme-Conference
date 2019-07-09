@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
@@ -75,6 +76,7 @@ public class SystemConfiguration extends DomainEntity {
 
 	@NotNull
 	@EachNotBlank
+	@ElementCollection
 	public Collection<String> getCreditCardMakes() {
 		return this.creditCardMakes;
 	}
@@ -85,6 +87,7 @@ public class SystemConfiguration extends DomainEntity {
 
 	@NotNull
 	@EachNotBlank
+	@ElementCollection
 	public Collection<String> getVoidWords() {
 		return this.voidWords;
 	}
