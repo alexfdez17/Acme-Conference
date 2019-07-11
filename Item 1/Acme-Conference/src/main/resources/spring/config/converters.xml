@@ -74,7 +74,7 @@
 		<bean class="converters.SectionToStringConverter"/>
 		<bean class="converters.StringToSectionConverter"/>
 		
-		<bean class="converters.SponsorhipToStringConverter"/>
+		<bean class="converters.SponsorshipToStringConverter"/>
 		<bean class="converters.StringToSponsorshipConverter"/>
 		
 		<bean class="converters.SponsorToStringConverter"/>

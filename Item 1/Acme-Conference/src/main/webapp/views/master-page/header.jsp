@@ -42,6 +42,9 @@
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			<li><a href="author/register.do"><spring:message code="master.page.register.author" /></a></li>
+			<li><a href="reviewer/register.do"><spring:message code="master.page.register.reviewer" /></a></li>		
+			<li><a href="sponsor/register.do"><spring:message code="master.page.register.sponsor" /></a></li>	
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">

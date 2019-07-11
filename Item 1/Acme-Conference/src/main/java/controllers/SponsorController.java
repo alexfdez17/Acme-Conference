@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,15 +41,15 @@ public class SponsorController extends AbstractController {
 	// Save --------------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final RegisterSponsorForm registerSponsorForm, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("registerForm") @Valid final RegisterSponsorForm registerForm, final BindingResult binding) {
 		ModelAndView result;
 		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(registerSponsorForm);
+			result = this.createEditModelAndView(registerForm);
 		else
 			try {
-				if (registerSponsorForm.getPhone().matches("\\d{4,99}")) {
+				if (registerForm.getPhone().matches("\\d{4,99}")) {
 					/*
 					 * systemConfig = this.systemConfigService.findSystemConfiguration();
 					 * String newPhone = systemConfig.getPhonePrefix();
@@ -56,10 +57,10 @@ public class SponsorController extends AbstractController {
 					 * registerSponsorForm.setPhone(newPhone);
 					 */
 				}
-				this.sponsorService.registerSponsor(registerSponsorForm);
+				this.sponsorService.registerSponsor(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(registerSponsorForm, "actor.commit.error");
+				result = this.createEditModelAndView(registerForm, "actor.commit.error");
 			}
 		return result;
 	}
@@ -74,8 +75,9 @@ public class SponsorController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("actor/registerSponsor");
-		result.addObject("registerSponsorForm", registerSponsorForm);
+		result.addObject("registerForm", registerSponsorForm);
 		result.addObject("message", messageCode);
+		result.addObject("role", "sponsor");
 
 		return result;
 	}

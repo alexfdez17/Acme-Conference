@@ -3,7 +3,7 @@ package forms;
 
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class RegisterAuthorForm {
 
@@ -19,7 +19,7 @@ public class RegisterAuthorForm {
 	private String	phone;
 
 
-	@NotBlank
+	@NotEmpty
 	public String getUsername() {
 		return this.username;
 	}
@@ -28,7 +28,7 @@ public class RegisterAuthorForm {
 		this.username = username;
 	}
 
-	@NotBlank
+	@NotEmpty
 	public String getPassword() {
 		return this.password;
 	}
@@ -37,7 +37,7 @@ public class RegisterAuthorForm {
 		this.password = password;
 	}
 
-	@NotBlank
+	@NotEmpty
 	public String getPassword2() {
 		return this.password2;
 	}
@@ -46,7 +46,7 @@ public class RegisterAuthorForm {
 		this.password2 = password2;
 	}
 
-	@NotBlank
+	@NotEmpty
 	public String getName() {
 		return this.name;
 	}
@@ -63,7 +63,7 @@ public class RegisterAuthorForm {
 		this.middleName = middleName;
 	}
 
-	@NotBlank
+	@NotEmpty
 	public String getSurname() {
 		return this.surname;
 	}

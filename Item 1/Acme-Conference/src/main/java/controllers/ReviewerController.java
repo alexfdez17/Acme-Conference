@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,15 +41,15 @@ public class ReviewerController extends AbstractController {
 	// Save --------------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final RegisterReviewerForm registerReviewerForm, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("registerForm") @Valid final RegisterReviewerForm registerForm, final BindingResult binding) {
 		ModelAndView result;
 		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(registerReviewerForm);
+			result = this.createEditModelAndView(registerForm);
 		else
 			try {
-				if (registerReviewerForm.getPhone().matches("\\d{4,99}")) {
+				if (registerForm.getPhone().matches("\\d{4,99}")) {
 					/*
 					 * systemConfig = this.systemConfigService.findSystemConfiguration();
 					 * String newPhone = systemConfig.getPhonePrefix();
@@ -56,10 +57,10 @@ public class ReviewerController extends AbstractController {
 					 * registerReviewerForm.setPhone(newPhone);
 					 */
 				}
-				this.reviewerService.registerReviewer(registerReviewerForm);
+				this.reviewerService.registerReviewer(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(registerReviewerForm, "actor.commit.error");
+				result = this.createEditModelAndView(registerForm, "actor.commit.error");
 			}
 		return result;
 	}
@@ -74,8 +75,9 @@ public class ReviewerController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("actor/registerReviewer");
-		result.addObject("registerReviewerForm", registerReviewerForm);
+		result.addObject("registerForm", registerReviewerForm);
 		result.addObject("message", messageCode);
+		result.addObject("role", "reviewer");
 
 		return result;
 	}
