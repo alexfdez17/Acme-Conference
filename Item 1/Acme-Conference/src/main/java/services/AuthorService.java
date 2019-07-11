@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.AuthorRepository;
 import security.Authority;
@@ -128,6 +130,31 @@ public class AuthorService {
 		result.setSurname(registerAuthorForm.getSurname());
 		this.save(result);
 
+		return result;
+	}
+
+
+	// Reconstruct
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Author reconstruct(final Author author, final BindingResult binding) {
+		Author result;
+
+		if (author.getId() == 0)
+			result = author;
+		else {
+			final Author retrieved = this.authorRepository.findOne(author.getId());
+			result = author;
+
+			result.setUserAccount(retrieved.getUserAccount());
+
+		}
+
+		this.validator.validate(result, binding);
+		this.flush();
 		return result;
 	}
 

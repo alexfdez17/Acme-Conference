@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ReviewerRepository;
 import security.Authority;
@@ -129,6 +131,31 @@ public class ReviewerService {
 		result.setKeywords(registerReviewerForm.getKeywords());
 		this.save(result);
 
+		return result;
+	}
+
+
+	// Reconstruct
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Reviewer reconstruct(final Reviewer reviewer, final BindingResult binding) {
+		Reviewer result;
+
+		if (reviewer.getId() == 0)
+			result = reviewer;
+		else {
+			final Reviewer retrieved = this.reviewerRepository.findOne(reviewer.getId());
+			result = reviewer;
+
+			result.setUserAccount(retrieved.getUserAccount());
+
+		}
+
+		this.validator.validate(result, binding);
+		this.flush();
 		return result;
 	}
 

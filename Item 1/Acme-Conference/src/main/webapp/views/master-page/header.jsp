@@ -55,9 +55,18 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<security:authorize access="hasRole('ADMIN')">
+					<li><a href="administrator/edit.do"><spring:message code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('AUTHOR')">
+					<li><a href="author/edit.do"><spring:message code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('REVIEWER')">
+					<li><a href="reviewer/edit.do"><spring:message code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('SPONSOR')">
+					<li><a href="sponsor/edit.do"><spring:message code="master.page.profile.edit" /></a></li>
+					</security:authorize>								
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

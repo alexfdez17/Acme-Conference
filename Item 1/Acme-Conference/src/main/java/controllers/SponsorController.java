@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SponsorService;
+import domain.Sponsor;
 import forms.RegisterSponsorForm;
 
 @Controller
@@ -46,7 +47,7 @@ public class SponsorController extends AbstractController {
 		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(registerForm);
+			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
 				if (registerForm.getPhone().matches("\\d{4,99}")) {
@@ -60,22 +61,81 @@ public class SponsorController extends AbstractController {
 				this.sponsorService.registerSponsor(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(registerForm, "actor.commit.error");
+				result = this.createRegisterModelAndView(registerForm, "actor.commit.error");
+			}
+		return result;
+	}
+
+	// Edit profile --------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		Sponsor sponsor;
+		final ModelAndView result;
+
+		sponsor = this.sponsorService.findByPrincipal();
+		result = new ModelAndView("actor/edit");
+
+		result.addObject("actor", sponsor);
+		result.addObject("role", "sponsor");
+
+		return result;
+	}
+
+	// Save edit profile --------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveEdit(@ModelAttribute("actor") Sponsor actor, final BindingResult binding) {
+		ModelAndView result;
+		//SystemConfig systemConfig;
+
+		actor = this.sponsorService.reconstruct(actor, binding);
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(actor);
+		else
+			try {
+				if (actor.getPhone().matches("\\d{4,99}")) {
+					/*
+					 * systemConfig = this.systemConfigService.findSystemConfiguration();
+					 * String newPhone = systemConfig.getPhonePrefix();
+					 * newPhone += " " + registerAuthorForm.getPhone();
+					 * registerAuthorForm.setPhone(newPhone);
+					 */
+				}
+				this.sponsorService.save(actor);
+				result = new ModelAndView("redirect:/");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}
 		return result;
 	}
 
 	// Ancillary methods --------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(final RegisterSponsorForm registerSponsorForm) {
-		return this.createEditModelAndView(registerSponsorForm, null);
+	protected ModelAndView createRegisterModelAndView(final RegisterSponsorForm registerSponsorForm) {
+		return this.createRegisterModelAndView(registerSponsorForm, null);
 	}
 
-	protected ModelAndView createEditModelAndView(final RegisterSponsorForm registerSponsorForm, final String messageCode) {
+	protected ModelAndView createRegisterModelAndView(final RegisterSponsorForm registerSponsorForm, final String messageCode) {
 		ModelAndView result;
 
 		result = new ModelAndView("actor/registerSponsor");
 		result.addObject("registerForm", registerSponsorForm);
+		result.addObject("message", messageCode);
+		result.addObject("role", "sponsor");
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(final Sponsor sponsor) {
+		return this.createEditModelAndView(sponsor, null);
+	}
+
+	protected ModelAndView createEditModelAndView(final Sponsor sponsor, final String messageCode) {
+		ModelAndView result;
+
+		result = new ModelAndView("actor/edit");
+		result.addObject("actor", sponsor);
 		result.addObject("message", messageCode);
 		result.addObject("role", "sponsor");
 

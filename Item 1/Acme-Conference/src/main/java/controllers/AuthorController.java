@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AuthorService;
+import domain.Author;
 import forms.RegisterAuthorForm;
 
 @Controller
@@ -38,7 +39,7 @@ public class AuthorController extends AbstractController {
 		return result;
 	}
 
-	// Save --------------------------------------------------------
+	// Save register --------------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@ModelAttribute("registerForm") @Valid final RegisterAuthorForm registerForm, final BindingResult binding) {
@@ -46,7 +47,7 @@ public class AuthorController extends AbstractController {
 		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(registerForm);
+			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
 				if (registerForm.getPhone().matches("\\d{4,99}")) {
@@ -60,22 +61,81 @@ public class AuthorController extends AbstractController {
 				this.authorService.registerAuthor(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(registerForm, "actor.commit.error");
+				result = this.createRegisterModelAndView(registerForm, "actor.commit.error");
+			}
+		return result;
+	}
+
+	// Edit profile --------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		Author author;
+		final ModelAndView result;
+
+		author = this.authorService.findByPrincipal();
+		result = new ModelAndView("actor/edit");
+
+		result.addObject("actor", author);
+		result.addObject("role", "author");
+
+		return result;
+	}
+
+	// Save edit profile --------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveEdit(@ModelAttribute("actor") Author actor, final BindingResult binding) {
+		ModelAndView result;
+		//SystemConfig systemConfig;
+
+		actor = this.authorService.reconstruct(actor, binding);
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(actor);
+		else
+			try {
+				if (actor.getPhone().matches("\\d{4,99}")) {
+					/*
+					 * systemConfig = this.systemConfigService.findSystemConfiguration();
+					 * String newPhone = systemConfig.getPhonePrefix();
+					 * newPhone += " " + registerAuthorForm.getPhone();
+					 * registerAuthorForm.setPhone(newPhone);
+					 */
+				}
+				this.authorService.save(actor);
+				result = new ModelAndView("redirect:/");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}
 		return result;
 	}
 
 	// Ancillary methods --------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(final RegisterAuthorForm registerAuthorForm) {
-		return this.createEditModelAndView(registerAuthorForm, null);
+	protected ModelAndView createRegisterModelAndView(final RegisterAuthorForm registerAuthorForm) {
+		return this.createRegisterModelAndView(registerAuthorForm, null);
 	}
 
-	protected ModelAndView createEditModelAndView(final RegisterAuthorForm registerAuthorForm, final String messageCode) {
+	protected ModelAndView createRegisterModelAndView(final RegisterAuthorForm registerAuthorForm, final String messageCode) {
 		ModelAndView result;
 
 		result = new ModelAndView("actor/registerAuthor");
 		result.addObject("registerForm", registerAuthorForm);
+		result.addObject("message", messageCode);
+		result.addObject("role", "author");
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(final Author author) {
+		return this.createEditModelAndView(author, null);
+	}
+
+	protected ModelAndView createEditModelAndView(final Author author, final String messageCode) {
+		ModelAndView result;
+
+		result = new ModelAndView("actor/edit");
+		result.addObject("actor", author);
 		result.addObject("message", messageCode);
 		result.addObject("role", "author");
 

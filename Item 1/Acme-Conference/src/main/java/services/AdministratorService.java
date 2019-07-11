@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.AdministratorRepository;
 import security.Authority;
@@ -128,6 +130,31 @@ public class AdministratorService {
 		result.setSurname(registerAdministratorForm.getSurname());
 		this.save(result);
 
+		return result;
+	}
+
+
+	// Reconstruct
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Administrator reconstruct(final Administrator administrator, final BindingResult binding) {
+		Administrator result;
+
+		if (administrator.getId() == 0)
+			result = administrator;
+		else {
+			final Administrator retrieved = this.administratorRepository.findOne(administrator.getId());
+			result = administrator;
+
+			result.setUserAccount(retrieved.getUserAccount());
+
+		}
+
+		this.validator.validate(result, binding);
+		this.flush();
 		return result;
 	}
 

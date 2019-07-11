@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ReviewerService;
+import domain.Reviewer;
 import forms.RegisterReviewerForm;
 
 @Controller
@@ -46,7 +47,7 @@ public class ReviewerController extends AbstractController {
 		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
-			result = this.createEditModelAndView(registerForm);
+			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
 				if (registerForm.getPhone().matches("\\d{4,99}")) {
@@ -60,22 +61,81 @@ public class ReviewerController extends AbstractController {
 				this.reviewerService.registerReviewer(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(registerForm, "actor.commit.error");
+				result = this.createRegisterModelAndView(registerForm, "actor.commit.error");
+			}
+		return result;
+	}
+
+	// Edit profile --------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		Reviewer reviewer;
+		final ModelAndView result;
+
+		reviewer = this.reviewerService.findByPrincipal();
+		result = new ModelAndView("actor/edit");
+
+		result.addObject("actor", reviewer);
+		result.addObject("role", "reviewer");
+
+		return result;
+	}
+
+	// Save edit profile --------------------------------------------------------
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView saveEdit(@ModelAttribute("actor") Reviewer actor, final BindingResult binding) {
+		ModelAndView result;
+		//SystemConfig systemConfig;
+
+		actor = this.reviewerService.reconstruct(actor, binding);
+		if (binding.hasErrors())
+			result = this.createEditModelAndView(actor);
+		else
+			try {
+				if (actor.getPhone().matches("\\d{4,99}")) {
+					/*
+					 * systemConfig = this.systemConfigService.findSystemConfiguration();
+					 * String newPhone = systemConfig.getPhonePrefix();
+					 * newPhone += " " + registerReviewerForm.getPhone();
+					 * registerReviewerForm.setPhone(newPhone);
+					 */
+				}
+				this.reviewerService.save(actor);
+				result = new ModelAndView("redirect:/");
+			} catch (final Throwable oops) {
+				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}
 		return result;
 	}
 
 	// Ancillary methods --------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(final RegisterReviewerForm registerReviewerForm) {
-		return this.createEditModelAndView(registerReviewerForm, null);
+	protected ModelAndView createRegisterModelAndView(final RegisterReviewerForm registerReviewerForm) {
+		return this.createRegisterModelAndView(registerReviewerForm, null);
 	}
 
-	protected ModelAndView createEditModelAndView(final RegisterReviewerForm registerReviewerForm, final String messageCode) {
+	protected ModelAndView createRegisterModelAndView(final RegisterReviewerForm registerReviewerForm, final String messageCode) {
 		ModelAndView result;
 
 		result = new ModelAndView("actor/registerReviewer");
 		result.addObject("registerForm", registerReviewerForm);
+		result.addObject("message", messageCode);
+		result.addObject("role", "reviewer");
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(final Reviewer reviewer) {
+		return this.createEditModelAndView(reviewer, null);
+	}
+
+	protected ModelAndView createEditModelAndView(final Reviewer reviewer, final String messageCode) {
+		ModelAndView result;
+
+		result = new ModelAndView("actor/edit");
+		result.addObject("actor", reviewer);
 		result.addObject("message", messageCode);
 		result.addObject("role", "reviewer");
 

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.SponsorRepository;
 import security.Authority;
@@ -128,6 +130,31 @@ public class SponsorService {
 		result.setSurname(registerSponsorForm.getSurname());
 		this.save(result);
 
+		return result;
+	}
+
+
+	// Reconstruct
+
+	@Autowired
+	private Validator	validator;
+
+
+	public Sponsor reconstruct(final Sponsor sponsor, final BindingResult binding) {
+		Sponsor result;
+
+		if (sponsor.getId() == 0)
+			result = sponsor;
+		else {
+			final Sponsor retrieved = this.sponsorRepository.findOne(sponsor.getId());
+			result = sponsor;
+
+			result.setUserAccount(retrieved.getUserAccount());
+
+		}
+
+		this.validator.validate(result, binding);
+		this.flush();
 		return result;
 	}
 
