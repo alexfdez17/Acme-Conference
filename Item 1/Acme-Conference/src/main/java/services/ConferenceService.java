@@ -9,8 +9,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.ConferenceRepository;
+import domain.Conference;
 
 @Service
 @Transactional
@@ -24,6 +26,50 @@ public class ConferenceService {
 	// Supported services
 
 	// CRUD
+
+	public Conference create() {
+		Conference result;
+
+		result = new Conference();
+
+		return result;
+	}
+
+	public Conference save(final Conference conference) {
+		Assert.notNull(conference);
+		Conference result;
+
+		result = this.conferenceRepository.save(conference);
+		return result;
+	}
+
+	public void delete(final Conference conference) {
+		Assert.notNull(conference);
+		Assert.isTrue(conference.getId() != 0);
+
+		this.conferenceRepository.delete(conference);
+	}
+
+	public Collection<Conference> findAll() {
+		Collection<Conference> result;
+
+		result = this.conferenceRepository.findAll();
+
+		return result;
+	}
+
+	public Conference findOne(final int conferenceId) {
+		Conference result;
+
+		result = this.conferenceRepository.findOne(conferenceId);
+		Assert.notNull(result);
+
+		return result;
+	}
+
+	public void flush() {
+		this.conferenceRepository.flush();
+	}
 
 	// Other business methods
 

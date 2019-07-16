@@ -17,7 +17,9 @@ import org.springframework.validation.Validator;
 
 import repositories.SubmissionRepository;
 import domain.Author;
+import domain.Paper;
 import domain.Submission;
+import forms.SubmissionPaperForm;
 
 @Service
 @Transactional
@@ -105,6 +107,40 @@ public class SubmissionService {
 	}
 
 	// Other business methods
+
+	public Collection<Submission> findByAuthor(final Author author) {
+		return this.submissionRepository.findByAuthorId(author.getId());
+	}
+
+	public Submission makeSubmission(final SubmissionPaperForm submissionPaperForm) {
+		final Submission result = submissionPaperForm.getSubmission();
+		final Paper paper = new Paper();
+
+		paper.setTitle(submissionPaperForm.getTitle());
+		paper.setAuthors(submissionPaperForm.getAuthors());
+		paper.setSummary(submissionPaperForm.getSummary());
+		paper.setDocument(submissionPaperForm.getDocument());
+
+		result.setPaper(paper);
+		this.save(result);
+
+		return result;
+	}
+
+	public Submission uploadCameraReadyPaper(final SubmissionPaperForm submissionPaperForm) {
+		final Submission result = submissionPaperForm.getSubmission();
+		final Paper cameraReady = new Paper();
+
+		cameraReady.setTitle(submissionPaperForm.getTitle());
+		cameraReady.setAuthors(submissionPaperForm.getAuthors());
+		cameraReady.setSummary(submissionPaperForm.getSummary());
+		cameraReady.setDocument(submissionPaperForm.getDocument());
+
+		result.setCameraReadyPaper(cameraReady);
+		this.save(result);
+
+		return result;
+	}
 
 	// Dashboard
 
