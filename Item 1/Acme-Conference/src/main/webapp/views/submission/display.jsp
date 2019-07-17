@@ -34,6 +34,7 @@
 <b><spring:message code="submission.moment" /></b>:
 <jstl:out value="${submission.moment}" />
 <br />
+<br />
 
 <!-- Paper -->
 
@@ -53,6 +54,7 @@
 
 <b><spring:message code="paper.document" /></b>:
 <jstl:out value="${submission.paper.document}" />
+<br />
 <br />
 
 <!-- Camera-Ready Paper -->

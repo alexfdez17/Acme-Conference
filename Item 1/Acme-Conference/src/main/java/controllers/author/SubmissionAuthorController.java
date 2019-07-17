@@ -2,6 +2,7 @@
 package controllers.author;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -47,9 +48,11 @@ public class SubmissionAuthorController extends AbstractController {
 		final Author principal = this.authorService.findByPrincipal();
 
 		submissions = this.submissionService.findByAuthor(principal);
+		final Date today = new Date();
 
 		result = new ModelAndView("submission/list");
 		result.addObject("submissions", submissions);
+		result.addObject("today", today);
 
 		return result;
 	}
@@ -91,6 +94,7 @@ public class SubmissionAuthorController extends AbstractController {
 
 		result = new ModelAndView("submission/create");
 		result.addObject("submissionForm", submissionPaperForm);
+		result.addObject("action", "edit.do");
 		return result;
 	}
 
@@ -115,7 +119,7 @@ public class SubmissionAuthorController extends AbstractController {
 
 	// Go to upload --------------------------------------------------------
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int submissionId) {
 		ModelAndView result;
 		Submission submission;
@@ -132,7 +136,7 @@ public class SubmissionAuthorController extends AbstractController {
 
 	// Upload --------------------------------------------------------
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/upload", method = RequestMethod.POST, params = "save")
 	public ModelAndView upload(@ModelAttribute("submissionForm") @Valid final SubmissionPaperForm submissionForm, final BindingResult binding) {
 		ModelAndView result;
 
@@ -160,6 +164,7 @@ public class SubmissionAuthorController extends AbstractController {
 
 		result = new ModelAndView("submission/create");
 		result.addObject("submissionForm", submissionPaperForm);
+		result.addObject("action", "edit.do");
 		result.addObject("message", message);
 		return result;
 	}
@@ -173,6 +178,7 @@ public class SubmissionAuthorController extends AbstractController {
 
 		result = new ModelAndView("submission/upload");
 		result.addObject("submissionForm", submissionPaperForm);
+		result.addObject("action", "upload.do");
 		result.addObject("message", message);
 		return result;
 	}

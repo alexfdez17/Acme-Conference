@@ -11,38 +11,20 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="audit/auditor/edit.do"
-	modelAttribute="audit">
+<form:form action="submission/author/${action}"
+	modelAttribute="submissionForm">
 
-	<form:hidden path="id" />
-	<form:hidden path="version" />
-	<form:hidden path="moment" />
-	<jstl:choose>
-	<jstl:when test="${id == 0}">
-	<form:hidden path="auditor" />
-	<form:hidden path="position" />
-	</jstl:when>
-	</jstl:choose>
 	
-	<acme:textarea code="audit.description" path="description"/>
-	<br />
-	<acme:textbox code="audit.score" path="score"/>
-	<br />
-	<form:label path="draftMode">
-		<spring:message code="audit.draftMode" />:
-	</form:label>
-	<INPUT TYPE="radio" name="draftMode" value="true" checked="checked" />True
-	<INPUT TYPE="radio" NAME="draftMode" value="false" />False
-	<br />
+	<form:hidden path="submission" />
 	
-	<acme:submit name="save" code="audit.save" />
-	<jstl:choose>
-	<jstl:when test="${id != 0}">
-		<acme:submit name="delete" code="audit.delete" />
-	</jstl:when>
-	</jstl:choose>
+	<acme:textbox code="paper.title" path="title"/>
+	<acme:textbox code="paper.authors" path="authors"/>
+	<acme:textbox code="paper.summary" path="summary"/>
+	<acme:textbox code="paper.document" path="document"/>
 	
-	<acme:cancel code="audit.cancel" url="audit/auditor/list.do" />
+	<acme:submit name="save" code="submission.save"/>
+		
+	<acme:cancel url="submission/author/list.do" code="submission.cancel"/>
 	
 
 </form:form>
