@@ -43,7 +43,7 @@
 	</display:column>
 	
 	<display:column>
-	<jstl:if test="${row.status == 'ACCEPTED' && row.conference.submissionDeadline < today && row.cameraReadyPaper == null}">
+	<jstl:if test="${row.status == 'ACCEPTED' && row.conference.cameraReadyDeadline < today && row.cameraReadyPaper == null}">
 		<a href="submission/author/upload.do?submissionId=${row.id}"> <spring:message
 				code="submission.upload" />
 		</a>

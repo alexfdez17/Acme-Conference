@@ -1819,15 +1819,15 @@
 	<!-- **************************** START CONFERENCE4 **************************** -->
 	
 	<bean id="conference4" class="domain.Conference">
-		<property name="title" value="Title1" />
-		<property name="acronym" value="Acronym1" />
-		<property name="venue" value="Venue1" />
+		<property name="title" value="Title4" />
+		<property name="acronym" value="Acronym4" />
+		<property name="venue" value="Venue4" />
 		<property name="submissionDeadline" value="07/01/2019 12:00" />
 		<property name="notificationDeadline" value="11/10/2019 12:00" />
 		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
 		<property name="startDate" value="12/01/2019" />
 		<property name="endDate" value="12/31/2019" />
-		<property name="summary" value="Summary1" />
+		<property name="summary" value="Summary4" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
 		<property name="category" ref="category2"/>
@@ -2044,15 +2044,15 @@
 	<!-- **************************** START CONFERENCE5 **************************** -->
 	
 	<bean id="conference5" class="domain.Conference">
-		<property name="title" value="Title1" />
-		<property name="acronym" value="Acronym1" />
-		<property name="venue" value="Venue1" />
+		<property name="title" value="Title5" />
+		<property name="acronym" value="Acronym5" />
+		<property name="venue" value="Venue5" />
 		<property name="submissionDeadline" value="07/01/2019 12:00" />
 		<property name="notificationDeadline" value="11/10/2019 12:00" />
 		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
 		<property name="startDate" value="12/01/2019" />
 		<property name="endDate" value="12/31/2019" />
-		<property name="summary" value="Summary1" />
+		<property name="summary" value="Summary5" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
 		<property name="category" ref="category2"/>
@@ -2269,15 +2269,15 @@
 	<!-- **************************** START CONFERENCE6 **************************** -->
 	
 	<bean id="conference6" class="domain.Conference">
-		<property name="title" value="Title3" />
-		<property name="acronym" value="Acronym3" />
-		<property name="venue" value="Venue3" />
+		<property name="title" value="Title6" />
+		<property name="acronym" value="Acronym6" />
+		<property name="venue" value="Venue6" />
 		<property name="submissionDeadline" value="10/10/2019 12:00" />
 		<property name="notificationDeadline" value="10/20/2019 12:00" />
 		<property name="cameraReadyDeadline" value="10/30/2019 12:00" />
 		<property name="startDate" value="11/01/2019" />
 		<property name="endDate" value="11/30/2019" />
-		<property name="summary" value="Summary3" />
+		<property name="summary" value="Summary6" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="false" />
 		<property name="category" ref="category7"/>

@@ -73,6 +73,14 @@ public class ConferenceService {
 
 	// Other business methods
 
+	public Collection<Conference> findFinals() {
+		Collection<Conference> result;
+
+		result = this.conferenceRepository.findFinals();
+
+		return result;
+	}
+
 	//Stats for dashboard
 
 	public List<Double> minMaxAvgStddevFee() {
