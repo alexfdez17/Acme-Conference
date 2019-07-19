@@ -1,8 +1,6 @@
 
 package services;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class RegistrationService {
 
 	// Dashboard
 
-	public List<Double> minMaxAvgStddevPerConference() {
+	public Double[] minMaxAvgStddevPerConference() {
 		return this.registrationRepository.minMaxAvgStddevPerConference();
 	}
 

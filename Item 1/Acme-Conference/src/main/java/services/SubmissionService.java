@@ -4,7 +4,6 @@ package services;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -148,7 +147,7 @@ public class SubmissionService {
 
 	// Dashboard
 
-	public List<Double> minMaxAvgStddevPerConference() {
+	public Double[] minMaxAvgStddevPerConference() {
 		return this.submissionRepository.minMaxAvgStddevPerConference();
 	}
 

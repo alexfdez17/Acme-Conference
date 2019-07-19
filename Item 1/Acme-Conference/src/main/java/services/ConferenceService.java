@@ -3,7 +3,6 @@ package services;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -83,11 +82,11 @@ public class ConferenceService {
 
 	//Stats for dashboard
 
-	public List<Double> minMaxAvgStddevFee() {
+	public Double[] minMaxAvgStddevFee() {
 		return this.conferenceRepository.minMaxAvgStddevFee();
 	}
 
-	public List<Double> minMaxAvgStddevDays() {
+	public Double[] minMaxAvgStddevDays() {
 		return this.conferenceRepository.minMaxAvgStddevDays();
 	}
 
