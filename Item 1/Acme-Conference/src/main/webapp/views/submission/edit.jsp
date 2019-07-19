@@ -13,9 +13,16 @@
 
 <form:form action="submission/author/${action}"
 	modelAttribute="submissionForm">
-
 	
+	<jstl:choose>
+	<jstl:when test="${cameraReady == true}">
 	<form:hidden path="submission" />
+	</jstl:when>
+	<jstl:otherwise>
+	<form:hidden path="conference" />
+	</jstl:otherwise>
+	</jstl:choose>
+	
 	
 	<acme:textbox code="paper.title" path="title"/>
 	<acme:textbox code="paper.authors" path="authors"/>

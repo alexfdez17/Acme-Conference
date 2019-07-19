@@ -12,7 +12,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <b><spring:message code="submission.conference" /></b>:
-<jstl:out value="${submission.conference.ticker}" />
+<jstl:out value="${submission.conference.acronym}" />
 <br />
 
 <jstl:choose>
@@ -39,6 +39,7 @@
 <!-- Paper -->
 
 <b><spring:message code="paper.details" /></b>
+<br />
 
 <b><spring:message code="paper.title" /></b>:
 <jstl:out value="${submission.paper.title}" />
@@ -61,6 +62,7 @@
 
 <jstl:if test="${cameraReady == true}">
 <b><spring:message code="paper.cameraReadyYes" /></b>
+<br />
 
 <b><spring:message code="paper.title" /></b>:
 <jstl:out value="${submission.paper.title}" />
@@ -82,7 +84,7 @@
 <jstl:if test="${cameraReady == false}">
 <b><spring:message code="paper.cameraReadyNo" /></b>
 </jstl:if>
+<br />
 
-<jstl:if test="${role == 'author'}">
-	<acme:cancel code="submission.cancel" url="submission/author/list.do" />
-</jstl:if>
+<acme:cancel code="submission.cancel" url="submission/author/list.do" />
+

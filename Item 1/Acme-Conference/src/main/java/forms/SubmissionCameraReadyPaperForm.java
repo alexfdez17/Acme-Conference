@@ -6,11 +6,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
-import domain.Conference;
+import domain.Submission;
 
-public class SubmissionPaperForm {
+public class SubmissionCameraReadyPaperForm {
 
-	private Conference	conference;
+	private Submission	submission;
 	private String		title;
 	private String		authors;
 	private String		summary;
@@ -18,12 +18,12 @@ public class SubmissionPaperForm {
 
 
 	@NotNull
-	public Conference getConference() {
-		return this.conference;
+	public Submission getSubmission() {
+		return this.submission;
 	}
 
-	public void setConference(final Conference conference) {
-		this.conference = conference;
+	public void setSubmission(final Submission submission) {
+		this.submission = submission;
 	}
 
 	@NotBlank

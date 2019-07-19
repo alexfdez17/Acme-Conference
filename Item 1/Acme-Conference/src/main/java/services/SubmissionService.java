@@ -19,6 +19,7 @@ import repositories.SubmissionRepository;
 import domain.Author;
 import domain.Paper;
 import domain.Submission;
+import forms.SubmissionCameraReadyPaperForm;
 import forms.SubmissionPaperForm;
 
 @Service
@@ -67,7 +68,8 @@ public class SubmissionService {
 		final Author owner = submission.getAuthor();
 		Assert.isTrue(principal.equals(owner));
 
-		Assert.isTrue(submission.getConference().getSubmissionDeadline().after(Calendar.getInstance().getTime()));
+		if (submission.getId() == 0)
+			Assert.isTrue(submission.getConference().getSubmissionDeadline().after(Calendar.getInstance().getTime()));
 
 		if (submission.getCameraReadyPaper() != null) {
 			Assert.isTrue(submission.getStatus().equals("ACCEPTED"));
@@ -113,7 +115,9 @@ public class SubmissionService {
 	}
 
 	public Submission makeSubmission(final SubmissionPaperForm submissionPaperForm) {
-		final Submission result = submissionPaperForm.getSubmission();
+		final Submission result = this.create();
+		result.setConference(submissionPaperForm.getConference());
+
 		final Paper paper = new Paper();
 
 		paper.setTitle(submissionPaperForm.getTitle());
@@ -127,14 +131,14 @@ public class SubmissionService {
 		return result;
 	}
 
-	public Submission uploadCameraReadyPaper(final SubmissionPaperForm submissionPaperForm) {
-		final Submission result = submissionPaperForm.getSubmission();
+	public Submission uploadCameraReadyPaper(final SubmissionCameraReadyPaperForm submissionCameraReadyPaperForm) {
+		final Submission result = submissionCameraReadyPaperForm.getSubmission();
 		final Paper cameraReady = new Paper();
 
-		cameraReady.setTitle(submissionPaperForm.getTitle());
-		cameraReady.setAuthors(submissionPaperForm.getAuthors());
-		cameraReady.setSummary(submissionPaperForm.getSummary());
-		cameraReady.setDocument(submissionPaperForm.getDocument());
+		cameraReady.setTitle(submissionCameraReadyPaperForm.getTitle());
+		cameraReady.setAuthors(submissionCameraReadyPaperForm.getAuthors());
+		cameraReady.setSummary(submissionCameraReadyPaperForm.getSummary());
+		cameraReady.setDocument(submissionCameraReadyPaperForm.getDocument());
 
 		result.setCameraReadyPaper(cameraReady);
 		this.save(result);

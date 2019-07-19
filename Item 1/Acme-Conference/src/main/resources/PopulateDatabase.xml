@@ -396,37 +396,23 @@
 	<!-- ************ END AUTHOR1 SUBMISSION2 (TO CONFERENCE2) ************ -->
 	
 	
-	<!-- ************ START AUTHOR1 SUBMISSION3 (TO CONFERENCE3) ************ -->
+	<!-- ************ START AUTHOR1 SUBMISSION3 (TO CONFERENCE4) ************ -->
 	
 	<bean id="author1submission3" class="domain.Submission">
 		<property name="ticker" value="AAA-A1B2" />
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
-		<property name="cameraReadyPaper" ref="paper2" />
 		<property name="status" value="ACCEPTED"/>
-		<property name="author" ref="author1" />
-		<property name="conference" ref="conference3" />
-	</bean>
-	
-	<!-- ************ END AUTHOR1 SUBMISSION3 (TO CONFERENCE3) ************ -->
-	
-	<!-- ************ START AUTHOR1 SUBMISSION4 (TO CONFERENCE4) ************ -->
-	
-	<bean id="author1submission4" class="domain.Submission">
-		<property name="ticker" value="AAA-C3D4" />
-		<property name="moment" value="07/03/2019 12:00" />
-		<property name="paper" ref="paper1" />
-		<property name="status" value="UNDER-REVIEW"/>
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference4" />
 	</bean>
 	
-	<!-- ************ END AUTHOR1 SUBMISSION4 (TO CONFERENCE4) ************ -->
+	<!-- ************ END AUTHOR1 SUBMISSION3 (TO CONFERENCE4) ************ -->
 	
 	
-	<!-- ************ START AUTHOR1 SUBMISSION5 (TO CONFERENCE5) ************ -->
+	<!-- ************ START AUTHOR1 SUBMISSION4 (TO CONFERENCE5) ************ -->
 	
-	<bean id="author1submission5" class="domain.Submission">
+	<bean id="author1submission4" class="domain.Submission">
 		<property name="ticker" value="AAA-5A57" />
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
@@ -436,20 +422,9 @@
 		<property name="conference" ref="conference5" />
 	</bean>
 	
-	<!-- ************ END AUTHOR1 SUBMISSION5 (TO CONFERENCE5) ************ -->
+	<!-- ************ END AUTHOR1 SUBMISSION4 (TO CONFERENCE5) ************ -->
 	
 	<!-- ************ START AUTHOR1 SUBMISSION6 (TO CONFERENCE6) ************ -->
-	
-	<bean id="author1submission6" class="domain.Submission">
-		<property name="ticker" value="AAA-CCCC" />
-		<property name="moment" value="07/03/2019 12:00" />
-		<property name="paper" ref="paper1" />
-		<property name="status" value="UNDER-REVIEW"/>
-		<property name="author" ref="author1" />
-		<property name="conference" ref="conference6" />
-	</bean>
-	
-	<!-- ************ END AUTHOR1 SUBMISSION6 (TO CONFERENCE6) ************ -->
 	
 	
 	<!-- ************ START AUTHOR1 REGISTRATION1 (TO CONFERENCE2) ************ -->
@@ -462,55 +437,35 @@
 	
 	<!-- ************ END AUTHOR1 REGISTRATION1 (TO CONFERENCE2) ************ -->
 	
-	<!-- ************ START AUTHOR1 REGISTRATION2 (TO CONFERENCE3) ************ -->
+	<!-- ************ START AUTHOR1 REGISTRATION2 (TO CONFERENCE4) ************ -->
 	
 	<bean id="author1registration2" class="domain.Registration">
-		<property name="creditCard" ref="creditCard1" />
-		<property name="author" ref="author1" />
-		<property name="conference" ref="conference3" />
-	</bean>
-	
-	<!-- ************ END AUTHOR1 REGISTRATION2 (TO CONFERENCE3) ************ -->
-	
-	<!-- ************ START AUTHOR1 REGISTRATION3 (TO CONFERENCE4) ************ -->
-	
-	<bean id="author1registration3" class="domain.Registration">
 		<property name="creditCard" ref="creditCard1" />
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference4" />
 	</bean>
 	
-	<!-- ************ END AUTHOR1 REGISTRATION3 (TO CONFERENCE4) ************ -->
+	<!-- ************ END AUTHOR1 REGISTRATION2 (TO CONFERENCE4) ************ -->
 	
-	<!-- ************ START AUTHOR1 REGISTRATION4 (TO CONFERENCE5) ************ -->
+	<!-- ************ START AUTHOR1 REGISTRATION3 (TO CONFERENCE5) ************ -->
 	
-	<bean id="author1registration4" class="domain.Registration">
+	<bean id="author1registration3" class="domain.Registration">
 		<property name="creditCard" ref="creditCard1" />
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference5" />
 	</bean>
 	
-	<!-- ************ END AUTHOR1 REGISTRATION4 (TO CONFERENCE5) ************ -->
+	<!-- ************ END AUTHOR1 REGISTRATION3 (TO CONFERENCE5) ************ -->
 	
-	<!-- ************ START AUTHOR1 REGISTRATION5 (TO CONFERENCE6) ************ -->
+	<!-- ************ START AUTHOR1 REGISTRATION4 (TO CONFERENCE1) ************ -->
 	
-	<bean id="author1registration5" class="domain.Registration">
-		<property name="creditCard" ref="creditCard1" />
-		<property name="author" ref="author1" />
-		<property name="conference" ref="conference6" />
-	</bean>
-	
-	<!-- ************ END AUTHOR1 REGISTRATION5 (TO CONFERENCE6) ************ -->
-	
-	<!-- ************ START AUTHOR1 REGISTRATION6 (TO CONFERENCE1) ************ -->
-	
-	<bean id="author1registration6" class="domain.Registration">
+	<bean id="author1registration4" class="domain.Registration">
 		<property name="creditCard" ref="creditCard1" />
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference1" />
 	</bean>
 	
-	<!-- ************ END AUTHOR1 REGISTRATION6 (TO CONFERENCE1) ************ -->
+	<!-- ************ END AUTHOR1 REGISTRATION4 (TO CONFERENCE1) ************ -->
 	
 	
 	<!-- ************ START AUTHOR1 MESSAGE1 ************ -->

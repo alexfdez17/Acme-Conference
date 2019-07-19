@@ -22,6 +22,7 @@ import controllers.AbstractController;
 import domain.Author;
 import domain.Conference;
 import domain.Submission;
+import forms.SubmissionCameraReadyPaperForm;
 import forms.SubmissionPaperForm;
 
 @Controller
@@ -81,20 +82,18 @@ public class SubmissionAuthorController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(final int conferenceId) {
 		ModelAndView result;
-		final Submission submission;
 		Conference conference;
 		final SubmissionPaperForm submissionPaperForm;
 
 		conference = this.conferenceService.findOne(conferenceId);
-		submission = this.submissionService.create();
-		submission.setConference(conference);
 
 		submissionPaperForm = new SubmissionPaperForm();
-		submissionPaperForm.setSubmission(submission);
+		submissionPaperForm.setConference(conference);
 
 		result = new ModelAndView("submission/create");
 		result.addObject("submissionForm", submissionPaperForm);
 		result.addObject("action", "edit.do");
+		result.addObject("cameraReady", false);
 		return result;
 	}
 
@@ -123,32 +122,32 @@ public class SubmissionAuthorController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int submissionId) {
 		ModelAndView result;
 		Submission submission;
-		SubmissionPaperForm submissionPaperForm;
+		SubmissionCameraReadyPaperForm submissionCameraReadyPaperForm;
 
 		submission = this.submissionService.findOne(submissionId);
 
-		submissionPaperForm = new SubmissionPaperForm();
-		submissionPaperForm.setSubmission(submission);
+		submissionCameraReadyPaperForm = new SubmissionCameraReadyPaperForm();
+		submissionCameraReadyPaperForm.setSubmission(submission);
 
-		result = this.createUploadCameraReadyPaperModelAndView(submissionPaperForm);
+		result = this.createUploadCameraReadyPaperModelAndView(submissionCameraReadyPaperForm);
 		return result;
 	}
 
 	// Upload --------------------------------------------------------
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, params = "save")
-	public ModelAndView upload(@ModelAttribute("submissionForm") @Valid final SubmissionPaperForm submissionForm, final BindingResult binding) {
+	public ModelAndView upload(@ModelAttribute("submissionForm") @Valid final SubmissionCameraReadyPaperForm submissionCameraReadyPaperForm, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
-			result = this.createUploadCameraReadyPaperModelAndView(submissionForm);
+			result = this.createUploadCameraReadyPaperModelAndView(submissionCameraReadyPaperForm);
 		else
 			try {
-				this.submissionService.makeSubmission(submissionForm);
+				this.submissionService.uploadCameraReadyPaper(submissionCameraReadyPaperForm);
 				result = new ModelAndView("redirect:list.do");
 
 			} catch (final Throwable oops) {
-				result = this.createUploadCameraReadyPaperModelAndView(submissionForm, "submission.commit.error");
+				result = this.createUploadCameraReadyPaperModelAndView(submissionCameraReadyPaperForm, "submission.commit.error");
 			}
 		return result;
 	}
@@ -165,20 +164,22 @@ public class SubmissionAuthorController extends AbstractController {
 		result = new ModelAndView("submission/create");
 		result.addObject("submissionForm", submissionPaperForm);
 		result.addObject("action", "edit.do");
+		result.addObject("cameraReady", false);
 		result.addObject("message", message);
 		return result;
 	}
 
-	protected ModelAndView createUploadCameraReadyPaperModelAndView(final SubmissionPaperForm submissionPaperForm) {
-		return this.createUploadCameraReadyPaperModelAndView(submissionPaperForm, null);
+	protected ModelAndView createUploadCameraReadyPaperModelAndView(final SubmissionCameraReadyPaperForm submissionCameraReadyPaperForm) {
+		return this.createUploadCameraReadyPaperModelAndView(submissionCameraReadyPaperForm, null);
 	}
 
-	protected ModelAndView createUploadCameraReadyPaperModelAndView(final SubmissionPaperForm submissionPaperForm, final String message) {
+	protected ModelAndView createUploadCameraReadyPaperModelAndView(final SubmissionCameraReadyPaperForm submissionCameraReadyPaperForm, final String message) {
 		final ModelAndView result;
 
 		result = new ModelAndView("submission/upload");
-		result.addObject("submissionForm", submissionPaperForm);
+		result.addObject("submissionForm", submissionCameraReadyPaperForm);
 		result.addObject("action", "upload.do");
+		result.addObject("cameraReady", true);
 		result.addObject("message", message);
 		return result;
 	}
