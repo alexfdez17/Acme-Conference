@@ -10,12 +10,15 @@
 
 package controllers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
@@ -23,6 +26,8 @@ import services.ConferenceService;
 import services.RegistrationService;
 import services.SubmissionService;
 import domain.Administrator;
+import domain.Conference;
+import domain.Submission;
 
 @Controller
 @RequestMapping("/administrator")
@@ -82,6 +87,23 @@ public class AdministratorController extends AbstractController {
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}
+		return result;
+	}
+
+	// Make decision on submissions --------------------------------------------------------
+
+	@RequestMapping(value = "/decide", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int conferenceId) {
+		final ModelAndView result;
+		final Conference conference;
+		final Collection<Submission> submissions;
+
+		conference = this.conferenceService.findOne(conferenceId);
+		submissions = this.submissionService.makeDecision(conference);
+
+		result = new ModelAndView("submission/list");
+		result.addObject("submissions", submissions);
+
 		return result;
 	}
 

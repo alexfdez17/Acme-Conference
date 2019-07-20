@@ -16,7 +16,9 @@ import org.springframework.validation.Validator;
 
 import repositories.SubmissionRepository;
 import domain.Author;
+import domain.Conference;
 import domain.Paper;
+import domain.Report;
 import domain.Submission;
 import forms.SubmissionCameraReadyPaperForm;
 import forms.SubmissionPaperForm;
@@ -32,6 +34,9 @@ public class SubmissionService {
 	// Supporting services
 	@Autowired
 	private AuthorService			authorService;
+
+	@Autowired
+	private ReportService			reportService;
 
 
 	// Simple CRUD methods
@@ -113,6 +118,10 @@ public class SubmissionService {
 		return this.submissionRepository.findByAuthorId(author.getId());
 	}
 
+	public Collection<Submission> findByConference(final Conference conference) {
+		return this.submissionRepository.findByConference(conference.getId());
+	}
+
 	public Submission makeSubmission(final SubmissionPaperForm submissionPaperForm) {
 		final Submission result = this.create();
 		result.setConference(submissionPaperForm.getConference());
@@ -143,6 +152,30 @@ public class SubmissionService {
 		this.save(result);
 
 		return result;
+	}
+
+	public Collection<Submission> makeDecision(final Conference conference) {
+		final Collection<Submission> result;
+		Collection<Submission> submissions;
+
+		submissions = this.findByConference(conference);
+
+		if (!submissions.isEmpty())
+			for (final Submission s : submissions) {
+				final Collection<Report> accept = this.reportService.findAccept(s);
+				final Collection<Report> reject = this.reportService.findReject(s);
+
+				if (accept.size() < reject.size())
+					s.setStatus("REJECTED");
+				else
+					s.setStatus("ACCEPTED");
+
+				this.submissionRepository.save(s);
+			}
+
+		result = this.findByConference(conference);
+		return result;
+
 	}
 
 	// Dashboard

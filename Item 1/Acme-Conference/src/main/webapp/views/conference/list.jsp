@@ -52,5 +52,15 @@
 	</display:column>
 	</security:authorize>
 	
+	<security:authorize access="hasRole('ADMIN')">
+	<display:column>
+	<jstl:if test="${row.submissionDeadline < today}">
+		<a href="administrator/decide.do?conferenceId=${row.id}"> <spring:message
+				code="conference.decide" />
+		</a>
+	</jstl:if>
+	</display:column>
+	</security:authorize>
+	
 </display:table>
 <br/>

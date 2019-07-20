@@ -402,7 +402,7 @@
 		<property name="ticker" value="AAA-A1B2" />
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
-		<property name="status" value="ACCEPTED"/>
+		<property name="status" value="UNDER-REVIEW"/>
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference4" />
 	</bean>
@@ -949,6 +949,25 @@
 	</bean>
 	
 	<!-- ************ END REVIEWER1 REPORT1 TO SUBMISSION1 ************ -->
+	
+	<!-- ************ START REVIEWER1 REPORT2 TO SUBMISSION1 ************ -->
+	
+	<bean id="reviewer1report2" class="domain.Report">
+		<property name="originality" value="0.9" />
+		<property name="quality" value="0.9" />
+		<property name="readability" value="0.9" />
+		<property name="decision" value="REJECT" />
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+			</list>
+		</property>
+		<property name="reviewer" ref="reviewer1" />
+		<property name="submission" ref="author1submission3" />
+	</bean>
+	
+	<!-- ************ END REVIEWER1 REPORT2 TO SUBMISSION1 ************ -->
 	
 	<!-- ************ START REVIEWER1 MESSAGE1 ************ -->
 	

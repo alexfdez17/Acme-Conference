@@ -18,4 +18,7 @@ public interface SubmissionRepository extends JpaRepository<Submission, Integer>
 	@Query("select s from Submission s where s.author.id=?1")
 	Collection<Submission> findByAuthorId(int id);
 
+	@Query("select s from Submission s where s.conference.id=?1")
+	Collection<Submission> findByConference(int id);
+
 }

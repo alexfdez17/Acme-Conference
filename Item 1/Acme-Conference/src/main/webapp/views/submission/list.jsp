@@ -17,11 +17,13 @@
 	requestURI="submission/author/list.do" id="row">
 
 	<!-- Attributes -->
-	
+	<security:authorize access="hasRole('AUTHOR')">
 	<spring:message code="submission.conference" var="conferenceHeader" />
 	<display:column property="conference.acronym" title="${conferenceHeader}"
 		sortable="false" />
+	</security:authorize>
 	
+	<security:authorize access="hasAnyRole('ADMIN','AUTHOR')">
 	<spring:message code="submission.ticker" var="tickerHeader" />
 	<display:column property="ticker" title="${tickerHeader}"
 		sortable="false" />
@@ -29,7 +31,9 @@
 	<spring:message code="submission.status" var="statusHeader" />
 	<display:column property="status" title="${statusHeader}"
 		sortable="false" />
-
+	</security:authorize>
+	
+	<security:authorize access="hasRole('AUTHOR')">
 	<spring:message code="submission.moment" var="momentHeader" />
 	<display:column property="moment" title="${momentHeader}"
 		sortable="false" />
@@ -49,6 +53,7 @@
 		</a>
 	</jstl:if>
 	</display:column>
+	</security:authorize>
 	
 </display:table>
 <br/>
