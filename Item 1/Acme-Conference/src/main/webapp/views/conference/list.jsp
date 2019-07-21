@@ -35,16 +35,10 @@
 		sortable="false" />
 		
 	<!-- Actions -->
-		
-	<display:column>
-		<a href="conference/display.do?conferenceId=${row.id}"> <spring:message
-				code="conference.display" />
-		</a>
-	</display:column>
 	
 	<security:authorize access="hasRole('AUTHOR')">
 	<display:column>
-	<jstl:if test="${row.submissionDeadline > today}">
+	<jstl:if test="${row.submissionDeadline > today }">
 		<a href="submission/author/create.do?conferenceId=${row.id}"> <spring:message
 				code="conference.submission" />
 		</a>

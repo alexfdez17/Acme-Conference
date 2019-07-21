@@ -24,6 +24,7 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="conference/administrator/list.do"><spring:message code="master.page.administrator.conferences" /></a></li>
 					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>					
 				</ul>
 			</li>
@@ -69,6 +70,7 @@
 				</ul>
 			</li>
 		</security:authorize>
+		
 		
 		<li><a class="fNiv" href="conference/list.do"><spring:message code="master.page.conference.list" /></a></li>
 		

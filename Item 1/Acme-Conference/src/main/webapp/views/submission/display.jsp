@@ -65,19 +65,19 @@
 <br />
 
 <b><spring:message code="paper.title" /></b>:
-<jstl:out value="${submission.paper.title}" />
+<jstl:out value="${submission.cameraReadyPaper.title}" />
 <br />
 
 <b><spring:message code="paper.authors" /></b>:
-<jstl:out value="${submission.paper.authors}" />
+<jstl:out value="${submission.cameraReadyPaper.authors}" />
 <br />
 
 <b><spring:message code="paper.summary" /></b>:
-<jstl:out value="${submission.paper.summary}" />
+<jstl:out value="${submission.cameraReadyPaper.summary}" />
 <br />
 
 <b><spring:message code="paper.document" /></b>:
-<jstl:out value="${submission.paper.document}" />
+<jstl:out value="${submission.cameraReadyPaper.document}" />
 <br />
 </jstl:if>
 
