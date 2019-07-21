@@ -26,14 +26,44 @@
 		<put-attribute name="body" value="/views/activity/display.jsp" />
 	</definition>
 	
+	<definition name="activity/createTutorial" extends="master.page">	
+		<put-attribute name="title" value="Crear Tutorial" />
+		<put-attribute name="body" value="/views/activity/create.jsp" />
+	</definition>
+	
+	<definition name="activity/updateTutorial" extends="master.page">	
+		<put-attribute name="title" value="Actualizar Tutorial" />
+		<put-attribute name="body" value="/views/activity/update.jsp" />
+	</definition>
+	
 	<definition name="activity/displayPanel" extends="master.page">	
 		<put-attribute name="title" value="Mostrar Panel" />
 		<put-attribute name="body" value="/views/activity/display.jsp" />
 	</definition>
 	
+	<definition name="activity/createPanel" extends="master.page">	
+		<put-attribute name="title" value="Crear Panel" />
+		<put-attribute name="body" value="/views/activity/create.jsp" />
+	</definition>
+	
+	<definition name="activity/updatePanel" extends="master.page">	
+		<put-attribute name="title" value="Actualizar Panel" />
+		<put-attribute name="body" value="/views/activity/update.jsp" />
+	</definition>
+	
 	<definition name="activity/displayPresentation" extends="master.page">	
 		<put-attribute name="title" value="Mostrar Presentación" />
 		<put-attribute name="body" value="/views/activity/display.jsp" />
+	</definition>
+	
+	<definition name="activity/createPresentation" extends="master.page">	
+		<put-attribute name="title" value="Crear Presentación" />
+		<put-attribute name="body" value="/views/activity/create.jsp" />
+	</definition>
+	
+	<definition name="activity/updatePresentation" extends="master.page">	
+		<put-attribute name="title" value="Actualizar Presentación" />
+		<put-attribute name="body" value="/views/activity/update.jsp" />
 	</definition>
 	
 </tiles-definitions>

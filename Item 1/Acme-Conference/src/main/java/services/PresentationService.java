@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.PresentationRepository;
+import domain.Activity;
+import domain.Conference;
+import domain.Paper;
 import domain.Presentation;
+import forms.ActivityPresentationForm;
 
 @Service
 @Transactional
@@ -20,8 +24,10 @@ public class PresentationService {
 	@Autowired
 	private PresentationRepository	presentationRepository;
 
-
 	// Supported Services
+	@Autowired
+	private ConferenceService		conferenceService;
+
 
 	// CRUD
 
@@ -70,5 +76,34 @@ public class PresentationService {
 	}
 
 	//Other business methods
+
+	public Presentation register(final ActivityPresentationForm activityPresentationForm) {
+		final Presentation result = this.create();
+		final Conference conference = activityPresentationForm.getConference();
+
+		result.setTitle(activityPresentationForm.getTitle());
+		result.setSpeakers(activityPresentationForm.getSpeakers());
+		result.setStartMoment(activityPresentationForm.getStartMoment());
+		result.setDuration(activityPresentationForm.getDuration());
+		result.setRoom(activityPresentationForm.getRoom());
+		result.setSummary(activityPresentationForm.getSummary());
+		result.setAttachments(activityPresentationForm.getAttachments());
+
+		final Paper paper = new Paper();
+		paper.setTitle(activityPresentationForm.getPaperTitle());
+		paper.setAuthors(activityPresentationForm.getPaperAuthors());
+		paper.setSummary(activityPresentationForm.getPaperSummary());
+		paper.setDocument(activityPresentationForm.getPaperDocument());
+		result.setCameraReadyPaper(paper);
+
+		final Presentation saved = this.save(result);
+
+		final Collection<Activity> activities = conference.getActivities();
+		activities.add(saved);
+		conference.setActivities(activities);
+		this.conferenceService.save(conference);
+
+		return result;
+	}
 
 }

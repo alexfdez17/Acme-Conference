@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.PanelRepository;
+import domain.Activity;
+import domain.Conference;
 import domain.Panel;
+import forms.ActivityPanelForm;
 
 @Service
 @Transactional
@@ -18,10 +21,12 @@ public class PanelService {
 
 	// Managed Repository
 	@Autowired
-	private PanelRepository	panelRepository;
-
+	private PanelRepository		panelRepository;
 
 	// Supported Services
+	@Autowired
+	private ConferenceService	conferenceService;
+
 
 	// CRUD
 
@@ -71,4 +76,25 @@ public class PanelService {
 
 	//Other business methods
 
+	public Panel register(final ActivityPanelForm activityPanelForm) {
+		final Panel result = this.create();
+		final Conference conference = activityPanelForm.getConference();
+
+		result.setTitle(activityPanelForm.getTitle());
+		result.setSpeakers(activityPanelForm.getSpeakers());
+		result.setStartMoment(activityPanelForm.getStartMoment());
+		result.setDuration(activityPanelForm.getDuration());
+		result.setRoom(activityPanelForm.getRoom());
+		result.setSummary(activityPanelForm.getSummary());
+		result.setAttachments(activityPanelForm.getAttachments());
+
+		final Panel saved = this.save(result);
+
+		final Collection<Activity> activities = conference.getActivities();
+		activities.add(saved);
+		conference.setActivities(activities);
+		this.conferenceService.save(conference);
+
+		return result;
+	}
 }

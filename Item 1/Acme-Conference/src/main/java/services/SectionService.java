@@ -11,6 +11,8 @@ import org.springframework.util.Assert;
 
 import repositories.SectionRepository;
 import domain.Section;
+import domain.Tutorial;
+import forms.SectionForm;
 
 @Service
 @Transactional
@@ -20,8 +22,10 @@ public class SectionService {
 	@Autowired
 	private SectionRepository	sectionRepository;
 
-
 	// Supported Services
+	@Autowired
+	private TutorialService		tutorialService;
+
 
 	// CRUD
 
@@ -70,5 +74,23 @@ public class SectionService {
 	}
 
 	//Other business methods
+
+	public Section register(final SectionForm sectionForm) {
+		final Section result = this.create();
+		final Tutorial tutorial = sectionForm.getTutorial();
+
+		result.setTitle(sectionForm.getTitle());
+		result.setSummary(sectionForm.getSummary());
+		result.setPictures(sectionForm.getPictures());
+
+		final Section saved = this.save(result);
+
+		final Collection<Section> sections = tutorial.getSections();
+		sections.add(saved);
+		tutorial.setSections(sections);
+		this.tutorialService.save(tutorial);
+
+		return result;
+	}
 
 }

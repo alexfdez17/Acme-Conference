@@ -62,8 +62,24 @@
 	<spring:message code="activity.section.pictures" var="picturesHeader" />
 	<display:column property="pictures" title="${picturesHeader}"
 		sortable="false" />
+		
+	<!-- Actions -->
+		
+	<display:column>
+		<a href="section/administrator/edit.do?sectionId=${row.id}"> <spring:message
+				code="activity.edit" />
+		</a>
+	</display:column>
 	
 </display:table>
+<br />
+<br />
+<a href="section/administrator/create.do?tutorialId=${activity.id}"> <spring:message
+				code="activity.addSection" />
+</a>
+<a href="tutorial/administrator/edit.do?tutorialId=${activity.id}"> <spring:message
+				code="activity.edit" />
+</a>
 </jstl:if>
 
 <jstl:if test="${type == 'presentation'}">
@@ -87,5 +103,16 @@
 <jstl:out value="${activity.cameraReadyPaper.document}" />
 <br />
 <br />
+<a href="presentation/administrator/edit.do?presentationId=${activity.id}"> <spring:message
+				code="activity.edit" />
+</a>
 </jstl:if>
+
+<jstl:if test="${type == 'panel'}">
+<a href="panel/administrator/edit.do?panelId=${activity.id}"> <spring:message
+				code="activity.edit" />
+</a>
+</jstl:if>
+
+
 

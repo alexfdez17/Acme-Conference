@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ActivityService;
 import services.ConferenceService;
 import services.PanelService;
 import services.PresentationService;
@@ -26,9 +25,6 @@ import domain.Tutorial;
 @Controller
 @RequestMapping("/activity/administrator")
 public class ActivityAdministratorController extends AbstractController {
-
-	@Autowired
-	private ActivityService		activityService;
 
 	@Autowired
 	private ConferenceService	conferenceService;
