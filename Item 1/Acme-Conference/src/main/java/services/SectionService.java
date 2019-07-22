@@ -49,9 +49,17 @@ public class SectionService {
 		Assert.notNull(section);
 		Assert.isTrue(section.getId() != 0);
 
+		for (final Tutorial t : this.tutorialService.findAll())
+			if (t.getSections().contains(section)) {
+				final Tutorial tutorial = t;
+				final Collection<Section> sections = tutorial.getSections();
+				sections.remove(section);
+				tutorial.setSections(sections);
+				this.tutorialService.save(tutorial);
+			}
+
 		this.sectionRepository.delete(section);
 	}
-
 	public Collection<Section> findAll() {
 		Collection<Section> result;
 

@@ -65,7 +65,6 @@ public class PanelService {
 		Panel result;
 
 		result = this.panelRepository.findOne(panelId);
-		Assert.notNull(result);
 
 		return result;
 	}

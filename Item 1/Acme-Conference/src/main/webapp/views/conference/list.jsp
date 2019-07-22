@@ -54,6 +54,12 @@
 		</a>
 	</jstl:if>
 	</display:column>
+	
+	<display:column>
+		<a href="activity/administrator/list.do?conferenceId=${row.id}"> <spring:message
+				code="conference.activity.list" />
+		</a>
+	</display:column>
 	</security:authorize>
 	
 </display:table>

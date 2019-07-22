@@ -28,7 +28,7 @@
 	
 	<spring:message code="activity.startMoment" var="startMomentHeader" />
 	<display:column property="startMoment" title="${startMomentHeader}"
-		sortable="false" />
+		sortable="false" format="{0,date,${datePattern}}" />
 
 	<spring:message code="activity.duration" var="durationHeader" />
 	<display:column property="duration" title="${durationHeader}"
@@ -48,11 +48,11 @@
 <a href="tutorial/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
 				code="activity.createTutorial" />
 </a>
-		
+<br/>	
 <a href="panel/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
 				code="activity.createPanel" />
 </a>
-		
+<br/>		
 <a href="presentation/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
 				code="activity.createPresentation" />
 </a>

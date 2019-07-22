@@ -75,8 +75,9 @@
 <br />
 <br />
 <a href="section/administrator/create.do?tutorialId=${activity.id}"> <spring:message
-				code="activity.addSection" />
+				code="activity.section.add" />
 </a>
+<br />
 <a href="tutorial/administrator/edit.do?tutorialId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
@@ -88,11 +89,11 @@
 <br />
 
 <b><spring:message code="paper.title" /></b>:
-<jstl:out value="${activity.cameraReadypaper.title}" />
+<jstl:out value="${activity.cameraReadyPaper.title}" />
 <br />
 
 <b><spring:message code="paper.authors" /></b>:
-<jstl:out value="${activity.cameraReadypaper.authors}" />
+<jstl:out value="${activity.cameraReadyPaper.authors}" />
 <br />
 
 <b><spring:message code="paper.summary" /></b>:

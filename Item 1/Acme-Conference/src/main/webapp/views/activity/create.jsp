@@ -30,7 +30,7 @@
 	<br />
 	<acme:textbox code="activity.section.title" path="sectionTitle"/>
 	<acme:textbox code="activity.section.summary" path="sectionSummary"/>
-	<acme:textbox code="activity.section.pictures" path="sectionPictures"/>
+	<acme:textarea code="activity.section.pictures" path="sectionPictures"/>
 	</jstl:if>
 	
 	<jstl:if test="${type == 'presentation'}">
@@ -38,7 +38,7 @@
 	<br />
 	<acme:textbox code="paper.title" path="paperTitle"/>
 	<acme:textbox code="paper.authors" path="paperAuthors"/>
-	<acme:textbox code="paper.summary" path="paperSummary"/>
+	<acme:textarea code="paper.summary" path="paperSummary"/>
 	<acme:textbox code="paper.document" path="paperDocument"/>
 	</jstl:if>
 	

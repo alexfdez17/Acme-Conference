@@ -14,6 +14,12 @@
 <form:form action="${type}/administrator/edit.do"
 	modelAttribute="activity">
 	
+	<form:hidden path="id" />
+	<form:hidden path="version" />
+	<jstl:if test="${type == 'tutorial'}">
+	<form:hidden path="sections" />
+	</jstl:if>
+	
 	<acme:textbox code="activity.title" path="title"/>
 	<acme:textbox code="activity.speakers" path="speakers"/>
 	<acme:textbox code="activity.startMoment" path="startMoment"/>
@@ -26,10 +32,10 @@
 	<jstl:if test="${type == 'presentation'}">
 	<b><spring:message code="paper.cameraReadyYes" /></b>
 	<br />
-	<acme:textbox code="paper.title" path="activity.paperTitle"/>
-	<acme:textbox code="paper.authors" path="activity.paperAuthors"/>
-	<acme:textbox code="paper.summary" path="activity.paperSummary"/>
-	<acme:textbox code="paper.document" path="activity.paperDocument"/>
+	<acme:textbox code="paper.title" path="cameraReadyPaper.title"/>
+	<acme:textbox code="paper.authors" path="cameraReadyPaper.authors"/>
+	<acme:textbox code="paper.summary" path="cameraReadyPaper.summary"/>
+	<acme:textbox code="paper.document" path="cameraReadyPaper.document"/>
 	</jstl:if>
 	
 	

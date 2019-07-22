@@ -72,7 +72,6 @@ public class TutorialService {
 		Tutorial result;
 
 		result = this.tutorialRepository.findOne(tutorialId);
-		Assert.notNull(result);
 
 		return result;
 	}

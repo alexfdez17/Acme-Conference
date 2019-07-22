@@ -66,7 +66,6 @@ public class PresentationService {
 		Presentation result;
 
 		result = this.presentationRepository.findOne(presentationId);
-		Assert.notNull(result);
 
 		return result;
 	}
