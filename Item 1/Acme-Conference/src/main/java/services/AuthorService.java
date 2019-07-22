@@ -16,7 +16,6 @@ import org.springframework.validation.Validator;
 
 import repositories.AuthorRepository;
 import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import domain.Author;
 import forms.RegisterAuthorForm;
@@ -29,8 +28,10 @@ public class AuthorService {
 	@Autowired
 	private AuthorRepository	authorRepository;
 
+	// Supporting Services
+	@Autowired
+	private ActorService		actorService;
 
-	// Supported Services
 
 	// CRUD
 
@@ -82,15 +83,7 @@ public class AuthorService {
 	//Other business methods
 
 	public Author findByPrincipal() {
-		Author result;
-		UserAccount userAccount;
-
-		userAccount = LoginService.getPrincipal();
-		Assert.notNull(userAccount);
-		result = this.findByUserAccount(userAccount);
-		Assert.notNull(result);
-
-		return result;
+		return this.actorService.findPrincipal();
 	}
 
 	public Author findByUserAccount(final UserAccount userAccount) {

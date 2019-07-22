@@ -28,7 +28,7 @@ import cz.jirutka.validator.collection.constraints.EachNotNull;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "fee, startDate, endDate")
+	@Index(columnList = "fee, startDate, endDate, title, venue, description, submissionDeadline, notificationDeadline, cameraReadyDeadline, isFinal")
 })
 public class Conference extends DomainEntity {
 

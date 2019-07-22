@@ -77,18 +77,15 @@ public class ActorService {
 
 	// Other Business Methods
 
-	public Actor findByPrincipal() {
-		Actor result;
-		UserAccount userAccount;
+	public <T> T findPrincipal() {
+		final UserAccount userAccount = LoginService.getPrincipal();
+		final T principal = this.findByUserAccount(userAccount);
 
-		userAccount = LoginService.getPrincipal();
-		result = this.findByUserAccount(userAccount);
-		return result;
+		return principal;
 	}
 
-	public Actor findByUserAccount(final UserAccount userAccount) {
-		Actor result;
-		result = this.actorRepository.findByUserAccountID(userAccount.getId());
+	private <T> T findByUserAccount(final UserAccount userAccount) {
+		final T result = this.actorRepository.findByUserAccountID(userAccount.getId());
 
 		return result;
 	}

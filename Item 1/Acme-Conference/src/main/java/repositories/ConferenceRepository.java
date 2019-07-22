@@ -21,6 +21,30 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select count(c.category) from Conference c group by c.category")
 	Collection<Long> getConferencesPerCategory();
 
+	@Query("select c from Conference c where c.title like %?1% or c.venue like %?1% or c.description like %?1%")
+	Collection<Conference> findAllByKeyword(String keyword);
+
+	@Query("select c from Conference c where DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) < 5")
+	Collection<Conference> findAllCameraReadyDeadlineElapsesLess5Days();
+
+	@Query("select c from Conference c where DATEDIFF(c.notificationDeadline, CURRENT_DATE) < 5")
+	Collection<Conference> findAllNotificationDeadlineElapsesLess5Days();
+
+	@Query("select c from Conference c where DATEDIFF(c.startDate, CURRENT_DATE) < 5")
+	Collection<Conference> findAllOrganisedLess5Days();
+
+	@Query("select c from Conference c where DATEDIFF(CURRENT_DATE, c.submissionDeadline) <= 5 and DATEDIFF(CURRENT_DATE, c.submissionDeadline) >= 0")
+	Collection<Conference> findAllSubmissionDeadlineElapsedLast5Days();
+
+	@Query("select c from Conference c where c.startDate > CURRENT_DATE")
+	Collection<Conference> findAllForthcoming();
+
+	@Query("select c from Conference c where c.endDate < CURRENT_DATE")
+	Collection<Conference> findAllPast();
+
+	@Query("select c from Conference c where c.startDate <= CURRENT_DATE and c.endDate >= CURRENT_DATE")
+	Collection<Conference> findAllRunning();
+
 	@Query("select c from Conference c where c.isFinal = true")
 	Collection<Conference> findFinals();
 

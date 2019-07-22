@@ -16,7 +16,6 @@ import org.springframework.validation.Validator;
 
 import repositories.AdministratorRepository;
 import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import domain.Administrator;
 import forms.RegisterAdministratorForm;
@@ -29,8 +28,10 @@ public class AdministratorService {
 	@Autowired
 	private AdministratorRepository	administratorRepository;
 
+	// Supporting Services
+	@Autowired
+	private ActorService			actorService;
 
-	// Supported Services
 
 	// CRUD
 
@@ -82,15 +83,7 @@ public class AdministratorService {
 	//Other business methods
 
 	public Administrator findByPrincipal() {
-		Administrator result;
-		UserAccount userAccount;
-
-		userAccount = LoginService.getPrincipal();
-		Assert.notNull(userAccount);
-		result = this.findByUserAccount(userAccount);
-		Assert.notNull(result);
-
-		return result;
+		return this.actorService.findPrincipal();
 	}
 
 	public Administrator findByUserAccount(final UserAccount userAccount) {

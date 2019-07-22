@@ -16,7 +16,6 @@ import org.springframework.validation.Validator;
 
 import repositories.SponsorRepository;
 import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import domain.Sponsor;
 import forms.RegisterSponsorForm;
@@ -29,8 +28,10 @@ public class SponsorService {
 	@Autowired
 	private SponsorRepository	sponsorRepository;
 
+	// Supporting Services
+	@Autowired
+	private ActorService		actorService;
 
-	// Supported Services
 
 	// CRUD
 
@@ -82,15 +83,7 @@ public class SponsorService {
 	//Other business methods
 
 	public Sponsor findByPrincipal() {
-		Sponsor result;
-		UserAccount userAccount;
-
-		userAccount = LoginService.getPrincipal();
-		Assert.notNull(userAccount);
-		result = this.findByUserAccount(userAccount);
-		Assert.notNull(result);
-
-		return result;
+		return this.actorService.findPrincipal();
 	}
 
 	public Sponsor findByUserAccount(final UserAccount userAccount) {

@@ -1411,11 +1411,11 @@
 		<property name="title" value="Title1" />
 		<property name="acronym" value="Acronym1" />
 		<property name="venue" value="Venue1" />
-		<property name="submissionDeadline" value="07/01/2019 12:00" />
-		<property name="notificationDeadline" value="11/10/2019 12:00" />
-		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
-		<property name="startDate" value="12/01/2019" />
-		<property name="endDate" value="12/31/2019" />
+		<property name="submissionDeadline" value="07/17/2019 12:00" />
+		<property name="notificationDeadline" value="07/24/2019 12:00" />
+		<property name="cameraReadyDeadline" value="07/26/2019 12:00" />
+		<property name="startDate" value="07/26/2019" />
+		<property name="endDate" value="07/31/2019" />
 		<property name="summary" value="Summary1" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />

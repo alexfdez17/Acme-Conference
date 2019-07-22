@@ -16,7 +16,6 @@ import org.springframework.validation.Validator;
 
 import repositories.ReviewerRepository;
 import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import domain.Reviewer;
 import forms.RegisterReviewerForm;
@@ -29,8 +28,10 @@ public class ReviewerService {
 	@Autowired
 	private ReviewerRepository	reviewerRepository;
 
+	// Supporting Services
+	@Autowired
+	private ActorService		actorService;
 
-	// Supported Services
 
 	// CRUD
 
@@ -82,15 +83,7 @@ public class ReviewerService {
 	//Other business methods
 
 	public Reviewer findByPrincipal() {
-		Reviewer result;
-		UserAccount userAccount;
-
-		userAccount = LoginService.getPrincipal();
-		Assert.notNull(userAccount);
-		result = this.findByUserAccount(userAccount);
-		Assert.notNull(result);
-
-		return result;
+		return this.actorService.findPrincipal();
 	}
 
 	public Reviewer findByUserAccount(final UserAccount userAccount) {

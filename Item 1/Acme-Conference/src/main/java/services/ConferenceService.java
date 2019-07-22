@@ -1,8 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ConferenceRepository;
+import domain.Activity;
 import domain.Conference;
 
 @Service
@@ -21,25 +24,39 @@ public class ConferenceService {
 	@Autowired
 	private ConferenceRepository	conferenceRepository;
 
+	// Supporting services
+	@Autowired
+	private AdministratorService	administratorService;
 
-	// Supported services
 
 	// CRUD
 
 	public Conference create() {
-		Conference result;
+		this.administratorService.findByPrincipal();
 
-		result = new Conference();
+		final Conference result = new Conference();
+		final Collection<Activity> activities = new ArrayList<>();
+
+		result.setActivities(activities);
 
 		return result;
 	}
 
 	public Conference save(final Conference conference) {
 		Assert.notNull(conference);
-		Conference result;
 
-		result = this.conferenceRepository.save(conference);
-		return result;
+		this.administratorService.findByPrincipal();
+		this.checkDates(conference);
+
+		final int conferenceId = conference.getId();
+
+		if (this.exists(conferenceId)) {
+			final Conference retrieved = this.findOne(conferenceId);
+
+			Assert.isTrue(!retrieved.getIsFinal());
+		}
+
+		return this.conferenceRepository.save(conference);
 	}
 
 	public void delete(final Conference conference) {
@@ -58,12 +75,15 @@ public class ConferenceService {
 	}
 
 	public Conference findOne(final int conferenceId) {
-		Conference result;
+		final Conference result = this.conferenceRepository.findOne(conferenceId);
 
-		result = this.conferenceRepository.findOne(conferenceId);
-		Assert.notNull(result);
+		Assert.notNull(this.exists(conferenceId));
 
 		return result;
+	}
+
+	public boolean exists(final int conferenceId) {
+		return this.conferenceRepository.exists(conferenceId);
 	}
 
 	public void flush() {
@@ -72,12 +92,69 @@ public class ConferenceService {
 
 	// Other business methods
 
+	public Collection<Conference> findAllByKeyword(final String keyword) {
+		Assert.notNull(keyword);
+
+		return this.conferenceRepository.findAllByKeyword(keyword);
+	}
+
+	public Collection<Conference> findAllCameraReadyDeadlineElapsesLess5Days() {
+		this.administratorService.findByPrincipal();
+
+		return this.conferenceRepository.findAllCameraReadyDeadlineElapsesLess5Days();
+	}
+
+	public Collection<Conference> findAllNotificationDeadlineElapsesLess5Days() {
+		this.administratorService.findByPrincipal();
+
+		return this.conferenceRepository.findAllNotificationDeadlineElapsesLess5Days();
+	}
+
+	public Collection<Conference> findAllOrganisedLess5Days() {
+		this.administratorService.findByPrincipal();
+
+		return this.conferenceRepository.findAllOrganisedLess5Days();
+	}
+
+	public Collection<Conference> findAllSubmissionDeadlineElapsedLast5Days() {
+		this.administratorService.findByPrincipal();
+
+		return this.conferenceRepository.findAllSubmissionDeadlineElapsedLast5Days();
+	}
+
 	public Collection<Conference> findFinals() {
 		Collection<Conference> result;
 
 		result = this.conferenceRepository.findFinals();
 
 		return result;
+	}
+
+	public Collection<Conference> findAllForthcoming() {
+		return this.conferenceRepository.findAllForthcoming();
+	}
+
+	public Collection<Conference> findAllPast() {
+		return this.conferenceRepository.findAllPast();
+	}
+
+	public Collection<Conference> findAllRunning() {
+		return this.findAllRunning();
+	}
+
+	// Auxiliary methods
+	private void checkDates(final Conference conference) {
+		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();
+		final Date notificationDeadline = conference.getNotificationDeadline();
+		final Date submissionDeadline = conference.getSubmissionDeadline();
+
+		final Date endDate = conference.getEndDate();
+		final Date startDate = conference.getStartDate();
+
+		Assert.isTrue(startDate.before(endDate));
+		Assert.isTrue(cameraReadyDeadline.before(startDate));
+		Assert.isTrue(notificationDeadline.before(cameraReadyDeadline));
+		Assert.isTrue(submissionDeadline.before(notificationDeadline));
 	}
 
 	//Stats for dashboard
