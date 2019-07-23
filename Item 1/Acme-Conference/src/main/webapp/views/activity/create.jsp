@@ -29,7 +29,7 @@
 	<b><spring:message code="activity.section.first" /></b>
 	<br />
 	<acme:textbox code="activity.section.title" path="sectionTitle"/>
-	<acme:textbox code="activity.section.summary" path="sectionSummary"/>
+	<acme:textarea code="activity.section.summary" path="sectionSummary"/>
 	<acme:textarea code="activity.section.pictures" path="sectionPictures"/>
 	</jstl:if>
 	

@@ -21,7 +21,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select count(c.category) from Conference c group by c.category")
 	Collection<Long> getConferencesPerCategory();
 
-	@Query("select c from Conference c where c.title like %?1% or c.venue like %?1% or c.description like %?1%")
+	@Query("select c from Conference c where c.title like %?1% or c.venue like %?1% or c.summary like %?1%")
 	Collection<Conference> findAllByKeyword(String keyword);
 
 	@Query("select c from Conference c where DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) < 5")

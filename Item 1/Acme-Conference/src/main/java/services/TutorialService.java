@@ -109,7 +109,7 @@ public class TutorialService {
 		final Collection<Activity> activities = conference.getActivities();
 		activities.add(saved);
 		conference.setActivities(activities);
-		this.conferenceService.save(conference);
+		this.conferenceService.update(conference);
 
 		return result;
 	}

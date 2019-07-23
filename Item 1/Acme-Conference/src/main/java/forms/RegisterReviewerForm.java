@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 import cz.jirutka.validator.collection.constraints.EachNotBlank;
 
@@ -79,6 +80,7 @@ public class RegisterReviewerForm {
 		this.surname = surname;
 	}
 
+	@URL
 	public String getPhoto() {
 		return this.photo;
 	}

@@ -4,6 +4,7 @@ package forms;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 public class RegisterSponsorForm {
 
@@ -72,6 +73,7 @@ public class RegisterSponsorForm {
 		this.surname = surname;
 	}
 
+	@URL
 	public String getPhoto() {
 		return this.photo;
 	}

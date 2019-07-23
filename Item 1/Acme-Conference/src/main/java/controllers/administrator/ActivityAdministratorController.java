@@ -54,6 +54,7 @@ public class ActivityAdministratorController extends AbstractController {
 		result = new ModelAndView("activity/list");
 		result.addObject("activities", activities);
 		result.addObject("conferenceId", conferenceId);
+		result.addObject("final", conference.getIsFinal());
 
 		return result;
 	}

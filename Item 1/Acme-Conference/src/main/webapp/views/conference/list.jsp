@@ -21,10 +21,12 @@
 	<spring:message code="conference.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}"
 		sortable="false" />
-	
-	<spring:message code="conference.acronym" var="acronymHeader" />
-	<display:column property="acronym" title="${acronymHeader}"
+		
+	<security:authorize access="hasRole('ADMIN')">
+	<spring:message code="conference.isFinal" var="isFinalHeader" />
+	<display:column property="isFinal" title="${isFinalHeader}"
 		sortable="false" />
+	</security:authorize>
 	
 	<spring:message code="conference.startDate" var="startDateHeader" />
 	<display:column property="startDate" title="${startDateHeader}"
@@ -48,7 +50,7 @@
 	
 	<security:authorize access="hasRole('ADMIN')">
 	<display:column>
-	<jstl:if test="${row.submissionDeadline < today}">
+	<jstl:if test="${row.submissionDeadline < today && row.isFinal == true}">
 		<a href="administrator/decide.do?conferenceId=${row.id}"> <spring:message
 				code="conference.decide" />
 		</a>

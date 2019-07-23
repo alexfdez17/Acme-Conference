@@ -45,6 +45,7 @@
 </display:table>
 <br/>
 
+<jstl:if test="${final == true }">
 <a href="tutorial/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
 				code="activity.createTutorial" />
 </a>
@@ -56,3 +57,4 @@
 <a href="presentation/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
 				code="activity.createPresentation" />
 </a>
+</jstl:if>

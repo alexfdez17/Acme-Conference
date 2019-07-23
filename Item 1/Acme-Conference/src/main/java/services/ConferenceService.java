@@ -142,6 +142,14 @@ public class ConferenceService {
 		return this.findAllRunning();
 	}
 
+	public Conference update(final Conference conference) {
+		Assert.notNull(conference);
+
+		this.administratorService.findByPrincipal();
+
+		return this.conferenceRepository.save(conference);
+	}
+
 	// Auxiliary methods
 	private void checkDates(final Conference conference) {
 		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();

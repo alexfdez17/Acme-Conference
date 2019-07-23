@@ -72,6 +72,7 @@ public class ActivityPanelForm {
 		this.startMoment = startMoment;
 	}
 
+	@NotNull
 	@Min(0)
 	public int getDuration() {
 		return this.duration;
