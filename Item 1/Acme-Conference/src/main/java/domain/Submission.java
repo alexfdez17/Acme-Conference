@@ -10,6 +10,7 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,7 +27,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(uniqueConstraints = {
+@Table(indexes = {
+	@Index(columnList = "status")
+}, uniqueConstraints = {
 	@UniqueConstraint(columnNames = {
 		"ticker"
 	})

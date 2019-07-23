@@ -59,20 +59,20 @@ public class ConferenceService {
 		return this.conferenceRepository.save(conference);
 	}
 
-	public void delete(final Conference conference) {
-		Assert.notNull(conference);
-		Assert.isTrue(conference.getId() != 0);
-
-		this.conferenceRepository.delete(conference);
-	}
-
-	public Collection<Conference> findAll() {
-		Collection<Conference> result;
-
-		result = this.conferenceRepository.findAll();
-
-		return result;
-	}
+	//	public void delete(final Conference conference) {
+	//		Assert.notNull(conference);
+	//		Assert.isTrue(conference.getId() != 0);
+	//
+	//		this.conferenceRepository.delete(conference);
+	//	}
+	//
+	//	public Collection<Conference> findAll() {
+	//		Collection<Conference> result;
+	//
+	//		result = this.conferenceRepository.findAll();
+	//
+	//		return result;
+	//	}
 
 	public Conference findOne(final int conferenceId) {
 		final Conference result = this.conferenceRepository.findOne(conferenceId);
@@ -84,10 +84,6 @@ public class ConferenceService {
 
 	public boolean exists(final int conferenceId) {
 		return this.conferenceRepository.exists(conferenceId);
-	}
-
-	public void flush() {
-		this.conferenceRepository.flush();
 	}
 
 	// Other business methods
@@ -146,6 +142,7 @@ public class ConferenceService {
 		Assert.notNull(conference);
 
 		this.administratorService.findByPrincipal();
+		this.checkDates(conference);
 
 		return this.conferenceRepository.save(conference);
 	}

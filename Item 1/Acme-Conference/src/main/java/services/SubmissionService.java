@@ -33,6 +33,9 @@ public class SubmissionService {
 
 	// Supporting services
 	@Autowired
+	private AdministratorService	administratorService;
+
+	@Autowired
 	private AuthorService			authorService;
 
 	@Autowired
@@ -113,6 +116,12 @@ public class SubmissionService {
 	}
 
 	// Other business methods
+	public Collection<Submission> findAllByStatus(final String status) {
+		this.administratorService.findByPrincipal();
+		this.checkStatus(status);
+
+		return this.submissionRepository.findAllByStatus(status);
+	}
 
 	public Collection<Submission> findByAuthor(final Author author) {
 		return this.submissionRepository.findByAuthorId(author.getId());
@@ -213,4 +222,8 @@ public class SubmissionService {
 		return result;
 	}
 
+	private void checkStatus(final String status) {
+		Assert.notNull(status);
+		Assert.isTrue(status == "ACCEPTED" || status == "REJECTED" || status == "UNDER-REVIEW");
+	}
 }
