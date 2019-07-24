@@ -42,6 +42,7 @@ public class Submission extends DomainEntity {
 	private Paper		paper;
 	private Paper		cameraReadyPaper;
 	private String		status;
+	private boolean		reportsAvailable;
 
 	//Relationships
 	private Author		author;
@@ -107,6 +108,15 @@ public class Submission extends DomainEntity {
 
 	public void setStatus(final String status) {
 		this.status = status;
+	}
+
+	@NotNull
+	public boolean getReportsAvailable() {
+		return this.reportsAvailable;
+	}
+
+	public void setReportsAvailable(final boolean reportsAvailable) {
+		this.reportsAvailable = reportsAvailable;
 	}
 
 	//Relationships

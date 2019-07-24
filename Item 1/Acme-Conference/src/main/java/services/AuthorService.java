@@ -17,6 +17,7 @@ import org.springframework.validation.Validator;
 import repositories.AuthorRepository;
 import security.Authority;
 import security.UserAccount;
+import domain.Actor;
 import domain.Author;
 import forms.RegisterAuthorForm;
 
@@ -59,10 +60,10 @@ public class AuthorService {
 		this.authorRepository.delete(author);
 	}
 
-	public Collection<Author> findAll() {
-		Collection<Author> result;
+	public Collection<Actor> findAll() {
+		Collection<Actor> result;
 
-		result = this.authorRepository.findAll();
+		result = this.authorRepository.findAllAsActor();
 
 		return result;
 	}
@@ -81,19 +82,16 @@ public class AuthorService {
 	}
 
 	//Other business methods
+	public Collection<Actor> findAllWithRegistration() {
+		return this.authorRepository.findAllWithRegistration();
+	}
+
+	public Collection<Actor> findAllWithSubmission() {
+		return this.authorRepository.findAllWithSubmission();
+	}
 
 	public Author findByPrincipal() {
 		return this.actorService.findPrincipal();
-	}
-
-	public Author findByUserAccount(final UserAccount userAccount) {
-		Assert.notNull(userAccount);
-
-		Author result;
-
-		result = this.authorRepository.findbyUserAccountID(userAccount.getId());
-
-		return result;
 	}
 
 	public Author registerAuthor(final RegisterAuthorForm registerAuthorForm) {

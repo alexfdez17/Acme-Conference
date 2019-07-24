@@ -86,16 +86,6 @@ public class SponsorService {
 		return this.actorService.findPrincipal();
 	}
 
-	public Sponsor findByUserAccount(final UserAccount userAccount) {
-		Assert.notNull(userAccount);
-
-		Sponsor result;
-
-		result = this.sponsorRepository.findbyUserAccountID(userAccount.getId());
-
-		return result;
-	}
-
 	public Sponsor registerSponsor(final RegisterSponsorForm registerSponsorForm) {
 		final Sponsor result = this.create();
 

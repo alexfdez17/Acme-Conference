@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.util.Assert;
 
 import repositories.ReportRepository;
 import domain.Report;
+import domain.Reviewer;
 import domain.Submission;
 
 @Service
@@ -21,73 +23,80 @@ public class ReportService {
 	@Autowired
 	private ReportRepository	reportRepository;
 
-
 	// Supporting services
+	@Autowired
+	private ReviewerService		reviewerService;
+
+	@Autowired
+	private SubmissionService	submissionService;
+
 
 	// Simple CRUD methods
 
-	public Report create() {
-		Report result;
+	public Report create(final int submissionId) {
+		final Reviewer principal = this.reviewerService.findByPrincipal();
+		final Submission submission = this.submissionService.findOne(submissionId);
 
-		result = new Report();
+		final Report result = new Report();
+		final Collection<String> comments = new ArrayList<>();
+
+		result.setComments(comments);
+		result.setReviewer(principal);
+		result.setSubmission(submission);
 
 		return result;
 	}
 
 	public Report save(final Report report) {
 		Assert.notNull(report);
-		Report result;
 
-		result = this.reportRepository.save(report);
-		return result;
-	}
+		this.reviewerService.findByPrincipal();
 
-	public void delete(final Report report) {
-		Assert.notNull(report);
-		Assert.isTrue(report.getId() != 0);
-
-		this.reportRepository.delete(report);
-	}
-
-	public Collection<Report> findAll() {
-		Collection<Report> result;
-
-		result = this.reportRepository.findAll();
-
-		return result;
+		return this.reportRepository.save(report);
 	}
 
 	public Report findOne(final int reportId) {
-		Report result;
+		Assert.isTrue(this.exists(reportId));
 
-		result = this.reportRepository.findOne(reportId);
-		Assert.notNull(result);
-
-		return result;
+		return this.reportRepository.findOne(reportId);
 	}
 
-	public void flush() {
-		this.reportRepository.flush();
+	public boolean exists(final int reportId) {
+		return this.reportRepository.exists(reportId);
 	}
 
 	// Other business methods
+	public Collection<Report> findAllAvailableBySubmissionId(final int submissionId) {
+		Assert.isTrue(this.submissionService.exists(submissionId));
 
-	public Collection<Report> findAccept(final Submission submission) {
-		return this.reportRepository.findAccept(submission.getId());
+		return this.reportRepository.findAllAvailableBySubmissionId(submissionId);
 	}
 
-	public Collection<Report> findReject(final Submission submission) {
-		return this.reportRepository.findReject(submission.getId());
+	public Collection<Report> findAllByPrincipal() {
+		final Reviewer principal = this.reviewerService.findByPrincipal();
+		final int principalId = principal.getId();
+
+		return this.findAllByReviewerId(principalId);
 	}
 
-	public Collection<Report> findBorderLine(final Submission submission) {
-		return this.reportRepository.findBorderLine(submission.getId());
+	public Collection<Report> findAllAcceptBySubmission(final Submission submission) {
+		return this.reportRepository.findAllAcceptBySubmissionId(submission.getId());
 	}
 
-	public Collection<Report> findBySubmission(final Submission submission) {
-		return this.reportRepository.findBySubmission(submission.getId());
+	public Collection<Report> findAllRejectBySubmission(final Submission submission) {
+		return this.reportRepository.findAllRejectBySubmissionId(submission.getId());
 	}
+	//
+	//	public Collection<Report> findBorderLine(final Submission submission) {
+	//		return this.reportRepository.findBorderLine(submission.getId());
+	//	}
+	//
+	//	public Collection<Report> findBySubmission(final Submission submission) {
+	//		return this.reportRepository.findBySubmission(submission.getId());
+	//	}
 
 	// Auxiliary methods
-
+	private Collection<Report> findAllByReviewerId(final int reviewerId) {
+		return this.reportRepository.findAllByReviewerId(reviewerId);
+	}
 }

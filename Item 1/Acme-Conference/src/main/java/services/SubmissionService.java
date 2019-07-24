@@ -63,6 +63,7 @@ public class SubmissionService {
 		result.setAuthor(author);
 		result.setStatus("UNDER-REVIEW");
 		result.setTicker(initials.toUpperCase() + "-" + letters);
+		result.setReportsAvailable(false);
 
 		return result;
 	}
@@ -103,12 +104,13 @@ public class SubmissionService {
 	}
 
 	public Submission findOne(final int submissionId) {
-		Submission result;
+		Assert.isTrue(this.exists(submissionId));
 
-		result = this.submissionRepository.findOne(submissionId);
-		Assert.notNull(result);
+		return this.submissionRepository.findOne(submissionId);
+	}
 
-		return result;
+	public boolean exists(final int submissionId) {
+		return this.submissionRepository.exists(submissionId);
 	}
 
 	public void flush() {
@@ -121,6 +123,10 @@ public class SubmissionService {
 		this.checkStatus(status);
 
 		return this.submissionRepository.findAllByStatus(status);
+	}
+
+	public Collection<Submission> findAllNotUnderReview() {
+		return this.submissionRepository.findAllNotUnderReview();
 	}
 
 	public Collection<Submission> findByAuthor(final Author author) {
@@ -148,6 +154,12 @@ public class SubmissionService {
 		return result;
 	}
 
+	public Submission update(final Submission submission) {
+		Assert.notNull(submission);
+
+		return this.submissionRepository.save(submission);
+	}
+
 	public Submission uploadCameraReadyPaper(final SubmissionCameraReadyPaperForm submissionCameraReadyPaperForm) {
 		final Submission result = submissionCameraReadyPaperForm.getSubmission();
 		final Paper cameraReady = new Paper();
@@ -171,8 +183,8 @@ public class SubmissionService {
 
 		if (!submissions.isEmpty())
 			for (final Submission s : submissions) {
-				final Collection<Report> accept = this.reportService.findAccept(s);
-				final Collection<Report> reject = this.reportService.findReject(s);
+				final Collection<Report> accept = this.reportService.findAllAcceptBySubmission(s);
+				final Collection<Report> reject = this.reportService.findAllRejectBySubmission(s);
 
 				if (accept.size() < reject.size())
 					s.setStatus("REJECTED");

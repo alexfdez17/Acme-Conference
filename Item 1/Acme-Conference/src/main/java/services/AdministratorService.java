@@ -86,16 +86,6 @@ public class AdministratorService {
 		return this.actorService.findPrincipal();
 	}
 
-	public Administrator findByUserAccount(final UserAccount userAccount) {
-		Assert.notNull(userAccount);
-
-		Administrator result;
-
-		result = this.administratorRepository.findbyUserAccountID(userAccount.getId());
-
-		return result;
-	}
-
 	public Administrator registerAdministrator(final RegisterAdministratorForm registerAdministratorForm) {
 		final Administrator result = this.create();
 

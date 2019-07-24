@@ -86,16 +86,6 @@ public class ReviewerService {
 		return this.actorService.findPrincipal();
 	}
 
-	public Reviewer findByUserAccount(final UserAccount userAccount) {
-		Assert.notNull(userAccount);
-
-		Reviewer result;
-
-		result = this.reviewerRepository.findbyUserAccountID(userAccount.getId());
-
-		return result;
-	}
-
 	public Reviewer registerReviewer(final RegisterReviewerForm registerReviewerForm) {
 		final Reviewer result = this.create();
 

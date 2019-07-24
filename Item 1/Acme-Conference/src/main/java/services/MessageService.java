@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import repositories.MessageRepository;
 import domain.Actor;
 import domain.Message;
+import domain.Submission;
 import domain.Topic;
 
 @Service
@@ -31,7 +32,16 @@ public class MessageService {
 	private ActorService			actorService;
 
 	@Autowired
+	private AuthorService			authorService;
+
+	@Autowired
 	private AdministratorService	administratorService;
+
+	@Autowired
+	private SubmissionService		submissionService;
+
+	@Autowired
+	private TopicService			topicService;
 
 
 	// -------------------
@@ -83,6 +93,34 @@ public class MessageService {
 	// -------------------
 
 	// Other business methods
+	public Message broadcastToAll() {
+		final Collection<Actor> recipients = this.actorService.findAll();
+		final Message result = this.setRecipients(recipients);
+
+		return result;
+	}
+
+	public Message broadcastToAllAuthors() {
+		final Collection<Actor> recipients = this.authorService.findAll();
+		final Message result = this.setRecipients(recipients);
+
+		return result;
+	}
+
+	public Message broadcastToAuthorsWithRegistration() {
+		final Collection<Actor> recipients = this.authorService.findAllWithRegistration();
+		final Message result = this.setRecipients(recipients);
+
+		return result;
+	}
+
+	public Message broadcastToAuthorsWithSubmission() {
+		final Collection<Actor> recipients = this.authorService.findAllWithSubmission();
+		final Message result = this.setRecipients(recipients);
+
+		return result;
+	}
+
 	public Collection<Message> findAllByPrincipal() {
 		final Actor principal = this.actorService.findPrincipal();
 		final int principalId = principal.getId();
@@ -109,6 +147,39 @@ public class MessageService {
 		final int principalId = principal.getId();
 
 		return this.findAllByActorIdAndTopic(principalId, topic);
+	}
+
+	public Message notifyDecisionOnSubmissions() {
+		final Message result = this.create();
+
+		final Collection<Actor> recipients = new ArrayList<>();
+		final Collection<Submission> submissions = this.submissionService.findAllNotUnderReview();
+
+		for (final Submission submission : submissions) {
+			final String conferenceTitle = submission.getConference().getTitle();
+			final Actor recipient = submission.getAuthor();
+			final String decision = submission.getStatus().toLowerCase();
+			final String ticker = submission.getTicker();
+
+			final String subject = "Submission " + decision;
+			final String body = "Your submission with ticker " + ticker + " to the conference " + conferenceTitle + " has been " + decision + ". You can now access to the reports made on your submission.";
+			final Topic topic = this.topicService.findByName("OTHER");
+
+			result.setBody(body);
+			result.setSubject(subject);
+			result.setTopic(topic);
+
+			recipients.add(recipient);
+			
+
+			submission.setReportsAvailable(true);
+
+			this.submissionService.update(submission);
+		}
+
+		result.setRecipients(recipients);
+
+		return this.save(result);
 	}
 	// ----------------------
 
@@ -171,6 +242,18 @@ public class MessageService {
 		final Actor owner = message.getOwner();
 
 		Assert.isTrue(principal.getId() == owner.getId());
+	}
+
+	private Message setRecipients(final Collection<Actor> recipients) {
+		final Actor principal = this.administratorService.findByPrincipal();
+		final Message result = this.create();
+
+		if (recipients.contains(principal))
+			recipients.remove(principal);
+
+		result.setRecipients(recipients);
+
+		return result;
 	}
 	// -----------------
 
