@@ -19,6 +19,7 @@ import domain.Author;
 import domain.Conference;
 import domain.Paper;
 import domain.Report;
+import domain.Reviewer;
 import domain.Submission;
 import forms.SubmissionCameraReadyPaperForm;
 import forms.SubmissionPaperForm;
@@ -40,6 +41,9 @@ public class SubmissionService {
 
 	@Autowired
 	private ReportService			reportService;
+
+	@Autowired
+	private ReviewerService			reviewerService;
 
 
 	// Simple CRUD methods
@@ -118,6 +122,29 @@ public class SubmissionService {
 	}
 
 	// Other business methods
+	public Submission assignToReviewers(final Submission submission, final Collection<Reviewer> reviewers) {
+		Assert.notEmpty(reviewers);
+
+		this.administratorService.findByPrincipal();
+
+		submission.setReviewers(reviewers);
+
+		return this.submissionRepository.save(submission);
+	}
+
+	public void autoAssignAll() {
+		final Collection<Submission> allUnderReview = this.findAllUnderReview();
+
+		for (final Submission submission : allUnderReview) {
+			final String conferenceTitle = submission.getConference().getTitle();
+			final String conferenceSummary = submission.getConference().getSummary();
+
+			final Collection<Reviewer> reviewers = this.reviewerService.findAllByConferenceTitleAndSummary(conferenceTitle, conferenceSummary);
+
+			this.assignToReviewers(submission, reviewers);
+		}
+	}
+
 	public Collection<Submission> findAllByStatus(final String status) {
 		this.administratorService.findByPrincipal();
 		this.checkStatus(status);
@@ -237,5 +264,9 @@ public class SubmissionService {
 	private void checkStatus(final String status) {
 		Assert.notNull(status);
 		Assert.isTrue(status == "ACCEPTED" || status == "REJECTED" || status == "UNDER-REVIEW");
+	}
+
+	private Collection<Submission> findAllUnderReview() {
+		return this.submissionRepository.findAllUnderReview();
 	}
 }

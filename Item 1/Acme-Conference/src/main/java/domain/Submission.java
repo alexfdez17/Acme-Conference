@@ -1,6 +1,7 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -11,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Index;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -37,16 +39,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Submission extends DomainEntity {
 
 	//Attributes
-	private String		ticker;
-	private Date		moment;
-	private Paper		paper;
-	private Paper		cameraReadyPaper;
-	private String		status;
-	private boolean		reportsAvailable;
+	private String					ticker;
+	private Date					moment;
+	private Paper					paper;
+	private Paper					cameraReadyPaper;
+	private String					status;
+	private boolean					reportsAvailable;
 
 	//Relationships
-	private Author		author;
-	private Conference	conference;
+	private Author					author;
+	private Conference				conference;
+	private Collection<Reviewer>	reviewers;
 
 
 	//Attributes
@@ -141,6 +144,16 @@ public class Submission extends DomainEntity {
 
 	public void setConference(final Conference conference) {
 		this.conference = conference;
+	}
+
+	@ManyToMany
+	@NotNull
+	public Collection<Reviewer> getReviewers() {
+		return this.reviewers;
+	}
+
+	public void setReviewers(final Collection<Reviewer> reviewers) {
+		this.reviewers = reviewers;
 	}
 
 }

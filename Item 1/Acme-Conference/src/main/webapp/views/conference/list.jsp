@@ -9,60 +9,94 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+
+<script type="text/javascript">
+	function listByKeyword(event) {
+		if (event.keyCode == 13) {
+			var keyword = document.getElementById("keyword").value;
+			window.location.assign("conference/list.do?keyword=" + keyword);
+
+			return false;
+		}
+	}
+</script>
+
+<spring:message code="conference.list.by.keyword" />
+<input type="text" id="keyword" onkeypress="listByKeyword(event)"
+	onclick="listByKeyword(event)"
+	placeholder="<spring:message code="conference.keyword.placeholder" />"
+	value="${keyword}" />
+<br />
 <!--  Listing grid -->
 
 <display:table pagesize="5" class="displaytag" name="conferences"
 	requestURI="${requestURI}" id="row">
 
 	<!-- Attributes -->
-	
-	<spring:message code="conference.title" var="titleHeader" />
-	<display:column property="title" title="${titleHeader}"
-		sortable="false" />
-		
-	<security:authorize access="hasRole('ADMIN')">
-	<spring:message code="conference.isFinal" var="isFinalHeader" />
-	<display:column property="isFinal" title="${isFinalHeader}"
-		sortable="false" />
-	</security:authorize>
-	
-	<spring:message code="conference.startDate" var="startDateHeader" />
-	<display:column property="startDate" title="${startDateHeader}"
-		sortable="false" />
 
-	<spring:message code="conference.endDate" var="endDateHeader" />
-	<display:column property="endDate" title="${endDateHeader}"
-		sortable="false" />
-		
-	<!-- Actions -->
-	
-	<security:authorize access="hasRole('AUTHOR')">
-	<display:column>
-	<jstl:if test="${row.submissionDeadline > today }">
-		<a href="submission/author/create.do?conferenceId=${row.id}"> <spring:message
-				code="conference.submission" />
-		</a>
-	</jstl:if>
-	</display:column>
-	</security:authorize>
-	
+	<acme:column code="conference.title" property="title" sortable="true" />
+
+	<acme:column code="conference.acronym" property="acronym"
+		sortable="true" />
+
 	<security:authorize access="hasRole('ADMIN')">
-	<display:column>
-	<jstl:if test="${row.submissionDeadline < today && row.isFinal == true}">
-		<a href="administrator/decide.do?conferenceId=${row.id}"> <spring:message
-				code="conference.decide" />
-		</a>
-	</jstl:if>
-	</display:column>
-	
-	<display:column>
-		<a href="activity/administrator/list.do?conferenceId=${row.id}"> <spring:message
-				code="conference.activity.list" />
-		</a>
-	</display:column>
+		<acme:column code="conference.isFinal" property="isFinal" />
 	</security:authorize>
-	
+
+	<acme:column code="conference.venue" property="venue" sortable="true" />
+
+	<acme:column code="conference.startDate" property="startDate"
+		sortable="true" />
+
+	<acme:column code="conference.endDate" property="endDate"
+		sortable="true" />
+
+	<acme:column code="conference.fee" property="fee" sortable="true" />
+
+	<!-- Actions -->
+
+	<security:authorize access="hasRole('AUTHOR')">
+		<display:column>
+			<jstl:if test="${row.submissionDeadline > today }">
+				<a href="submission/author/create.do?conferenceId=${row.id}"> <spring:message
+						code="conference.submission" />
+				</a>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
+
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+			<jstl:if
+				test="${row.submissionDeadline < today && row.isFinal == true}">
+				<a href="administrator/decide.do?conferenceId=${row.id}"> <spring:message
+						code="conference.decide" />
+				</a>
+			</jstl:if>
+		</display:column>
+		
+		<display:column>
+			<a href="activity/administrator/list.do?conferenceId=${row.id}">
+				<spring:message code="conference.activity.list" />
+			</a>
+		</display:column>
+		
+		<display:column>
+			<jstl:if
+				test="${row.isFinal == false}">
+				<a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message
+						code="conference.edit" />
+				</a>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
+
 </display:table>
-<br/>
+
+<security:authorize access="hasRole('ADMIN')">
+	<a href="conference/administrator/create.do"> <spring:message
+			code="conference.create" />
+	</a>
+</security:authorize>

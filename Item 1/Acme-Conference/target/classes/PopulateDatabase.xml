@@ -376,8 +376,16 @@
 		<property name="paper" ref="paper1" />
 		<property name="cameraReadyPaper" ref="paper2" />
 		<property name="status" value="ACCEPTED"/>
+		<property name="reportsAvailable" value="true"/>
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference1" />
+		<property name="reviewers">
+			<list>
+				<ref bean="reviewer1"/>
+				<ref bean="reviewer2"/>
+				<ref bean="reviewer3"/>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR1 SUBMISSION1 (TO CONFERENCE1) ************ -->
@@ -389,8 +397,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference2" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR1 SUBMISSION2 (TO CONFERENCE2) ************ -->
@@ -402,9 +415,15 @@
 		<property name="ticker" value="AAA-A1B2" />
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
-		<property name="status" value="UNDER-REVIEW"/>
+		<property name="status" value="REJECTED"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference4" />
+		<property name="reviewers">
+			<list>
+				<ref bean="reviewer1"/>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR1 SUBMISSION3 (TO CONFERENCE4) ************ -->
@@ -416,15 +435,18 @@
 		<property name="ticker" value="AAA-5A57" />
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
-		<property name="cameraReadyPaper" ref="paper2" />
-		<property name="status" value="ACCEPTED"/>
+		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="true"/>
 		<property name="author" ref="author1" />
 		<property name="conference" ref="conference5" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR1 SUBMISSION4 (TO CONFERENCE5) ************ -->
 	
-	<!-- ************ START AUTHOR1 SUBMISSION6 (TO CONFERENCE6) ************ -->
 	
 	
 	<!-- ************ START AUTHOR1 REGISTRATION1 (TO CONFERENCE2) ************ -->
@@ -607,8 +629,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference2" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR2 SUBMISSION1 (TO CONFERENCE2) ************ -->
@@ -620,8 +647,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference1" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR2 SUBMISSION2 (TO CONFERENCE1) ************ -->
@@ -633,8 +665,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference3" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR2 SUBMISSION3 (TO CONFERENCE3) ************ -->
@@ -646,8 +683,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference4" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR2 SUBMISSION4 (TO CONFERENCE4) ************ -->
@@ -659,8 +701,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference5" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR2 SUBMISSION5 (TO CONFERENCE5) ************ -->
@@ -672,8 +719,13 @@
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
 		<property name="status" value="UNDER-REVIEW"/>
+		<property name="reportsAvailable" value="false"/>
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference3" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************ END AUTHOR2 SUBMISSION6 (TO CONFERENCE6) ************ -->

@@ -81,6 +81,20 @@ public class ReviewerService {
 	}
 
 	//Other business methods
+	public Collection<Reviewer> findAllByConferenceTitleAndSummary(final String conferenceTitle, final String conferenceSummary) {
+		Assert.notNull(conferenceTitle);
+		Assert.notNull(conferenceSummary);
+
+		List<Reviewer> result = new ArrayList<>(this.reviewerRepository.findAllByConferenceTitleAndSummary(conferenceTitle, conferenceSummary));
+		final int size = result.size();
+
+		if (size < 3)
+			result = result.subList(0, size);
+		else
+			result = result.subList(0, 3);
+
+		return result;
+	}
 
 	public Reviewer findByPrincipal() {
 		return this.actorService.findPrincipal();

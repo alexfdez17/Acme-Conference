@@ -31,6 +31,7 @@
 	<jstl:set var="readonly" value="false" />
 </jstl:if>
 
+
 <%-- Definition --%>
 
 <div>

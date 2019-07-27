@@ -7,10 +7,13 @@ import java.util.Collections;
 import java.util.Date;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ConferenceRepository;
 import domain.Activity;
@@ -27,6 +30,9 @@ public class ConferenceService {
 	// Supporting services
 	@Autowired
 	private AdministratorService	administratorService;
+
+	@Autowired
+	private Validator				validator;
 
 
 	// CRUD
@@ -59,20 +65,11 @@ public class ConferenceService {
 		return this.conferenceRepository.save(conference);
 	}
 
-	//	public void delete(final Conference conference) {
-	//		Assert.notNull(conference);
-	//		Assert.isTrue(conference.getId() != 0);
-	//
-	//		this.conferenceRepository.delete(conference);
-	//	}
-	//
-	//	public Collection<Conference> findAll() {
-	//		Collection<Conference> result;
-	//
-	//		result = this.conferenceRepository.findAll();
-	//
-	//		return result;
-	//	}
+	public Collection<Conference> findAll() {
+		this.administratorService.findByPrincipal();
+
+		return this.conferenceRepository.findAll();
+	}
 
 	public Conference findOne(final int conferenceId) {
 		final Conference result = this.conferenceRepository.findOne(conferenceId);
@@ -135,7 +132,7 @@ public class ConferenceService {
 	}
 
 	public Collection<Conference> findAllRunning() {
-		return this.findAllRunning();
+		return this.conferenceRepository.findAllRunning();
 	}
 
 	public Conference update(final Conference conference) {
@@ -147,6 +144,29 @@ public class ConferenceService {
 		return this.conferenceRepository.save(conference);
 	}
 
+	public Conference reconstruct(final Conference conference, final BindingResult binding) {
+		final Conference result = conference;
+		final int conferenceId = conference.getId();
+
+		final Collection<Activity> activities;
+
+		if (!this.exists(conferenceId))
+			activities = new ArrayList<>();
+		else {
+			final Conference retrieved = this.findOne(conferenceId);
+
+			activities = retrieved.getActivities();
+		}
+
+		result.setActivities(activities);
+
+		this.validator.validate(result, binding);
+
+		if (binding.hasErrors())
+			throw new ValidationException();
+
+		return result;
+	}
 	// Auxiliary methods
 	private void checkDates(final Conference conference) {
 		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();
