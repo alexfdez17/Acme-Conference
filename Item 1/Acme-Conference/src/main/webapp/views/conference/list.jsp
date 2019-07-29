@@ -41,10 +41,6 @@
 	<acme:column code="conference.acronym" property="acronym"
 		sortable="true" />
 
-	<security:authorize access="hasRole('ADMIN')">
-		<acme:column code="conference.isFinal" property="isFinal" />
-	</security:authorize>
-
 	<acme:column code="conference.venue" property="venue" sortable="true" />
 
 	<acme:column code="conference.startDate" property="startDate"
@@ -53,27 +49,45 @@
 	<acme:column code="conference.endDate" property="endDate"
 		sortable="true" />
 
+	<security:authorize access="hasAnyRole('ADMIN', 'AUTHOR')">
+		<acme:column code="conference.submissionDeadline"
+			property="submissionDeadline" sortable="true" />
+
+		<acme:column code="conference.notificationDeadline"
+			property="notificationDeadline" sortable="true" />
+
+		<acme:column code="conference.cameraReadyDeadline"
+			property="cameraReadyDeadline" sortable="true" />
+	</security:authorize>
+
 	<acme:column code="conference.fee" property="fee" sortable="true" />
 
 	<!-- Actions -->
-	
-		<display:column>
-			<a href="activity/list.do?conferenceId=${row.id}">
-				<spring:message code="conference.activity.list" />
-			</a>
-		</display:column>
-		
-		<display:column>
-			<a href="comment/listFromConference.do?conferenceId=${row.id}">
-				<spring:message code="conference.comment.list" />
-			</a>
-		</display:column>
+
+	<display:column>
+		<a href="activity/list.do?conferenceId=${row.id}"> <spring:message
+				code="conference.activity.list" />
+		</a>
+	</display:column>
+
+	<display:column>
+		<a href="comment/listFromConference.do?conferenceId=${row.id}"> <spring:message
+				code="conference.comment.list" />
+		</a>
+	</display:column>
 
 	<security:authorize access="hasRole('AUTHOR')">
 		<display:column>
 			<jstl:if test="${row.submissionDeadline > today }">
 				<a href="submission/author/create.do?conferenceId=${row.id}"> <spring:message
 						code="conference.submission" />
+				</a>
+			</jstl:if>
+		</display:column>
+		<display:column>
+			<jstl:if test="${row.submissionDeadline > today }">
+				<a href="registration/author/create.do?conferenceId=${row.id}">
+					<spring:message code="conference.registration" />
 				</a>
 			</jstl:if>
 		</display:column>
@@ -88,16 +102,25 @@
 				</a>
 			</jstl:if>
 		</display:column>
-		
+
 		<display:column>
-			<jstl:if
-				test="${row.isFinal == false}">
-				<a href="conference/administrator/edit.do?conferenceId=${row.id}"> <spring:message
-						code="conference.edit" />
+			<jstl:if test="${row.isFinal == false}">
+				<a href="conference/administrator/edit.do?conferenceId=${row.id}">
+					<spring:message code="conference.edit" />
 				</a>
+			</jstl:if>
+			<jstl:if test="${row.isFinal == true}">
+				<i> <spring:message code="conference.is.published" />
+				</i>
 			</jstl:if>
 		</display:column>
 	</security:authorize>
+
+	<display:column>
+		<a href="conference/display.do?conferenceId=${row.id}"> <spring:message
+				code="conference.display" />
+		</a>
+	</display:column>
 
 </display:table>
 

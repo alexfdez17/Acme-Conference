@@ -90,8 +90,19 @@ public class ConferenceAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(Conference conference, final BindingResult binding) {
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "draft")
+	public ModelAndView draft(final Conference conference, final BindingResult binding) {
+		return this.save(conference, binding);
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "publish")
+	public ModelAndView publish(final Conference conference, final BindingResult binding) {
+		conference.setIsFinal(true);
+
+		return this.save(conference, binding);
+	}
+
+	protected ModelAndView save(Conference conference, final BindingResult binding) {
 		final int conferenceId = conference.getId();
 		final String action = this.conferenceService.exists(conferenceId) ? "edit" : "create";
 

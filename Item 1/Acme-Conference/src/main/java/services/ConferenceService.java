@@ -57,7 +57,7 @@ public class ConferenceService {
 		Assert.notNull(conference);
 
 		this.administratorService.findByPrincipal();
-		this.checkDates(conference);
+		this.checkDatesOnSave(conference);
 
 		final int conferenceId = conference.getId();
 
@@ -79,7 +79,7 @@ public class ConferenceService {
 	public Conference findOne(final int conferenceId) {
 		final Conference result = this.conferenceRepository.findOne(conferenceId);
 
-		Assert.notNull(this.exists(conferenceId));
+		Assert.isTrue(this.exists(conferenceId));
 
 		return result;
 	}
@@ -144,7 +144,6 @@ public class ConferenceService {
 		Assert.notNull(conference);
 
 		this.administratorService.findByPrincipal();
-		this.checkDates(conference);
 
 		return this.conferenceRepository.save(conference);
 	}
@@ -154,17 +153,22 @@ public class ConferenceService {
 		final int conferenceId = conference.getId();
 
 		final Collection<Activity> activities;
+		final Collection<Comment> comments;
 
-		if (!this.exists(conferenceId))
+		if (!this.exists(conferenceId)) {
 			activities = new ArrayList<>();
-		else {
+			comments = new ArrayList<>();
+		} else {
 			final Conference retrieved = this.findOne(conferenceId);
 
 			activities = retrieved.getActivities();
+			comments = retrieved.getComments();
 		}
 
 		result.setActivities(activities);
+		result.setComments(comments);
 
+		this.checkDates(conference, binding);
 		this.validator.validate(result, binding);
 
 		if (binding.hasErrors())
@@ -172,8 +176,28 @@ public class ConferenceService {
 
 		return result;
 	}
+
 	// Auxiliary methods
-	private void checkDates(final Conference conference) {
+	private void checkDates(final Conference conference, final BindingResult binding) {
+		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();
+		final Date notificationDeadline = conference.getNotificationDeadline();
+		final Date submissionDeadline = conference.getSubmissionDeadline();
+
+		final Date endDate = conference.getEndDate();
+		final Date startDate = conference.getStartDate();
+
+		if (startDate.after(endDate))
+			binding.rejectValue("startDate", "conference.startDate.after.endDate.error");
+		else if (cameraReadyDeadline.after(startDate))
+			binding.rejectValue("cameraReadyDeadline", "conference.cameraReadyDeadline.after.startDate.error");
+		else if (notificationDeadline.after(cameraReadyDeadline))
+			binding.rejectValue("notificationDeadline", "conference.notificationDeadline.after.cameraReadyDeadline.error");
+		else if (submissionDeadline.after(notificationDeadline))
+			binding.rejectValue("submissionDeadline", "conference.submissionDeadline.after.notificationDeadline.error");
+
+	}
+
+	private void checkDatesOnSave(final Conference conference) {
 		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();
 		final Date notificationDeadline = conference.getNotificationDeadline();
 		final Date submissionDeadline = conference.getSubmissionDeadline();

@@ -84,7 +84,7 @@ public class Conference extends Commentable {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	public Date getSubmissionDeadline() {
 		return this.submissionDeadline;
 	}
@@ -95,7 +95,7 @@ public class Conference extends Commentable {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	public Date getNotificationDeadline() {
 		return this.notificationDeadline;
 	}
@@ -106,7 +106,7 @@ public class Conference extends Commentable {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	public Date getCameraReadyDeadline() {
 		return this.cameraReadyDeadline;
 	}

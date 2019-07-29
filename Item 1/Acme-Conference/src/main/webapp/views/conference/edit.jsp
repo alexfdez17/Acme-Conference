@@ -15,10 +15,11 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="comments" />
-
+	
 	<fieldset>
-		<legend><spring:message code="conference.basic.info"/></legend>
+		<legend>
+			<spring:message code="conference.basic.info" />
+		</legend>
 		<acme:textbox code="conference.title" path="title" />
 		<acme:textbox code="conference.acronym" path="acronym" />
 		<acme:textarea code="conference.summary" path="summary" />
@@ -29,7 +30,9 @@
 	</fieldset>
 
 	<fieldset>
-		<legend><spring:message code="conference.dates.info"/></legend>
+		<legend>
+			<spring:message code="conference.dates.info" />
+		</legend>
 		<acme:textbox code="conference.submissionDeadline"
 			path="submissionDeadline" />
 		<acme:textbox code="conference.notificationDeadline"
@@ -39,10 +42,10 @@
 		<acme:textbox code="conference.startDate" path="startDate" />
 		<acme:textbox code="conference.endDate" path="endDate" />
 	</fieldset>
-	
-	
 
-	<acme:submit name="save" code="conference.save" />
-	<acme:cancel url="conference/administrator/list.do?keyword=all" code="conference.cancel" />
+	<acme:submit name="draft" code="conference.save.as.draft" />
+	<acme:submit name="publish" code="conference.save.as.final" />
+	<acme:cancel url="conference/administrator/list.do?keyword=all"
+		code="conference.cancel" />
 
 </form:form>

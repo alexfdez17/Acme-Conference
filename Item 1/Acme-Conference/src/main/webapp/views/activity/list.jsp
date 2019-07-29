@@ -9,7 +9,7 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <!--  Listing grid -->
 
@@ -17,15 +17,15 @@
 	requestURI="activity/list.do?conferenceId=${conferenceId}" id="row">
 
 	<!-- Attributes -->
-	
+
 	<spring:message code="activity.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}"
 		sortable="false" />
-		
+
 	<spring:message code="activity.speakers" var="speakersHeader" />
 	<display:column property="speakers" title="${speakersHeader}"
 		sortable="false" />
-	
+
 	<spring:message code="activity.startMoment" var="startMomentHeader" />
 	<display:column property="startMoment" title="${startMomentHeader}"
 		sortable="false" format="{0,date,${datePattern}}" />
@@ -33,38 +33,40 @@
 	<spring:message code="activity.duration" var="durationHeader" />
 	<display:column property="duration" title="${durationHeader}"
 		sortable="false" />
-		
+
 	<!-- Actions -->
-	
+
 	<display:column>
 		<a href="activity/display.do?activityId=${row.id}"> <spring:message
 				code="activity.display" />
 		</a>
 	</display:column>
-	
+
 	<display:column>
-			<a href="comment/listFromActivity.do?activityId=${row.id}">
-				<spring:message code="conference.comment.list" />
-			</a>
-		</display:column>
-	
+		<a href="comment/listFromActivity.do?activityId=${row.id}"> <spring:message
+				code="conference.comment.list" />
+		</a>
+	</display:column>
+
 </display:table>
-<br/>
+<br />
 
 <security:authorize access="hasRole('ADMIN')">
 
-<jstl:if test="${conference.isFinal == false}">
-<a href="tutorial/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
-				code="activity.createTutorial" />
-</a>
-<br/>	
-<a href="panel/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
-				code="activity.createPanel" />
-</a>
-<br/>		
-<a href="presentation/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
-				code="activity.createPresentation" />
-</a>
-</jstl:if>
+	<jstl:if test="${conference.isFinal == false}">
+		<a
+			href="tutorial/administrator/create.do?conferenceId=${conferenceId}">
+			<spring:message code="activity.createTutorial" />
+		</a>
+		<br />
+		<a href="panel/administrator/create.do?conferenceId=${conferenceId}">
+			<spring:message code="activity.createPanel" />
+		</a>
+		<br />
+		<a
+			href="presentation/administrator/create.do?conferenceId=${conferenceId}">
+			<spring:message code="activity.createPresentation" />
+		</a>
+	</jstl:if>
 
 </security:authorize>

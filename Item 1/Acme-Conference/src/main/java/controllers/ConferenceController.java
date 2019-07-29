@@ -6,21 +6,26 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ConferenceService;
+import domain.Activity;
 import domain.Conference;
 
 @Controller
 @RequestMapping("/conference")
 public class ConferenceController extends AbstractController {
 
+	// Managed service
 	@Autowired
 	private ConferenceService	conferenceService;
 
+
+	// Supporting services
 
 	// Listing --------------------------------------------------------
 
@@ -41,6 +46,35 @@ public class ConferenceController extends AbstractController {
 
 		return result;
 	}
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam final int conferenceId) {
+		ModelAndView result;
+
+		try {
+			final Conference conference = this.conferenceService.findOne(conferenceId);
+
+			Assert.notNull(conference);
+
+			result = this.createDisplayModelAndView(conference);
+		} catch (final IllegalArgumentException oops) {
+			result = new ModelAndView("redirect:/welcome/index.do");
+		}
+
+		return result;
+	}
+
+	protected ModelAndView createDisplayModelAndView(final Conference conference) {
+		final ModelAndView result = new ModelAndView("conference/display");
+		final Collection<Activity> activities = conference.getActivities();
+
+		result.addObject("activities", activities);
+		result.addObject("conference", conference);
+		result.addObject("requestURI", "conference/display.do");
+
+		return result;
+	}
+	// Auxiliary methods
 
 	private ModelAndView listFinal() {
 		final ModelAndView result;
