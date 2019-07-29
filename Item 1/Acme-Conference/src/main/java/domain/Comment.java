@@ -6,10 +6,8 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -22,14 +20,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Comment extends DomainEntity {
 
 	//Attributes
-	private String		title;
-	private Date		moment;
-	private String		text;
-
-	//Relationships
-	private Author		author;
-	private Conference	conference;
-	private Activity	activity;
+	private String	title;
+	private Date	moment;
+	private String	text;
+	private String	author;
 
 
 	//Attributes
@@ -66,37 +60,14 @@ public class Comment extends DomainEntity {
 		this.text = text;
 	}
 
-	//Relationships
-
-	@ManyToOne(optional = false)
-	@Valid
-	@NotNull
-	public Author getAuthor() {
+	@NotBlank
+	@SafeHtml
+	public String getAuthor() {
 		return this.author;
 	}
 
-	public void setAuthor(final Author author) {
+	public void setAuthor(final String author) {
 		this.author = author;
-	}
-
-	@ManyToOne(optional = true)
-	@Valid
-	public Conference getConference() {
-		return this.conference;
-	}
-
-	public void setConference(final Conference conference) {
-		this.conference = conference;
-	}
-
-	@ManyToOne(optional = true)
-	@Valid
-	public Activity getActivity() {
-		return this.activity;
-	}
-
-	public void setActivity(final Activity activity) {
-		this.activity = activity;
 	}
 
 }

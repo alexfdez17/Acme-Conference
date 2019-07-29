@@ -1,5 +1,5 @@
 
-package controllers.administrator;
+package controllers;
 
 import java.util.Collection;
 
@@ -14,7 +14,6 @@ import services.ConferenceService;
 import services.PanelService;
 import services.PresentationService;
 import services.TutorialService;
-import controllers.AbstractController;
 import domain.Activity;
 import domain.Conference;
 import domain.Panel;
@@ -23,8 +22,8 @@ import domain.Section;
 import domain.Tutorial;
 
 @Controller
-@RequestMapping("/activity/administrator")
-public class ActivityAdministratorController extends AbstractController {
+@RequestMapping("/activity")
+public class ActivityController extends AbstractController {
 
 	@Autowired
 	private ConferenceService	conferenceService;
@@ -86,4 +85,5 @@ public class ActivityAdministratorController extends AbstractController {
 
 		return result;
 	}
+
 }

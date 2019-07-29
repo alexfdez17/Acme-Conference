@@ -15,6 +15,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="comments" />
 
 	<fieldset>
 		<legend><spring:message code="conference.basic.info"/></legend>

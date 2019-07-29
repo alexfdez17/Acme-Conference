@@ -64,16 +64,19 @@
 		sortable="false" />
 		
 	<!-- Actions -->
-		
+	
+	<security:authorize access="hasRole('ADMIN')">
 	<display:column>
 		<a href="section/administrator/edit.do?sectionId=${row.id}"> <spring:message
 				code="activity.edit" />
 		</a>
 	</display:column>
+	</security:authorize>
 	
 </display:table>
 <br />
 <br />
+<security:authorize access="hasRole('ADMIN')">
 <a href="section/administrator/create.do?tutorialId=${activity.id}"> <spring:message
 				code="activity.section.add" />
 </a>
@@ -81,6 +84,7 @@
 <a href="tutorial/administrator/edit.do?tutorialId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
+</security:authorize>
 </jstl:if>
 
 <jstl:if test="${type == 'presentation'}">
@@ -104,15 +108,19 @@
 <jstl:out value="${activity.cameraReadyPaper.document}" />
 <br />
 <br />
+<security:authorize access="hasRole('ADMIN')">
 <a href="presentation/administrator/edit.do?presentationId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
+</security:authorize>
 </jstl:if>
 
 <jstl:if test="${type == 'panel'}">
+<security:authorize access="hasRole('ADMIN')">
 <a href="panel/administrator/edit.do?panelId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
+</security:authorize>
 </jstl:if>
 
 

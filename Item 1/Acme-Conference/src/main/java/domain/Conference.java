@@ -30,7 +30,7 @@ import cz.jirutka.validator.collection.constraints.EachNotNull;
 @Table(indexes = {
 	@Index(columnList = "fee, startDate, endDate, title, venue, summary, submissionDeadline, notificationDeadline, cameraReadyDeadline, isFinal")
 })
-public class Conference extends DomainEntity {
+public class Conference extends Commentable {
 
 	//Attributes
 	private String					title;

@@ -14,7 +14,7 @@
 <!--  Listing grid -->
 
 <display:table pagesize="5" class="displaytag" name="activities"
-	requestURI="activity/administrator/list.do?${conferenceId}" id="row">
+	requestURI="activity/list.do?conferenceId=${conferenceId}" id="row">
 
 	<!-- Attributes -->
 	
@@ -37,15 +37,23 @@
 	<!-- Actions -->
 	
 	<display:column>
-		<a href="activity/administrator/display.do?activityId=${row.id}"> <spring:message
+		<a href="activity/display.do?activityId=${row.id}"> <spring:message
 				code="activity.display" />
 		</a>
 	</display:column>
 	
+	<display:column>
+			<a href="comment/listFromActivity.do?activityId=${row.id}">
+				<spring:message code="conference.comment.list" />
+			</a>
+		</display:column>
+	
 </display:table>
 <br/>
 
-<jstl:if test="${final == true }">
+<security:authorize access="hasRole('ADMIN')">
+
+<jstl:if test="${conference.isFinal == false}">
 <a href="tutorial/administrator/create.do?conferenceId=${conferenceId}"> <spring:message
 				code="activity.createTutorial" />
 </a>
@@ -58,3 +66,5 @@
 				code="activity.createPresentation" />
 </a>
 </jstl:if>
+
+</security:authorize>

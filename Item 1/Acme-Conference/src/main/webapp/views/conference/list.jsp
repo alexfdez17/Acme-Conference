@@ -56,6 +56,18 @@
 	<acme:column code="conference.fee" property="fee" sortable="true" />
 
 	<!-- Actions -->
+	
+		<display:column>
+			<a href="activity/list.do?conferenceId=${row.id}">
+				<spring:message code="conference.activity.list" />
+			</a>
+		</display:column>
+		
+		<display:column>
+			<a href="comment/listFromConference.do?conferenceId=${row.id}">
+				<spring:message code="conference.comment.list" />
+			</a>
+		</display:column>
 
 	<security:authorize access="hasRole('AUTHOR')">
 		<display:column>
@@ -70,17 +82,11 @@
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
 			<jstl:if
-				test="${row.submissionDeadline < today && row.isFinal == true}">
+				test="${row.submissionDeadline < today && row.startDate > today && row.isFinal == true}">
 				<a href="administrator/decide.do?conferenceId=${row.id}"> <spring:message
 						code="conference.decide" />
 				</a>
 			</jstl:if>
-		</display:column>
-		
-		<display:column>
-			<a href="activity/administrator/list.do?conferenceId=${row.id}">
-				<spring:message code="conference.activity.list" />
-			</a>
 		</display:column>
 		
 		<display:column>

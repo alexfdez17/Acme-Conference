@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -63,10 +64,13 @@ public class SubmissionService {
 		initials = author.getName().substring(0, 1) + middleName + author.getSurname().substring(0, 1);
 		letters = RandomStringUtils.randomAlphanumeric(4).toUpperCase();
 
+		final Collection<Reviewer> reviewers = new ArrayList<Reviewer>();
+
 		result.setMoment(new Date(System.currentTimeMillis() - 1000));
 		result.setAuthor(author);
 		result.setStatus("UNDER-REVIEW");
 		result.setTicker(initials.toUpperCase() + "-" + letters);
+		result.setReviewers(reviewers);
 		result.setReportsAvailable(false);
 
 		return result;

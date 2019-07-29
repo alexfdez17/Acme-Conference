@@ -16,6 +16,7 @@
 	
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="comments" />
 	<jstl:if test="${type == 'tutorial'}">
 	<form:hidden path="sections" />
 	</jstl:if>

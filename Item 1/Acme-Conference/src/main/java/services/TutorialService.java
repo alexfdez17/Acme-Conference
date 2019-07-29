@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 
 import repositories.TutorialRepository;
 import domain.Activity;
+import domain.Comment;
 import domain.Conference;
 import domain.Section;
 import domain.Tutorial;
@@ -41,6 +42,9 @@ public class TutorialService {
 		result = new Tutorial();
 		final Collection<Section> sections = new ArrayList<Section>();
 		result.setSections(sections);
+
+		final Collection<Comment> comments = new ArrayList<>();
+		result.setComments(comments);
 
 		return result;
 	}

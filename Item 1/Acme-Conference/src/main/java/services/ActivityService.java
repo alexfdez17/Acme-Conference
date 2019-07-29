@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.util.Assert;
 
 import repositories.ActivityRepository;
 import domain.Activity;
+import domain.Comment;
 
 @Service
 @Transactional
@@ -29,6 +31,11 @@ public class ActivityService {
 	public Activity create() {
 		Activity result;
 		result = new Activity();
+
+		final Collection<Comment> comments = new ArrayList<>();
+
+		result.setComments(comments);
+
 		return result;
 	}
 

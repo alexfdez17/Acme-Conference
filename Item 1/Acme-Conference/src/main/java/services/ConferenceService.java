@@ -17,6 +17,7 @@ import org.springframework.validation.Validator;
 
 import repositories.ConferenceRepository;
 import domain.Activity;
+import domain.Comment;
 import domain.Conference;
 
 @Service
@@ -44,6 +45,10 @@ public class ConferenceService {
 		final Collection<Activity> activities = new ArrayList<>();
 
 		result.setActivities(activities);
+
+		final Collection<Comment> comments = new ArrayList<>();
+
+		result.setComments(comments);
 
 		return result;
 	}

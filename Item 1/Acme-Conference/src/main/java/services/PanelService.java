@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.util.Assert;
 
 import repositories.PanelRepository;
 import domain.Activity;
+import domain.Comment;
 import domain.Conference;
 import domain.Panel;
 import forms.ActivityPanelForm;
@@ -34,6 +36,10 @@ public class PanelService {
 		Panel result;
 
 		result = new Panel();
+
+		final Collection<Comment> comments = new ArrayList<>();
+
+		result.setComments(comments);
 
 		return result;
 	}

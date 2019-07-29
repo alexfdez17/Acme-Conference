@@ -92,6 +92,12 @@
 
 		<security:intercept-url pattern="/conference/list.do"
 			access="permitAll" />
+		<security:intercept-url pattern="/activity/list.do"
+			access="permitAll" />
+		<security:intercept-url pattern="/activity/display.do"
+			access="permitAll" />
+		<security:intercept-url pattern="/comment/**"
+			access="permitAll" />
 
 		<security:intercept-url pattern="/**"
 			access="hasRole('NONE')" />

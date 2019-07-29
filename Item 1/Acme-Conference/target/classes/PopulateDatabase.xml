@@ -1480,6 +1480,13 @@
 				<ref bean="conference1presentation1" />
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference1comment1" />
+				<ref bean="conference1comment2" />
+				<ref bean="conference1comment3" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** START CONFERENCE1 TUTORIAL1 ************** -->
@@ -1505,6 +1512,11 @@
 			<list>
 				<ref bean="conference1tutorial1section1" />
 				<ref bean="conference1tutorial1section2" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference1tutorial1comment1" />
 			</list>
 		</property>
 	</bean>
@@ -1543,8 +1555,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference1tutorial1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE1 TUTORIAL1 COMMENT1 ******  -->
@@ -1569,6 +1580,11 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference1panel1comment1" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ****** START CONFERENCE1 PANEL1 COMMENT1 ******  -->
@@ -1577,8 +1593,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference1panel1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE1 PANEL1 COMMENT1 ******  -->	
@@ -1604,6 +1619,10 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** END CONFERENCE1 PANEL2 ************** -->
@@ -1627,6 +1646,11 @@
 			</list>
 		</property>
 		<property name="cameraReadyPaper" ref="paper1"/>
+		<property name="comments">
+			<list>
+				<ref bean="conference1presentation1comment1" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ****** START CONFERENCE1 PRESENTATION1 COMMENT1 ******  -->
@@ -1635,8 +1659,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference1presentation1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE1 PRESENTATION1 COMMENT1 ******  -->	
@@ -1649,8 +1672,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE1 COMMENT1 ************** -->	
@@ -1661,8 +1683,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE2 COMMENT2 ************** -->
@@ -1673,11 +1694,10 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
-	<!-- ************** END CONFERENCE2 COMMENT3 ************** -->						
+	<!-- ************** END CONFERENCE1 COMMENT3 ************** -->						
 	
 	<!-- **************************** END CONFERENCE1 **************************** -->
 	
@@ -1700,6 +1720,10 @@
 			<list>
 				<ref bean="conference2tutorial1" />
 				<ref bean="conference2panel1" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -1726,6 +1750,10 @@
 		<property name="sections">
 			<list>
 				<ref bean="conference2tutorial1section1" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -1765,6 +1793,10 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** END CONFERENCE2 PANEL1 ************** -->	
@@ -1792,6 +1824,10 @@
 				<ref bean="conference3panel2" />
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** START CONFERENCE3 PANEL1 ************** -->
@@ -1810,6 +1846,10 @@
 		<property name="attachments">
 			<list>
 				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -1833,6 +1873,10 @@
 		<property name="attachments">
 			<list>
 				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -1865,6 +1909,13 @@
 				<ref bean="conference4presentation1" />
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference4comment1" />
+				<ref bean="conference4comment2" />
+				<ref bean="conference4comment3" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** START CONFERENCE4 TUTORIAL1 ************** -->
@@ -1890,6 +1941,11 @@
 			<list>
 				<ref bean="conference4tutorial1section1" />
 				<ref bean="conference4tutorial1section2" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference4tutorial1comment1" />
 			</list>
 		</property>
 	</bean>
@@ -1928,8 +1984,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference4tutorial1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE4 TUTORIAL1 COMMENT1 ******  -->
@@ -1954,6 +2009,11 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference4panel1comment1" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ****** START CONFERENCE4 PANEL1 COMMENT1 ******  -->
@@ -1962,8 +2022,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference4panel1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE4 PANEL1 COMMENT1 ******  -->	
@@ -1989,6 +2048,10 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** END CONFERENCE4 PANEL2 ************** -->
@@ -2012,6 +2075,11 @@
 			</list>
 		</property>
 		<property name="cameraReadyPaper" ref="paper1"/>
+		<property name="comments">
+			<list>
+				<ref bean="conference4presentation1comment1" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ****** START CONFERENCE4 PRESENTATION1 COMMENT1 ******  -->
@@ -2020,8 +2088,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference4presentation1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE4 PRESENTATION1 COMMENT1 ******  -->	
@@ -2034,8 +2101,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference4"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE4 COMMENT1 ************** -->	
@@ -2046,8 +2112,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference4"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE4 COMMENT2 ************** -->
@@ -2058,8 +2123,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference4"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE4 COMMENT3 ************** -->						
@@ -2090,6 +2154,13 @@
 				<ref bean="conference5presentation1" />
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference5comment1" />
+				<ref bean="conference5comment2" />
+				<ref bean="conference5comment3" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** START CONFERENCE5 TUTORIAL1 ************** -->
@@ -2115,6 +2186,11 @@
 			<list>
 				<ref bean="conference5tutorial1section1" />
 				<ref bean="conference5tutorial1section2" />
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference5tutorial1comment1" />
 			</list>
 		</property>
 	</bean>
@@ -2153,8 +2229,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference5tutorial1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE5 TUTORIAL1 COMMENT1 ******  -->
@@ -2179,6 +2254,11 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+				<ref bean="conference5panel1comment1" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ****** START CONFERENCE5 PANEL1 COMMENT1 ******  -->
@@ -2187,8 +2267,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference5panel1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE5 PANEL1 COMMENT1 ******  -->	
@@ -2214,6 +2293,10 @@
 				<value>https://attachment.com</value>
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** END CONFERENCE5 PANEL2 ************** -->
@@ -2237,6 +2320,11 @@
 			</list>
 		</property>
 		<property name="cameraReadyPaper" ref="paper1"/>
+		<property name="comments">
+			<list>
+				<ref bean="conference5presentation1comment1" />
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ****** START CONFERENCE5 PRESENTATION1 COMMENT1 ******  -->
@@ -2245,8 +2333,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="activity" ref="conference5presentation1"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ******  END CONFERENCE5 PRESENTATION1 COMMENT1 ******  -->	
@@ -2259,8 +2346,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference5"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE5 COMMENT1 ************** -->	
@@ -2271,8 +2357,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference5"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE5 COMMENT2 ************** -->
@@ -2283,8 +2368,7 @@
 		<property name="title" value="TitleComment" />
 		<property name="moment" value="07/03/2019 15:00" />
 		<property name="text" value="Text Comment" />
-		<property name="author" ref="author1"/>
-		<property name="conference" ref="conference5"/>
+		<property name="author" value="author1"/>
 	</bean>
 	
 	<!-- ************** END CONFERENCE5 COMMENT3 ************** -->						
@@ -2313,6 +2397,10 @@
 				<ref bean="conference6panel2" />
 			</list>
 		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- ************** START CONFERENCE6 PANEL1 ************** -->
@@ -2331,6 +2419,10 @@
 		<property name="attachments">
 			<list>
 				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -2354,6 +2446,10 @@
 		<property name="attachments">
 			<list>
 				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
