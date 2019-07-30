@@ -17,6 +17,7 @@ import org.springframework.validation.Validator;
 
 import repositories.ConferenceRepository;
 import domain.Activity;
+import domain.Author;
 import domain.Conference;
 import domain.Finder;
 
@@ -31,6 +32,9 @@ public class ConferenceService {
 	// Supporting services
 	@Autowired
 	private AdministratorService	administratorService;
+
+	@Autowired
+	private AuthorService			authorService;
 
 	@Autowired
 	private Validator				validator;
@@ -84,6 +88,12 @@ public class ConferenceService {
 	}
 
 	// Other business methods
+	public Collection<Conference> findAllPrincipalIsRegistered() {
+		final Author principal = this.authorService.findByPrincipal();
+		final int principalId = principal.getId();
+
+		return this.findAllAuthorIsRegistered(principalId);
+	}
 
 	public Collection<Conference> findByCategory(final Finder finder) {
 		Assert.notNull(finder);
@@ -223,6 +233,10 @@ public class ConferenceService {
 	}
 
 	// Auxiliary methods
+	private Collection<Conference> findAllAuthorIsRegistered(final int authorId) {
+		return this.conferenceRepository.findAllAuthorIsRegistered(authorId);
+	}
+
 	private void checkDates(final Conference conference, final BindingResult binding) {
 		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();
 		final Date notificationDeadline = conference.getNotificationDeadline();

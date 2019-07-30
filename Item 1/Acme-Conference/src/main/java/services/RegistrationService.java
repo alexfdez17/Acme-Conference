@@ -5,10 +5,13 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.RegistrationRepository;
 import domain.Author;
@@ -32,14 +35,19 @@ public class RegistrationService {
 	@Autowired
 	private ConferenceService		conferenceService;
 
-
 	// -------------------
+
+	@Autowired
+	private Validator				validator;
+
 
 	// Simple CRUD methods
 	public Registration create(final int conferenceId) {
 		final Author principal = this.authorService.findByPrincipal();
 		final Conference conference = this.conferenceService.findOne(conferenceId);
+		final Collection<Conference> conferences = this.conferenceService.findAllPrincipalIsRegistered();
 
+		Assert.isTrue(!conferences.contains(conference));
 		Assert.isTrue(conference.getStartDate().after(new Date()));
 
 		final Registration result = new Registration();
@@ -49,17 +57,22 @@ public class RegistrationService {
 
 		return result;
 	}
-
 	public Registration save(final Registration registration) {
 		Assert.notNull(registration);
+
+		final int registrationId = registration.getId();
+
+		Assert.isTrue(!this.exists(registrationId));
 
 		this.authorService.findByPrincipal();
 
 		final Conference conference = registration.getConference();
+		final Collection<Conference> conferences = this.conferenceService.findAllPrincipalIsRegistered();
 
+		Assert.isTrue(!conferences.contains(conference));
 		Assert.isTrue(conference.getStartDate().after(new Date()));
 
-		return this.save(registration);
+		return this.registrationRepository.save(registration);
 	}
 
 	public Registration findOne(final int registrationId) {
@@ -83,6 +96,26 @@ public class RegistrationService {
 		final int principalId = principal.getId();
 
 		return this.findAllByAuthorId(principalId);
+	}
+
+	public Registration reconstruct(final Registration registration, final BindingResult binding) {
+		final Registration result = registration;
+		final Author principal = this.authorService.findByPrincipal();
+		final String creditCardNumber = registration.getCreditCard().getNumber();
+
+		result.setAuthor(principal);
+
+		final String isNumber = "?\\d?";
+
+		if (!creditCardNumber.matches(isNumber))
+			binding.rejectValue("creditCard.number", "registration.credit.card.number.error");
+
+		this.validator.validate(result, binding);
+
+		if (binding.hasErrors())
+			throw new ValidationException();
+
+		return result;
 	}
 	// ----------------------
 
