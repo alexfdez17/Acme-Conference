@@ -78,15 +78,13 @@ public class CommentService {
 
 	// Dashboard
 
-	/*
-	 * public List<Double> minMaxAvgStddevPerActivity() {
-	 * return this.commentRepository.minMaxAvgStddevPerActivity();
-	 * }
-	 * 
-	 * public List<Double> minMaxAvgStddevPerConference() {
-	 * return this.commentRepository.minMaxAvgStddevPerConference();
-	 * }
-	 */
+	public Double[] minMaxAvgStddevPerActivity() {
+		return this.commentRepository.minMaxAvgStddevPerActivity();
+	}
+
+	public Double[] minMaxAvgStddevPerConference() {
+		return this.commentRepository.minMaxAvgStddevPerConference();
+	}
 
 	// ---------
 

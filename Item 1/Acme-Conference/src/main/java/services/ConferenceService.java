@@ -280,7 +280,7 @@ public class ConferenceService {
 		return this.conferenceRepository.minMaxAvgStddevDays();
 	}
 
-	public Double[] applicationsPerRookieStats() {
+	public Double[] conferencesPerCategoryStats() {
 
 		//this.administratorService.findByPrincipal();
 

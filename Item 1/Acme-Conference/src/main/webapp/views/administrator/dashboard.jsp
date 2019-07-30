@@ -85,3 +85,54 @@
 <p>
 	<b><spring:message code="administrator.stdev" /> :</b> ${stdevdpc}
 </p>
+
+<h2>
+	<spring:message code="administrator.conferencesPerCategory" />
+</h2>
+
+<p>
+	<b><spring:message code="administrator.maximum" /> :</b> ${maximumcpc}
+</p>
+<p>
+	<b><spring:message code="administrator.minimum" /> :</b> ${minimumcpc}
+</p>
+<p>
+	<b><spring:message code="administrator.average" /> :</b> ${averagecpc}
+</p>
+<p>
+	<b><spring:message code="administrator.stdev" /> :</b> ${stdevcpc}
+</p>
+
+<h2>
+	<spring:message code="administrator.commentsPerConference" />
+</h2>
+
+<p>
+	<b><spring:message code="administrator.maximum" /> :</b> ${maximumcmpc}
+</p>
+<p>
+	<b><spring:message code="administrator.minimum" /> :</b> ${minimumcmpc}
+</p>
+<p>
+	<b><spring:message code="administrator.average" /> :</b> ${averagecmpc}
+</p>
+<p>
+	<b><spring:message code="administrator.stdev" /> :</b> ${stdevcmpc}
+</p>
+
+<h2>
+	<spring:message code="administrator.commentsPerActivity" />
+</h2>
+
+<p>
+	<b><spring:message code="administrator.maximum" /> :</b> ${maximumcmpa}
+</p>
+<p>
+	<b><spring:message code="administrator.minimum" /> :</b> ${minimumcmpa}
+</p>
+<p>
+	<b><spring:message code="administrator.average" /> :</b> ${averagecmpa}
+</p>
+<p>
+	<b><spring:message code="administrator.stdev" /> :</b> ${stdevcmpa}
+</p>

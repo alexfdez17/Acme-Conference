@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
+import services.CommentService;
 import services.ConferenceService;
 import services.RegistrationService;
 import services.SubmissionService;
@@ -44,6 +45,9 @@ public class AdministratorController extends AbstractController {
 
 	@Autowired
 	private ConferenceService		conferenceService;
+
+	@Autowired
+	private CommentService			commentService;
 
 
 	// Edit profile --------------------------------------------------------
@@ -181,6 +185,57 @@ public class AdministratorController extends AbstractController {
 		result.addObject("maximumdpc", dpc[1]);
 		result.addObject("averagedpc", dpc[2]);
 		result.addObject("stdevdpc", dpc[3]);
+
+		// Conferences per category
+		Double[] cpc = new Double[4];
+		cpc = this.conferenceService.conferencesPerCategoryStats();
+
+		if (cpc == null) {
+			cpc = new Double[4];
+			cpc[0] = 0.;
+			cpc[1] = 0.;
+			cpc[2] = 0.;
+			cpc[3] = 0.;
+		}
+
+		result.addObject("minimumcpc", cpc[1]);
+		result.addObject("maximumcpc", cpc[2]);
+		result.addObject("averagecpc", cpc[0]);
+		result.addObject("stdevcpc", cpc[3]);
+
+		// Comments per conference
+		Double[] cmpc = new Double[4];
+		cmpc = this.commentService.minMaxAvgStddevPerConference();
+
+		if (cmpc == null) {
+			cmpc = new Double[4];
+			cmpc[0] = 0.;
+			cmpc[1] = 0.;
+			cmpc[2] = 0.;
+			cmpc[3] = 0.;
+		}
+
+		result.addObject("minimumcmpc", cmpc[0]);
+		result.addObject("maximumcmpc", cmpc[1]);
+		result.addObject("averagecmpc", cmpc[2]);
+		result.addObject("stdevcmpc", cmpc[3]);
+
+		// Comments per activity
+		Double[] cmpa = new Double[4];
+		cmpa = this.commentService.minMaxAvgStddevPerActivity();
+
+		if (cmpa == null) {
+			cmpa = new Double[4];
+			cmpa[0] = 0.;
+			cmpa[1] = 0.;
+			cmpa[2] = 0.;
+			cmpa[3] = 0.;
+		}
+
+		result.addObject("minimumcmpa", cmpa[0]);
+		result.addObject("maximumcmpa", cmpa[1]);
+		result.addObject("averagecmpa", cmpa[2]);
+		result.addObject("stdevcmpa", cmpa[3]);
 
 		return result;
 	}
