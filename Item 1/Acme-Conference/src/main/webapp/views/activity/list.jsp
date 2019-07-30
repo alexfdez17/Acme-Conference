@@ -47,6 +47,12 @@
 				code="conference.comment.list" />
 		</a>
 	</display:column>
+	
+	<display:column>
+		<a href="comment/create.do?commentableId=${row.id}"> <spring:message
+				code="comment.create" />
+		</a>
+	</display:column>
 
 </display:table>
 <br />

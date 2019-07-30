@@ -38,6 +38,9 @@
 		<bean class="converters.CategoryToStringConverter"/>
 		<bean class="converters.StringToCategoryConverter"/>
 		
+		<bean class="converters.CommentableToStringConverter"/>
+		<bean class="converters.StringToCommentableConverter"/>
+		
 		<bean class="converters.CommentToStringConverter"/>
 		<bean class="converters.StringToCommentConverter"/>
 		

@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -12,7 +11,6 @@ import org.springframework.util.Assert;
 
 import repositories.PresentationRepository;
 import domain.Activity;
-import domain.Comment;
 import domain.Conference;
 import domain.Paper;
 import domain.Presentation;
@@ -37,10 +35,6 @@ public class PresentationService {
 		Presentation result;
 
 		result = new Presentation();
-
-		final Collection<Comment> comments = new ArrayList<>();
-
-		result.setComments(comments);
 
 		return result;
 	}

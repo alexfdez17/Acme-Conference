@@ -17,7 +17,6 @@ import org.springframework.validation.Validator;
 
 import repositories.ConferenceRepository;
 import domain.Activity;
-import domain.Comment;
 import domain.Conference;
 
 @Service
@@ -46,10 +45,6 @@ public class ConferenceService {
 
 		result.setActivities(activities);
 
-		final Collection<Comment> comments = new ArrayList<>();
-
-		result.setComments(comments);
-
 		return result;
 	}
 
@@ -77,13 +72,12 @@ public class ConferenceService {
 	}
 
 	public Conference findOne(final int conferenceId) {
-		final Conference result = this.conferenceRepository.findOne(conferenceId);
+		final Conference result;
 
-		Assert.isTrue(this.exists(conferenceId));
+		result = this.conferenceRepository.findOne(conferenceId);
 
 		return result;
 	}
-
 	public boolean exists(final int conferenceId) {
 		return this.conferenceRepository.exists(conferenceId);
 	}
@@ -153,20 +147,16 @@ public class ConferenceService {
 		final int conferenceId = conference.getId();
 
 		final Collection<Activity> activities;
-		final Collection<Comment> comments;
 
-		if (!this.exists(conferenceId)) {
+		if (!this.exists(conferenceId))
 			activities = new ArrayList<>();
-			comments = new ArrayList<>();
-		} else {
+		else {
 			final Conference retrieved = this.findOne(conferenceId);
 
 			activities = retrieved.getActivities();
-			comments = retrieved.getComments();
 		}
 
 		result.setActivities(activities);
-		result.setComments(comments);
 
 		this.checkDates(conference, binding);
 		this.validator.validate(result, binding);
