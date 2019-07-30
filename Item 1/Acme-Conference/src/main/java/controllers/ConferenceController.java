@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import services.ActorService;
 import services.ConferenceService;
 import domain.Activity;
+import domain.Actor;
 import domain.Conference;
 
 @Controller
@@ -24,8 +30,10 @@ public class ConferenceController extends AbstractController {
 	@Autowired
 	private ConferenceService	conferenceService;
 
-
 	// Supporting services
+	@Autowired
+	private ActorService		actorService;
+
 
 	// Listing --------------------------------------------------------
 
@@ -129,6 +137,23 @@ public class ConferenceController extends AbstractController {
 		result.addObject("requestURI", "conference/list.do");
 		result.addObject("today", today);
 
+		this.addPrincipalRegisteredConferences(result);
+
 		return result;
+	}
+
+	private void addPrincipalRegisteredConferences(final ModelAndView modelAndView) {
+		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
+			final Actor principal = this.actorService.findPrincipal();
+			final boolean isAuthor = this.actorService.checkAuthority(principal, Authority.AUTHOR);
+
+			if (isAuthor) {
+				final Collection<Conference> principalRegisteredConferences = this.conferenceService.findAllPrincipalIsRegistered();
+
+				modelAndView.addObject("principalRegisteredConferences", principalRegisteredConferences);
+			}
+		}
 	}
 }

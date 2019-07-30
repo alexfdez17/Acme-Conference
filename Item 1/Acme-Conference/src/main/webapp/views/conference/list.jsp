@@ -10,7 +10,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <script type="text/javascript">
 	function listByKeyword(event) {
@@ -90,8 +90,9 @@
 				</a>
 			</jstl:if>
 		</display:column>
+		
 		<display:column>
-			<jstl:if test="${row.submissionDeadline > today }">
+			<jstl:if test="${row.submissionDeadline > today and not fn:contains(principalRegisteredConferences, row)}">
 				<a href="registration/author/create.do?conferenceId=${row.id}">
 					<spring:message code="conference.registration" />
 				</a>

@@ -15,6 +15,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="conference"/>
 
 	<fieldset>
 		<legend>
@@ -41,14 +42,13 @@
 			path="creditCard.number" />
 		<acme:textbox code="registration.creditCard.holder"
 			path="creditCard.holder" />
-		<acme:textbox code="registration.creditCard.brand"
-			path="creditCard.brand" />
+		<acme:select items="${creditCardMakes}"
+			code="registration.creditCard.brand" path="creditCard.brand" />
 		<acme:textbox code="registration.creditCard.expirationMonth"
 			path="creditCard.expirationMonth" />
 		<acme:textbox code="registration.creditCard.expirationYear"
 			path="creditCard.expirationYear" />
-		<acme:textbox code="registration.creditCard.cvv"
-			path="creditCard.cvv" />
+		<acme:textbox code="registration.creditCard.cvv" path="creditCard.cvv" />
 	</fieldset>
 
 	<acme:submit name="save" code="registration.save" />

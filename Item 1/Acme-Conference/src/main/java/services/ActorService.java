@@ -76,6 +76,16 @@ public class ActorService {
 	}
 
 	// Other Business Methods
+	public boolean checkAuthority(final Actor actor, final String stringAuth) {
+		final UserAccount userAccount = actor.getUserAccount();
+
+		final Collection<Authority> auths = userAccount.getAuthorities();
+		final Authority auth = new Authority();
+
+		auth.setAuthority(stringAuth);
+
+		return auths.contains(auth);
+	}
 
 	public <T> T findPrincipal() {
 		final UserAccount userAccount = LoginService.getPrincipal();
