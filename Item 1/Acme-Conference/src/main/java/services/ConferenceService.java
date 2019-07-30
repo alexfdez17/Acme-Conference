@@ -111,7 +111,7 @@ public class ConferenceService {
 		Assert.notNull(finder);
 		Collection<Conference> result;
 
-		if (finder.getMaximumFee() == 0.0)
+		if (finder.getMaximumFee() == null)
 			result = this.findFinals();
 		else
 			result = this.conferenceRepository.findByMaximumFee(finder.getMaximumFee());

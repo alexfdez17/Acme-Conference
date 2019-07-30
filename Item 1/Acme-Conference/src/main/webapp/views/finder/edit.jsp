@@ -16,6 +16,8 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="author" />
+	<form:hidden path="conferences" />
 
 	<acme:textbox code="finder.keyword" path="keyword" />
 	<acme:textbox code="finder.maximumFee" path="maximumFee" />

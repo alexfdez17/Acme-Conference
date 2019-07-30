@@ -39,7 +39,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select r.conference from Registration r where r.author.id = ?1")
 	Collection<Conference> findAllAuthorIsRegistered(Integer authorId);
 
-	@Query("select c from Conference c where c.isFinal = true and (c.title like %?1% or c.venue like %?1% or c.summary like %?1%)")
+	@Query("select c from Conference c where c.isFinal = true and (c.title like %?1% or c.acronym like %?1% or c.venue like %?1% or c.summary like %?1%)")
 	Collection<Conference> findAllByKeyword(String keyword);
 
 	@Query("select c from Conference c where DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) < 5")

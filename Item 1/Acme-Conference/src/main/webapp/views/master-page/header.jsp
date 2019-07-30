@@ -105,6 +105,8 @@
 								code="master.page.author.submission" /></a></li>
 					<li><a href="registration/author/list.do"><spring:message
 								code="master.page.author.registration.list" /></a></li>
+					<li><a href="finder/author/edit.do"><spring:message
+								code="master.page.author.finder" /></a></li>
 				</ul></li>
 		</security:authorize>
 
