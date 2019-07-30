@@ -95,8 +95,12 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/activity/display.do"
 			access="permitAll" />
+			
 		<security:intercept-url pattern="/comment/**"
 			access="permitAll" />
+			
+		<security:intercept-url pattern="/finder/author/**"
+			access="hasRole('AUTHOR')" />
 
 		<security:intercept-url pattern="/**"
 			access="hasRole('NONE')" />

@@ -2,9 +2,12 @@
 package repositories;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
 import domain.Conference;
@@ -20,6 +23,18 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 
 	@Query("select count(c.category) from Conference c group by c.category")
 	Collection<Long> getConferencesPerCategory();
+
+	@Query("select c from Conference c where c.isFinal = true and (c.category.title like %?1%)")
+	Collection<Conference> findByCategoryName(String name);
+
+	@Query("select c from Conference c where c.isFinal = true and (c.fee <= ?1)")
+	Collection<Conference> findByMaximumFee(Double maximumFee);
+
+	@Query("select c from Conference c where c.isFinal = true and (c.startDate >= :min)")
+	Collection<Conference> findByStartDate(@Param("min") @DateTimeFormat(pattern = "dd/MM/yyyy") Date min);
+
+	@Query("select c from Conference c where c.isFinal = true and (c.endDate <= :max)")
+	Collection<Conference> findByEndDate(@Param("max") @DateTimeFormat(pattern = "dd/MM/yyyy") Date max);
 
 	@Query("select c from Conference c where c.isFinal = true and (c.title like %?1% or c.venue like %?1% or c.summary like %?1%)")
 	Collection<Conference> findAllByKeyword(String keyword);

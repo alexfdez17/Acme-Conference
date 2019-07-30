@@ -29,6 +29,7 @@
 		<value>/views/activity/messages</value>
 		<value>/views/section/messages</value>
 		<value>/views/comment/messages</value>
+		<value>/views/finder/messages</value>
 		
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>

@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 import repositories.ConferenceRepository;
 import domain.Activity;
 import domain.Conference;
+import domain.Finder;
 
 @Service
 @Transactional
@@ -84,10 +85,64 @@ public class ConferenceService {
 
 	// Other business methods
 
+	public Collection<Conference> findByCategory(final Finder finder) {
+		Assert.notNull(finder);
+		Collection<Conference> result;
+
+		if (finder.getCategory().equals(""))
+			result = this.findFinals();
+		else
+			result = this.conferenceRepository.findByCategoryName(finder.getCategory());
+
+		return result;
+	}
+
+	public Collection<Conference> findByMaximumFee(final Finder finder) {
+		Assert.notNull(finder);
+		Collection<Conference> result;
+
+		if (finder.getMaximumFee() == 0.0)
+			result = this.findFinals();
+		else
+			result = this.conferenceRepository.findByMaximumFee(finder.getMaximumFee());
+
+		return result;
+	}
+
+	public Collection<Conference> findByStartDate(final Finder finder) {
+		Assert.notNull(finder);
+		Collection<Conference> result;
+
+		if (finder.getStartDate() == null)
+			result = this.findFinals();
+		else
+			result = this.conferenceRepository.findByStartDate(finder.getStartDate());
+
+		return result;
+	}
+
+	public Collection<Conference> findByEndDate(final Finder finder) {
+		Assert.notNull(finder);
+		Collection<Conference> result;
+
+		if (finder.getEndDate() == null)
+			result = this.findFinals();
+		else
+			result = this.conferenceRepository.findByEndDate(finder.getEndDate());
+
+		return result;
+	}
+
 	public Collection<Conference> findAllByKeyword(final String keyword) {
 		Assert.notNull(keyword);
+		Collection<Conference> result;
 
-		return this.conferenceRepository.findAllByKeyword(keyword);
+		if (keyword == "")
+			result = this.findFinals();
+		else
+			result = this.conferenceRepository.findAllByKeyword(keyword);
+
+		return result;
 	}
 
 	public Collection<Conference> findAllCameraReadyDeadlineElapsesLess5Days() {
