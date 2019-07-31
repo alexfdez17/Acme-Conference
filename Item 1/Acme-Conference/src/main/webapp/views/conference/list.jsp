@@ -10,7 +10,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <script type="text/javascript">
 	function listByKeyword(event) {
@@ -75,36 +75,55 @@
 				code="conference.comment.list" />
 		</a>
 	</display:column>
-	
+
 	<display:column>
 		<a href="comment/create.do?commentableId=${row.id}"> <spring:message
 				code="comment.create" />
 		</a>
 	</display:column>
-	
+
 	<security:authorize access="hasRole('SPONSOR')">
-	<display:column>
-				<a href="sponsorship/sponsor/create.do?conferenceId=${row.id}"> <spring:message
-						code="conference.sponsorship" />
-				</a>
+		<display:column>
+			<a href="sponsorship/sponsor/create.do?conferenceId=${row.id}"> <spring:message
+					code="conference.sponsorship" />
+			</a>
 		</display:column>
 	</security:authorize>
 
 	<security:authorize access="hasRole('AUTHOR')">
 		<display:column>
-			<jstl:if test="${row.submissionDeadline > today }">
+			<jstl:if
+				test="${row.submissionDeadline > today and not fn:contains(principalSubmittedConferences, row)}">
 				<a href="submission/author/create.do?conferenceId=${row.id}"> <spring:message
 						code="conference.submission" />
 				</a>
 			</jstl:if>
+			<jstl:choose>
+				<jstl:when test="${fn:contains(principalSubmittedConferences, row)}">
+					<spring:message code="conference.already.submitted" />
+				</jstl:when>
+				<jstl:when test="${row.submissionDeadline < today}">
+					<spring:message code="conference.submission.deadline.reached" />
+				</jstl:when>
+			</jstl:choose>
 		</display:column>
-		
+
 		<display:column>
-			<jstl:if test="${row.submissionDeadline > today and not fn:contains(principalRegisteredConferences, row)}">
+			<jstl:if
+				test="${row.startDate > today and not fn:contains(principalRegisteredConferences, row)}">
 				<a href="registration/author/create.do?conferenceId=${row.id}">
 					<spring:message code="conference.registration" />
 				</a>
 			</jstl:if>
+			<jstl:choose>
+				<jstl:when
+					test="${fn:contains(principalRegisteredConferences, row)}">
+					<spring:message code="conference.already.registered" />
+				</jstl:when>
+				<jstl:when test="${row.startDate < today}">
+					<spring:message code="conference.already.started" />
+				</jstl:when>
+			</jstl:choose>
 		</display:column>
 	</security:authorize>
 

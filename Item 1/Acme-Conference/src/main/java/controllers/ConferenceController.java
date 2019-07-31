@@ -156,12 +156,12 @@ public class ConferenceController extends AbstractController {
 		result.addObject("requestURI", "conference/list.do");
 		result.addObject("today", today);
 
-		this.addPrincipalRegisteredConferences(result);
+		this.addPrincipalRegisteredAndSubmittedConferences(result);
 
 		return result;
 	}
 
-	private void addPrincipalRegisteredConferences(final ModelAndView modelAndView) {
+	private void addPrincipalRegisteredAndSubmittedConferences(final ModelAndView modelAndView) {
 		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		if (auth != null && !(auth instanceof AnonymousAuthenticationToken)) {
@@ -169,9 +169,11 @@ public class ConferenceController extends AbstractController {
 			final boolean isAuthor = this.actorService.checkAuthority(principal, Authority.AUTHOR);
 
 			if (isAuthor) {
-				final Collection<Conference> principalRegisteredConferences = this.conferenceService.findAllPrincipalIsRegistered();
+				final Collection<Conference> principalRegisteredConferences = this.conferenceService.findAllByRegisteredPrincipal();
+				final Collection<Conference> principalSubmittedConferences = this.conferenceService.findAllByPrincipalWhoSubmitted();
 
 				modelAndView.addObject("principalRegisteredConferences", principalRegisteredConferences);
+				modelAndView.addObject("principalSubmittedConferences", principalSubmittedConferences);
 			}
 		}
 	}

@@ -51,6 +51,8 @@ public class SponsorshipService {
 
 		return result;
 	}
+
+	@SuppressWarnings("deprecation")
 	public Sponsorship save(final Sponsorship sponsorship) {
 		Assert.notNull(sponsorship);
 		Sponsorship result;

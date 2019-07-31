@@ -45,7 +45,7 @@ public class RegistrationService {
 	public Registration create(final int conferenceId) {
 		final Author principal = this.authorService.findByPrincipal();
 		final Conference conference = this.conferenceService.findOne(conferenceId);
-		final Collection<Conference> conferences = this.conferenceService.findAllPrincipalIsRegistered();
+		final Collection<Conference> conferences = this.conferenceService.findAllByRegisteredPrincipal();
 
 		Assert.isTrue(!conferences.contains(conference));
 		Assert.isTrue(conference.getStartDate().after(new Date()));
@@ -57,6 +57,7 @@ public class RegistrationService {
 
 		return result;
 	}
+
 	public Registration save(final Registration registration) {
 		Assert.notNull(registration);
 
@@ -67,7 +68,7 @@ public class RegistrationService {
 		this.authorService.findByPrincipal();
 
 		final Conference conference = registration.getConference();
-		final Collection<Conference> conferences = this.conferenceService.findAllPrincipalIsRegistered();
+		final Collection<Conference> conferences = this.conferenceService.findAllByRegisteredPrincipal();
 
 		Assert.isTrue(!conferences.contains(conference));
 		Assert.isTrue(conference.getStartDate().after(new Date()));
@@ -105,7 +106,7 @@ public class RegistrationService {
 
 		result.setAuthor(principal);
 
-		final String isNumber = "?\\d?";
+		final String isNumber = "\\d+";
 
 		if (!creditCardNumber.matches(isNumber))
 			binding.rejectValue("creditCard.number", "registration.credit.card.number.error");

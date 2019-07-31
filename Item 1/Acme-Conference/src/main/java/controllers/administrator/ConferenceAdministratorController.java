@@ -147,7 +147,7 @@ public class ConferenceAdministratorController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAll();
 
-		result = this.setModelAndView(conferences);
+		result = this.createListModelAndView(conferences);
 
 		return result;
 	}
@@ -156,7 +156,7 @@ public class ConferenceAdministratorController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAllCameraReadyDeadlineElapsesLess5Days();
 
-		result = this.setModelAndView(conferences);
+		result = this.createListModelAndView(conferences);
 
 		return result;
 	}
@@ -165,7 +165,7 @@ public class ConferenceAdministratorController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAllNotificationDeadlineElapsesLess5Days();
 
-		result = this.setModelAndView(conferences);
+		result = this.createListModelAndView(conferences);
 
 		return result;
 	}
@@ -174,7 +174,7 @@ public class ConferenceAdministratorController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAllOrganisedLess5Days();
 
-		result = this.setModelAndView(conferences);
+		result = this.createListModelAndView(conferences);
 
 		return result;
 	}
@@ -183,7 +183,7 @@ public class ConferenceAdministratorController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAllSubmissionDeadlineElapsedLast5Days();
 
-		result = this.setModelAndView(conferences);
+		result = this.createListModelAndView(conferences);
 
 		return result;
 	}
@@ -192,12 +192,12 @@ public class ConferenceAdministratorController extends AbstractController {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAllByKeyword(keyword);
 
-		result = this.setModelAndView(conferences);
+		result = this.createListModelAndView(conferences);
 
 		return result;
 	}
 
-	private ModelAndView setModelAndView(final Collection<Conference> conferences) {
+	private ModelAndView createListModelAndView(final Collection<Conference> conferences) {
 		final ModelAndView result = new ModelAndView("conference/list");
 		final Date today = new Date();
 

@@ -4,10 +4,13 @@ package services;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.SystemConfigurationRepository;
 import domain.SystemConfiguration;
@@ -25,13 +28,19 @@ public class SystemConfigurationService {
 	@Autowired
 	private AdministratorService			administratorService;
 
-
 	// -------------------
+	@Autowired
+	private Validator						validator;
+
 
 	// Simple CRUD methods
 
 	public SystemConfiguration save(final SystemConfiguration systemConfig) {
 		Assert.notNull(systemConfig);
+
+		final int systemConfigId = systemConfig.getId();
+
+		Assert.isTrue(this.exists(systemConfigId));
 
 		this.administratorService.findByPrincipal();
 
@@ -42,6 +51,10 @@ public class SystemConfigurationService {
 		this.administratorService.findByPrincipal();
 
 		return this.systemConfigurationRepository.find();
+	}
+
+	public boolean exists(final int systemConfigId) {
+		return this.systemConfigurationRepository.exists(systemConfigId);
 	}
 
 	// Other business methods
@@ -72,4 +85,16 @@ public class SystemConfigurationService {
 	public String findWelcomeMessageES() {
 		return this.systemConfigurationRepository.findWelcomeMessageES();
 	}
+
+	public SystemConfiguration reconstruct(final SystemConfiguration systemConfiguration, final BindingResult binding) {
+		final SystemConfiguration result = systemConfiguration;
+
+		this.validator.validate(result, binding);
+
+		if (binding.hasErrors())
+			throw new ValidationException();
+
+		return result;
+	}
+	// ----------------
 }

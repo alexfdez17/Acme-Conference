@@ -12,15 +12,14 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <jstl:if test="${hasSponsorships == true }">
-<fieldset>
-	<legend>
-		<spring:message code="conference.sponsorship.info" />
-	</legend>
-	<img src="${sponsorship.banner}"
-		alt="${sponsorship.banner}" />
-	<br />
-	<acme:out code="sponsorship.targetURL" value="${sponsorship.targetURL}" />
-</fieldset>
+	<fieldset>
+		<legend>
+			<spring:message code="conference.sponsorship.info" />
+		</legend>
+		<img src="${sponsorship.banner}" alt="${sponsorship.banner}" /> <br />
+		<acme:url code="sponsorship.targetURL"
+			url="${sponsorship.targetURL}" />
+	</fieldset>
 </jstl:if>
 
 <fieldset>
@@ -68,9 +67,11 @@
 
 		<acme:column code="activity.speakers" property="speakers" />
 
-		<acme:column code="activity.startMoment" property="startMoment" sortable="true" />
+		<acme:column code="activity.startMoment" property="startMoment"
+			sortable="true" />
 
-		<acme:column code="activity.duration" property="duration" sortable="true" />
+		<acme:column code="activity.duration" property="duration"
+			sortable="true" />
 
 		<!-- Actions -->
 

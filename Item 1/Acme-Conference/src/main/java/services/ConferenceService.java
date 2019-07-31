@@ -88,11 +88,18 @@ public class ConferenceService {
 	}
 
 	// Other business methods
-	public Collection<Conference> findAllPrincipalIsRegistered() {
+	public Collection<Conference> findAllByRegisteredPrincipal() {
 		final Author principal = this.authorService.findByPrincipal();
 		final int principalId = principal.getId();
 
 		return this.findAllAuthorIsRegistered(principalId);
+	}
+
+	public Collection<Conference> findAllByPrincipalWhoSubmitted() {
+		final Author principal = this.authorService.findByPrincipal();
+		final int principalId = principal.getId();
+
+		return this.findAllAuthorHasSubmitted(principalId);
 	}
 
 	public Collection<Conference> findByCategory(final Finder finder) {
@@ -233,6 +240,10 @@ public class ConferenceService {
 	}
 
 	// Auxiliary methods
+	private Collection<Conference> findAllAuthorHasSubmitted(final int authorId) {
+		return this.conferenceRepository.findAllAuthorHasSubmitted(authorId);
+	}
+
 	private Collection<Conference> findAllAuthorIsRegistered(final int authorId) {
 		return this.conferenceRepository.findAllAuthorIsRegistered(authorId);
 	}

@@ -15,8 +15,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="${banner}"
-		alt="${systemName} Co., Inc." /></a>
+	<a href="#"><img src="${banner}" alt="${systemName} Co., Inc." /></a>
 </div>
 
 <div>
@@ -92,6 +91,15 @@
 						</ul></li>
 					<li><a href="administrator/dashboard.do"><spring:message
 								code="master.page.administrator.dashboard" /></a></li>
+					<li><a><spring:message
+								code="master.page.administrator.system" /></a>
+						<ul>
+							<li><a href="sys-config/administrator/edit.do"><spring:message
+										code="master.page.administrator.systemConfiguration" /></a></li>
+							<li><a href="topic/administrator/list.do"><spring:message
+										code="master.page.administrator.topic.list" /></a></li>
+						</ul></li>
+
 				</ul></li>
 		</security:authorize>
 
@@ -108,7 +116,7 @@
 								code="master.page.author.finder" /></a></li>
 				</ul></li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('SPONSOR')">
 			<li><a class="fNiv"><spring:message
 						code="master.page.sponsor" /></a>
