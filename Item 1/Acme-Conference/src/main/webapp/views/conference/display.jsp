@@ -11,6 +11,18 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<jstl:if test="${hasSponsorships == true }">
+<fieldset>
+	<legend>
+		<spring:message code="conference.sponsorship.info" />
+	</legend>
+	<img src="${sponsorship.banner}"
+		alt="${sponsorship.banner}" />
+	<br />
+	<acme:out code="sponsorship.targetURL" value="${sponsorship.targetURL}" />
+</fieldset>
+</jstl:if>
+
 <fieldset>
 	<legend>
 		<spring:message code="conference.basic.info" />

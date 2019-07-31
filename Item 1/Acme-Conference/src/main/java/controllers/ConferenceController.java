@@ -1,8 +1,11 @@
 
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import security.Authority;
 import services.ActorService;
 import services.ConferenceService;
+import services.SponsorshipService;
 import domain.Activity;
 import domain.Actor;
 import domain.Conference;
+import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/conference")
@@ -33,6 +38,9 @@ public class ConferenceController extends AbstractController {
 	// Supporting services
 	@Autowired
 	private ActorService		actorService;
+
+	@Autowired
+	private SponsorshipService	sponsorshipService;
 
 
 	// Listing --------------------------------------------------------
@@ -75,7 +83,18 @@ public class ConferenceController extends AbstractController {
 	protected ModelAndView createDisplayModelAndView(final Conference conference) {
 		final ModelAndView result = new ModelAndView("conference/display");
 		final Collection<Activity> activities = conference.getActivities();
+		boolean hasSponsorships = false;
 
+		final List<Sponsorship> sponsorships = new ArrayList<Sponsorship>(this.sponsorshipService.findByConference(conference));
+
+		if (!sponsorships.isEmpty()) {
+			hasSponsorships = true;
+			final Random rand = new Random();
+			final Sponsorship sponsorship = sponsorships.get(rand.nextInt(sponsorships.size()));
+			result.addObject("sponsorship", sponsorship);
+		}
+
+		result.addObject("hasSponsorships", hasSponsorships);
 		result.addObject("activities", activities);
 		result.addObject("conference", conference);
 		result.addObject("requestURI", "conference/display.do");

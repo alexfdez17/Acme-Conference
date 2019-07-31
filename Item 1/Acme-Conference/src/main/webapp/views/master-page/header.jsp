@@ -10,7 +10,6 @@
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
@@ -107,6 +106,16 @@
 								code="master.page.author.registration.list" /></a></li>
 					<li><a href="finder/author/edit.do"><spring:message
 								code="master.page.author.finder" /></a></li>
+				</ul></li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('SPONSOR')">
+			<li><a class="fNiv"><spring:message
+						code="master.page.sponsor" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="sponsorship/sponsor/list.do"><spring:message
+								code="master.page.sponsor.sponsorships" /></a></li>
 				</ul></li>
 		</security:authorize>
 

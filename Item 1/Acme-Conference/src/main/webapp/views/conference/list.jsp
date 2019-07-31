@@ -81,6 +81,14 @@
 				code="comment.create" />
 		</a>
 	</display:column>
+	
+	<security:authorize access="hasRole('SPONSOR')">
+	<display:column>
+				<a href="sponsorship/sponsor/create.do?conferenceId=${row.id}"> <spring:message
+						code="conference.sponsorship" />
+				</a>
+		</display:column>
+	</security:authorize>
 
 	<security:authorize access="hasRole('AUTHOR')">
 		<display:column>
