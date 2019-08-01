@@ -9,51 +9,90 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<script type="text/javascript">
+	function listByStatus(event) {
+		if (event.keyCode == 13) {
+			var status = document.getElementById("status").value;
+
+			if (status != "ALL")
+				window.location.assign("submission/administrator/list.do?status=" + status);
+			else
+				window.location.assign("submission/administrator/list.do");
+
+			return false;
+		}
+	}
+</script>
+
+<security:authorize access="hasRole('ADMIN')">
+	<spring:message code="submission.list.by.status" />
+	<select id="status" onkeypress="listByStatus(event)"
+		onclick="listByStatus(event)">
+		<option value="ALL">ALL</option>
+		<option value="ACCEPTED">ACCEPTED</option>
+		<option value="REJECTED">REJECTED</option>
+		<option value="UNDER-REVIEW">UNDER-REVIEW</option>
+	</select>
+	<p>
+		<spring:message code="submission.status.placeholder" />
+	</p>
+</security:authorize>
 <!--  Listing grid -->
 
 <display:table pagesize="5" class="displaytag" name="submissions"
-	requestURI="submission/author/list.do" id="row">
+	requestURI="${requestURI}" id="row">
 
 	<!-- Attributes -->
-	<security:authorize access="hasRole('AUTHOR')">
-	<spring:message code="submission.conference" var="conferenceHeader" />
-	<display:column property="conference.acronym" title="${conferenceHeader}"
-		sortable="false" />
-	</security:authorize>
-	
 	<security:authorize access="hasAnyRole('ADMIN','AUTHOR')">
-	<spring:message code="submission.ticker" var="tickerHeader" />
-	<display:column property="ticker" title="${tickerHeader}"
-		sortable="false" />
-	
-	<spring:message code="submission.status" var="statusHeader" />
-	<display:column property="status" title="${statusHeader}"
-		sortable="false" />
+		<acme:column code="submission.conference.acronym"
+			property="conference.acronym" sortable="true" />
+
+		<acme:column code="submission.ticker" property="ticker"
+			sortable="true" />
+
+		<acme:column code="submission.moment" property="moment"
+			sortable="true" />
+
+		<acme:column code="submission.status" property="status" />
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<display:column>
+				<a href="submission/administrator/display.do?submissionId=${row.id}">
+					<spring:message code="submission.display" />
+				</a>
+			</display:column>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('AUTHOR')">
+			<display:column>
+				<a href="submission/author/display.do?submissionId=${row.id}">
+					<spring:message code="submission.display" />
+				</a>
+			</display:column>
+		</security:authorize>
 	</security:authorize>
-	
+
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+			<a
+				href="submission/administrator/assignment.do?submissionId=${row.id}"><spring:message
+					code="submission.assign" /></a>
+		</display:column>
+	</security:authorize>
+
 	<security:authorize access="hasRole('AUTHOR')">
-	<spring:message code="submission.moment" var="momentHeader" />
-	<display:column property="moment" title="${momentHeader}"
-		sortable="false" />
-		
-	<!-- Actions -->
-		
-	<display:column>
-		<a href="submission/author/display.do?submissionId=${row.id}"> <spring:message
-				code="submission.display" />
-		</a>
-	</display:column>
-	
-	<display:column>
-	<jstl:if test="${row.status == 'ACCEPTED' && row.conference.cameraReadyDeadline > today && row.cameraReadyPaper == null}">
-		<a href="submission/author/upload.do?submissionId=${row.id}"> <spring:message
-				code="submission.upload" />
-		</a>
-	</jstl:if>
-	</display:column>
+		<!-- Actions -->
+		<display:column>
+			<jstl:if
+				test="${row.status == 'ACCEPTED' && row.conference.cameraReadyDeadline > today && row.cameraReadyPaper == null}">
+				<a href="submission/author/upload.do?submissionId=${row.id}"> <spring:message
+						code="submission.upload" />
+				</a>
+			</jstl:if>
+		</display:column>
 	</security:authorize>
-	
+
 </display:table>
-<br/>
+<br />

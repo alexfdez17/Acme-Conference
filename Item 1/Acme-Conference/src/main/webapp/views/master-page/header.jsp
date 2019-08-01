@@ -89,6 +89,8 @@
 								href="conference/administrator/list.do?keyword=submissionDeadlineElapsed"><spring:message
 										code="master.page.administrator.conference.list.submissionDeadlineElapsed" /></a></li>
 						</ul></li>
+					<li><a href="submission/administrator/list.do"><spring:message
+								code="master.page.administrator.submission.list" /></a></li>
 					<li><a href="administrator/dashboard.do"><spring:message
 								code="master.page.administrator.dashboard" /></a></li>
 					<li><a><spring:message

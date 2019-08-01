@@ -9,11 +9,12 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<b><spring:message code="submission.conference" /></b>:
-<jstl:out value="${submission.conference.acronym}" />
-<br />
+<acme:out code="submission.conference.title"
+	value="${submission.conference.title}" />
+<acme:out code="submission.conference.acronym"
+	value="${submission.conference.acronym}" />
 
 <jstl:choose>
 	<jstl:when test="${role == 'none'}">
@@ -23,15 +24,18 @@
 	</jstl:when>
 </jstl:choose>
 
-<b><spring:message code="submission.ticker" /></b>:
+<b><spring:message code="submission.ticker" /></b>
+:
 <jstl:out value="${submission.ticker}" />
 <br />
 
-<b><spring:message code="submission.status" /></b>:
+<b><spring:message code="submission.status" /></b>
+:
 <jstl:out value="${submission.status}" />
 <br />
 
-<b><spring:message code="submission.moment" /></b>:
+<b><spring:message code="submission.moment" /></b>
+:
 <jstl:out value="${submission.moment}" />
 <br />
 <br />
@@ -41,50 +45,54 @@
 <b><spring:message code="paper.details" /></b>
 <br />
 
-<b><spring:message code="paper.title" /></b>:
+<b><spring:message code="paper.title" /></b>
+:
 <jstl:out value="${submission.paper.title}" />
 <br />
 
-<b><spring:message code="paper.authors" /></b>:
+<b><spring:message code="paper.authors" /></b>
+:
 <jstl:out value="${submission.paper.authors}" />
 <br />
 
-<b><spring:message code="paper.summary" /></b>:
+<b><spring:message code="paper.summary" /></b>
+:
 <jstl:out value="${submission.paper.summary}" />
 <br />
 
-<b><spring:message code="paper.document" /></b>:
-<jstl:out value="${submission.paper.document}" />
-<br />
-<br />
-
+<acme:url code="paper.document" url="${submission.paper.document}" />
+<br/>
 <!-- Camera-Ready Paper -->
 
 <jstl:if test="${cameraReady == true}">
-<b><spring:message code="paper.cameraReadyYes" /></b>
-<br />
+	<b><spring:message code="paper.cameraReadyYes" /></b>
+	<br />
 
-<b><spring:message code="paper.title" /></b>:
+	<b><spring:message code="paper.title" /></b>:
 <jstl:out value="${submission.cameraReadyPaper.title}" />
-<br />
+	<br />
 
-<b><spring:message code="paper.authors" /></b>:
+	<b><spring:message code="paper.authors" /></b>:
 <jstl:out value="${submission.cameraReadyPaper.authors}" />
-<br />
+	<br />
 
-<b><spring:message code="paper.summary" /></b>:
+	<b><spring:message code="paper.summary" /></b>:
 <jstl:out value="${submission.cameraReadyPaper.summary}" />
-<br />
+	<br />
 
-<b><spring:message code="paper.document" /></b>:
-<jstl:out value="${submission.cameraReadyPaper.document}" />
-<br />
+	<acme:url code="paper.document"
+		url="${submission.cameraReadyPaper.document}" />
 </jstl:if>
 
 <jstl:if test="${cameraReady == false}">
-<b><spring:message code="paper.cameraReadyNo" /></b>
+	<b><spring:message code="paper.cameraReadyNo" /></b>
 </jstl:if>
 <br />
 
-<acme:cancel code="submission.cancel" url="submission/author/list.do" />
+<security:authorize access="hasRole('AUTHOR')">
+	<acme:cancel code="submission.back" url="submission/author/list.do" />
+</security:authorize>
 
+<security:authorize access="hasRole('ADMIN')">
+	<acme:cancel code="submission.back" url="submission/administrator/list.do" />
+</security:authorize>

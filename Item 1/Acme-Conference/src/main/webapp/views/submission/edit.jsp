@@ -9,29 +9,27 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <form:form action="submission/author/${action}"
 	modelAttribute="submissionForm">
-	
+
 	<jstl:choose>
-	<jstl:when test="${cameraReady == true}">
-	<form:hidden path="submission" />
-	</jstl:when>
-	<jstl:otherwise>
-	<form:hidden path="conference" />
-	</jstl:otherwise>
+		<jstl:when test="${cameraReady == true}">
+			<form:hidden path="submission" />
+		</jstl:when>
+		<jstl:otherwise>
+			<form:hidden path="conference" />
+		</jstl:otherwise>
 	</jstl:choose>
-	
-	
-	<acme:textbox code="paper.title" path="title"/>
-	<acme:textbox code="paper.authors" path="authors"/>
-	<acme:textarea code="paper.summary" path="summary"/>
-	<acme:textbox code="paper.document" path="document"/>
-	
-	<acme:submit name="save" code="submission.save"/>
-		
-	<acme:cancel url="submission/author/list.do" code="submission.cancel"/>
-	
+
+
+	<acme:textbox code="paper.title" path="title" />
+	<acme:textbox code="paper.authors" path="authors" />
+	<acme:textarea code="paper.summary" path="summary" />
+	<acme:textbox code="paper.document" path="document" />
+
+	<acme:submit name="save" code="submission.save" />
+	<acme:cancel url="submission/author/list.do" code="submission.cancel" />
 
 </form:form>

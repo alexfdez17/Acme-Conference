@@ -52,6 +52,8 @@ public class SubmissionAuthorController extends AbstractController {
 		final Date today = new Date();
 
 		result = new ModelAndView("submission/list");
+
+		result.addObject("requestURI", "submission/author/list.do");
 		result.addObject("submissions", submissions);
 		result.addObject("today", today);
 

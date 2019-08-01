@@ -267,7 +267,7 @@ public class SubmissionService {
 
 	private void checkStatus(final String status) {
 		Assert.notNull(status);
-		Assert.isTrue(status == "ACCEPTED" || status == "REJECTED" || status == "UNDER-REVIEW");
+		Assert.isTrue(status.equals("ACCEPTED") || status.equals("REJECTED") || status.equals("UNDER-REVIEW"));
 	}
 
 	private Collection<Submission> findAllUnderReview() {
