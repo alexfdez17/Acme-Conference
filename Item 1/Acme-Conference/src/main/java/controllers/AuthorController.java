@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AuthorService;
+import services.SystemConfigurationService;
 import domain.Author;
 import forms.RegisterAuthorForm;
 
@@ -20,7 +21,10 @@ import forms.RegisterAuthorForm;
 public class AuthorController extends AbstractController {
 
 	@Autowired
-	private AuthorService	authorService;
+	private AuthorService				authorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Go to registration --------------------------------------------------------
@@ -44,19 +48,15 @@ public class AuthorController extends AbstractController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@ModelAttribute("registerForm") @Valid final RegisterAuthorForm registerForm, final BindingResult binding) {
 		ModelAndView result;
-		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
 			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
 				if (registerForm.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerAuthorForm.getPhone();
-					 * registerAuthorForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + registerForm.getPhone();
+					registerForm.setPhone(newPhone);
 				}
 				this.authorService.registerAuthor(registerForm);
 				result = new ModelAndView("redirect:/");
@@ -95,12 +95,9 @@ public class AuthorController extends AbstractController {
 		else
 			try {
 				if (actor.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerAuthorForm.getPhone();
-					 * registerAuthorForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + actor.getPhone();
+					actor.setPhone(newPhone);
 				}
 				this.authorService.save(actor);
 				result = new ModelAndView("redirect:/");

@@ -26,6 +26,7 @@ import services.CommentService;
 import services.ConferenceService;
 import services.RegistrationService;
 import services.SubmissionService;
+import services.SystemConfigurationService;
 import domain.Administrator;
 import domain.Conference;
 import domain.Submission;
@@ -35,19 +36,22 @@ import domain.Submission;
 public class AdministratorController extends AbstractController {
 
 	@Autowired
-	private AdministratorService	administratorService;
+	private AdministratorService		administratorService;
 
 	@Autowired
-	private SubmissionService		submissionService;
+	private SubmissionService			submissionService;
 
 	@Autowired
-	private RegistrationService		registrationService;
+	private RegistrationService			registrationService;
 
 	@Autowired
-	private ConferenceService		conferenceService;
+	private ConferenceService			conferenceService;
 
 	@Autowired
-	private CommentService			commentService;
+	private CommentService				commentService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Edit profile --------------------------------------------------------
@@ -71,7 +75,6 @@ public class AdministratorController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView saveEdit(@ModelAttribute("actor") Administrator actor, final BindingResult binding) {
 		ModelAndView result;
-		//SystemConfig systemConfig;
 
 		actor = this.administratorService.reconstruct(actor, binding);
 		if (binding.hasErrors())
@@ -79,12 +82,10 @@ public class AdministratorController extends AbstractController {
 		else
 			try {
 				if (actor.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerAdministratorForm.getPhone();
-					 * registerAdministratorForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + actor.getPhone();
+					actor.setPhone(newPhone);
+
 				}
 				this.administratorService.save(actor);
 				result = new ModelAndView("redirect:/");

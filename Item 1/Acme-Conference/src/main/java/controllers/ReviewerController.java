@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ReviewerService;
+import services.SystemConfigurationService;
 import domain.Reviewer;
 import forms.RegisterReviewerForm;
 
@@ -20,7 +21,10 @@ import forms.RegisterReviewerForm;
 public class ReviewerController extends AbstractController {
 
 	@Autowired
-	private ReviewerService	reviewerService;
+	private ReviewerService				reviewerService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Go to registration --------------------------------------------------------
@@ -44,19 +48,15 @@ public class ReviewerController extends AbstractController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@ModelAttribute("registerForm") @Valid final RegisterReviewerForm registerForm, final BindingResult binding) {
 		ModelAndView result;
-		//SystemConfig systemConfig;
 
 		if (binding.hasErrors())
 			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
 				if (registerForm.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerReviewerForm.getPhone();
-					 * registerReviewerForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + registerForm.getPhone();
+					registerForm.setPhone(newPhone);
 				}
 				this.reviewerService.registerReviewer(registerForm);
 				result = new ModelAndView("redirect:/");
@@ -87,7 +87,6 @@ public class ReviewerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView saveEdit(@ModelAttribute("actor") Reviewer actor, final BindingResult binding) {
 		ModelAndView result;
-		//SystemConfig systemConfig;
 
 		actor = this.reviewerService.reconstruct(actor, binding);
 		if (binding.hasErrors())
@@ -95,12 +94,9 @@ public class ReviewerController extends AbstractController {
 		else
 			try {
 				if (actor.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerReviewerForm.getPhone();
-					 * registerReviewerForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + actor.getPhone();
+					actor.setPhone(newPhone);
 				}
 				this.reviewerService.save(actor);
 				result = new ModelAndView("redirect:/");

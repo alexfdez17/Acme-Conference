@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SponsorService;
+import services.SystemConfigurationService;
 import domain.Sponsor;
 import forms.RegisterSponsorForm;
 
@@ -20,7 +21,10 @@ import forms.RegisterSponsorForm;
 public class SponsorController extends AbstractController {
 
 	@Autowired
-	private SponsorService	sponsorService;
+	private SponsorService				sponsorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Go to registration --------------------------------------------------------
@@ -51,12 +55,9 @@ public class SponsorController extends AbstractController {
 		else
 			try {
 				if (registerForm.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerSponsorForm.getPhone();
-					 * registerSponsorForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + registerForm.getPhone();
+					registerForm.setPhone(newPhone);
 				}
 				this.sponsorService.registerSponsor(registerForm);
 				result = new ModelAndView("redirect:/");
@@ -95,12 +96,9 @@ public class SponsorController extends AbstractController {
 		else
 			try {
 				if (actor.getPhone().matches("\\d{4,99}")) {
-					/*
-					 * systemConfig = this.systemConfigService.findSystemConfiguration();
-					 * String newPhone = systemConfig.getPhonePrefix();
-					 * newPhone += " " + registerAuthorForm.getPhone();
-					 * registerAuthorForm.setPhone(newPhone);
-					 */
+					String newPhone = this.systemConfigurationService.findCountryCode();
+					newPhone += " " + actor.getPhone();
+					actor.setPhone(newPhone);
 				}
 				this.sponsorService.save(actor);
 				result = new ModelAndView("redirect:/");
