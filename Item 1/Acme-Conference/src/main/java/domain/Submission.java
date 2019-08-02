@@ -68,7 +68,7 @@ public class Submission extends DomainEntity {
 	@Past
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "MM/dd/yyyy hh:MM")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	public Date getMoment() {
 		return this.moment;
 	}
