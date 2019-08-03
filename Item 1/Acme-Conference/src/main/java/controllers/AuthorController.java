@@ -27,6 +27,21 @@ public class AuthorController extends AbstractController {
 	private SystemConfigurationService	systemConfigurationService;
 
 
+	// Display --------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display() {
+		final ModelAndView result;
+		Author actor;
+
+		actor = this.authorService.findByPrincipal();
+
+		result = new ModelAndView("actor/display");
+		result.addObject("actor", actor);
+
+		return result;
+	}
+
 	// Go to registration --------------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -100,7 +115,7 @@ public class AuthorController extends AbstractController {
 					actor.setPhone(newPhone);
 				}
 				this.authorService.save(actor);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}

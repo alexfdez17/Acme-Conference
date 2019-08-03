@@ -28,7 +28,7 @@
 
 	<spring:message code="activity.startMoment" var="startMomentHeader" />
 	<display:column property="startMoment" title="${startMomentHeader}"
-		sortable="false" format="{0,date,${datePattern}}" />
+		sortable="false" format="{0,date,yy/MM/dd HH:mm}" />
 
 	<spring:message code="activity.duration" var="durationHeader" />
 	<display:column property="duration" title="${durationHeader}"

@@ -32,18 +32,26 @@
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a href="administrator/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
+						<li><a href="administrator/display.do"><spring:message
+									code="master.page.profile.display" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('AUTHOR')">
 						<li><a href="author/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
+						<li><a href="author/display.do"><spring:message
+									code="master.page.profile.display" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('REVIEWER')">
 						<li><a href="reviewer/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
+						<li><a href="reviewer/display.do"><spring:message
+									code="master.page.profile.display" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="sponsor/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
+						<li><a href="sponsor/display.do"><spring:message
+									code="master.page.profile.display" /></a></li>
 					</security:authorize>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>

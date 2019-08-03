@@ -27,6 +27,21 @@ public class ReviewerController extends AbstractController {
 	private SystemConfigurationService	systemConfigurationService;
 
 
+	// Display --------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display() {
+		final ModelAndView result;
+		Reviewer actor;
+
+		actor = this.reviewerService.findByPrincipal();
+
+		result = new ModelAndView("actor/display");
+		result.addObject("actor", actor);
+
+		return result;
+	}
+
 	// Go to registration --------------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -99,7 +114,7 @@ public class ReviewerController extends AbstractController {
 					actor.setPhone(newPhone);
 				}
 				this.reviewerService.save(actor);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}

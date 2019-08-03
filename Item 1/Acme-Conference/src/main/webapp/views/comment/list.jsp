@@ -28,7 +28,7 @@
 	
 	<spring:message code="comment.moment" var="momentHeader" />
 	<display:column property="moment" title="${momentHeader}"
-		sortable="false" format="{0,date,${datePattern}}" />
+		sortable="false" format="{0,date,yy/MM/dd HH:mm}" />
 
 	<spring:message code="comment.text" var="textHeader" />
 	<display:column property="text" title="${textHeader}"

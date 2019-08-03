@@ -43,21 +43,26 @@
 
 	<acme:column code="conference.venue" property="venue" sortable="true" />
 
-	<acme:column code="conference.startDate" property="startDate"
-		sortable="true" />
+	<spring:message code="conference.startDate" var="startDateHeader" />
+	<display:column property="startDate" title="${startDateHeader}"
+	sortable="false" format="{0,date,yy/MM/dd}" />
 
-	<acme:column code="conference.endDate" property="endDate"
-		sortable="true" />
+	<spring:message code="conference.endDate" var="endDateHeader" />
+	<display:column property="endDate" title="${endDateHeader}"
+	sortable="false" format="{0,date,yy/MM/dd}" />
 
 	<security:authorize access="hasAnyRole('ADMIN', 'AUTHOR')">
-		<acme:column code="conference.submissionDeadline"
-			property="submissionDeadline" sortable="true" />
+		<spring:message code="conference.submissionDeadline" var="submissionDeadlineHeader" />
+		<display:column property="submissionDeadline" title="${submissionDeadlineHeader}"
+		sortable="true" format="{0,date,yy/MM/dd HH:mm}" />
 
-		<acme:column code="conference.notificationDeadline"
-			property="notificationDeadline" sortable="true" />
+		<spring:message code="conference.notificationDeadline" var="notificationDeadlineHeader" />
+		<display:column property="notificationDeadline" title="${notificationDeadlineHeader}"
+		sortable="true" format="{0,date,yy/MM/dd HH:mm}" />
 
-		<acme:column code="conference.cameraReadyDeadline"
-			property="cameraReadyDeadline" sortable="true" />
+		<spring:message code="conference.cameraReadyDeadline" var="cameraReadyDeadlineHeader" />
+		<display:column property="cameraReadyDeadline" title="${cameraReadyDeadlineHeader}"
+		sortable="true" format="{0,date,yy/MM/dd HH:mm}" />
 	</security:authorize>
 
 	<acme:column code="conference.fee" property="fee" sortable="true" />

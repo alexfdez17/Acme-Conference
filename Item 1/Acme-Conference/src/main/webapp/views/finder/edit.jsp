@@ -27,13 +27,13 @@
 		<spring:message code="finder.startDate" />:
 	</form:label>
 	<form:input type="date" path="startDate"
-		format="{0,date,dd/MM/yyyy}" />
+		format="{0,date,dd/MM/yyyy}" placeholder="dd/MM/yyy" />
 		
 	<form:label path="endDate">
 		<spring:message code="finder.endDate" />:
 	</form:label>
 	<form:input type="date" path="endDate"
-		format="{0,date,dd/MM/yyyy}" />
+		format="{0,date,dd/MM/yyyy}" placeholder="dd/MM/yyy" />
 	<br />
 
 	<acme:submit name="save" code="finder.save" />

@@ -27,6 +27,21 @@ public class SponsorController extends AbstractController {
 	private SystemConfigurationService	systemConfigurationService;
 
 
+	// Display --------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display() {
+		final ModelAndView result;
+		Sponsor actor;
+
+		actor = this.sponsorService.findByPrincipal();
+
+		result = new ModelAndView("actor/display");
+		result.addObject("actor", actor);
+
+		return result;
+	}
+
 	// Go to registration --------------------------------------------------------
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -101,7 +116,7 @@ public class SponsorController extends AbstractController {
 					actor.setPhone(newPhone);
 				}
 				this.sponsorService.save(actor);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}

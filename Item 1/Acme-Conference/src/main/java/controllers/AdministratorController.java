@@ -54,6 +54,21 @@ public class AdministratorController extends AbstractController {
 	private SystemConfigurationService	systemConfigurationService;
 
 
+	// Display --------------------------------------------------------
+
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display() {
+		final ModelAndView result;
+		Administrator actor;
+
+		actor = this.administratorService.findByPrincipal();
+
+		result = new ModelAndView("actor/display");
+		result.addObject("actor", actor);
+
+		return result;
+	}
+
 	// Edit profile --------------------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -88,7 +103,7 @@ public class AdministratorController extends AbstractController {
 
 				}
 				this.administratorService.save(actor);
-				result = new ModelAndView("redirect:/");
+				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(actor, "actor.commit.error");
 			}
@@ -98,7 +113,7 @@ public class AdministratorController extends AbstractController {
 	// Make decision on submissions --------------------------------------------------------
 
 	@RequestMapping(value = "/decide", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int conferenceId) {
+	public ModelAndView decide(@RequestParam final int conferenceId) {
 		final ModelAndView result;
 		final Conference conference;
 		final Collection<Submission> submissions;
