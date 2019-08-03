@@ -127,6 +127,18 @@
 				</ul></li>
 		</security:authorize>
 
+		<security:authorize access="hasRole('REVIEWER')">
+			<li><a class="fNiv"><spring:message
+						code="master.page.reviewer" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/reviewer/list.do"><spring:message
+								code="master.page.reviewer.report.list" /></a></li>
+					<li><a href="submission/reviewer/list.do"><spring:message
+								code="master.page.reviewer.submission.list" /></a></li>
+				</ul></li>
+		</security:authorize>
+
 		<security:authorize access="hasRole('SPONSOR')">
 			<li><a class="fNiv"><spring:message
 						code="master.page.sponsor" /></a>

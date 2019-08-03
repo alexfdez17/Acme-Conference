@@ -61,7 +61,7 @@
 <br />
 
 <acme:url code="paper.document" url="${submission.paper.document}" />
-<br/>
+<br />
 <!-- Camera-Ready Paper -->
 
 <jstl:if test="${cameraReady == true}">
@@ -94,5 +94,6 @@
 </security:authorize>
 
 <security:authorize access="hasRole('ADMIN')">
-	<acme:cancel code="submission.back" url="submission/administrator/list.do" />
+	<acme:cancel code="submission.back"
+		url="submission/administrator/list.do" />
 </security:authorize>

@@ -10,6 +10,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <script type="text/javascript">
 	function listByStatus(event) {
@@ -45,41 +46,41 @@
 	requestURI="${requestURI}" id="row">
 
 	<!-- Attributes -->
-	<security:authorize access="hasAnyRole('ADMIN','AUTHOR')">
-		<acme:column code="submission.conference.acronym"
-			property="conference.acronym" sortable="true" />
 
-		<acme:column code="submission.ticker" property="ticker"
-			sortable="true" />
+	<acme:column code="submission.conference.acronym"
+		property="conference.acronym" sortable="true" />
 
-		<spring:message code="comment.moment" var="momentHeader" />
-		<display:column property="moment" title="${momentHeader}"
+	<acme:column code="submission.ticker" property="ticker" sortable="true" />
+
+	<spring:message code="comment.moment" var="momentHeader" />
+	<display:column property="moment" title="${momentHeader}"
 		sortable="false" format="{0,date,yy/MM/dd HH:mm}" />
 
-		<acme:column code="submission.status" property="status" />
-		
-		<security:authorize access="hasRole('ADMIN')">
-			<display:column>
-				<a href="submission/administrator/display.do?submissionId=${row.id}">
-					<spring:message code="submission.display" />
+	<acme:column code="submission.status" property="status" />
+
+	<display:column>
+		<a href="submission/display.do?submissionId=${row.id}"> <spring:message
+				code="submission.display" />
+		</a>
+	</display:column>
+
+	<security:authorize access="hasRole('AUTHOR')">
+		<display:column>
+			<jstl:if test="${row.reportsAvailable == true}">
+				<a href="report/author/list.do?submissionId=${row.id}"> <spring:message
+						code="submission.report.list" />
 				</a>
-			</display:column>
-		</security:authorize>
-		
-		<security:authorize access="hasRole('AUTHOR')">
-			<display:column>
-				<a href="submission/author/display.do?submissionId=${row.id}">
-					<spring:message code="submission.display" />
-				</a>
-			</display:column>
-		</security:authorize>
+			</jstl:if>
+		</display:column>
 	</security:authorize>
 
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-			<a
-				href="submission/administrator/assignment.do?submissionId=${row.id}"><spring:message
-					code="submission.assign" /></a>
+			<jstl:if test="${row.status == 'UNDER-REVIEW'}">
+				<a
+					href="submission/administrator/assignment.do?submissionId=${row.id}"><spring:message
+						code="submission.assign" /></a>
+			</jstl:if>
 		</display:column>
 	</security:authorize>
 
@@ -91,6 +92,20 @@
 				<a href="submission/author/upload.do?submissionId=${row.id}"> <spring:message
 						code="submission.upload" />
 				</a>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
+
+	<security:authorize access="hasRole('REVIEWER')">
+		<display:column>
+			<jstl:if
+				test="${fn:contains(row.reviewers, principal) and not fn:contains(submissionsWithReportWritten, row)}">
+				<a href="report/reviewer/create.do?submissionId=${row.id}"> <spring:message
+						code="submission.report.create" />
+				</a>
+			</jstl:if>
+			<jstl:if test="${fn:contains(submissionsWithReportWritten, row)}">
+				<spring:message code="submission.report.already.written"/>
 			</jstl:if>
 		</display:column>
 	</security:authorize>

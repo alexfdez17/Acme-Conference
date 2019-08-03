@@ -60,25 +60,6 @@ public class SubmissionAuthorController extends AbstractController {
 		return result;
 	}
 
-	// Display --------------------------------------------------------
-
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int submissionId) {
-		final ModelAndView result;
-		Submission submission;
-		boolean cameraReady = false;
-
-		submission = this.submissionService.findOne(submissionId);
-		if (submission.getCameraReadyPaper() != null)
-			cameraReady = true;
-
-		result = new ModelAndView("submission/display");
-		result.addObject("submission", submission);
-		result.addObject("cameraReady", cameraReady);
-
-		return result;
-	}
-
 	// Creating --------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)

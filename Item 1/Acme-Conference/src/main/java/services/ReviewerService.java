@@ -18,6 +18,7 @@ import repositories.ReviewerRepository;
 import security.Authority;
 import security.UserAccount;
 import domain.Reviewer;
+import domain.Submission;
 import forms.RegisterReviewerForm;
 
 @Service
@@ -81,6 +82,12 @@ public class ReviewerService {
 	}
 
 	//Other business methods
+	public Collection<Reviewer> findAllNotAssginedToSubmission(final Submission submission) {
+		final int submissionId = submission.getId();
+
+		return this.reviewerRepository.findAllNotAssginedToSubmission(submissionId);
+	}
+
 	public Collection<Reviewer> findAllByConferenceTitleAndSummary(final String conferenceTitle, final String conferenceSummary) {
 		Assert.notNull(conferenceTitle);
 		Assert.notNull(conferenceSummary);

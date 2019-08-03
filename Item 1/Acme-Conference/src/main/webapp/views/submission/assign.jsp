@@ -12,7 +12,10 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <form:form action="${requestURI}" modelAttribute="submission">
-
+	
+	<form:hidden path="id"/>
+	<form:hidden path="version"/>
+	
 	<fieldset>
 		<legend>
 			<spring:message code="submission.conference.info" />

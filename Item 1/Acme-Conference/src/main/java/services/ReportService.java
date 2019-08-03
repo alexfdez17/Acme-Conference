@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.ReportRepository;
 import domain.Report;
@@ -30,12 +33,15 @@ public class ReportService {
 	@Autowired
 	private SubmissionService	submissionService;
 
+	@Autowired
+	private Validator			validator;
+
 
 	// Simple CRUD methods
 
 	public Report create(final int submissionId) {
-		final Reviewer principal = this.reviewerService.findByPrincipal();
 		final Submission submission = this.submissionService.findOne(submissionId);
+		final Reviewer principal = this.middleware(submission);
 
 		final Report result = new Report();
 		final Collection<String> comments = new ArrayList<>();
@@ -50,7 +56,9 @@ public class ReportService {
 	public Report save(final Report report) {
 		Assert.notNull(report);
 
-		this.reviewerService.findByPrincipal();
+		final Submission submission = report.getSubmission();
+
+		this.middleware(submission);
 
 		return this.reportRepository.save(report);
 	}
@@ -69,6 +77,10 @@ public class ReportService {
 	public Collection<Report> findAllAvailableBySubmissionId(final int submissionId) {
 		Assert.isTrue(this.submissionService.exists(submissionId));
 
+		final Submission submission = this.submissionService.findOne(submissionId);
+
+		Assert.isTrue(submission.getReportsAvailable());
+
 		return this.reportRepository.findAllAvailableBySubmissionId(submissionId);
 	}
 
@@ -86,17 +98,32 @@ public class ReportService {
 	public Collection<Report> findAllRejectBySubmission(final Submission submission) {
 		return this.reportRepository.findAllRejectBySubmissionId(submission.getId());
 	}
-	//
-	//	public Collection<Report> findBorderLine(final Submission submission) {
-	//		return this.reportRepository.findBorderLine(submission.getId());
-	//	}
-	//
-	//	public Collection<Report> findBySubmission(final Submission submission) {
-	//		return this.reportRepository.findBySubmission(submission.getId());
-	//	}
+
+	public Report reconstruct(final Report report, final BindingResult binding) {
+		final Report result = report;
+		final Reviewer principal = this.reviewerService.findByPrincipal();
+
+		result.setReviewer(principal);
+
+		this.validator.validate(result, binding);
+
+		if (binding.hasErrors())
+			throw new ValidationException();
+
+		return result;
+	}
 
 	// Auxiliary methods
 	private Collection<Report> findAllByReviewerId(final int reviewerId) {
 		return this.reportRepository.findAllByReviewerId(reviewerId);
+	}
+
+	private Reviewer middleware(final Submission submission) {
+		final Reviewer principal = this.reviewerService.findByPrincipal();
+		final Collection<Reviewer> assignedReviewers = submission.getReviewers();
+
+		Assert.isTrue(assignedReviewers.contains(principal));
+
+		return principal;
 	}
 }

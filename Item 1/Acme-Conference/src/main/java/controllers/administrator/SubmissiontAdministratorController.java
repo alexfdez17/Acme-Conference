@@ -62,24 +62,6 @@ public class SubmissiontAdministratorController extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int submissionId) {
-		ModelAndView result;
-		Submission submission;
-
-		try {
-			submission = this.submissionService.findOne(submissionId);
-
-			Assert.notNull(submission);
-
-			result = this.createDisplayModelAndView(submission);
-		} catch (final IllegalArgumentException oops) {
-			result = new ModelAndView("redirect:/welcome/index.do");
-		}
-
-		return result;
-	}
-
 	@RequestMapping(value = "/assignment", method = RequestMethod.GET)
 	public ModelAndView createAssignment(@RequestParam final int submissionId) {
 		ModelAndView result;
@@ -126,7 +108,7 @@ public class SubmissiontAdministratorController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Submission submission, final String messageCode) {
 		final ModelAndView result = new ModelAndView("submission/assign");
-		final Collection<Reviewer> reviewers = this.reviewerService.findAll();
+		final Collection<Reviewer> reviewers = this.reviewerService.findAllNotAssginedToSubmission(submission);
 		final String lang = LocaleContextHolder.getLocale().getLanguage();
 
 		result.addObject("submission", submission);
@@ -139,17 +121,4 @@ public class SubmissiontAdministratorController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView createDisplayModelAndView(final Submission submission) {
-		final ModelAndView result = new ModelAndView("submission/display");
-		boolean cameraReady = false;
-
-		if (submission.getCameraReadyPaper() != null)
-			cameraReady = true;
-
-		result.addObject("cameraReady", cameraReady);
-		result.addObject("submission", submission);
-		result.addObject("requestURI", "submission/administrator/display.do");
-
-		return result;
-	}
 }

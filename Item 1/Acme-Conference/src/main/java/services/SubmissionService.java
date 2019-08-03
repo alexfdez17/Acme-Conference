@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +129,8 @@ public class SubmissionService {
 	// Other business methods
 	public Submission assignToReviewers(final Submission submission, final Collection<Reviewer> reviewers) {
 		Assert.notEmpty(reviewers);
+		Assert.isTrue(reviewers.size() <= 3);
+		Assert.isTrue(submission.getStatus().equals("UNDER-REVIEW"));
 
 		this.administratorService.findByPrincipal();
 
@@ -147,6 +150,20 @@ public class SubmissionService {
 
 			this.assignToReviewers(submission, reviewers);
 		}
+	}
+
+	public Collection<Submission> findAllByReviewerAsPrincipal() {
+		final Reviewer principal = this.reviewerService.findByPrincipal();
+		final int principalId = principal.getId();
+
+		return this.findAllByReviewerId(principalId);
+	}
+
+	public Collection<Submission> findAllWithReportWrittenByPrincipal() {
+		final Reviewer principal = this.reviewerService.findByPrincipal();
+		final int principalId = principal.getId();
+
+		return this.findAllWithReportWrittenByReviewer(principalId);
 	}
 
 	public Collection<Submission> findAllByStatus(final String status) {
@@ -257,11 +274,22 @@ public class SubmissionService {
 			result.setMoment(retrieved.getMoment());
 			result.setTicker(retrieved.getTicker());
 			result.setStatus(retrieved.getStatus());
+			result.setPaper(retrieved.getPaper());
+			result.setCameraReadyPaper(retrieved.getCameraReadyPaper());
+			result.setReportsAvailable(retrieved.getReportsAvailable());
 
 		}
 
+		if (result.getReviewers() != null && result.getReviewers().size() > 3)
+			binding.rejectValue("reviewers", "submission.reviewers.size.error");
+		else if (result.getReviewers() == null || result.getReviewers().isEmpty())
+			binding.rejectValue("reviewers", "submission.reviewers.empty.error");
+
 		this.validator.validate(result, binding);
-		this.flush();
+
+		if (binding.hasErrors())
+			throw new ValidationException();
+
 		return result;
 	}
 
@@ -272,5 +300,13 @@ public class SubmissionService {
 
 	private Collection<Submission> findAllUnderReview() {
 		return this.submissionRepository.findAllUnderReview();
+	}
+
+	private Collection<Submission> findAllByReviewerId(final int reviewerId) {
+		return this.submissionRepository.findAllByReviewerId(reviewerId);
+	}
+
+	private Collection<Submission> findAllWithReportWrittenByReviewer(final int reviewerId) {
+		return this.submissionRepository.findAllWithReportWrittenByReviewer(reviewerId);
 	}
 }
