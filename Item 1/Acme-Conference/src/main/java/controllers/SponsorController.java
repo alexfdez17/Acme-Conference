@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SponsorService;
-import services.SystemConfigurationService;
 import domain.Sponsor;
 import forms.RegisterSponsorForm;
 
@@ -21,10 +20,7 @@ import forms.RegisterSponsorForm;
 public class SponsorController extends AbstractController {
 
 	@Autowired
-	private SponsorService				sponsorService;
-
-	@Autowired
-	private SystemConfigurationService	systemConfigurationService;
+	private SponsorService	sponsorService;
 
 
 	// Display --------------------------------------------------------
@@ -69,11 +65,6 @@ public class SponsorController extends AbstractController {
 			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
-				if (registerForm.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + registerForm.getPhone();
-					registerForm.setPhone(newPhone);
-				}
 				this.sponsorService.registerSponsor(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
@@ -110,11 +101,6 @@ public class SponsorController extends AbstractController {
 			result = this.createEditModelAndView(actor);
 		else
 			try {
-				if (actor.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + actor.getPhone();
-					actor.setPhone(newPhone);
-				}
 				this.sponsorService.save(actor);
 				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ReviewerService;
-import services.SystemConfigurationService;
 import domain.Reviewer;
 import forms.RegisterReviewerForm;
 
@@ -21,10 +20,7 @@ import forms.RegisterReviewerForm;
 public class ReviewerController extends AbstractController {
 
 	@Autowired
-	private ReviewerService				reviewerService;
-
-	@Autowired
-	private SystemConfigurationService	systemConfigurationService;
+	private ReviewerService	reviewerService;
 
 
 	// Display --------------------------------------------------------
@@ -68,11 +64,6 @@ public class ReviewerController extends AbstractController {
 			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
-				if (registerForm.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + registerForm.getPhone();
-					registerForm.setPhone(newPhone);
-				}
 				this.reviewerService.registerReviewer(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
@@ -108,11 +99,6 @@ public class ReviewerController extends AbstractController {
 			result = this.createEditModelAndView(actor);
 		else
 			try {
-				if (actor.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + actor.getPhone();
-					actor.setPhone(newPhone);
-				}
 				this.reviewerService.save(actor);
 				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {

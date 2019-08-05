@@ -24,20 +24,15 @@
 	</jstl:choose>
 	
 	<acme:textbox code="sponsorship.banner" path="banner"/>
-	<br />
 	<acme:textbox code="sponsorship.targetURL" path="targetURL"/>
 	<br />
 	
 	<acme:textbox code="creditCard.holder" path="creditCard.holder"/>
-	<br />
-	<acme:textbox code="creditCard.brand" path="creditCard.brand"/>
-	<br />
+	<acme:select items="${creditCardMakes}"
+			code="creditCard.brand" path="creditCard.brand" />
 	<acme:textbox code="creditCard.number" path="creditCard.number"/>
-	<br />
 	<acme:textbox code="creditCard.expirationMonth" path="creditCard.expirationMonth"/>
-	<br />
 	<acme:textbox code="creditCard.expirationYear" path="creditCard.expirationYear"/>
-	<br />
 	<acme:textbox code="creditCard.cvv" path="creditCard.cvv"/>
 	<br />
 	

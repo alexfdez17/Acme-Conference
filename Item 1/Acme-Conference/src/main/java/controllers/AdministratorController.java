@@ -26,7 +26,6 @@ import services.CommentService;
 import services.ConferenceService;
 import services.RegistrationService;
 import services.SubmissionService;
-import services.SystemConfigurationService;
 import domain.Administrator;
 import domain.Conference;
 import domain.Submission;
@@ -36,22 +35,19 @@ import domain.Submission;
 public class AdministratorController extends AbstractController {
 
 	@Autowired
-	private AdministratorService		administratorService;
+	private AdministratorService	administratorService;
 
 	@Autowired
-	private SubmissionService			submissionService;
+	private SubmissionService		submissionService;
 
 	@Autowired
-	private RegistrationService			registrationService;
+	private RegistrationService		registrationService;
 
 	@Autowired
-	private ConferenceService			conferenceService;
+	private ConferenceService		conferenceService;
 
 	@Autowired
-	private CommentService				commentService;
-
-	@Autowired
-	private SystemConfigurationService	systemConfigurationService;
+	private CommentService			commentService;
 
 
 	// Display --------------------------------------------------------
@@ -96,12 +92,6 @@ public class AdministratorController extends AbstractController {
 			result = this.createEditModelAndView(actor);
 		else
 			try {
-				if (actor.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + actor.getPhone();
-					actor.setPhone(newPhone);
-
-				}
 				this.administratorService.save(actor);
 				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AuthorService;
-import services.SystemConfigurationService;
 import domain.Author;
 import forms.RegisterAuthorForm;
 
@@ -21,10 +20,7 @@ import forms.RegisterAuthorForm;
 public class AuthorController extends AbstractController {
 
 	@Autowired
-	private AuthorService				authorService;
-
-	@Autowired
-	private SystemConfigurationService	systemConfigurationService;
+	private AuthorService	authorService;
 
 
 	// Display --------------------------------------------------------
@@ -68,11 +64,6 @@ public class AuthorController extends AbstractController {
 			result = this.createRegisterModelAndView(registerForm);
 		else
 			try {
-				if (registerForm.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + registerForm.getPhone();
-					registerForm.setPhone(newPhone);
-				}
 				this.authorService.registerAuthor(registerForm);
 				result = new ModelAndView("redirect:/");
 			} catch (final Throwable oops) {
@@ -109,11 +100,6 @@ public class AuthorController extends AbstractController {
 			result = this.createEditModelAndView(actor);
 		else
 			try {
-				if (actor.getPhone().matches("\\d{4,99}")) {
-					String newPhone = this.systemConfigurationService.findCountryCode();
-					newPhone += " " + actor.getPhone();
-					actor.setPhone(newPhone);
-				}
 				this.authorService.save(actor);
 				result = new ModelAndView("redirect:display.do");
 			} catch (final Throwable oops) {

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ConferenceService;
 import services.SponsorService;
 import services.SponsorshipService;
+import services.SystemConfigurationService;
 import controllers.AbstractController;
 import domain.Conference;
 import domain.Sponsor;
@@ -25,13 +26,16 @@ import domain.Sponsorship;
 public class SponsorshipSponsorController extends AbstractController {
 
 	@Autowired
-	private SponsorshipService	sponsorshipService;
+	private SponsorshipService			sponsorshipService;
 
 	@Autowired
-	private SponsorService		sponsorService;
+	private SponsorService				sponsorService;
 
 	@Autowired
-	private ConferenceService	conferenceService;
+	private ConferenceService			conferenceService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Listing --------------------------------------------------------
@@ -63,9 +67,12 @@ public class SponsorshipSponsorController extends AbstractController {
 		sponsorship = this.sponsorshipService.create();
 		sponsorship.setConference(conference);
 
+		final Collection<String> creditCardMakes = this.systemConfigurationService.findAllCreditCardMakes();
+
 		result = new ModelAndView("sponsorship/create");
 		result.addObject("sponsorship", sponsorship);
 		result.addObject("id", sponsorship.getId());
+		result.addObject("creditCardMakes", creditCardMakes);
 		return result;
 	}
 
@@ -126,6 +133,7 @@ public class SponsorshipSponsorController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Sponsorship sponsorship, final String message) {
 		final ModelAndView result;
+		final Collection<String> creditCardMakes = this.systemConfigurationService.findAllCreditCardMakes();
 
 		if (sponsorship.getId() == 0)
 			result = new ModelAndView("sponsorship/create");
@@ -134,6 +142,7 @@ public class SponsorshipSponsorController extends AbstractController {
 
 		result.addObject("sponsorship", sponsorship);
 		result.addObject("id", sponsorship.getId());
+		result.addObject("creditCardMakes", creditCardMakes);
 		result.addObject("message", message);
 		return result;
 	}

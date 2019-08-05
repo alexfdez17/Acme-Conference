@@ -26,11 +26,14 @@ public class SponsorService {
 
 	//Managed Repository
 	@Autowired
-	private SponsorRepository	sponsorRepository;
+	private SponsorRepository			sponsorRepository;
 
 	// Supporting Services
 	@Autowired
-	private ActorService		actorService;
+	private ActorService				actorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// CRUD
@@ -46,6 +49,13 @@ public class SponsorService {
 	public Sponsor save(final Sponsor sponsor) {
 		Assert.notNull(sponsor);
 		Sponsor result;
+
+		if (sponsor.getPhone().matches("\\d{4,99}")) {
+			String newPhone = this.systemConfigurationService.findCountryCode();
+			newPhone += " " + sponsor.getPhone();
+			sponsor.setPhone(newPhone);
+		}
+
 		result = this.sponsorRepository.save(sponsor);
 		this.sponsorRepository.flush();
 		return result;
@@ -102,6 +112,12 @@ public class SponsorService {
 		final List<Authority> authorities = new ArrayList<Authority>();
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
+
+		if (registerSponsorForm.getPhone().matches("\\d{4,99}")) {
+			String newPhone = this.systemConfigurationService.findCountryCode();
+			newPhone += " " + registerSponsorForm.getPhone();
+			registerSponsorForm.setPhone(newPhone);
+		}
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerSponsorForm.getAddress());

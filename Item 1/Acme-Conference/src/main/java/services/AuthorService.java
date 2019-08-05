@@ -27,11 +27,14 @@ public class AuthorService {
 
 	// Managed Repository
 	@Autowired
-	private AuthorRepository	authorRepository;
+	private AuthorRepository			authorRepository;
 
 	// Supporting Services
 	@Autowired
-	private ActorService		actorService;
+	private ActorService				actorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// CRUD
@@ -47,6 +50,13 @@ public class AuthorService {
 	public Author save(final Author author) {
 		Assert.notNull(author);
 		Author result;
+
+		if (author.getPhone().matches("\\d{4,99}")) {
+			String newPhone = this.systemConfigurationService.findCountryCode();
+			newPhone += " " + author.getPhone();
+			author.setPhone(newPhone);
+		}
+
 		result = this.authorRepository.save(author);
 		this.authorRepository.flush();
 		return result;
@@ -110,6 +120,12 @@ public class AuthorService {
 		final List<Authority> authorities = new ArrayList<Authority>();
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
+
+		if (registerAuthorForm.getPhone().matches("\\d{4,99}")) {
+			String newPhone = this.systemConfigurationService.findCountryCode();
+			newPhone += " " + registerAuthorForm.getPhone();
+			registerAuthorForm.setPhone(newPhone);
+		}
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerAuthorForm.getAddress());

@@ -26,11 +26,14 @@ public class AdministratorService {
 
 	//Managed Repository
 	@Autowired
-	private AdministratorRepository	administratorRepository;
+	private AdministratorRepository		administratorRepository;
 
 	// Supporting Services
 	@Autowired
-	private ActorService			actorService;
+	private ActorService				actorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// CRUD
@@ -46,6 +49,13 @@ public class AdministratorService {
 	public Administrator save(final Administrator administrator) {
 		Assert.notNull(administrator);
 		Administrator result;
+
+		if (administrator.getPhone().matches("\\d{4,99}")) {
+			String newPhone = this.systemConfigurationService.findCountryCode();
+			newPhone += " " + administrator.getPhone();
+			administrator.setPhone(newPhone);
+		}
+
 		result = this.administratorRepository.save(administrator);
 		this.administratorRepository.flush();
 		return result;

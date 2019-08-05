@@ -11,8 +11,19 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<script>
+function checkPhoneNumber() {
+	var phone = document.getElementById("phone").value;
+   	pattern = /^((\+(\d{1}|\d{2}|\d{3}))* *(\((\d{1}|\d{2}|\d{3})\))* )*(\d{4,})$/igm;
+   	var result = pattern.test(phone);
+   	if(result==false){
+   		confirm("<spring:message code='actor.checkPhone'/>");
+   	}
+}
+</script>
+
 <form:form action="${role}/register.do"
-	modelAttribute="registerForm">
+	modelAttribute="registerForm" onsubmit="checkPhoneNumber();">
 
 	<acme:textbox code="actor.username" path="username"/>
 
