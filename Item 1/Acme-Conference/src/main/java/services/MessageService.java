@@ -6,10 +6,13 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.transaction.Transactional;
+import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.MessageRepository;
 import domain.Actor;
@@ -43,8 +46,11 @@ public class MessageService {
 	@Autowired
 	private TopicService			topicService;
 
-
 	// -------------------
+
+	@Autowired
+	private Validator				validator;
+
 
 	// Simple CRUD methods
 	public Message create() {
@@ -65,9 +71,13 @@ public class MessageService {
 		this.actorService.findPrincipal();
 		this.addToRecipients(message);
 
-		message.setMoment(new Date());
-
 		return this.messageRepository.save(message);
+	}
+
+	public Message broadcast(final Message message) {
+		this.administratorService.findByPrincipal();
+
+		return this.save(message);
 	}
 
 	public void delete(final Message message) {
@@ -142,15 +152,17 @@ public class MessageService {
 		return this.findAllByActorIdAndSenderId(principalId, senderId);
 	}
 
-	public Collection<Message> findAllByPrincipalAndTopic(final Topic topic) {
+	public Collection<Message> findAllByPrincipalAndTopic(final String topic) {
 		final Actor principal = this.actorService.findPrincipal();
 		final int principalId = principal.getId();
 
 		return this.findAllByActorIdAndTopic(principalId, topic);
 	}
 
-	public Message notifyDecisionOnSubmissions() {
+	public void notifyDecisionOnSubmissions() {
 		final Message result = this.create();
+
+		result.setMoment(new Date());
 
 		final Collection<Actor> recipients = new ArrayList<>();
 		final Collection<Submission> submissions = this.submissionService.findAllNotUnderReview();
@@ -170,7 +182,6 @@ public class MessageService {
 			result.setTopic(topic);
 
 			recipients.add(recipient);
-			
 
 			submission.setReportsAvailable(true);
 
@@ -179,7 +190,7 @@ public class MessageService {
 
 		result.setRecipients(recipients);
 
-		return this.save(result);
+		this.addToRecipients(result);
 	}
 	// ----------------------
 
@@ -231,10 +242,10 @@ public class MessageService {
 		return this.messageRepository.findAllByActorIdAndSenderId(actorId, senderId);
 	}
 
-	private Collection<Message> findAllByActorIdAndTopic(final int actorId, final Topic topic) {
-		final String topicName = topic.getName();
+	private Collection<Message> findAllByActorIdAndTopic(final int actorId, final String topic) {
+		topic.toUpperCase();
 
-		return this.messageRepository.findAllByActorIdAndTopic(actorId, topicName);
+		return this.messageRepository.findAllByActorIdAndTopic(actorId, topic);
 	}
 
 	private void isOwnedByPrincipal(final Message message) {
@@ -256,5 +267,21 @@ public class MessageService {
 		return result;
 	}
 	// -----------------
+
+	public Message reconstruct(final Message message, final BindingResult binding) {
+		final Message result = message;
+		final Actor principal = this.actorService.findPrincipal();
+
+		result.setOwner(principal);
+		result.setSender(principal);
+		message.setMoment(new Date());
+
+		this.validator.validate(result, binding);
+
+		if (binding.hasErrors())
+			throw new ValidationException();
+
+		return result;
+	}
 
 }

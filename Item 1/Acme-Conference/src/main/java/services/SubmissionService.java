@@ -128,8 +128,7 @@ public class SubmissionService {
 
 	// Other business methods
 	public Submission assignToReviewers(final Submission submission, final Collection<Reviewer> reviewers) {
-		Assert.notEmpty(reviewers);
-		Assert.isTrue(reviewers.size() <= 3);
+		Assert.isTrue(reviewers.size() <= 3, "submission.exceded.assignments.error");
 		Assert.isTrue(submission.getStatus().equals("UNDER-REVIEW"));
 
 		this.administratorService.findByPrincipal();
@@ -145,8 +144,9 @@ public class SubmissionService {
 		for (final Submission submission : allUnderReview) {
 			final String conferenceTitle = submission.getConference().getTitle();
 			final String conferenceSummary = submission.getConference().getSummary();
+			final int submissionId = submission.getId();
 
-			final Collection<Reviewer> reviewers = this.reviewerService.findAllByConferenceTitleAndSummary(conferenceTitle, conferenceSummary);
+			final Collection<Reviewer> reviewers = this.reviewerService.findAllByConferenceTitleAndSummaryNotAssignedToSubmission(conferenceTitle, conferenceSummary, submissionId);
 
 			this.assignToReviewers(submission, reviewers);
 		}

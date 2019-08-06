@@ -9,7 +9,7 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <!--  Listing grid -->
 
@@ -17,26 +17,26 @@
 	requestURI="sponsorship/sponsor/list.do" id="row">
 
 	<!-- Attributes -->
-	
-	<spring:message code="sponsorship.conference" var="conferenceHeader" />
-	<display:column property="conference.acronym" title="${conferenceHeader}"
-		sortable="false" />
-	
-	<spring:message code="sponsorship.banner" var="bannerHeader" />
-	<display:column property="banner" title="${bannerHeader}"
-		sortable="false" />
 
-	<spring:message code="sponsorship.targetURL" var="targetURLHeader" />
-	<display:column property="targetURL" title="${targetURLHeader}"
-		sortable="false" />
-		
+	<display:column property="conference.acronym"
+		titleKey="sponsorship.conference" sortable="true" />
+
+	<display:column property="banner" titleKey="sponsorship.banner"
+		sortable="false">
+		<a href="${row.banner}"><jstl:out value="${row.banner}" /></a>
+	</display:column>
+
+	<display:column property="targetURL" title="sponsorship.targetURL"
+		sortable="false">
+		<a href="${row.targetURL}"><jstl:out value="${row.targetURL}" /></a>
+	</display:column>
+
 	<!-- Actions -->
-	
+
 	<display:column>
 		<a href="sponsorship/sponsor/edit.do?sponsorshipId=${row.id}"> <spring:message
 				code="sponsorship.edit" />
 		</a>
 	</display:column>
-	
+
 </display:table>
-<br/>

@@ -48,6 +48,9 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) < 5")
 	Collection<Conference> findAllCameraReadyDeadlineElapsesLess5Days();
 
+	@Query("select c from Conference c where c.category.id = ?1")
+	Collection<Conference> findAllByCategoryId(Integer categoryId);
+
 	@Query("select c from Conference c where DATEDIFF(c.notificationDeadline, CURRENT_DATE) < 5")
 	Collection<Conference> findAllNotificationDeadlineElapsesLess5Days();
 

@@ -37,6 +37,9 @@ public class ConferenceService {
 	private AuthorService			authorService;
 
 	@Autowired
+	private CategoryService			categoryService;
+
+	@Autowired
 	private Validator				validator;
 
 
@@ -88,6 +91,12 @@ public class ConferenceService {
 	}
 
 	// Other business methods
+	public Collection<Conference> findAllByCategoryId(final int categoryId) {
+		Assert.isTrue(this.categoryService.exists(categoryId));
+
+		return this.conferenceRepository.findAllByCategoryId(categoryId);
+	}
+
 	public Collection<Conference> findAllByRegisteredPrincipal() {
 		final Author principal = this.authorService.findByPrincipal();
 		final int principalId = principal.getId();

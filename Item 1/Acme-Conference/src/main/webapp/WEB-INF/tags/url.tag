@@ -18,7 +18,7 @@
 
 <%@ attribute name="value" required="false"%>
 
-<b><spring:message code="${code}" /></b>
+<b><spring:message code="${code}" />:</b>
 <jstl:if test="${value == null}">
 	<a href="${url}"><jstl:out value="${url}"/></a>
 </jstl:if>

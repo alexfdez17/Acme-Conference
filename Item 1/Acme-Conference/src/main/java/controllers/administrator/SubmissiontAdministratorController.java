@@ -102,6 +102,27 @@ public class SubmissiontAdministratorController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/autoAssign", method = RequestMethod.GET)
+	public ModelAndView autoAssign() {
+		ModelAndView result;
+
+		try {
+			this.submissionService.autoAssignAll();
+
+			result = new ModelAndView("redirect:/welcome/index.do");
+		} catch (final IllegalArgumentException oops) {
+			final String message = oops.getMessage();
+
+			if (message.equals("submission.exceded.assignments.error")) {
+				result = new ModelAndView("welcome/index");
+
+				result.addObject("message", message);
+			} else
+				result = new ModelAndView("redirect:/welcome/index.do");
+		}
+
+		return result;
+	}
 	protected ModelAndView createEditModelAndView(final Submission submission) {
 		return this.createEditModelAndView(submission, null);
 	}

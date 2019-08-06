@@ -98,11 +98,11 @@ public class ReviewerService {
 		return this.reviewerRepository.findAllNotAssginedToSubmission(submissionId);
 	}
 
-	public Collection<Reviewer> findAllByConferenceTitleAndSummary(final String conferenceTitle, final String conferenceSummary) {
+	public Collection<Reviewer> findAllByConferenceTitleAndSummaryNotAssignedToSubmission(final String conferenceTitle, final String conferenceSummary, final int submissionId) {
 		Assert.notNull(conferenceTitle);
 		Assert.notNull(conferenceSummary);
 
-		List<Reviewer> result = new ArrayList<>(this.reviewerRepository.findAllByConferenceTitleAndSummary(conferenceTitle, conferenceSummary));
+		List<Reviewer> result = new ArrayList<>(this.reviewerRepository.findAllByConferenceTitleAndSummaryNotAssignedToSubmission(conferenceTitle, conferenceSummary, submissionId));
 		final int size = result.size();
 
 		if (size < 3)
@@ -112,7 +112,6 @@ public class ReviewerService {
 
 		return result;
 	}
-
 	public Reviewer findByPrincipal() {
 		return this.actorService.findPrincipal();
 	}

@@ -138,6 +138,42 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="reviewer4" />
+		<property name="password" value="5293e8663cbb7c157ff83eeae25177d3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="reviewer5" />
+		<property name="password" value="86045e9e3b2e615d8d2484dc64b3f408" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="reviewer6" />
+		<property name="password" value="8c14745274135379448d482d5773ee31" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->
 	
 	<!-- **************************** START SYSTEM CONFIG **************************** -->
@@ -1177,6 +1213,65 @@
 	
 	<!-- **************************** END REVIEWER3 **************************** -->
 	
+	<!-- **************************** START REVIEWER4 **************************** -->
+	
+	<bean id="reviewer4" class="domain.Reviewer">
+		<property name="name" value="Reviewer4" />
+		<property name="middleName" value="Reviewer4" />
+		<property name="surname" value="Reviewer4" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount11" />
+		<property name="keywords">
+			<list>
+				<value>title1</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- **************************** END REVIEWER4 **************************** -->
+	
+	<!-- **************************** START REVIEWER5 **************************** -->
+	
+	<bean id="reviewer5" class="domain.Reviewer">
+		<property name="name" value="Reviewer5" />
+		<property name="middleName" value="Reviewer5" />
+		<property name="surname" value="Reviewer5" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount12" />
+		<property name="keywords">
+			<list>
+				<value>title3</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- **************************** END REVIEWER5 **************************** -->
+	
+	<!-- **************************** START REVIEWER6 **************************** -->
+	
+	<bean id="reviewer6" class="domain.Reviewer">
+		<property name="name" value="Reviewer6" />
+		<property name="middleName" value="Reviewer6" />
+		<property name="surname" value="Reviewer6" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount13" />
+		<property name="keywords">
+			<list>
+				<value>summary2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- **************************** END REVIEWER6 **************************** -->
 	
 	
 	

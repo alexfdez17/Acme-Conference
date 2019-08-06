@@ -52,9 +52,8 @@
 
 	<acme:column code="submission.ticker" property="ticker" sortable="true" />
 
-	<spring:message code="comment.moment" var="momentHeader" />
-	<display:column property="moment" title="${momentHeader}"
-		sortable="false" format="{0,date,yy/MM/dd HH:mm}" />
+	<display:column property="moment" titleKey="comment.moment"
+		sortable="true" format="{0,date,yy/MM/dd HH:mm}" />
 
 	<acme:column code="submission.status" property="status" />
 

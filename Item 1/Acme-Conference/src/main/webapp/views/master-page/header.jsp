@@ -14,6 +14,13 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 
+<script type="text/javascript">
+	function notificationSuccesfull() {
+		window.alert("<spring:message code='master.page.notification.successful'/>");
+	}
+</script>
+
+
 <div>
 	<a href="#"><img src="${banner}" alt="${systemName} Co., Inc." /></a>
 </div>
@@ -56,6 +63,20 @@
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>
+			<li><a class="fNiv"> <spring:message
+						code="master.page.messaging" />
+			</a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="message/list.do"><spring:message
+								code="master.page.messaging.list" /></a></li>
+					<li><a href="message/create.do"><spring:message
+								code="master.page.messaging.send" /></a></li>
+					<security:authorize access="hasRole('ADMIN')">
+						<li><a href="message/administrator/create.do"><spring:message
+									code="master.page.admin.messaging.broadcast" /></a></li>
+					</security:authorize>
+				</ul></li>
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
@@ -97,17 +118,26 @@
 								href="conference/administrator/list.do?keyword=submissionDeadlineElapsed"><spring:message
 										code="master.page.administrator.conference.list.submissionDeadlineElapsed" /></a></li>
 						</ul></li>
-					<li><a href="submission/administrator/list.do"><spring:message
-								code="master.page.administrator.submission.list" /></a></li>
-					<li><a href="administrator/dashboard.do"><spring:message
-								code="master.page.administrator.dashboard" /></a></li>
+					<li><a><spring:message
+								code="master.page.administrator.submission" /></a>
+						<ul>
+							<li><a href="submission/administrator/list.do"><spring:message
+										code="master.page.administrator.submission.list" /></a></li>
+							<li><a href="submission/administrator/autoAssign.do"><spring:message
+										code="master.page.administrator.submission.auto.assign" /></a></li>
+						</ul></li>
 					<li><a><spring:message
 								code="master.page.administrator.system" /></a>
 						<ul>
+							<li><a href="administrator/dashboard.do"><spring:message
+										code="master.page.administrator.dashboard" /></a></li>
 							<li><a href="sys-config/administrator/edit.do"><spring:message
 										code="master.page.administrator.systemConfiguration" /></a></li>
 							<li><a href="topic/administrator/list.do"><spring:message
 										code="master.page.administrator.topic.list" /></a></li>
+							<li><a href="message/administrator/notify.do"
+								onclick="notificationSuccesfull();"><spring:message
+										code="master.page.administrator.notify" /></a></li>
 						</ul></li>
 
 				</ul></li>

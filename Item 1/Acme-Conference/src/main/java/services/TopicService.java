@@ -55,8 +55,6 @@ public class TopicService {
 	}
 
 	public Collection<Topic> findAll() {
-		this.administratorService.findByPrincipal();
-
 		return this.topicRepository.findAll();
 	}
 
