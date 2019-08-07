@@ -97,6 +97,10 @@ public class ConferenceService {
 		return this.conferenceRepository.findAllByCategoryId(categoryId);
 	}
 
+	public Collection<Conference> findAllByCategory(final String categoryName) {
+		return this.conferenceRepository.findAllByCategoryName(categoryName);
+	}
+
 	public Collection<Conference> findAllByRegisteredPrincipal() {
 		final Author principal = this.authorService.findByPrincipal();
 		final int principalId = principal.getId();
@@ -111,14 +115,14 @@ public class ConferenceService {
 		return this.findAllAuthorHasSubmitted(principalId);
 	}
 
-	public Collection<Conference> findByCategory(final Finder finder) {
+	public Collection<Conference> findAllByCategory(final Finder finder) {
 		Assert.notNull(finder);
 		Collection<Conference> result;
 
 		if (finder.getCategory().equals(""))
 			result = this.findFinals();
 		else
-			result = this.conferenceRepository.findByCategoryName(finder.getCategory());
+			result = this.conferenceRepository.findAllByCategoryName(finder.getCategory());
 
 		return result;
 	}
@@ -218,7 +222,7 @@ public class ConferenceService {
 	public Conference update(final Conference conference) {
 		Assert.notNull(conference);
 
-		this.administratorService.findByPrincipal();
+		//this.administratorService.findByPrincipal();
 
 		return this.conferenceRepository.save(conference);
 	}

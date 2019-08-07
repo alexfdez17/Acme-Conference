@@ -46,23 +46,25 @@ public class ConferenceController extends AbstractController {
 	// Listing --------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam final String keyword) {
+	public ModelAndView list(@RequestParam(required = false) final String keyword, @RequestParam(required = false) final String category) {
 		final ModelAndView result;
 
-		if (keyword.equals("final"))
-			result = this.listFinal();
-		else if (keyword.equals("forthcoming"))
-			result = this.listForthcoming();
-		else if (keyword.equals("past"))
-			result = this.listPast();
-		else if (keyword.equals("running"))
-			result = this.listRunning();
-		else
-			result = this.listByKeyword(keyword);
+		if (keyword != null) {
+			if (keyword.equals("final"))
+				result = this.listFinal();
+			else if (keyword.equals("forthcoming"))
+				result = this.listForthcoming();
+			else if (keyword.equals("past"))
+				result = this.listPast();
+			else if (keyword.equals("running"))
+				result = this.listRunning();
+			else
+				result = this.listByKeyword(keyword);
+		} else
+			result = this.listByCategory(category);
 
 		return result;
 	}
-
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int conferenceId) {
 		ModelAndView result;
@@ -142,6 +144,15 @@ public class ConferenceController extends AbstractController {
 	private ModelAndView listByKeyword(final String keyword) {
 		final ModelAndView result;
 		final Collection<Conference> conferences = this.conferenceService.findAllByKeyword(keyword);
+
+		result = this.setModelAndView(conferences);
+
+		return result;
+	}
+
+	private ModelAndView listByCategory(final String category) {
+		final ModelAndView result;
+		final Collection<Conference> conferences = this.conferenceService.findAllByCategory(category);
 
 		result = this.setModelAndView(conferences);
 

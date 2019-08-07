@@ -15,8 +15,8 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <script type="text/javascript">
-	function notificationSuccesfull() {
-		window.alert("<spring:message code='master.page.notification.successful'/>");
+	function notificationSuccesfull(message) {
+		window.alert(message);
 	}
 </script>
 
@@ -123,7 +123,8 @@
 						<ul>
 							<li><a href="submission/administrator/list.do"><spring:message
 										code="master.page.administrator.submission.list" /></a></li>
-							<li><a href="submission/administrator/autoAssign.do"><spring:message
+							<li><a href="submission/administrator/autoAssign.do"
+								onclick="notificationSuccesfull('<spring:message code='master.page.assignment.successful'/>');"><spring:message
 										code="master.page.administrator.submission.auto.assign" /></a></li>
 						</ul></li>
 					<li><a><spring:message
@@ -135,8 +136,10 @@
 										code="master.page.administrator.systemConfiguration" /></a></li>
 							<li><a href="topic/administrator/list.do"><spring:message
 										code="master.page.administrator.topic.list" /></a></li>
+							<li><a href="category/administrator/list.do"><spring:message
+										code="master.page.administrator.category.list" /></a></li>
 							<li><a href="message/administrator/notify.do"
-								onclick="notificationSuccesfull();"><spring:message
+								onclick="notificationSuccesfull('<spring:message code='master.page.notification.successful'/>');"><spring:message
 										code="master.page.administrator.notify" /></a></li>
 						</ul></li>
 

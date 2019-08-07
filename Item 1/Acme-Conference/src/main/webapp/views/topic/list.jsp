@@ -30,5 +30,4 @@
 
 </display:table>
 
-<a href="topic/administrator/create.do"><spring:message
-		code="topic.create" /></a>
+<acme:cancel code="topic.create" url="topic/administrator/create.do" />

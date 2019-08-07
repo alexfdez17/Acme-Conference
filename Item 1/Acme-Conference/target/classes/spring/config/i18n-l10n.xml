@@ -30,6 +30,7 @@
 		<value>/views/submission/messages</value>
 		<value>/views/topic/messages</value>
 		<value>/views/conference/messages</value>
+		<value>/views/category/messages</value>
 		<value>/views/activity/messages</value>
 		<value>/views/section/messages</value>
 		<value>/views/comment/messages</value>

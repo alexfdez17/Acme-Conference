@@ -52,7 +52,7 @@ public class FinderService {
 
 		final Collection<Conference> results = this.conferenceService.findFinals();
 		final Collection<Conference> byKeyword = this.conferenceService.findAllByKeyword(finder.getKeyword());
-		final Collection<Conference> byCategory = this.conferenceService.findByCategory(finder);
+		final Collection<Conference> byCategory = this.conferenceService.findAllByCategory(finder);
 		final Collection<Conference> byStartDate = this.conferenceService.findByStartDate(finder);
 		final Collection<Conference> byEndDate = this.conferenceService.findByEndDate(finder);
 		final Collection<Conference> byMaximumFee = this.conferenceService.findByMaximumFee(finder);

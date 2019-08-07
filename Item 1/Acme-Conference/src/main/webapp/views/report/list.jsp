@@ -42,3 +42,5 @@
 	</display:column>
 
 </display:table>
+
+<acme:cancel code="report.create" url="submission/reviewer/list.do"/>

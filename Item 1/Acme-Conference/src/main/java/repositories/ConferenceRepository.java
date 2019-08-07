@@ -25,7 +25,7 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	Collection<Long> getConferencesPerCategory();
 
 	@Query("select c from Conference c where c.isFinal = true and (c.category.title like %?1%)")
-	Collection<Conference> findByCategoryName(String name);
+	Collection<Conference> findAllByCategoryName(String name);
 
 	@Query("select c from Conference c where c.isFinal = true and (c.fee <= ?1)")
 	Collection<Conference> findByMaximumFee(Double maximumFee);

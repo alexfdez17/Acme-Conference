@@ -43,6 +43,5 @@
 
 </display:table>
 
-<a href="conference/list.do?keyword=final"> <spring:message
-		code="registration.create" />
-</a>
+<acme:cancel code="registration.create"
+	url="conference/list.do?keyword=final" />

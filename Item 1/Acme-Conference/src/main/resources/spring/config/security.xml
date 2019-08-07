@@ -94,7 +94,7 @@
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/conference/administrator/**"
 			access="hasRole('ADMIN')" />
-		<security:intercept-url pattern="/submission/administrator/**"
+		<security:intercept-url pattern="/category/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/sys-config/administrator/**"
 			access="hasRole('ADMIN')" />
