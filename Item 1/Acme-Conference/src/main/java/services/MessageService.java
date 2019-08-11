@@ -111,7 +111,7 @@ public class MessageService {
 	}
 
 	public Message broadcastToAllAuthors() {
-		final Collection<Actor> recipients = this.authorService.findAll();
+		final Collection<Actor> recipients = this.authorService.findAllAsActor();
 		final Message result = this.setRecipients(recipients);
 
 		return result;

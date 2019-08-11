@@ -127,6 +127,8 @@
 								onclick="notificationSuccesfull('<spring:message code='master.page.assignment.successful'/>');"><spring:message
 										code="master.page.administrator.submission.auto.assign" /></a></li>
 						</ul></li>
+					<li><a href="author/administrator/list.do"><spring:message
+								code="master.page.administrator.author.scores" /></a>
 					<li><a><spring:message
 								code="master.page.administrator.system" /></a>
 						<ul>

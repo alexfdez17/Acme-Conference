@@ -159,6 +159,10 @@ public class SubmissionService {
 		return this.findAllByReviewerId(principalId);
 	}
 
+	public Collection<Paper> findAllCameraReadyPapersByAuthorId(final int authorId) {
+		return this.submissionRepository.findAllCameraReadyPapersByAuthorId(authorId);
+	}
+
 	public Collection<Submission> findAllWithReportWrittenByPrincipal() {
 		final Reviewer principal = this.reviewerService.findByPrincipal();
 		final int principalId = principal.getId();

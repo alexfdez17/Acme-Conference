@@ -2,6 +2,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import security.Authority;
 import security.UserAccount;
 import domain.Actor;
 import domain.Author;
+import domain.Paper;
 import forms.RegisterAuthorForm;
 
 @Service
@@ -34,7 +36,16 @@ public class AuthorService {
 	private ActorService				actorService;
 
 	@Autowired
+	private AdministratorService		administratorService;
+
+	@Autowired
+	private ConferenceService			conferenceService;
+
+	@Autowired
 	private SystemConfigurationService	systemConfigurationService;
+
+	@Autowired
+	private SubmissionService			submissionService;
 
 
 	// CRUD
@@ -70,12 +81,8 @@ public class AuthorService {
 		this.authorRepository.delete(author);
 	}
 
-	public Collection<Actor> findAll() {
-		Collection<Actor> result;
-
-		result = this.authorRepository.findAllAsActor();
-
-		return result;
+	public Collection<Author> findAll() {
+		return this.authorRepository.findAll();
 	}
 
 	public Author findOne(final int authorId) {
@@ -92,6 +99,63 @@ public class AuthorService {
 	}
 
 	//Other business methods
+	public void computeScores() {
+		this.administratorService.findByPrincipal();
+
+		final Collection<Author> authors = this.findAll();
+		final Collection<String> buzzWords = this.conferenceService.findBuzzWords();
+
+		double maxScore = 0;
+
+		for (final Author author : authors) {
+			final int authorId = author.getId();
+			final Collection<Paper> cameraReadyPapers = this.submissionService.findAllCameraReadyPapersByAuthorId(authorId);
+
+			double score = 0;
+
+			for (final Paper paper : cameraReadyPapers) {
+				String title = paper.getTitle();
+				String summary = paper.getSummary();
+
+				title = title.replaceAll("\\d", "").trim();
+				summary = summary.replaceAll("\\d", "").trim();
+
+				final List<String> splitedTitle = Arrays.asList(title.split("\\W+"));
+				final List<String> splittedSummary = Arrays.asList(summary.split("\\W+"));
+
+				for (final String buzzWord : buzzWords) {
+					if (splitedTitle.contains(buzzWord))
+						score++;
+					if (splittedSummary.contains(buzzWord))
+						score++;
+				}
+			}
+
+			if (score > maxScore)
+				maxScore = score;
+
+			author.setScore(score);
+		}
+
+		for (final Author author : authors) {
+			final double score = author.getScore();
+			final double ratio = maxScore != 0 && score != 0 ? score / maxScore : 0;
+
+			author.setScore(ratio);
+
+			this.authorRepository.save(author);
+		}
+
+	}
+
+	public Collection<Actor> findAllAsActor() {
+		Collection<Actor> result;
+
+		result = this.authorRepository.findAllAsActor();
+
+		return result;
+	}
+
 	public Collection<Actor> findAllWithRegistration() {
 		return this.authorRepository.findAllWithRegistration();
 	}

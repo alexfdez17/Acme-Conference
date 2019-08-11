@@ -2,9 +2,11 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 import javax.validation.ValidationException;
@@ -27,20 +29,23 @@ public class ConferenceService {
 
 	// Managed Repository
 	@Autowired
-	private ConferenceRepository	conferenceRepository;
+	private ConferenceRepository		conferenceRepository;
 
 	// Supporting services
 	@Autowired
-	private AdministratorService	administratorService;
+	private AdministratorService		administratorService;
 
 	@Autowired
-	private AuthorService			authorService;
+	private AuthorService				authorService;
 
 	@Autowired
-	private CategoryService			categoryService;
+	private CategoryService				categoryService;
 
 	@Autowired
-	private Validator				validator;
+	private SystemConfigurationService	systemConfigurationService;
+
+	@Autowired
+	private Validator					validator;
 
 
 	// CRUD
@@ -163,6 +168,26 @@ public class ConferenceService {
 		return result;
 	}
 
+	public Collection<String> findBuzzWords() {
+		final Collection<String> buzzWords = new ArrayList<>();
+
+		final Collection<String> words = this.removeVoidWords();
+		final double maxFreq = this.findMaxFreq(words) * 0.8;
+
+		for (final String word : words) {
+			int cont = 0;
+
+			for (final String wurd : words)
+				if (word.equals(wurd))
+					cont++;
+
+			if (cont > maxFreq)
+				buzzWords.add(word);
+		}
+
+		return buzzWords;
+	}
+
 	public Collection<Conference> findAllByKeyword(final String keyword) {
 		Assert.notNull(keyword);
 		Collection<Conference> result;
@@ -253,12 +278,65 @@ public class ConferenceService {
 	}
 
 	// Auxiliary methods
+	private int findMaxFreq(final Collection<String> words) {
+		int maxFreq = 0;
+
+		for (final String word : words) {
+			int cont = 0;
+
+			for (final String wurd : words)
+				if (word.equals(wurd))
+					cont++;
+
+			if (cont > maxFreq)
+				maxFreq = cont;
+		}
+
+		return maxFreq;
+	}
+
+	private Collection<String> removeVoidWords() {
+		final List<String> words = new ArrayList<>();
+		final Collection<String> voidWords = this.systemConfigurationService.findAllVoidWords();
+
+		final Collection<Conference> conferences = this.findAllOrganisedLastYearOrInFuture();
+
+		for (final Conference conference : conferences) {
+			String title = conference.getTitle();
+			String summary = conference.getSummary();
+
+			for (final String voidWord : voidWords) {
+				final String regex = "\\b" + voidWord + "\\b";
+
+				title = title.replaceAll(regex, "");
+				title = title.replaceAll("\\d", "");
+				summary = summary.replaceAll(regex, "");
+				summary = summary.replaceAll("\\d", "");
+			}
+
+			title.trim();
+			summary.trim();
+
+			final List<String> splitedTitle = Arrays.asList(title.split("\\W+"));
+			final List<String> splittedSummary = Arrays.asList(summary.split("\\W+"));
+
+			words.addAll(splitedTitle);
+			words.addAll(splittedSummary);
+		}
+
+		return words;
+	}
+
 	private Collection<Conference> findAllAuthorHasSubmitted(final int authorId) {
 		return this.conferenceRepository.findAllAuthorHasSubmitted(authorId);
 	}
 
 	private Collection<Conference> findAllAuthorIsRegistered(final int authorId) {
 		return this.conferenceRepository.findAllAuthorIsRegistered(authorId);
+	}
+
+	private Collection<Conference> findAllOrganisedLastYearOrInFuture() {
+		return this.conferenceRepository.findAllOrganisedLastYearOrInFuture();
 	}
 
 	private void checkDates(final Conference conference, final BindingResult binding) {

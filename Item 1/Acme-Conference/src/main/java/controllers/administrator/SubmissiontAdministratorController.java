@@ -112,13 +112,10 @@ public class SubmissiontAdministratorController extends AbstractController {
 			result = new ModelAndView("redirect:/welcome/index.do");
 		} catch (final IllegalArgumentException oops) {
 			final String message = oops.getMessage();
+			result = new ModelAndView("redirect:/welcome/index.do");
 
-			if (message.equals("submission.exceded.assignments.error")) {
-				result = new ModelAndView("welcome/index");
-
+			if (message.equals("submission.exceded.assignments.error"))
 				result.addObject("message", message);
-			} else
-				result = new ModelAndView("redirect:/welcome/index.do");
 		}
 
 		return result;

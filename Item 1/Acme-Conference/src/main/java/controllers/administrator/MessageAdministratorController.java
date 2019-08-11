@@ -71,7 +71,7 @@ public class MessageAdministratorController extends AbstractController {
 
 	@RequestMapping(value = "/broadcast", method = RequestMethod.POST, params = "broadcastAllAuthors")
 	public ModelAndView broadcastAllAuthors(@ModelAttribute("mezzage") final Message message, final BindingResult binding) {
-		final Collection<Actor> recipients = this.authorService.findAll();
+		final Collection<Actor> recipients = this.authorService.findAllAsActor();
 
 		message.setRecipients(recipients);
 
@@ -105,7 +105,7 @@ public class MessageAdministratorController extends AbstractController {
 
 			result = new ModelAndView("redirect:/welcome/index.do");
 		} catch (final IllegalArgumentException oops) {
-			result = new ModelAndView("welcome/index");
+			result = new ModelAndView("redirect:/welcome/index.do");
 
 			result.addObject("message", "message.commit.error");
 		}

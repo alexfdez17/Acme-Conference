@@ -82,6 +82,8 @@
 
 		<security:intercept-url pattern="/activity/administrator/**"
 			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/author/administrator/**"
+			access="hasRole('ADMIN')" />			
 		<security:intercept-url pattern="/message/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/panel/administrator/**"
@@ -91,6 +93,8 @@
 		<security:intercept-url pattern="/presentation/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/section/administrator/**"
+			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/submission/administrator/**"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/conference/administrator/**"
 			access="hasRole('ADMIN')" />

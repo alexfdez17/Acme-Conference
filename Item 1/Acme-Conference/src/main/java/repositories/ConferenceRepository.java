@@ -57,6 +57,9 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where DATEDIFF(c.startDate, CURRENT_DATE) < 5")
 	Collection<Conference> findAllOrganisedLess5Days();
 
+	@Query("select c from Conference c where DATEDIFF(CURRENT_DATE, c.startDate) <= 365")
+	Collection<Conference> findAllOrganisedLastYearOrInFuture();
+
 	@Query("select c from Conference c where DATEDIFF(CURRENT_DATE, c.submissionDeadline) <= 5 and DATEDIFF(CURRENT_DATE, c.submissionDeadline) >= 0")
 	Collection<Conference> findAllSubmissionDeadlineElapsedLast5Days();
 
