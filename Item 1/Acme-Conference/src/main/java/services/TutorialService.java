@@ -86,6 +86,9 @@ public class TutorialService {
 		final Tutorial result = this.create();
 		final Conference conference = activityTutorialForm.getConference();
 
+		Assert.isTrue(activityTutorialForm.getStartMoment().after(conference.getStartDate()));
+		Assert.isTrue(activityTutorialForm.getStartMoment().before(conference.getEndDate()));
+
 		result.setTitle(activityTutorialForm.getTitle());
 		result.setSpeakers(activityTutorialForm.getSpeakers());
 		result.setStartMoment(activityTutorialForm.getStartMoment());

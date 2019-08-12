@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ReviewerService;
+import services.SystemConfigurationService;
 import domain.Reviewer;
 import forms.RegisterReviewerForm;
 
@@ -20,7 +21,10 @@ import forms.RegisterReviewerForm;
 public class ReviewerController extends AbstractController {
 
 	@Autowired
-	private ReviewerService	reviewerService;
+	private ReviewerService				reviewerService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Display --------------------------------------------------------
@@ -31,6 +35,10 @@ public class ReviewerController extends AbstractController {
 		Reviewer actor;
 
 		actor = this.reviewerService.findByPrincipal();
+
+		String newPhone = this.systemConfigurationService.findCountryCode();
+		newPhone += " " + actor.getPhone();
+		actor.setPhone(newPhone);
 
 		result = new ModelAndView("actor/display");
 		result.addObject("actor", actor);

@@ -27,14 +27,11 @@ public class ReviewerService {
 
 	//Managed Repository
 	@Autowired
-	private ReviewerRepository			reviewerRepository;
+	private ReviewerRepository	reviewerRepository;
 
 	// Supporting Services
 	@Autowired
-	private ActorService				actorService;
-
-	@Autowired
-	private SystemConfigurationService	systemConfigurationService;
+	private ActorService		actorService;
 
 
 	// CRUD
@@ -51,11 +48,7 @@ public class ReviewerService {
 		Assert.notNull(reviewer);
 		Reviewer result;
 
-		if (reviewer.getPhone().matches("\\d{4,99}")) {
-			String newPhone = this.systemConfigurationService.findCountryCode();
-			newPhone += " " + reviewer.getPhone();
-			reviewer.setPhone(newPhone);
-		}
+		Assert.isTrue(reviewer.getPhone().matches("\\d{4,99}"));
 
 		result = this.reviewerRepository.save(reviewer);
 		this.reviewerRepository.flush();
@@ -133,11 +126,7 @@ public class ReviewerService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		if (registerReviewerForm.getPhone().matches("\\d{4,99}")) {
-			String newPhone = this.systemConfigurationService.findCountryCode();
-			newPhone += " " + registerReviewerForm.getPhone();
-			registerReviewerForm.setPhone(newPhone);
-		}
+		Assert.isTrue(registerReviewerForm.getPhone().matches("\\d{4,99}"));
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerReviewerForm.getAddress());

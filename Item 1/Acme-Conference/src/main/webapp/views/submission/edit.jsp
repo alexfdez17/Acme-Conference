@@ -22,7 +22,9 @@
 			<form:hidden path="conference" />
 		</jstl:otherwise>
 	</jstl:choose>
-
+	
+	<b><spring:message code="paper.details" /></b>
+<br />
 
 	<acme:textbox code="paper.title" path="title" />
 	<acme:textbox code="paper.authors" path="authors" />

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AuthorService;
+import services.SystemConfigurationService;
 import domain.Author;
 import forms.RegisterAuthorForm;
 
@@ -20,7 +21,10 @@ import forms.RegisterAuthorForm;
 public class AuthorController extends AbstractController {
 
 	@Autowired
-	private AuthorService	authorService;
+	private AuthorService				authorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Display --------------------------------------------------------
@@ -31,6 +35,10 @@ public class AuthorController extends AbstractController {
 		Author actor;
 
 		actor = this.authorService.findByPrincipal();
+
+		String newPhone = this.systemConfigurationService.findCountryCode();
+		newPhone += " " + actor.getPhone();
+		actor.setPhone(newPhone);
 
 		result = new ModelAndView("actor/display");
 		result.addObject("actor", actor);

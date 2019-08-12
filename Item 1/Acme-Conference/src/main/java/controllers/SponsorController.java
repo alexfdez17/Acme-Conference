@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SponsorService;
+import services.SystemConfigurationService;
 import domain.Sponsor;
 import forms.RegisterSponsorForm;
 
@@ -20,7 +21,10 @@ import forms.RegisterSponsorForm;
 public class SponsorController extends AbstractController {
 
 	@Autowired
-	private SponsorService	sponsorService;
+	private SponsorService				sponsorService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Display --------------------------------------------------------
@@ -31,6 +35,10 @@ public class SponsorController extends AbstractController {
 		Sponsor actor;
 
 		actor = this.sponsorService.findByPrincipal();
+
+		String newPhone = this.systemConfigurationService.findCountryCode();
+		newPhone += " " + actor.getPhone();
+		actor.setPhone(newPhone);
 
 		result = new ModelAndView("actor/display");
 		result.addObject("actor", actor);

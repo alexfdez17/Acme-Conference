@@ -29,23 +29,20 @@ public class AuthorService {
 
 	// Managed Repository
 	@Autowired
-	private AuthorRepository			authorRepository;
+	private AuthorRepository		authorRepository;
 
 	// Supporting Services
 	@Autowired
-	private ActorService				actorService;
+	private ActorService			actorService;
 
 	@Autowired
-	private AdministratorService		administratorService;
+	private AdministratorService	administratorService;
 
 	@Autowired
-	private ConferenceService			conferenceService;
+	private ConferenceService		conferenceService;
 
 	@Autowired
-	private SystemConfigurationService	systemConfigurationService;
-
-	@Autowired
-	private SubmissionService			submissionService;
+	private SubmissionService		submissionService;
 
 
 	// CRUD
@@ -62,11 +59,7 @@ public class AuthorService {
 		Assert.notNull(author);
 		Author result;
 
-		if (author.getPhone().matches("\\d{4,99}")) {
-			String newPhone = this.systemConfigurationService.findCountryCode();
-			newPhone += " " + author.getPhone();
-			author.setPhone(newPhone);
-		}
+		Assert.isTrue(author.getPhone().matches("\\d{4,99}"));
 
 		result = this.authorRepository.save(author);
 		this.authorRepository.flush();
@@ -185,11 +178,7 @@ public class AuthorService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		if (registerAuthorForm.getPhone().matches("\\d{4,99}")) {
-			String newPhone = this.systemConfigurationService.findCountryCode();
-			newPhone += " " + registerAuthorForm.getPhone();
-			registerAuthorForm.setPhone(newPhone);
-		}
+		Assert.isTrue(registerAuthorForm.getPhone().matches("\\d{4,99}"));
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerAuthorForm.getAddress());

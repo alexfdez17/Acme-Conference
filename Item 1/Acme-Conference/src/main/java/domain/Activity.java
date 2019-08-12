@@ -63,7 +63,7 @@ public class Activity extends Commentable {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	public Date getStartMoment() {
 		return this.startMoment;
 	}
@@ -72,6 +72,7 @@ public class Activity extends Commentable {
 		this.startMoment = startMoment;
 	}
 
+	@NotNull
 	@Min(0)
 	public int getDuration() {
 		return this.duration;
