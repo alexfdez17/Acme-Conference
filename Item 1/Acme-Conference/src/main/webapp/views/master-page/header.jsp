@@ -100,6 +100,8 @@
 						code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
+					<li><a href="administrator/administrator/register.do"><spring:message
+								code="master.page.register.admin" /></a></li>
 					<li><a><spring:message
 								code="master.page.administrator.conference.list" /></a>
 						<ul>

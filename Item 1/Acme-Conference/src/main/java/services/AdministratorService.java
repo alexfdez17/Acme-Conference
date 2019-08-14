@@ -113,6 +113,8 @@ public class AdministratorService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
+		Assert.isTrue(registerAdministratorForm.getPhone().matches("\\d{4,99}"));
+
 		result.setUserAccount(userAccount);
 		result.setAddress(registerAdministratorForm.getAddress());
 		result.setEmail(registerAdministratorForm.getEmail());

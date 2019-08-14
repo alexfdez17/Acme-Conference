@@ -26,6 +26,7 @@ import services.CommentService;
 import services.ConferenceService;
 import services.RegistrationService;
 import services.SubmissionService;
+import services.SystemConfigurationService;
 import domain.Administrator;
 import domain.Conference;
 import domain.Submission;
@@ -35,19 +36,22 @@ import domain.Submission;
 public class AdministratorController extends AbstractController {
 
 	@Autowired
-	private AdministratorService	administratorService;
+	private AdministratorService		administratorService;
 
 	@Autowired
-	private SubmissionService		submissionService;
+	private SubmissionService			submissionService;
 
 	@Autowired
-	private RegistrationService		registrationService;
+	private RegistrationService			registrationService;
 
 	@Autowired
-	private ConferenceService		conferenceService;
+	private ConferenceService			conferenceService;
 
 	@Autowired
-	private CommentService			commentService;
+	private CommentService				commentService;
+
+	@Autowired
+	private SystemConfigurationService	systemConfigurationService;
 
 
 	// Display --------------------------------------------------------
@@ -58,6 +62,10 @@ public class AdministratorController extends AbstractController {
 		Administrator actor;
 
 		actor = this.administratorService.findByPrincipal();
+
+		String newPhone = this.systemConfigurationService.findCountryCode();
+		newPhone += " " + actor.getPhone();
+		actor.setPhone(newPhone);
 
 		result = new ModelAndView("actor/display");
 		result.addObject("actor", actor);
