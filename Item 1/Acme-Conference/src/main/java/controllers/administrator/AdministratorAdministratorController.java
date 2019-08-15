@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
+import controllers.AbstractController;
 import forms.RegisterAdministratorForm;
 
 @Controller
 @RequestMapping("/administrator/administrator")
-public class AdministratorAdministratorController {
+public class AdministratorAdministratorController extends AbstractController {
 
 	@Autowired
 	private AdministratorService	administratorService;
@@ -33,7 +34,7 @@ public class AdministratorAdministratorController {
 		result = new ModelAndView("actor/registerAdministrator");
 
 		result.addObject("registerForm", registerAdministratorForm);
-		result.addObject("role", "administrator");
+		result.addObject("role", "administrator/administrator");
 
 		return result;
 	}
@@ -68,7 +69,7 @@ public class AdministratorAdministratorController {
 		result = new ModelAndView("actor/registerAdministrator");
 		result.addObject("registerForm", registerAdministratorForm);
 		result.addObject("message", messageCode);
-		result.addObject("role", "administrator");
+		result.addObject("role", "administrator/administrator");
 
 		return result;
 	}
