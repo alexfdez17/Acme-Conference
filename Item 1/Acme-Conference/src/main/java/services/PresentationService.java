@@ -42,6 +42,17 @@ public class PresentationService {
 	public Presentation save(final Presentation presentation) {
 		Assert.notNull(presentation);
 		Presentation result;
+		Conference conference = new Conference();
+
+		final Collection<Conference> conferences = this.conferenceService.findAll();
+		for (final Conference c : conferences)
+			if (c.getActivities().contains(presentation))
+				conference = c;
+
+		Assert.isTrue(conference.getIsFinal());
+		Assert.isTrue(presentation.getStartMoment().after(conference.getStartDate()));
+		Assert.isTrue(presentation.getStartMoment().before(conference.getEndDate()));
+
 		result = this.presentationRepository.save(presentation);
 		this.presentationRepository.flush();
 		return result;

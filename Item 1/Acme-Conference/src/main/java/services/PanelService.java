@@ -41,6 +41,17 @@ public class PanelService {
 	public Panel save(final Panel panel) {
 		Assert.notNull(panel);
 		Panel result;
+		Conference conference = new Conference();
+
+		final Collection<Conference> conferences = this.conferenceService.findAll();
+		for (final Conference c : conferences)
+			if (c.getActivities().contains(panel))
+				conference = c;
+
+		Assert.isTrue(conference.getIsFinal());
+		Assert.isTrue(panel.getStartMoment().after(conference.getStartDate()));
+		Assert.isTrue(panel.getStartMoment().before(conference.getEndDate()));
+
 		result = this.panelRepository.save(panel);
 		this.panelRepository.flush();
 		return result;

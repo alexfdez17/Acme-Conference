@@ -66,7 +66,7 @@ public class ActivityTutorialForm {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	public Date getStartMoment() {
 		return this.startMoment;
 	}

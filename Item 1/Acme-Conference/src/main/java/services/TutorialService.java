@@ -48,6 +48,17 @@ public class TutorialService {
 	public Tutorial save(final Tutorial tutorial) {
 		Assert.notNull(tutorial);
 		Tutorial result;
+		Conference conference = new Conference();
+
+		final Collection<Conference> conferences = this.conferenceService.findAll();
+		for (final Conference c : conferences)
+			if (c.getActivities().contains(tutorial))
+				conference = c;
+
+		Assert.isTrue(conference.getIsFinal());
+		Assert.isTrue(tutorial.getStartMoment().after(conference.getStartDate()));
+		Assert.isTrue(tutorial.getStartMoment().before(conference.getEndDate()));
+
 		result = this.tutorialRepository.save(tutorial);
 		this.tutorialRepository.flush();
 		return result;

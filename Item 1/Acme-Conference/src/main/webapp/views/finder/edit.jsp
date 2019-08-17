@@ -27,7 +27,7 @@
 		<spring:message code="finder.startDate" />:
 	</form:label>
 	<form:input type="date" path="startDate"
-		format="{0,date,dd/MM/yyyy}" placeholder="dd/MM/yyy" />
+		format="{0,date,dd/MM/yyyy}" placeholder="dd/MM/yyyy" />
 		
 	<form:label path="endDate">
 		<spring:message code="finder.endDate" />:
