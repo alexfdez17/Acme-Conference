@@ -47,3 +47,5 @@
 		href="conference/display.do?conferenceId=${registration.conference.id}"><spring:message
 			code="registration.conference.display" /></a>
 </fieldset>
+
+<acme:cancel url="registration/author/list.do" code="registration.back"/>

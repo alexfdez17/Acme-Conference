@@ -27,7 +27,8 @@
 	placeholder="<spring:message code="message.topic.placeholder" />" />
 <br />
 <!--  Listing grid -->
-
+<br/>
+<spring:message code="message.listing.info" />
 <display:table pagesize="5" class="displaytag" name="mezzages"
 	requestURI="${requestURI}" id="row">
 
@@ -38,19 +39,24 @@
 	</display:column>
 
 	<display:column titleKey="message.recipient">
-		<jstl:set var="size" value="${fn:length(row.recipients)}" />
-		<jstl:set var="cont" value="0" />
+		<jstl:if test="${not row.isBroadcast}">
+			<jstl:set var="size" value="${fn:length(row.recipients)}" />
+			<jstl:set var="cont" value="0" />
 
-		<jstl:forEach items="${row.recipients}" var="recipient">
-			<a href="message/list.do?recipientId=${recipient.id}"> <jstl:out
-					value="${recipient.userAccount.username}" />
-			</a>
+			<jstl:forEach items="${row.recipients}" var="recipient">
+				<a href="message/list.do?recipientId=${recipient.id}"> <jstl:out
+						value="${recipient.userAccount.username}" />
+				</a>
 
-			<jstl:set var="cont" value="${cont + 1}" />
-			<jstl:if test="${cont < size}">
-				<b><jstl:out value=";" /></b>
-			</jstl:if>
-		</jstl:forEach>
+				<jstl:set var="cont" value="${cont + 1}" />
+				<jstl:if test="${cont < size}">
+					<b><jstl:out value=";" /></b>
+				</jstl:if>
+			</jstl:forEach>
+		</jstl:if>
+		<jstl:if test="${row.isBroadcast}">
+			<spring:message code="message.isBroadcast" />
+		</jstl:if>
 	</display:column>
 
 	<display:column property="subject" titleKey="message.subject"

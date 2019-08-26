@@ -41,4 +41,5 @@
 	<form:hidden path="id" />
 	
 	<acme:submit code="message.delete" name="delete" />
+	<acme:cancel url="message/list.do" code="message.back"/>
 </form:form>

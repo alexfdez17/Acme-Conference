@@ -30,6 +30,7 @@ public class Message extends DomainEntity {
 	private Date				moment;
 	private String				subject;
 	private String				body;
+	private boolean				isBroadcast;
 
 	//Relationships
 	private Actor				owner;
@@ -70,6 +71,15 @@ public class Message extends DomainEntity {
 
 	public void setBody(final String body) {
 		this.body = body;
+	}
+
+	@NotNull
+	public boolean getIsBroadcast() {
+		return this.isBroadcast;
+	}
+
+	public void setIsBroadcast(final boolean isBroadcast) {
+		this.isBroadcast = isBroadcast;
 	}
 
 	//Relationships

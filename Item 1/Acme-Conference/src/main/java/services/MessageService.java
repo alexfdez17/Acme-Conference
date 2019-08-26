@@ -222,6 +222,7 @@ public class MessageService {
 		final Topic topic = message.getTopic();
 
 		result.setBody(body);
+		result.setIsBroadcast(false);
 		result.setMoment(moment);
 		result.setSender(sender);
 		result.setSubject(subject);

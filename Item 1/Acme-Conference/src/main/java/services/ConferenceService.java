@@ -254,7 +254,13 @@ public class ConferenceService {
 
 	public Conference reconstruct(final Conference conference, final BindingResult binding) {
 		final Conference result = conference;
+
 		final int conferenceId = conference.getId();
+		final Date submissionDeadline = result.getSubmissionDeadline();
+		final Date notificationDeadline = result.getNotificationDeadline();
+		final Date cameraReadyDeadline = result.getCameraReadyDeadline();
+		final Date startDate = result.getStartDate();
+		final Date endDate = result.getEndDate();
 
 		final Collection<Activity> activities;
 
@@ -268,7 +274,9 @@ public class ConferenceService {
 
 		result.setActivities(activities);
 
-		this.checkDates(conference, binding);
+		if (submissionDeadline != null && notificationDeadline != null && cameraReadyDeadline != null && startDate != null && endDate != null)
+			this.checkDates(conference, binding);
+
 		this.validator.validate(result, binding);
 
 		if (binding.hasErrors())
@@ -276,7 +284,6 @@ public class ConferenceService {
 
 		return result;
 	}
-
 	// Auxiliary methods
 	private int findMaxFreq(final Collection<String> words) {
 		int maxFreq = 0;

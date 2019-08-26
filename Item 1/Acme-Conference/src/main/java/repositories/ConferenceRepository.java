@@ -45,16 +45,16 @@ public interface ConferenceRepository extends JpaRepository<Conference, Integer>
 	@Query("select c from Conference c where c.isFinal = true and (c.title like %?1% or c.acronym like %?1% or c.venue like %?1% or c.summary like %?1%)")
 	Collection<Conference> findAllByKeyword(String keyword);
 
-	@Query("select c from Conference c where DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) < 5")
+	@Query("select c from Conference c where DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) < 5 and DATEDIFF(c.cameraReadyDeadline, CURRENT_DATE) >= 0")
 	Collection<Conference> findAllCameraReadyDeadlineElapsesLess5Days();
 
 	@Query("select c from Conference c where c.category.id = ?1")
 	Collection<Conference> findAllByCategoryId(Integer categoryId);
 
-	@Query("select c from Conference c where DATEDIFF(c.notificationDeadline, CURRENT_DATE) < 5")
+	@Query("select c from Conference c where DATEDIFF(c.notificationDeadline, CURRENT_DATE) < 5 and DATEDIFF(c.notificationDeadline, CURRENT_DATE) >= 0")
 	Collection<Conference> findAllNotificationDeadlineElapsesLess5Days();
 
-	@Query("select c from Conference c where DATEDIFF(c.startDate, CURRENT_DATE) < 5")
+	@Query("select c from Conference c where DATEDIFF(c.startDate, CURRENT_DATE) < 5 and DATEDIFF(c.startDate, CURRENT_DATE) >= 0")
 	Collection<Conference> findAllOrganisedLess5Days();
 
 	@Query("select c from Conference c where DATEDIFF(CURRENT_DATE, c.startDate) <= 365")

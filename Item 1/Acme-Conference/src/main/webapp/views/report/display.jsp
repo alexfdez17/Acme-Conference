@@ -37,24 +37,26 @@
 			value="${report.submission.paper.summary}" />
 
 	</fieldset>
-
-	<fieldset>
-		<legend>
-			<spring:message code="report.submission.cameraReadyPaper.info" />
-		</legend>
-
-		<acme:out code="report.submission.paper.title"
-			value="${report.submission.cameraReadyPaper.title}" />
-
-		<acme:out code="report.submission.paper.authors"
-			value="${report.submission.cameraReadyPaper.authors}" />
-
-		<acme:out code="report.submission.paper.summary"
-			value="${report.submission.cameraReadyPaper.summary}" />
-
-		<acme:url url="${report.submission.cameraReadyPaper.document}"
-			code="report.submission.cameraReadyPaper.document" />
-	</fieldset>
+	
+	<jstl:if test="${report.submission.cameraReadyPaper != null}">
+		<fieldset>
+			<legend>
+				<spring:message code="report.submission.cameraReadyPaper.info" />
+			</legend>
+	
+			<acme:out code="report.submission.paper.title"
+				value="${report.submission.cameraReadyPaper.title}" />
+	
+			<acme:out code="report.submission.paper.authors"
+				value="${report.submission.cameraReadyPaper.authors}" />
+	
+			<acme:out code="report.submission.paper.summary"
+				value="${report.submission.cameraReadyPaper.summary}" />
+	
+			<acme:url url="${report.submission.cameraReadyPaper.document}"
+				code="report.submission.cameraReadyPaper.document" />
+		</fieldset>
+	</jstl:if>
 </fieldset>
 
 <fieldset>

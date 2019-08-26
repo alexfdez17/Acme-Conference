@@ -15,7 +15,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	
+
 	<fieldset>
 		<legend>
 			<spring:message code="conference.basic.info" />
@@ -34,13 +34,15 @@
 			<spring:message code="conference.dates.info" />
 		</legend>
 		<acme:textbox code="conference.submissionDeadline"
-			path="submissionDeadline" />
+			path="submissionDeadline" placeholder="MM/dd/yyyy HH:mm" />
 		<acme:textbox code="conference.notificationDeadline"
-			path="notificationDeadline" />
+			path="notificationDeadline" placeholder="MM/dd/yyyy HH:mm" />
 		<acme:textbox code="conference.cameraReadyDeadline"
-			path="cameraReadyDeadline" />
-		<acme:textbox code="conference.startDate" path="startDate" />
-		<acme:textbox code="conference.endDate" path="endDate" />
+			path="cameraReadyDeadline" placeholder="MM/dd/yyyy HH:mm" />
+		<acme:textbox code="conference.startDate" path="startDate"
+			placeholder="MM/dd/yyyy" />
+		<acme:textbox code="conference.endDate" path="endDate"
+			placeholder="MM/dd/yyyy" />
 	</fieldset>
 
 	<acme:submit name="draft" code="conference.save.as.draft" />

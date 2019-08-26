@@ -1,6 +1,7 @@
 
 package controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -84,10 +86,35 @@ public class ConferenceController extends AbstractController {
 
 	protected ModelAndView createDisplayModelAndView(final Conference conference) {
 		final ModelAndView result = new ModelAndView("conference/display");
+
 		final Collection<Activity> activities = conference.getActivities();
+		final Date submissionDeadline = conference.getSubmissionDeadline();
+		final Date notificationDeadline = conference.getNotificationDeadline();
+		final Date cameraReadyDeadline = conference.getCameraReadyDeadline();
+		final Date startDate = conference.getStartDate();
+		final Date endDate = conference.getEndDate();
+
 		boolean hasSponsorships = false;
 
 		final List<Sponsorship> sponsorships = new ArrayList<Sponsorship>(this.sponsorshipService.findByConference(conference));
+
+		final String lang = LocaleContextHolder.getLocale().getLanguage();
+		final SimpleDateFormat timeFormatter;
+		final SimpleDateFormat dateFormatter;
+
+		if (lang.equals("en")) {
+			dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+			timeFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		} else {
+			dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			timeFormatter = new SimpleDateFormat("MM/dd/yyyy");
+		}
+
+		final String formatedSubmissionDeadline = timeFormatter.format(submissionDeadline);
+		final String formatedNotificationDeadline = timeFormatter.format(notificationDeadline);
+		final String formatedCameraReadyDeadline = timeFormatter.format(cameraReadyDeadline);
+		final String formatedStartDate = dateFormatter.format(startDate);
+		final String formatedEndDate = dateFormatter.format(endDate);
 
 		if (!sponsorships.isEmpty()) {
 			hasSponsorships = true;
@@ -97,6 +124,13 @@ public class ConferenceController extends AbstractController {
 		}
 
 		result.addObject("hasSponsorships", hasSponsorships);
+
+		result.addObject("formatedSubmissionDeadline", formatedSubmissionDeadline);
+		result.addObject("formatedNotificationDeadline", formatedNotificationDeadline);
+		result.addObject("formatedCameraReadyDeadline", formatedCameraReadyDeadline);
+		result.addObject("formatedStartDate", formatedStartDate);
+		result.addObject("formatedEndDate", formatedEndDate);
+
 		result.addObject("activities", activities);
 		result.addObject("conference", conference);
 		result.addObject("requestURI", "conference/display.do");
@@ -163,7 +197,13 @@ public class ConferenceController extends AbstractController {
 		final ModelAndView result = new ModelAndView("conference/list");
 		final Date today = new Date();
 
+		final String lang = LocaleContextHolder.getLocale().getLanguage();
+		final String timeFormatter = lang.equals("en") ? "MM/dd/yyyy HH:mm" : "dd/MM/yyyy HH:mm";
+		final String dateFormatter = lang.equals("en") ? "MM/dd/yyyy" : "dd/MM/yyyy";
+
 		result.addObject("conferences", conferences);
+		result.addObject("dateFormatter", dateFormatter);
+		result.addObject("timeFormatter", timeFormatter);
 		result.addObject("requestURI", "conference/list.do");
 		result.addObject("today", today);
 

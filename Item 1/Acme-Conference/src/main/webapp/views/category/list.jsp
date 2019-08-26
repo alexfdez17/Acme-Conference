@@ -28,12 +28,12 @@
 		<a href="category/administrator/list.do?parentId=${row.id}"> <spring:message
 				code="category.children" /></a>
 	</display:column>
-	
+
 	<display:column>
 		<a href="category/administrator/edit.do?categoryId=${row.id}"> <spring:message
 				code="category.edit" /></a>
 	</display:column>
-	
+
 	<display:column>
 		<a href="category/administrator/create.do?parentId=${row.id}"><spring:message
 				code="category.add.child" /></a>
@@ -41,7 +41,14 @@
 
 </display:table>
 
-<acme:cancel code="category.back"
-	url="category/administrator/list.do?parentId=${row.parent.parent.id}" />
+<jstl:if test="${row.parent.parent != null}">
+	<acme:cancel code="category.back"
+		url="category/administrator/list.do?parentId=${row.parent.parent.id}" />
+</jstl:if>
+<jstl:if test="${row.parent.parent == null}">
+	<button type="button" onclick="window.history.back();" >
+	<spring:message code="message.back" />
+</button>
+</jstl:if>
 <acme:cancel code="category.create"
 	url="category/administrator/create.do" />

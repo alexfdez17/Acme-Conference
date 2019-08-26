@@ -17,8 +17,7 @@
 			<spring:message code="conference.sponsorship.info" />
 		</legend>
 		<img src="${sponsorship.banner}" alt="${sponsorship.banner}" /> <br />
-		<acme:url code="sponsorship.targetURL"
-			url="${sponsorship.targetURL}" />
+		<acme:url code="sponsorship.targetURL" url="${sponsorship.targetURL}" />
 	</fieldset>
 </jstl:if>
 
@@ -42,15 +41,15 @@
 
 	<security:authorize access="hasAnyRole('ADMIN', 'AUTHOR')">
 		<acme:out code="conference.submissionDeadline"
-			value="${conference.submissionDeadline}" />
+			value="${formatedSubmissionDeadline}" />
 		<acme:out code="conference.notificationDeadline"
-			value="${conference.notificationDeadline}" />
+			value="${formatedNotificationDeadline}" />
 		<acme:out code="conference.cameraReadyDeadline"
-			value="${conference.cameraReadyDeadline}" />
+			value="${formatedCameraReadyDeadline}" />
 	</security:authorize>
 
-	<acme:out code="conference.startDate" value="${conference.startDate}" />
-	<acme:out code="conference.endDate" value="${conference.endDate}" />
+	<acme:out code="conference.startDate" value="${formatedStartDate}" />
+	<acme:out code="conference.endDate" value="${formatedEndDate}" />
 </fieldset>
 
 <fieldset>

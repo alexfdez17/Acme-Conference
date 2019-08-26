@@ -796,6 +796,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="true" />
 		<property name="owner" ref="admin" />
 		<property name="sender" ref="admin" />
 		<property name="recipients">
@@ -976,6 +977,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author1" />
 		<property name="sender" ref="author1" />
 		<property name="recipients">
@@ -995,6 +997,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author1" />
 		<property name="sender" ref="author1" />
 		<property name="recipients">
@@ -1013,6 +1016,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author1" />
 		<property name="sender" ref="author1" />
 		<property name="recipients">
@@ -1032,6 +1036,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author1" />
 		<property name="sender" ref="author1" />
 		<property name="recipients">
@@ -1050,6 +1055,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author1" />
 		<property name="sender" ref="author1" />
 		<property name="recipients">
@@ -1069,6 +1075,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author1" />
 		<property name="sender" ref="author1" />
 		<property name="recipients">
@@ -1278,6 +1285,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author2" />
 		<property name="sender" ref="author2" />
 		<property name="recipients">
@@ -1297,6 +1305,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author2" />
 		<property name="sender" ref="author2" />
 		<property name="recipients">
@@ -1316,6 +1325,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author2" />
 		<property name="sender" ref="author2" />
 		<property name="recipients">
@@ -1334,6 +1344,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author2" />
 		<property name="sender" ref="author2" />
 		<property name="recipients">
@@ -1352,6 +1363,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author2" />
 		<property name="sender" ref="author2" />
 		<property name="recipients">
@@ -1370,6 +1382,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author2" />
 		<property name="sender" ref="author2" />
 		<property name="recipients">
@@ -1426,6 +1439,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="author3" />
 		<property name="sender" ref="author3" />
 		<property name="recipients">
@@ -1507,6 +1521,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="reviewer1" />
 		<property name="sender" ref="reviewer1" />
 		<property name="recipients">
@@ -1525,6 +1540,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="reviewer1" />
 		<property name="sender" ref="reviewer1" />
 		<property name="recipients">
@@ -1584,6 +1600,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="reviewer2" />
 		<property name="sender" ref="reviewer2" />
 		<property name="recipients">
@@ -1643,6 +1660,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="reviewer3" />
 		<property name="sender" ref="reviewer3" />
 		<property name="recipients">
@@ -1739,6 +1757,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="sponsor1" />
 		<property name="sender" ref="sponsor1" />
 		<property name="recipients">
@@ -1758,6 +1777,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="sponsor1" />
 		<property name="sender" ref="sponsor1" />
 		<property name="recipients">
@@ -1869,6 +1889,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="sponsor2" />
 		<property name="sender" ref="sponsor2" />
 		<property name="recipients">
@@ -1979,6 +2000,7 @@
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
 		<property name="owner" ref="sponsor3" />
 		<property name="sender" ref="sponsor3" />
 		<property name="recipients">

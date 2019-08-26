@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -200,8 +201,13 @@ public class ConferenceAdministratorController extends AbstractController {
 	private ModelAndView createListModelAndView(final Collection<Conference> conferences) {
 		final ModelAndView result = new ModelAndView("conference/list");
 		final Date today = new Date();
+		final String lang = LocaleContextHolder.getLocale().getLanguage();
+		final String timeFormatter = lang.equals("en") ? "MM/dd/yyyy HH:mm" : "dd/MM/yyyy HH:mm";
+		final String dateFormatter = lang.equals("en") ? "MM/dd/yyyy" : "dd/MM/yyyy";
 
 		result.addObject("conferences", conferences);
+		result.addObject("timeFormatter", timeFormatter);
+		result.addObject("dateFormatter", dateFormatter);
 		result.addObject("requestURI", "conference/administrator/list.do");
 		result.addObject("today", today);
 

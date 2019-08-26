@@ -117,6 +117,8 @@ public class MessageAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		try {
+			message.setIsBroadcast(true);
+
 			message = this.messageService.reconstruct(message, binding);
 
 			this.messageService.broadcast(message);

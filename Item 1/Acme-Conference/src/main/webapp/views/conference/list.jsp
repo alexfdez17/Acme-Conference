@@ -21,7 +21,7 @@
 			return false;
 		}
 	}
-	
+
 	function listByCategory(event) {
 		if (event.keyCode == 13) {
 			var category = document.getElementById("category").value;
@@ -64,30 +64,30 @@
 
 	<spring:message code="conference.startDate" var="startDateHeader" />
 	<display:column property="startDate" title="${startDateHeader}"
-		sortable="true" format="{0,date,yy/MM/dd}" />
+		sortable="true" format="{0,date,${dateFormatter }}" />
 
 	<spring:message code="conference.endDate" var="endDateHeader" />
 	<display:column property="endDate" title="${endDateHeader}"
-		sortable="true" format="{0,date,yy/MM/dd}" />
+		sortable="true" format="{0,date,${dateFormatter }}" />
 
 	<security:authorize access="hasAnyRole('ADMIN', 'AUTHOR')">
 		<spring:message code="conference.submissionDeadline"
 			var="submissionDeadlineHeader" />
 		<display:column property="submissionDeadline"
 			title="${submissionDeadlineHeader}" sortable="true"
-			format="{0,date,yy/MM/dd HH:mm}" />
+			format="{0,date,${timeFormatter }}" />
 
 		<spring:message code="conference.notificationDeadline"
 			var="notificationDeadlineHeader" />
 		<display:column property="notificationDeadline"
 			title="${notificationDeadlineHeader}" sortable="true"
-			format="{0,date,yy/MM/dd HH:mm}" />
+			format="{0,date,${timeFormatter }}" />
 
 		<spring:message code="conference.cameraReadyDeadline"
 			var="cameraReadyDeadlineHeader" />
 		<display:column property="cameraReadyDeadline"
 			title="${cameraReadyDeadlineHeader}" sortable="true"
-			format="{0,date,yy/MM/dd HH:mm}" />
+			format="{0,date,${timeFormatter }}" />
 	</security:authorize>
 
 	<acme:column code="conference.fee" property="fee" sortable="true" />
