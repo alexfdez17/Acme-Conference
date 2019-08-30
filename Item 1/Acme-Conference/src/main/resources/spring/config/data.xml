@@ -25,9 +25,18 @@
 	<jpa:repositories base-package="security" />
 
 	<!-- Data source -->
-
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+	
+	<!-- Clevercloud
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+ 		<property name="jdbcUrl" value="jdbc:mysql://b2z5zn8dskyhd6s8ubrn-mysql.services.clever-cloud.com:3306/b2z5zn8dskyhd6s8ubrn"/>
+ 		<property name="user" value="ucrlreoard4jbkux" />
+ 		<property name="password" value="AJmTup2wFZyTvhabZWuD" />
+ 		<property name="minPoolSize" value="1" />
+ 		<property name="maxPoolSize" value="5" />
+	 -->
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">				
+ 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Acme-Conference" />
 		<property name="user" value="acme-user" />
 		<property name="password" value="ACME-Us3r-P@ssw0rd" />
