@@ -44,14 +44,16 @@ public class PresentationService {
 		Presentation result;
 		Conference conference = new Conference();
 
-		final Collection<Conference> conferences = this.conferenceService.findAll();
-		for (final Conference c : conferences)
-			if (c.getActivities().contains(presentation))
-				conference = c;
+		if (presentation.getId() != 0) {
+			final Collection<Conference> conferences = this.conferenceService.findAll();
+			for (final Conference c : conferences)
+				if (c.getActivities().contains(presentation))
+					conference = c;
 
-		Assert.isTrue(conference.getIsFinal());
-		Assert.isTrue(presentation.getStartMoment().after(conference.getStartDate()));
-		Assert.isTrue(presentation.getStartMoment().before(conference.getEndDate()));
+			Assert.isTrue(!conference.getIsFinal());
+			Assert.isTrue(presentation.getStartMoment().after(conference.getStartDate()));
+			Assert.isTrue(presentation.getStartMoment().before(conference.getEndDate()));
+		}
 
 		result = this.presentationRepository.save(presentation);
 		this.presentationRepository.flush();
@@ -61,6 +63,14 @@ public class PresentationService {
 	public void delete(final Presentation presentation) {
 		Assert.notNull(presentation);
 		Assert.isTrue(presentation.getId() != 0);
+		Conference conference = new Conference();
+
+		final Collection<Conference> conferences = this.conferenceService.findAll();
+		for (final Conference c : conferences)
+			if (c.getActivities().contains(presentation))
+				conference = c;
+
+		Assert.isTrue(!conference.getIsFinal());
 
 		this.presentationRepository.delete(presentation);
 	}
@@ -90,6 +100,9 @@ public class PresentationService {
 	public Presentation register(final ActivityPresentationForm activityPresentationForm) {
 		final Presentation result = this.create();
 		final Conference conference = activityPresentationForm.getConference();
+
+		Assert.isTrue(activityPresentationForm.getStartMoment().after(conference.getStartDate()));
+		Assert.isTrue(activityPresentationForm.getStartMoment().before(conference.getEndDate()));
 
 		result.setTitle(activityPresentationForm.getTitle());
 		result.setSpeakers(activityPresentationForm.getSpeakers());

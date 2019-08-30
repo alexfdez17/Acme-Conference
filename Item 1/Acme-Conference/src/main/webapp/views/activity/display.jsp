@@ -66,17 +66,20 @@
 	<!-- Actions -->
 	
 	<security:authorize access="hasRole('ADMIN')">
+	<jstl:if test="${conference.isFinal == false}">
 	<display:column>
 		<a href="section/administrator/edit.do?sectionId=${row.id}"> <spring:message
 				code="activity.edit" />
 		</a>
 	</display:column>
+	</jstl:if>
 	</security:authorize>
 	
 </display:table>
 <br />
 <br />
 <security:authorize access="hasRole('ADMIN')">
+<jstl:if test="${conference.isFinal == false}">
 <a href="section/administrator/create.do?tutorialId=${activity.id}"> <spring:message
 				code="activity.section.add" />
 </a>
@@ -84,6 +87,7 @@
 <a href="tutorial/administrator/edit.do?tutorialId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
+</jstl:if>
 </security:authorize>
 </jstl:if>
 
@@ -109,17 +113,21 @@
 <br />
 <br />
 <security:authorize access="hasRole('ADMIN')">
+<jstl:if test="${conference.isFinal == false}">
 <a href="presentation/administrator/edit.do?presentationId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
+</jstl:if>
 </security:authorize>
 </jstl:if>
 
 <jstl:if test="${type == 'panel'}">
 <security:authorize access="hasRole('ADMIN')">
+<jstl:if test="${conference.isFinal == false}">
 <a href="panel/administrator/edit.do?panelId=${activity.id}"> <spring:message
 				code="activity.edit" />
 </a>
+</jstl:if>
 </security:authorize>
 </jstl:if>
 

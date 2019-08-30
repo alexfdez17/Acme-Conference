@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActivityService;
 import services.ConferenceService;
 import services.PanelService;
 import services.PresentationService;
@@ -27,6 +28,9 @@ public class ActivityController extends AbstractController {
 
 	@Autowired
 	private ConferenceService	conferenceService;
+
+	@Autowired
+	private ActivityService		activityService;
 
 	@Autowired
 	private TutorialService		tutorialService;
@@ -63,6 +67,7 @@ public class ActivityController extends AbstractController {
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam final int activityId) {
 		final ModelAndView result;
+		final Activity activity = this.activityService.findOne(activityId);
 
 		if (this.tutorialService.findOne(activityId) != null) {
 			final Tutorial tutorial = this.tutorialService.findOne(activityId);
@@ -82,6 +87,14 @@ public class ActivityController extends AbstractController {
 			result.addObject("type", "presentation");
 			result.addObject("activity", presentation);
 		}
+
+		Conference conference = new Conference();
+		final Collection<Conference> conferences = this.conferenceService.findAll();
+		for (final Conference c : conferences)
+			if (c.getActivities().contains(activity))
+				conference = c;
+
+		result.addObject("conference", conference);
 
 		return result;
 	}

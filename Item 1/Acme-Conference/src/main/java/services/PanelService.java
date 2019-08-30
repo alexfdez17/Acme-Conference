@@ -43,14 +43,16 @@ public class PanelService {
 		Panel result;
 		Conference conference = new Conference();
 
-		final Collection<Conference> conferences = this.conferenceService.findAll();
-		for (final Conference c : conferences)
-			if (c.getActivities().contains(panel))
-				conference = c;
+		if (panel.getId() != 0) {
+			final Collection<Conference> conferences = this.conferenceService.findAll();
+			for (final Conference c : conferences)
+				if (c.getActivities().contains(panel))
+					conference = c;
 
-		Assert.isTrue(conference.getIsFinal());
-		Assert.isTrue(panel.getStartMoment().after(conference.getStartDate()));
-		Assert.isTrue(panel.getStartMoment().before(conference.getEndDate()));
+			Assert.isTrue(!conference.getIsFinal());
+			Assert.isTrue(panel.getStartMoment().after(conference.getStartDate()));
+			Assert.isTrue(panel.getStartMoment().before(conference.getEndDate()));
+		}
 
 		result = this.panelRepository.save(panel);
 		this.panelRepository.flush();
@@ -60,6 +62,14 @@ public class PanelService {
 	public void delete(final Panel panel) {
 		Assert.notNull(panel);
 		Assert.isTrue(panel.getId() != 0);
+		Conference conference = new Conference();
+
+		final Collection<Conference> conferences = this.conferenceService.findAll();
+		for (final Conference c : conferences)
+			if (c.getActivities().contains(panel))
+				conference = c;
+
+		Assert.isTrue(!conference.getIsFinal());
 
 		this.panelRepository.delete(panel);
 	}
@@ -89,6 +99,9 @@ public class PanelService {
 	public Panel register(final ActivityPanelForm activityPanelForm) {
 		final Panel result = this.create();
 		final Conference conference = activityPanelForm.getConference();
+
+		Assert.isTrue(activityPanelForm.getStartMoment().after(conference.getStartDate()));
+		Assert.isTrue(activityPanelForm.getStartMoment().before(conference.getEndDate()));
 
 		result.setTitle(activityPanelForm.getTitle());
 		result.setSpeakers(activityPanelForm.getSpeakers());
