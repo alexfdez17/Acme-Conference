@@ -133,7 +133,9 @@ public class SubmissionService {
 
 		this.administratorService.findByPrincipal();
 
-		submission.setReviewers(reviewers);
+		final Collection<Reviewer> retrievedReviewers = submission.getReviewers();
+		retrievedReviewers.addAll(reviewers);
+		submission.setReviewers(retrievedReviewers);
 
 		return this.submissionRepository.save(submission);
 	}
@@ -142,13 +144,13 @@ public class SubmissionService {
 		final Collection<Submission> allUnderReview = this.findAllUnderReview();
 
 		for (final Submission submission : allUnderReview) {
-			final String conferenceTitle = submission.getConference().getTitle();
-			final String conferenceSummary = submission.getConference().getSummary();
-			final int submissionId = submission.getId();
+			final String conferenceTitle = submission.getConference().getTitle().toLowerCase();
+			final String conferenceSummary = submission.getConference().getSummary().toLowerCase();
 
-			final Collection<Reviewer> reviewers = this.reviewerService.findAllByConferenceTitleAndSummaryNotAssignedToSubmission(conferenceTitle, conferenceSummary, submissionId);
+			final Collection<Reviewer> reviewers = this.reviewerService.findAllByConferenceTitleAndSummaryNotAssignedToSubmission(conferenceTitle, conferenceSummary, submission);
 
-			this.assignToReviewers(submission, reviewers);
+			if (!reviewers.isEmpty())
+				this.assignToReviewers(submission, reviewers);
 		}
 	}
 

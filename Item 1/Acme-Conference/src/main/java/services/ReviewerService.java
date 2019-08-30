@@ -91,11 +91,25 @@ public class ReviewerService {
 		return this.reviewerRepository.findAllNotAssginedToSubmission(submissionId);
 	}
 
-	public Collection<Reviewer> findAllByConferenceTitleAndSummaryNotAssignedToSubmission(final String conferenceTitle, final String conferenceSummary, final int submissionId) {
+	public Collection<Reviewer> findAllByConferenceTitleAndSummaryNotAssignedToSubmission(final String conferenceTitle, final String conferenceSummary, final Submission submission) {
 		Assert.notNull(conferenceTitle);
 		Assert.notNull(conferenceSummary);
 
-		List<Reviewer> result = new ArrayList<>(this.reviewerRepository.findAllByConferenceTitleAndSummaryNotAssignedToSubmission(conferenceTitle, conferenceSummary, submissionId));
+		List<Reviewer> result = new ArrayList<>();
+
+		final Collection<Reviewer> notAssginedReviewers = this.findAllNotAssginedToSubmission(submission);
+
+		for (final Reviewer reviewer : notAssginedReviewers)
+			for (final String keyword : reviewer.getKeywords()) {
+				final boolean bool1 = conferenceSummary.contains(keyword);
+				final boolean bool2 = conferenceTitle.contains(keyword);
+
+				if (bool1 && bool2) {
+					result.add(reviewer);
+					break;
+				}
+			}
+
 		final int size = result.size();
 
 		if (size < 3)

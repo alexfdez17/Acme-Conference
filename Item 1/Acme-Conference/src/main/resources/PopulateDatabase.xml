@@ -814,6 +814,81 @@
 		</property>
 		<property name="topic" ref="topic5" />
 	</bean>
+	
+	<bean id="adminmessage2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
+	<bean id="adminmessage3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="adminmessage4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="adminmessage5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="adminmessage6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
 
 	<!-- ************ END ADMIN MESSAGE1 ************ -->
 
@@ -1470,9 +1545,9 @@
 		<property name="userAccount" ref="userAccount5" />
 		<property name="keywords">
 			<list>
-				<value>keyword1</value>
-				<value>keyword2</value>
-				<value>keyword3</value>
+				<value>data</value>
+				<value>science</value>
+				<value>computer</value>
 			</list>
 		</property>
 	</bean>
@@ -1550,6 +1625,66 @@
 		</property>
 		<property name="topic" ref="topic2" />
 	</bean>
+	
+	<bean id="reviewer1message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="reviewer1message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="reviewer1message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="reviewer1message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
 
 	<!-- ************ END REVIEWER1 MESSAGE2 ************ -->
 
@@ -1568,9 +1703,8 @@
 		<property name="userAccount" ref="userAccount6" />
 		<property name="keywords">
 			<list>
-				<value>keyword1</value>
-				<value>keyword2</value>
-				<value>keyword3</value>
+				<value>science</value>
+				<value>economy</value>
 			</list>
 		</property>
 	</bean>
@@ -1610,7 +1744,82 @@
 		</property>
 		<property name="topic" ref="topic1" />
 	</bean>
-
+	
+	<bean id="reviewer2message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="reviewer2message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="reviewer2message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="reviewer2message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="reviewer2message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
 	<!-- ************ END REVIEWER2 MESSAGE1 ************ -->
 
 	<!-- **************************** END REVIEWER2 **************************** -->
@@ -1628,9 +1837,8 @@
 		<property name="userAccount" ref="userAccount7" />
 		<property name="keywords">
 			<list>
-				<value>keyword1</value>
-				<value>keyword2</value>
-				<value>keyword3</value>
+				<value>business</value>
+				<value>computer</value>
 			</list>
 		</property>
 	</bean>
@@ -1688,7 +1896,7 @@
 		<property name="userAccount" ref="userAccount11" />
 		<property name="keywords">
 			<list>
-				<value>title1</value>
+				<value>data</value>
 			</list>
 		</property>
 	</bean>
@@ -1708,7 +1916,8 @@
 		<property name="userAccount" ref="userAccount12" />
 		<property name="keywords">
 			<list>
-				<value>title3</value>
+				<value>biology</value>
+				<value>nature</value>
 			</list>
 		</property>
 	</bean>
@@ -1728,7 +1937,8 @@
 		<property name="userAccount" ref="userAccount13" />
 		<property name="keywords">
 			<list>
-				<value>summary2</value>
+				<value>architecture</value>
+				<value>design</value>
 			</list>
 		</property>
 	</bean>
@@ -1787,6 +1997,69 @@
 			</list>
 		</property>
 		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="sponsor1message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor2" />
+				<ref bean="sponsor3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="sponsor1message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer3" />
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="sponsor1message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="sponsor1message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+				<ref bean="sponsor3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
 	</bean>
 
 	<!-- ************ END SPONSOR1 MESSAGE2 ************ -->
@@ -1886,6 +2159,86 @@
 	<!-- ************ START SPONSOR2 MESSAGE1 ************ -->
 
 	<bean id="sponsor2message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="sponsor2message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="sponsor2message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="sponsor2message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="sponsor2message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
+	<bean id="sponsor2message6" class="domain.Message">
 		<property name="moment" value="01/01/2019 12:00" />
 		<property name="subject" value="Subject" />
 		<property name="body" value="Body" />
@@ -2021,7 +2374,7 @@
 	<!-- **************************** START CONFERENCE1 **************************** -->
 
 	<bean id="conference1" class="domain.Conference">
-		<property name="title" value="Title1" />
+		<property name="title" value="Conference on Data" />
 		<property name="acronym" value="Acronym1" />
 		<property name="venue" value="Venue1" />
 		<property name="submissionDeadline" value="07/17/2019 12:00" />
@@ -2029,10 +2382,10 @@
 		<property name="cameraReadyDeadline" value="07/26/2019 12:00" />
 		<property name="startDate" value="07/26/2019" />
 		<property name="endDate" value="07/31/2019" />
-		<property name="summary" value="Summary1" />
+		<property name="summary" value="This science conference focuses on technologies to deal with nowadays data" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
-		<property name="category" ref="category2" />
+		<property name="category" ref="category7" />
 		<property name="activities">
 			<list>
 				<ref bean="conference1tutorial1" />
@@ -2245,7 +2598,7 @@
 	<!-- **************************** START CONFERENCE2 **************************** -->
 
 	<bean id="conference2" class="domain.Conference">
-		<property name="title" value="Title2" />
+		<property name="title" value="International Data Science Conference" />
 		<property name="acronym" value="Acronym2" />
 		<property name="venue" value="Venue2" />
 		<property name="submissionDeadline" value="11/10/2019 12:00" />
@@ -2253,10 +2606,10 @@
 		<property name="cameraReadyDeadline" value="11/30/2019 12:00" />
 		<property name="startDate" value="12/01/2019" />
 		<property name="endDate" value="12/31/2019" />
-		<property name="summary" value="Summary2" />
+		<property name="summary" value="Data Science is a hot topic nowadays; find the latest research results in this conference" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
-		<property name="category" ref="category2" />
+		<property name="category" ref="category7" />
 		<property name="activities">
 			<list>
 				<ref bean="conference2tutorial1" />
@@ -2335,7 +2688,7 @@
 	<!-- **************************** START CONFERENCE3 **************************** -->
 
 	<bean id="conference3" class="domain.Conference">
-		<property name="title" value="Title3" />
+		<property name="title" value="World Multi-Conference on Big Data Science" />
 		<property name="acronym" value="Acronym3" />
 		<property name="venue" value="Venue3" />
 		<property name="submissionDeadline" value="10/10/2019 12:00" />
@@ -2343,7 +2696,7 @@
 		<property name="cameraReadyDeadline" value="10/30/2019 12:00" />
 		<property name="startDate" value="11/01/2019" />
 		<property name="endDate" value="11/30/2019" />
-		<property name="summary" value="Summary3" />
+		<property name="summary" value="Nowhere have you found more papers on big data science" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="false" />
 		<property name="category" ref="category7" />
@@ -2406,7 +2759,7 @@
 	<!-- **************************** START CONFERENCE4 **************************** -->
 
 	<bean id="conference4" class="domain.Conference">
-		<property name="title" value="Title4" />
+		<property name="title" value="Artificial Intelligence on Computer Science" />
 		<property name="acronym" value="Acronym4" />
 		<property name="venue" value="Venue4" />
 		<property name="submissionDeadline" value="07/01/2019 12:00" />
@@ -2414,7 +2767,7 @@
 		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
 		<property name="startDate" value="12/01/2019" />
 		<property name="endDate" value="12/31/2019" />
-		<property name="summary" value="Summary4" />
+		<property name="summary" value="A conference about artificial intelligence and its role on computer science" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
 		<property name="category" ref="category2" />
@@ -2631,7 +2984,7 @@
 	<!-- **************************** START CONFERENCE5 **************************** -->
 
 	<bean id="conference5" class="domain.Conference">
-		<property name="title" value="Title5" />
+		<property name="title" value="Data, business and economy" />
 		<property name="acronym" value="Acronym5" />
 		<property name="venue" value="Venue5" />
 		<property name="submissionDeadline" value="07/01/2019 12:00" />
@@ -2639,10 +2992,10 @@
 		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
 		<property name="startDate" value="12/01/2019" />
 		<property name="endDate" value="12/31/2019" />
-		<property name="summary" value="Summary5" />
+		<property name="summary" value="Data science and its influence on business and macro economy" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="true" />
-		<property name="category" ref="category2" />
+		<property name="category" ref="category7" />
 		<property name="activities">
 			<list>
 				<ref bean="conference5tutorial1" />
@@ -2856,7 +3209,7 @@
 	<!-- **************************** START CONFERENCE6 **************************** -->
 
 	<bean id="conference6" class="domain.Conference">
-		<property name="title" value="Title6" />
+		<property name="title" value="Scutoid's discovery" />
 		<property name="acronym" value="Acronym6" />
 		<property name="venue" value="Venue6" />
 		<property name="submissionDeadline" value="10/10/2019 12:00" />
@@ -2864,10 +3217,10 @@
 		<property name="cameraReadyDeadline" value="10/30/2019 12:00" />
 		<property name="startDate" value="11/01/2019" />
 		<property name="endDate" value="11/30/2019" />
-		<property name="summary" value="Summary6" />
+		<property name="summary" value="A conference about the discovery of the scutoid" />
 		<property name="fee" value="100.00" />
 		<property name="isFinal" value="false" />
-		<property name="category" ref="category7" />
+		<property name="category" ref="category16" />
 		<property name="activities">
 			<list>
 				<ref bean="conference6panel1" />
@@ -2934,9 +3287,9 @@
 	</bean>
 
 	<bean id="paper2" class="domain.Paper">
-		<property name="title" value="CameraReadyPaper1" />
+		<property name="title" value="Paper about data" />
 		<property name="authors" value="Author1, Author2" />
-		<property name="summary" value="Summary" />
+		<property name="summary" value="This paper is about the conference about data science" />
 		<property name="document" value="http://document.com" />
 	</bean>
 

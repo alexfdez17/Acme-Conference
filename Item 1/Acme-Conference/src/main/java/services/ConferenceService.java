@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -185,7 +186,7 @@ public class ConferenceService {
 				buzzWords.add(word);
 		}
 
-		return buzzWords;
+		return new HashSet<>(buzzWords);
 	}
 
 	public Collection<Conference> findAllByKeyword(final String keyword) {
@@ -256,12 +257,6 @@ public class ConferenceService {
 		final Conference result = conference;
 
 		final int conferenceId = conference.getId();
-		final Date submissionDeadline = result.getSubmissionDeadline();
-		final Date notificationDeadline = result.getNotificationDeadline();
-		final Date cameraReadyDeadline = result.getCameraReadyDeadline();
-		final Date startDate = result.getStartDate();
-		final Date endDate = result.getEndDate();
-
 		final Collection<Activity> activities;
 
 		if (!this.exists(conferenceId))
@@ -274,9 +269,7 @@ public class ConferenceService {
 
 		result.setActivities(activities);
 
-		if (submissionDeadline != null && notificationDeadline != null && cameraReadyDeadline != null && startDate != null && endDate != null)
-			this.checkDates(conference, binding);
-
+		this.checkDates(conference, binding);
 		this.validator.validate(result, binding);
 
 		if (binding.hasErrors())
@@ -309,8 +302,8 @@ public class ConferenceService {
 		final Collection<Conference> conferences = this.findAllOrganisedLastYearOrInFuture();
 
 		for (final Conference conference : conferences) {
-			String title = conference.getTitle();
-			String summary = conference.getSummary();
+			String title = conference.getTitle().toLowerCase();
+			String summary = conference.getSummary().toLowerCase();
 
 			for (final String voidWord : voidWords) {
 				final String regex = "\\b" + voidWord + "\\b";
@@ -354,13 +347,13 @@ public class ConferenceService {
 		final Date endDate = conference.getEndDate();
 		final Date startDate = conference.getStartDate();
 
-		if (startDate.after(endDate))
+		if (startDate != null && endDate != null && startDate.after(endDate))
 			binding.rejectValue("startDate", "conference.startDate.after.endDate.error");
-		else if (cameraReadyDeadline.after(startDate))
+		else if (cameraReadyDeadline != null && startDate != null && cameraReadyDeadline.after(startDate))
 			binding.rejectValue("cameraReadyDeadline", "conference.cameraReadyDeadline.after.startDate.error");
-		else if (notificationDeadline.after(cameraReadyDeadline))
+		else if (notificationDeadline != null && cameraReadyDeadline != null && notificationDeadline.after(cameraReadyDeadline))
 			binding.rejectValue("notificationDeadline", "conference.notificationDeadline.after.cameraReadyDeadline.error");
-		else if (submissionDeadline.after(notificationDeadline))
+		else if (submissionDeadline != null && notificationDeadline != null && submissionDeadline.after(notificationDeadline))
 			binding.rejectValue("submissionDeadline", "conference.submissionDeadline.after.notificationDeadline.error");
 
 	}

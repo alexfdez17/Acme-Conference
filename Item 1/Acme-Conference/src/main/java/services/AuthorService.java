@@ -107,8 +107,8 @@ public class AuthorService {
 			double score = 0;
 
 			for (final Paper paper : cameraReadyPapers) {
-				String title = paper.getTitle();
-				String summary = paper.getSummary();
+				String title = paper.getTitle().toLowerCase();
+				String summary = paper.getSummary().toLowerCase();
 
 				title = title.replaceAll("\\d", "").trim();
 				summary = summary.replaceAll("\\d", "").trim();
