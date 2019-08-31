@@ -43,4 +43,6 @@
 
 </display:table>
 
+<security:authorize access="hasRole('REVIEWER')">
 <acme:cancel code="report.create" url="submission/reviewer/list.do"/>
+</security:authorize>

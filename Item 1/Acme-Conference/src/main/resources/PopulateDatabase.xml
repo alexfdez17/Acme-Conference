@@ -1190,12 +1190,16 @@
 		<property name="ticker" value="AAA-FHK7" />
 		<property name="moment" value="07/03/2019 12:00" />
 		<property name="paper" ref="paper1" />
-		<property name="status" value="UNDER-REVIEW" />
+		<property name="cameraReadyPaper" ref="paper3" />
+		<property name="status" value="ACCEPTED" />
 		<property name="reportsAvailable" value="false" />
 		<property name="author" ref="author2" />
 		<property name="conference" ref="conference2" />
 		<property name="reviewers">
 			<list>
+				<ref bean="reviewer1" />
+				<ref bean="reviewer2" />
+				<ref bean="reviewer3" />
 			</list>
 		</property>
 	</bean>
@@ -3290,6 +3294,13 @@
 		<property name="title" value="Paper about data" />
 		<property name="authors" value="Author1, Author2" />
 		<property name="summary" value="This paper is about the conference about data science" />
+		<property name="document" value="http://document.com" />
+	</bean>
+	
+	<bean id="paper3" class="domain.Paper">
+		<property name="title" value="Camera ready paper" />
+		<property name="authors" value="Author1" />
+		<property name="summary" value="Paper about data" />
 		<property name="document" value="http://document.com" />
 	</bean>
 

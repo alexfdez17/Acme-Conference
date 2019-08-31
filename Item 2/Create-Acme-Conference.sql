@@ -78,7 +78,7 @@ CREATE TABLE `activity_attachments` (
 
 LOCK TABLES `activity_attachments` WRITE;
 /*!40000 ALTER TABLE `activity_attachments` DISABLE KEYS */;
-INSERT INTO `activity_attachments` VALUES (2409,'https://attachment.com'),(2412,'https://attachment.com'),(2413,'https://attachment.com'),(2414,'https://attachment.com'),(2422,'https://attachment.com'),(2424,'https://attachment.com'),(2426,'https://attachment.com'),(2427,'https://attachment.com'),(2429,'https://attachment.com'),(2432,'https://attachment.com'),(2433,'https://attachment.com'),(2434,'https://attachment.com'),(2442,'https://attachment.com'),(2445,'https://attachment.com'),(2446,'https://attachment.com'),(2447,'https://attachment.com'),(2455,'https://attachment.com'),(2456,'https://attachment.com');
+INSERT INTO `activity_attachments` VALUES (2845,'https://attachment.com'),(2848,'https://attachment.com'),(2849,'https://attachment.com'),(2850,'https://attachment.com'),(2858,'https://attachment.com'),(2860,'https://attachment.com'),(2862,'https://attachment.com'),(2863,'https://attachment.com'),(2865,'https://attachment.com'),(2868,'https://attachment.com'),(2869,'https://attachment.com'),(2870,'https://attachment.com'),(2878,'https://attachment.com'),(2881,'https://attachment.com'),(2882,'https://attachment.com'),(2883,'https://attachment.com'),(2891,'https://attachment.com'),(2892,'https://attachment.com');
 /*!40000 ALTER TABLE `activity_attachments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +101,7 @@ CREATE TABLE `activity_speakers` (
 
 LOCK TABLES `activity_speakers` WRITE;
 /*!40000 ALTER TABLE `activity_speakers` DISABLE KEYS */;
-INSERT INTO `activity_speakers` VALUES (2409,'Speaker1'),(2409,'Speaker2'),(2412,'Speaker3'),(2413,'Speaker4'),(2413,'Speaker5'),(2414,'Speaker6'),(2422,'Speaker1'),(2422,'Speaker2'),(2424,'Speaker3'),(2426,'Speaker3'),(2427,'Speaker4'),(2427,'Speaker5'),(2429,'Speaker1'),(2429,'Speaker2'),(2432,'Speaker3'),(2433,'Speaker4'),(2433,'Speaker5'),(2434,'Speaker6'),(2442,'Speaker1'),(2442,'Speaker2'),(2445,'Speaker3'),(2446,'Speaker4'),(2446,'Speaker5'),(2447,'Speaker6'),(2455,'Speaker3'),(2456,'Speaker4'),(2456,'Speaker5');
+INSERT INTO `activity_speakers` VALUES (2845,'Speaker1'),(2845,'Speaker2'),(2848,'Speaker3'),(2849,'Speaker4'),(2849,'Speaker5'),(2850,'Speaker6'),(2858,'Speaker1'),(2858,'Speaker2'),(2860,'Speaker3'),(2862,'Speaker3'),(2863,'Speaker4'),(2863,'Speaker5'),(2865,'Speaker1'),(2865,'Speaker2'),(2868,'Speaker3'),(2869,'Speaker4'),(2869,'Speaker5'),(2870,'Speaker6'),(2878,'Speaker1'),(2878,'Speaker2'),(2881,'Speaker3'),(2882,'Speaker4'),(2882,'Speaker5'),(2883,'Speaker6'),(2891,'Speaker3'),(2892,'Speaker4'),(2892,'Speaker5');
 /*!40000 ALTER TABLE `activity_speakers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,7 +168,7 @@ CREATE TABLE `administrator` (
 
 LOCK TABLES `administrator` WRITE;
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
-INSERT INTO `administrator` VALUES (2372,0,'address','email@email.com','Admin','Admin','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Admin',2334);
+INSERT INTO `administrator` VALUES (2785,0,'address','email@email.com','Admin','Admin','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Admin',2747);
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `author` (
 
 LOCK TABLES `author` WRITE;
 /*!40000 ALTER TABLE `author` DISABLE KEYS */;
-INSERT INTO `author` VALUES (2374,0,'address','email@email.com','Author1','Author1','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Author1',2335,NULL),(2382,0,'address','email@email.com','Author2','Author2','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Author2',2336,NULL),(2389,0,'address','email@email.com','Author3','Author3','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Author3',2337,NULL);
+INSERT INTO `author` VALUES (2792,0,'address','email@email.com','Author1','Author1','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Author1',2748,NULL),(2800,0,'address','email@email.com','Author2','Author2','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Author2',2749,NULL),(2807,0,'address','email@email.com','Author3','Author3','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Author3',2750,NULL);
 /*!40000 ALTER TABLE `author` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (2348,0,'CONFERENCE',NULL),(2349,0,'Computer Science',2348),(2350,0,'Artificial Intelligence',2349),(2351,0,'Deep Learning',2350),(2352,0,'Instance-based learning',2350),(2353,0,'Regression',2350),(2354,0,'Software Engineering',2349),(2355,0,'Big Data',2354),(2356,0,'Big Processing',2354),(2357,0,'Methods',2354),(2358,0,'Tools',2354),(2359,0,'Physics',2348),(2360,0,'Cinematic',2359),(2361,0,'Electricity',2359),(2362,0,'Electronics',2359),(2363,0,'Biology',2348),(2364,0,'Animals',2363),(2365,0,'Plants',2363),(2366,0,'Fungi',2363);
+INSERT INTO `category` VALUES (2761,0,'CONFERENCE',NULL),(2762,0,'Computer Science',2761),(2763,0,'Artificial Intelligence',2762),(2764,0,'Deep Learning',2763),(2765,0,'Instance-based learning',2763),(2766,0,'Regression',2763),(2767,0,'Software Engineering',2762),(2768,0,'Big Data',2767),(2769,0,'Big Processing',2767),(2770,0,'Methods',2767),(2771,0,'Tools',2767),(2772,0,'Physics',2761),(2773,0,'Cinematic',2772),(2774,0,'Electricity',2772),(2775,0,'Electronics',2772),(2776,0,'Biology',2761),(2777,0,'Animals',2776),(2778,0,'Plants',2776),(2779,0,'Fungi',2776);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (2415,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2409),(2416,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2412),(2417,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2414),(2418,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2408),(2419,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2408),(2420,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2408),(2435,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2429),(2436,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2432),(2437,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2434),(2438,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2428),(2439,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2428),(2440,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2428),(2448,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2442),(2449,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2445),(2450,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2447),(2451,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2441),(2452,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2441),(2453,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2441);
+INSERT INTO `comment` VALUES (2851,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2845),(2852,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2848),(2853,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2850),(2854,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2844),(2855,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2844),(2856,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2844),(2871,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2865),(2872,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2868),(2873,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2870),(2874,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2864),(2875,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2864),(2876,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2864),(2884,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2878),(2885,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2881),(2886,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2883),(2887,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2877),(2888,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2877),(2889,0,'author1','2019-07-03 15:00:00','Text Comment','TitleComment',2877);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `conference` (
 
 LOCK TABLES `conference` WRITE;
 /*!40000 ALTER TABLE `conference` DISABLE KEYS */;
-INSERT INTO `conference` VALUES (2408,0,'Acronym1','2019-07-26 12:00:00','2019-07-31',100,'','2019-07-24 12:00:00','2019-07-26','2019-07-17 12:00:00','Summary1','Title1','Venue1',2349),(2421,0,'Acronym2','2019-11-30 12:00:00','2019-12-31',100,'','2019-11-20 12:00:00','2019-12-01','2019-11-10 12:00:00','Summary2','Title2','Venue2',2349),(2425,0,'Acronym3','2019-10-30 12:00:00','2019-11-30',100,'\0','2019-10-20 12:00:00','2019-11-01','2019-10-10 12:00:00','Summary3','Title3','Venue3',2354),(2428,0,'Acronym4','2019-11-20 12:00:00','2019-12-31',100,'','2019-11-10 12:00:00','2019-12-01','2019-07-01 12:00:00','Summary4','Title4','Venue4',2349),(2441,0,'Acronym5','2019-11-20 12:00:00','2019-12-31',100,'','2019-11-10 12:00:00','2019-12-01','2019-07-01 12:00:00','Summary5','Title5','Venue5',2349),(2454,0,'Acronym6','2019-10-30 12:00:00','2019-11-30',100,'\0','2019-10-20 12:00:00','2019-11-01','2019-10-10 12:00:00','Summary6','Title6','Venue6',2354);
+INSERT INTO `conference` VALUES (2844,0,'Acronym1','2019-07-26 12:00:00','2019-07-31',100,'','2019-07-24 12:00:00','2019-07-26','2019-07-17 12:00:00','This science conference focuses on technologies to deal with nowadays data','Conference on Data','Venue1',2767),(2857,0,'Acronym2','2019-11-30 12:00:00','2019-12-31',100,'','2019-11-20 12:00:00','2019-12-01','2019-11-10 12:00:00','Data Science is a hot topic nowadays; find the latest research results in this conference','International Data Science Conference','Venue2',2767),(2861,0,'Acronym3','2019-10-30 12:00:00','2019-11-30',100,'\0','2019-10-20 12:00:00','2019-11-01','2019-10-10 12:00:00','Nowhere have you found more papers on big data science','World Multi-Conference on Big Data Science','Venue3',2767),(2864,0,'Acronym4','2019-11-20 12:00:00','2019-12-31',100,'','2019-11-10 12:00:00','2019-12-01','2019-07-01 12:00:00','A conference about artificial intelligence and its role on computer science','Artificial Intelligence on Computer Science','Venue4',2762),(2877,0,'Acronym5','2019-11-20 12:00:00','2019-12-31',100,'','2019-11-10 12:00:00','2019-12-01','2019-07-01 12:00:00','Data science and its influence on business and macro economy','Data, business and economy','Venue5',2767),(2890,0,'Acronym6','2019-10-30 12:00:00','2019-11-30',100,'\0','2019-10-20 12:00:00','2019-11-01','2019-10-10 12:00:00','A conference about the discovery of the scutoid','Scutoid\'s discovery','Venue6',2776);
 /*!40000 ALTER TABLE `conference` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,7 +347,7 @@ CREATE TABLE `conference_activities` (
 
 LOCK TABLES `conference_activities` WRITE;
 /*!40000 ALTER TABLE `conference_activities` DISABLE KEYS */;
-INSERT INTO `conference_activities` VALUES (2408,2409),(2408,2412),(2408,2413),(2408,2414),(2421,2422),(2421,2424),(2425,2426),(2425,2427),(2428,2429),(2428,2432),(2428,2433),(2428,2434),(2441,2442),(2441,2445),(2441,2446),(2441,2447),(2454,2455),(2454,2456);
+INSERT INTO `conference_activities` VALUES (2844,2845),(2844,2848),(2844,2849),(2844,2850),(2857,2858),(2857,2860),(2861,2862),(2861,2863),(2864,2865),(2864,2868),(2864,2869),(2864,2870),(2877,2878),(2877,2881),(2877,2882),(2877,2883),(2890,2891),(2890,2892);
 /*!40000 ALTER TABLE `conference_activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -377,7 +377,7 @@ CREATE TABLE `credit_card` (
 
 LOCK TABLES `credit_card` WRITE;
 /*!40000 ALTER TABLE `credit_card` DISABLE KEYS */;
-INSERT INTO `credit_card` VALUES (2459,0,'VISA',123,10,22,'Holder','4043492660454935'),(2460,0,'AMEX',409,1,21,'Holder','373809536446159'),(2461,0,'MASTER',774,9,22,'Holder','5301584370515122'),(2462,0,'DINERS',975,1,21,'Holder','30718500054540');
+INSERT INTO `credit_card` VALUES (2896,0,'VISA',123,10,22,'Holder','4043492660454935'),(2897,0,'AMEX',409,1,21,'Holder','373809536446159'),(2898,0,'MASTER',774,9,22,'Holder','5301584370515122'),(2899,0,'DINERS',975,1,21,'Holder','30718500054540');
 /*!40000 ALTER TABLE `credit_card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,7 +409,7 @@ CREATE TABLE `finder` (
 
 LOCK TABLES `finder` WRITE;
 /*!40000 ALTER TABLE `finder` DISABLE KEYS */;
-INSERT INTO `finder` VALUES (2375,0,NULL,'2020-01-01',NULL,NULL,'2019-01-01',2374);
+INSERT INTO `finder` VALUES (2793,0,NULL,'2020-01-01',NULL,NULL,'2019-01-01',2792);
 /*!40000 ALTER TABLE `finder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,7 +436,7 @@ CREATE TABLE `finder_conferences` (
 
 LOCK TABLES `finder_conferences` WRITE;
 /*!40000 ALTER TABLE `finder_conferences` DISABLE KEYS */;
-INSERT INTO `finder_conferences` VALUES (2375,2408),(2375,2421);
+INSERT INTO `finder_conferences` VALUES (2793,2844),(2793,2857);
 /*!40000 ALTER TABLE `finder_conferences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -492,7 +492,7 @@ CREATE TABLE `mezzage` (
 
 LOCK TABLES `mezzage` WRITE;
 /*!40000 ALTER TABLE `mezzage` DISABLE KEYS */;
-INSERT INTO `mezzage` VALUES (2373,0,'Body','','2019-01-01 12:00:00','Subject',2372,2372,2371),(2376,0,'Body','\0','2019-01-01 12:00:00','Subject',2374,2374,2367),(2377,0,'Body','\0','2019-01-01 12:00:00','Subject',2374,2374,2368),(2378,0,'Body','\0','2019-01-01 12:00:00','Subject',2374,2374,2368),(2379,0,'Body','\0','2019-01-01 12:00:00','Subject',2374,2374,2369),(2380,0,'Body','\0','2019-01-01 12:00:00','Subject',2374,2374,2370),(2381,0,'Body','\0','2019-01-01 12:00:00','Subject',2374,2374,2371),(2383,0,'Body','\0','2019-01-01 12:00:00','Subject',2382,2382,2367),(2384,0,'Body','\0','2019-01-01 12:00:00','Subject',2382,2382,2369),(2385,0,'Body','\0','2019-01-01 12:00:00','Subject',2382,2382,2368),(2386,0,'Body','\0','2019-01-01 12:00:00','Subject',2382,2382,2371),(2387,0,'Body','\0','2019-01-01 12:00:00','Subject',2382,2382,2367),(2388,0,'Body','\0','2019-01-01 12:00:00','Subject',2382,2382,2370),(2390,0,'Body','\0','2019-01-01 12:00:00','Subject',2389,2389,2370),(2392,0,'Body','\0','2019-01-01 12:00:00','Subject',2391,2391,2369),(2393,0,'Body','\0','2019-01-01 12:00:00','Subject',2391,2391,2368),(2395,0,'Body','\0','2019-01-01 12:00:00','Subject',2394,2394,2367),(2397,0,'Body','\0','2019-01-01 12:00:00','Subject',2396,2396,2371),(2402,0,'Body','\0','2019-01-01 12:00:00','Subject',2401,2401,2371),(2403,0,'Body','\0','2019-01-01 12:00:00','Subject',2401,2401,2367),(2405,0,'Body','\0','2019-01-01 12:00:00','Subject',2404,2404,2367),(2407,0,'Body','\0','2019-01-01 12:00:00','Subject',2406,2406,2367);
+INSERT INTO `mezzage` VALUES (2786,0,'Body','','2019-01-01 12:00:00','Subject',2785,2785,2784),(2787,0,'Body','\0','2019-01-01 12:00:00','Subject',2785,2785,2784),(2788,0,'Body','\0','2019-01-01 12:00:00','Subject',2785,2785,2783),(2789,0,'Body','\0','2019-01-01 12:00:00','Subject',2785,2785,2782),(2790,0,'Body','\0','2019-01-01 12:00:00','Subject',2785,2785,2781),(2791,0,'Body','\0','2019-01-01 12:00:00','Subject',2785,2785,2780),(2794,0,'Body','\0','2019-01-01 12:00:00','Subject',2792,2792,2780),(2795,0,'Body','\0','2019-01-01 12:00:00','Subject',2792,2792,2781),(2796,0,'Body','\0','2019-01-01 12:00:00','Subject',2792,2792,2781),(2797,0,'Body','\0','2019-01-01 12:00:00','Subject',2792,2792,2782),(2798,0,'Body','\0','2019-01-01 12:00:00','Subject',2792,2792,2783),(2799,0,'Body','\0','2019-01-01 12:00:00','Subject',2792,2792,2784),(2801,0,'Body','\0','2019-01-01 12:00:00','Subject',2800,2800,2780),(2802,0,'Body','\0','2019-01-01 12:00:00','Subject',2800,2800,2782),(2803,0,'Body','\0','2019-01-01 12:00:00','Subject',2800,2800,2781),(2804,0,'Body','\0','2019-01-01 12:00:00','Subject',2800,2800,2784),(2805,0,'Body','\0','2019-01-01 12:00:00','Subject',2800,2800,2780),(2806,0,'Body','\0','2019-01-01 12:00:00','Subject',2800,2800,2783),(2808,0,'Body','\0','2019-01-01 12:00:00','Subject',2807,2807,2783),(2810,0,'Body','\0','2019-01-01 12:00:00','Subject',2809,2809,2782),(2811,0,'Body','\0','2019-01-01 12:00:00','Subject',2809,2809,2781),(2812,0,'Body','\0','2019-01-01 12:00:00','Subject',2809,2809,2780),(2813,0,'Body','\0','2019-01-01 12:00:00','Subject',2809,2809,2781),(2814,0,'Body','\0','2019-01-01 12:00:00','Subject',2809,2809,2783),(2815,0,'Body','\0','2019-01-01 12:00:00','Subject',2809,2809,2784),(2817,0,'Body','\0','2019-01-01 12:00:00','Subject',2816,2816,2780),(2818,0,'Body','\0','2019-01-01 12:00:00','Subject',2816,2816,2782),(2819,0,'Body','\0','2019-01-01 12:00:00','Subject',2816,2816,2781),(2820,0,'Body','\0','2019-01-01 12:00:00','Subject',2816,2816,2783),(2821,0,'Body','\0','2019-01-01 12:00:00','Subject',2816,2816,2782),(2822,0,'Body','\0','2019-01-01 12:00:00','Subject',2816,2816,2784),(2824,0,'Body','\0','2019-01-01 12:00:00','Subject',2823,2823,2784),(2829,0,'Body','\0','2019-01-01 12:00:00','Subject',2828,2828,2784),(2830,0,'Body','\0','2019-01-01 12:00:00','Subject',2828,2828,2780),(2831,0,'Body','\0','2019-01-01 12:00:00','Subject',2828,2828,2780),(2832,0,'Body','\0','2019-01-01 12:00:00','Subject',2828,2828,2782),(2833,0,'Body','\0','2019-01-01 12:00:00','Subject',2828,2828,2781),(2834,0,'Body','\0','2019-01-01 12:00:00','Subject',2828,2828,2784),(2836,0,'Body','\0','2019-01-01 12:00:00','Subject',2835,2835,2780),(2837,0,'Body','\0','2019-01-01 12:00:00','Subject',2835,2835,2781),(2838,0,'Body','\0','2019-01-01 12:00:00','Subject',2835,2835,2782),(2839,0,'Body','\0','2019-01-01 12:00:00','Subject',2835,2835,2783),(2840,0,'Body','\0','2019-01-01 12:00:00','Subject',2835,2835,2784),(2841,0,'Body','\0','2019-01-01 12:00:00','Subject',2835,2835,2780),(2843,0,'Body','\0','2019-01-01 12:00:00','Subject',2842,2842,2780);
 /*!40000 ALTER TABLE `mezzage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -517,7 +517,7 @@ CREATE TABLE `mezzage_recipients` (
 
 LOCK TABLES `mezzage_recipients` WRITE;
 /*!40000 ALTER TABLE `mezzage_recipients` DISABLE KEYS */;
-INSERT INTO `mezzage_recipients` VALUES (2373,2374),(2373,2391),(2373,2401),(2373,2382),(2373,2394),(2373,2404),(2373,2389),(2373,2396),(2373,2406),(2376,2382),(2376,2389),(2377,2391),(2378,2394),(2378,2396),(2379,2401),(2380,2404),(2380,2406),(2381,2382),(2381,2391),(2381,2406),(2381,2372),(2383,2374),(2383,2389),(2384,2391),(2384,2401),(2385,2374),(2386,2389),(2387,2372),(2388,2391),(2390,2372),(2392,2374),(2393,2389),(2395,2401),(2397,2401),(2402,2389),(2402,2374),(2403,2389),(2403,2374),(2405,2406),(2405,2396),(2407,2391),(2407,2394);
+INSERT INTO `mezzage_recipients` VALUES (2786,2792),(2786,2809),(2786,2828),(2786,2800),(2786,2816),(2786,2835),(2786,2807),(2786,2823),(2786,2842),(2787,2792),(2788,2809),(2789,2828),(2790,2800),(2791,2816),(2794,2800),(2794,2807),(2795,2809),(2796,2816),(2796,2823),(2797,2828),(2798,2835),(2798,2842),(2799,2800),(2799,2809),(2799,2842),(2799,2785),(2801,2792),(2801,2807),(2802,2809),(2802,2828),(2803,2792),(2804,2807),(2805,2785),(2806,2809),(2808,2785),(2810,2792),(2811,2807),(2812,2807),(2813,2828),(2814,2785),(2815,2792),(2817,2828),(2818,2785),(2819,2800),(2820,2792),(2821,2809),(2822,2835),(2824,2828),(2829,2807),(2829,2792),(2830,2807),(2830,2792),(2831,2835),(2831,2842),(2832,2823),(2832,2792),(2833,2785),(2834,2800),(2834,2842),(2836,2842),(2836,2823),(2837,2842),(2837,2823),(2838,2842),(2838,2823),(2839,2842),(2839,2823),(2840,2842),(2840,2823),(2841,2842),(2841,2823),(2843,2809),(2843,2816);
 /*!40000 ALTER TABLE `mezzage_recipients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,7 +546,7 @@ CREATE TABLE `panel` (
 
 LOCK TABLES `panel` WRITE;
 /*!40000 ALTER TABLE `panel` DISABLE KEYS */;
-INSERT INTO `panel` VALUES (2412,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2413,0,60,'Room3','2019-12-10 20:00:00','Summary','TitlePanel2'),(2424,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2426,0,30,'Room2','2019-11-10 16:00:00','Summary','TitlePanel1'),(2427,0,60,'Room3','2019-11-10 20:00:00','Summary','TitlePanel2'),(2432,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2433,0,60,'Room3','2019-12-10 20:00:00','Summary','TitlePanel2'),(2445,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2446,0,60,'Room3','2019-12-10 20:00:00','Summary','TitlePanel2'),(2455,0,30,'Room2','2019-11-10 16:00:00','Summary','TitlePanel1'),(2456,0,60,'Room3','2019-11-10 20:00:00','Summary','TitlePanel2');
+INSERT INTO `panel` VALUES (2848,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2849,0,60,'Room3','2019-12-10 20:00:00','Summary','TitlePanel2'),(2860,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2862,0,30,'Room2','2019-11-10 16:00:00','Summary','TitlePanel1'),(2863,0,60,'Room3','2019-11-10 20:00:00','Summary','TitlePanel2'),(2868,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2869,0,60,'Room3','2019-12-10 20:00:00','Summary','TitlePanel2'),(2881,0,30,'Room2','2019-12-10 16:00:00','Summary','TitlePanel1'),(2882,0,60,'Room3','2019-12-10 20:00:00','Summary','TitlePanel2'),(2891,0,30,'Room2','2019-11-10 16:00:00','Summary','TitlePanel1'),(2892,0,60,'Room3','2019-11-10 20:00:00','Summary','TitlePanel2');
 /*!40000 ALTER TABLE `panel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -574,7 +574,7 @@ CREATE TABLE `paper` (
 
 LOCK TABLES `paper` WRITE;
 /*!40000 ALTER TABLE `paper` DISABLE KEYS */;
-INSERT INTO `paper` VALUES (2457,0,'Author1, Author2','http://document.com','Summary','Paper1'),(2458,0,'Author1, Author2','http://document.com','Summary','CameraReadyPaper1');
+INSERT INTO `paper` VALUES (2893,0,'Author1, Author2','http://document.com','Summary','Paper1'),(2894,0,'Author1, Author2','http://document.com','This paper is about the conference about data science','Paper about data'),(2895,0,'Author1','http://document.com','Paper about data','Camera ready paper');
 /*!40000 ALTER TABLE `paper` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -607,7 +607,7 @@ CREATE TABLE `presentation` (
 
 LOCK TABLES `presentation` WRITE;
 /*!40000 ALTER TABLE `presentation` DISABLE KEYS */;
-INSERT INTO `presentation` VALUES (2414,0,20,'Room4','2019-12-11 12:00:00','Summary','TitlePresentation1','Author1, Author2','http://document.com','Summary','Paper1'),(2434,0,20,'Room4','2019-12-11 12:00:00','Summary','TitlePresentation1','Author1, Author2','http://document.com','Summary','Paper1'),(2447,0,20,'Room4','2019-12-11 12:00:00','Summary','TitlePresentation1','Author1, Author2','http://document.com','Summary','Paper1');
+INSERT INTO `presentation` VALUES (2850,0,20,'Room4','2019-12-11 12:00:00','Summary','TitlePresentation1','Author1, Author2','http://document.com','Summary','Paper1'),(2870,0,20,'Room4','2019-12-11 12:00:00','Summary','TitlePresentation1','Author1, Author2','http://document.com','Summary','Paper1'),(2883,0,20,'Room4','2019-12-11 12:00:00','Summary','TitlePresentation1','Author1, Author2','http://document.com','Summary','Paper1');
 /*!40000 ALTER TABLE `presentation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -643,7 +643,7 @@ CREATE TABLE `registration` (
 
 LOCK TABLES `registration` WRITE;
 /*!40000 ALTER TABLE `registration` DISABLE KEYS */;
-INSERT INTO `registration` VALUES (2467,0,'VISA',123,10,22,'Holder','4043492660454935',2374,2421),(2468,0,'VISA',123,10,22,'Holder','4043492660454935',2374,2428),(2469,0,'VISA',123,10,22,'Holder','4043492660454935',2374,2441),(2470,0,'VISA',123,10,22,'Holder','4043492660454935',2374,2408),(2477,0,'AMEX',409,1,21,'Holder','373809536446159',2382,2408),(2478,0,'AMEX',409,1,21,'Holder','373809536446159',2382,2421),(2479,0,'AMEX',409,1,21,'Holder','373809536446159',2382,2425),(2480,0,'AMEX',409,1,21,'Holder','373809536446159',2382,2428),(2481,0,'AMEX',409,1,21,'Holder','373809536446159',2382,2441),(2482,0,'AMEX',409,1,21,'Holder','373809536446159',2382,2454),(2483,0,'VISA',123,10,22,'Holder','4043492660454935',2389,2408),(2484,0,'VISA',123,10,22,'Holder','4043492660454935',2389,2421);
+INSERT INTO `registration` VALUES (2904,0,'VISA',123,10,22,'Holder','4043492660454935',2792,2857),(2905,0,'VISA',123,10,22,'Holder','4043492660454935',2792,2864),(2906,0,'VISA',123,10,22,'Holder','4043492660454935',2792,2877),(2907,0,'VISA',123,10,22,'Holder','4043492660454935',2792,2844),(2914,0,'AMEX',409,1,21,'Holder','373809536446159',2800,2844),(2915,0,'AMEX',409,1,21,'Holder','373809536446159',2800,2857),(2916,0,'AMEX',409,1,21,'Holder','373809536446159',2800,2861),(2917,0,'AMEX',409,1,21,'Holder','373809536446159',2800,2864),(2918,0,'AMEX',409,1,21,'Holder','373809536446159',2800,2877),(2919,0,'AMEX',409,1,21,'Holder','373809536446159',2800,2890),(2920,0,'VISA',123,10,22,'Holder','4043492660454935',2807,2844),(2921,0,'VISA',123,10,22,'Holder','4043492660454935',2807,2857);
 /*!40000 ALTER TABLE `registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -677,7 +677,7 @@ CREATE TABLE `report` (
 
 LOCK TABLES `report` WRITE;
 /*!40000 ALTER TABLE `report` DISABLE KEYS */;
-INSERT INTO `report` VALUES (2485,0,'ACCEPT',9.9,9.9,9.9,2391,2463),(2486,0,'REJECT',0.9,0.9,0.9,2391,2465),(2487,0,'REJECT',0.1,0.1,0.1,2394,2463),(2488,0,'BORDER-LINE',5,5,5,2396,2463);
+INSERT INTO `report` VALUES (2922,0,'ACCEPT',9.9,9.9,9.9,2809,2900),(2923,0,'REJECT',0.9,0.9,0.9,2809,2902),(2924,0,'REJECT',0.1,0.1,0.1,2816,2900),(2925,0,'BORDER-LINE',5,5,5,2823,2900);
 /*!40000 ALTER TABLE `report` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -702,7 +702,7 @@ CREATE TABLE `report_comments` (
 
 LOCK TABLES `report_comments` WRITE;
 /*!40000 ALTER TABLE `report_comments` DISABLE KEYS */;
-INSERT INTO `report_comments` VALUES (2485,'comment1'),(2485,'comment2'),(2486,'comment1'),(2486,'comment2'),(2487,'comment1'),(2487,'comment2'),(2488,'comment1'),(2488,'comment2');
+INSERT INTO `report_comments` VALUES (2922,'comment1'),(2922,'comment2'),(2923,'comment1'),(2923,'comment2'),(2924,'comment1'),(2924,'comment2'),(2925,'comment1'),(2925,'comment2');
 /*!40000 ALTER TABLE `report_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -736,7 +736,7 @@ CREATE TABLE `reviewer` (
 
 LOCK TABLES `reviewer` WRITE;
 /*!40000 ALTER TABLE `reviewer` DISABLE KEYS */;
-INSERT INTO `reviewer` VALUES (2391,0,'address','email@email.com','Reviewer1','Reviewer1','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Reviewer1',2338),(2394,0,'address','email@email.com','Reviewer2','Reviewer2','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Reviewer2',2339),(2396,0,'address','email@email.com','Reviewer3','Reviewer3','123456789','http://photo.com','Reviewer3',2340),(2398,0,'address','email@email.com','Reviewer4','Reviewer4','123456789','http://photo.com','Reviewer4',2344),(2399,0,'address','email@email.com','Reviewer5','Reviewer5','123456789','http://photo.com','Reviewer5',2345),(2400,0,'address','email@email.com','Reviewer6','Reviewer6','123456789','http://photo.com','Reviewer6',2346);
+INSERT INTO `reviewer` VALUES (2809,0,'address','email@email.com','Reviewer1','Reviewer1','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Reviewer1',2751),(2816,0,'address','email@email.com','Reviewer2','Reviewer2','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Reviewer2',2752),(2823,0,'address','email@email.com','Reviewer3','Reviewer3','123456789','http://photo.com','Reviewer3',2753),(2825,0,'address','email@email.com','Reviewer4','Reviewer4','123456789','http://photo.com','Reviewer4',2757),(2826,0,'address','email@email.com','Reviewer5','Reviewer5','123456789','http://photo.com','Reviewer5',2758),(2827,0,'address','email@email.com','Reviewer6','Reviewer6','123456789','http://photo.com','Reviewer6',2759);
 /*!40000 ALTER TABLE `reviewer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -761,7 +761,7 @@ CREATE TABLE `reviewer_keywords` (
 
 LOCK TABLES `reviewer_keywords` WRITE;
 /*!40000 ALTER TABLE `reviewer_keywords` DISABLE KEYS */;
-INSERT INTO `reviewer_keywords` VALUES (2391,'keyword1'),(2391,'keyword2'),(2391,'keyword3'),(2394,'keyword1'),(2394,'keyword2'),(2394,'keyword3'),(2396,'keyword1'),(2396,'keyword2'),(2396,'keyword3'),(2398,'title1'),(2399,'title3'),(2400,'summary2');
+INSERT INTO `reviewer_keywords` VALUES (2809,'data'),(2809,'science'),(2809,'computer'),(2816,'science'),(2816,'economy'),(2823,'business'),(2823,'computer'),(2825,'data'),(2826,'biology'),(2826,'nature'),(2827,'architecture'),(2827,'design');
 /*!40000 ALTER TABLE `reviewer_keywords` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -787,7 +787,7 @@ CREATE TABLE `section` (
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
-INSERT INTO `section` VALUES (2410,0,'Summary','Title1'),(2411,0,'Summary2','Title2'),(2423,0,'Summary','Title1'),(2430,0,'Summary','Title1'),(2431,0,'Summary2','Title2'),(2443,0,'Summary','Title1'),(2444,0,'Summary2','Title2');
+INSERT INTO `section` VALUES (2846,0,'Summary','Title1'),(2847,0,'Summary2','Title2'),(2859,0,'Summary','Title1'),(2866,0,'Summary','Title1'),(2867,0,'Summary2','Title2'),(2879,0,'Summary','Title1'),(2880,0,'Summary2','Title2');
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -812,7 +812,7 @@ CREATE TABLE `section_pictures` (
 
 LOCK TABLES `section_pictures` WRITE;
 /*!40000 ALTER TABLE `section_pictures` DISABLE KEYS */;
-INSERT INTO `section_pictures` VALUES (2410,'https://picture1.jpg'),(2410,'https://picture2.jpg'),(2423,'https://picture1.jpg'),(2423,'https://picture2.jpg'),(2430,'https://picture1.jpg'),(2430,'https://picture2.jpg'),(2443,'https://picture1.jpg'),(2443,'https://picture2.jpg');
+INSERT INTO `section_pictures` VALUES (2846,'https://picture1.jpg'),(2846,'https://picture2.jpg'),(2859,'https://picture1.jpg'),(2859,'https://picture2.jpg'),(2866,'https://picture1.jpg'),(2866,'https://picture2.jpg'),(2879,'https://picture1.jpg'),(2879,'https://picture2.jpg');
 /*!40000 ALTER TABLE `section_pictures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -846,7 +846,7 @@ CREATE TABLE `sponsor` (
 
 LOCK TABLES `sponsor` WRITE;
 /*!40000 ALTER TABLE `sponsor` DISABLE KEYS */;
-INSERT INTO `sponsor` VALUES (2401,0,'address','email@email.com','Sponsor1','Sponsor1','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Sponsor1',2341),(2404,0,'address','email@email.com','Sponsor2','Sponsor2','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Sponsor2',2342),(2406,0,'address','email@email.com','Sponsor3','Sponsor3','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Sponsor3',2343);
+INSERT INTO `sponsor` VALUES (2828,0,'address','email@email.com','Sponsor1','Sponsor1','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Sponsor1',2754),(2835,0,'address','email@email.com','Sponsor2','Sponsor2','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Sponsor2',2755),(2842,0,'address','email@email.com','Sponsor3','Sponsor3','123456789','https://i.ibb.co/GVpZCtM/acme-conference.png','Sponsor3',2756);
 /*!40000 ALTER TABLE `sponsor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -884,7 +884,7 @@ CREATE TABLE `sponsorship` (
 
 LOCK TABLES `sponsorship` WRITE;
 /*!40000 ALTER TABLE `sponsorship` DISABLE KEYS */;
-INSERT INTO `sponsorship` VALUES (2489,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2408,2401),(2490,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2421,2401),(2491,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2425,2401),(2492,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2428,2401),(2493,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2441,2401),(2494,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2454,2401),(2495,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2408,2404),(2496,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2408,2404),(2497,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2421,2404),(2498,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2425,2404),(2499,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2428,2404),(2500,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2441,2404);
+INSERT INTO `sponsorship` VALUES (2926,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2844,2828),(2927,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2857,2828),(2928,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2861,2828),(2929,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2864,2828),(2930,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2877,2828),(2931,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','MASTER',774,9,22,'Holder','5301584370515122','https://www.targeturl.com',2890,2828),(2932,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2844,2835),(2933,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2844,2835),(2934,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2857,2835),(2935,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2861,2835),(2936,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2864,2835),(2937,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','DINERS',975,1,21,'Holder','30718500054540','https://www.targeturl.com',2877,2835);
 /*!40000 ALTER TABLE `sponsorship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -928,7 +928,7 @@ CREATE TABLE `submission` (
 
 LOCK TABLES `submission` WRITE;
 /*!40000 ALTER TABLE `submission` DISABLE KEYS */;
-INSERT INTO `submission` VALUES (2463,0,'Author1, Author2','http://document.com','Summary','CameraReadyPaper1','2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','','ACCEPTED','AAA-O3L6',2374,2408),(2464,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-K3GU',2374,2421),(2465,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','REJECTED','AAA-A1B2',2374,2428),(2466,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','','UNDER-REVIEW','AAA-5A57',2374,2441),(2471,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-FHK7',2382,2421),(2472,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-LJK7',2382,2408),(2473,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-AAAA',2382,2425),(2474,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-12BB',2382,2428),(2475,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-5F6A',2382,2441),(2476,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-1234',2382,2425);
+INSERT INTO `submission` VALUES (2900,0,'Author1, Author2','http://document.com','This paper is about the conference about data science','Paper about data','2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','','ACCEPTED','AAA-O3L6',2792,2844),(2901,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-K3GU',2792,2857),(2902,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','REJECTED','AAA-A1B2',2792,2864),(2903,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','','UNDER-REVIEW','AAA-5A57',2792,2877),(2908,0,'Author1','http://document.com','Paper about data','Camera ready paper','2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','ACCEPTED','AAA-FHK7',2800,2857),(2909,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-LJK7',2800,2844),(2910,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-AAAA',2800,2861),(2911,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-12BB',2800,2864),(2912,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-5F6A',2800,2877),(2913,0,NULL,NULL,NULL,NULL,'2019-07-03 12:00:00','Author1, Author2','http://document.com','Summary','Paper1','\0','UNDER-REVIEW','AAA-1234',2800,2861);
 /*!40000 ALTER TABLE `submission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -955,7 +955,7 @@ CREATE TABLE `submission_reviewers` (
 
 LOCK TABLES `submission_reviewers` WRITE;
 /*!40000 ALTER TABLE `submission_reviewers` DISABLE KEYS */;
-INSERT INTO `submission_reviewers` VALUES (2463,2391),(2463,2394),(2463,2396),(2465,2391);
+INSERT INTO `submission_reviewers` VALUES (2900,2809),(2900,2816),(2900,2823),(2902,2809),(2908,2809),(2908,2816),(2908,2823);
 /*!40000 ALTER TABLE `submission_reviewers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -984,7 +984,7 @@ CREATE TABLE `system_configuration` (
 
 LOCK TABLES `system_configuration` WRITE;
 /*!40000 ALTER TABLE `system_configuration` DISABLE KEYS */;
-INSERT INTO `system_configuration` VALUES (2347,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','+34','Acme Conference','Welcome to Acme Conference! Your scientific event manager','¡Bienvenidos a Acme Conference! Su gestor de eventos científicos');
+INSERT INTO `system_configuration` VALUES (2760,0,'https://i.ibb.co/GVpZCtM/acme-conference.png','+34','Acme Conference','Welcome to Acme Conference! Your scientific event manager','¡Bienvenidos a Acme Conference! Su gestor de eventos científicos');
 /*!40000 ALTER TABLE `system_configuration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1009,7 +1009,7 @@ CREATE TABLE `system_configuration_credit_card_makes` (
 
 LOCK TABLES `system_configuration_credit_card_makes` WRITE;
 /*!40000 ALTER TABLE `system_configuration_credit_card_makes` DISABLE KEYS */;
-INSERT INTO `system_configuration_credit_card_makes` VALUES (2347,'VISA'),(2347,'MASTER'),(2347,'DINNERS'),(2347,'AMEX');
+INSERT INTO `system_configuration_credit_card_makes` VALUES (2760,'VISA'),(2760,'MASTER'),(2760,'DINNERS'),(2760,'AMEX');
 /*!40000 ALTER TABLE `system_configuration_credit_card_makes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1034,7 +1034,7 @@ CREATE TABLE `system_configuration_void_words` (
 
 LOCK TABLES `system_configuration_void_words` WRITE;
 /*!40000 ALTER TABLE `system_configuration_void_words` DISABLE KEYS */;
-INSERT INTO `system_configuration_void_words` VALUES (2347,'a'),(2347,'acá'),(2347,'ahí'),(2347,'ajena'),(2347,'ajeno'),(2347,'ajenas'),(2347,'ajenos'),(2347,'al'),(2347,'algo'),(2347,'algún'),(2347,'alguna'),(2347,'alguno'),(2347,'algunas'),(2347,'algunos'),(2347,'allá'),(2347,'allí'),(2347,'ambos'),(2347,'ante'),(2347,'antes'),(2347,'aquel'),(2347,'aquella'),(2347,'aquello'),(2347,'aquelas'),(2347,'aquellos'),(2347,'aquí'),(2347,'arriba'),(2347,'así'),(2347,'atrás'),(2347,'aun'),(2347,'aunque'),(2347,'bajo'),(2347,'bastante'),(2347,'bien'),(2347,'cabe'),(2347,'cada'),(2347,'casi'),(2347,'cierto'),(2347,'cierta'),(2347,'ciertos'),(2347,'ciertas'),(2347,'como'),(2347,'con'),(2347,'conmigo'),(2347,'conseguimos'),(2347,'conseguir'),(2347,'consigo'),(2347,'consigue'),(2347,'consiguen'),(2347,'consigues'),(2347,'contigo'),(2347,'contra'),(2347,'cual'),(2347,'cuales'),(2347,'cualquier'),(2347,'cualquiera'),(2347,'cualesquiera'),(2347,'cuan'),(2347,'cuando'),(2347,'cuanto'),(2347,'cuanta'),(2347,'cuantos'),(2347,'cuantas'),(2347,'de'),(2347,'dejar'),(2347,'del'),(2347,'demás'),(2347,'demasiada'),(2347,'demasiado'),(2347,'demasiadas'),(2347,'demasidos'),(2347,'dentro'),(2347,'desde'),(2347,'donde'),(2347,'dos'),(2347,'el'),(2347,'él'),(2347,'ella'),(2347,'ello'),(2347,'ellos'),(2347,'ellas'),(2347,'empleáis'),(2347,'emplean'),(2347,'emplear'),(2347,'empleas'),(2347,'empleo'),(2347,'en'),(2347,'encima'),(2347,'entonces'),(2347,'entre'),(2347,'era'),(2347,'eras'),(2347,'eramos'),(2347,'eran'),(2347,'eres'),(2347,'es'),(2347,'esa'),(2347,'ese'),(2347,'eso'),(2347,'esas'),(2347,'esos'),(2347,'esta'),(2347,'estas'),(2347,'estaba'),(2347,'estado'),(2347,'estáis'),(2347,'estamos'),(2347,'están'),(2347,'estar'),(2347,'este'),(2347,'esto'),(2347,'estos'),(2347,'estoy'),(2347,'etc'),(2347,'fin'),(2347,'fue'),(2347,'fueron'),(2347,'fui'),(2347,'fuimos'),(2347,'gueno'),(2347,'ha'),(2347,'hace'),(2347,'haces'),(2347,'hacéis'),(2347,'hacemos'),(2347,'hacen'),(2347,'hacer'),(2347,'hacia'),(2347,'hago'),(2347,'hasta'),(2347,'incluso'),(2347,'intenta'),(2347,'intentas'),(2347,'intentáis'),(2347,'intentamos'),(2347,'intentan'),(2347,'intentar'),(2347,'intento'),(2347,'ir'),(2347,'jamás'),(2347,'junto'),(2347,'juntos'),(2347,'la'),(2347,'lo'),(2347,'las'),(2347,'los'),(2347,'largo'),(2347,'más'),(2347,'me'),(2347,'menos'),(2347,'mi'),(2347,'mis'),(2347,'mía'),(2347,'mías'),(2347,'mientras'),(2347,'mío'),(2347,'míos'),(2347,'misma'),(2347,'mismo'),(2347,'mismas'),(2347,'mismos'),(2347,'modo'),(2347,'mucha'),(2347,'muchas'),(2347,'muchísima'),(2347,'muchísimo'),(2347,'muchísimas'),(2347,'muchísimos'),(2347,'mucho'),(2347,'muchos'),(2347,'muy'),(2347,'nada'),(2347,'ni'),(2347,'ningún'),(2347,'niguna'),(2347,'ninguno'),(2347,'ningunas'),(2347,'ningunos'),(2347,'no'),(2347,'nos'),(2347,'nosotras'),(2347,'nosotros'),(2347,'nuestra'),(2347,'nuestro'),(2347,'nuestras'),(2347,'nuestros'),(2347,'nunca'),(2347,'os'),(2347,'otra'),(2347,'otro'),(2347,'otras'),(2347,'otros'),(2347,'para'),(2347,'parecer'),(2347,'pero'),(2347,'poca'),(2347,'poco'),(2347,'pocas'),(2347,'pocos'),(2347,'podéis'),(2347,'podemos'),(2347,'poder'),(2347,'podría'),(2347,'podrías'),(2347,'podríais'),(2347,'podríamos'),(2347,'podrían'),(2347,'por'),(2347,'por qué'),(2347,'porque'),(2347,'primero'),(2347,'puede'),(2347,'pueden'),(2347,'puedo'),(2347,'pues'),(2347,'que'),(2347,'qué'),(2347,'querer'),(2347,'quién'),(2347,'quienes'),(2347,'quienesquiera'),(2347,'quienquiera'),(2347,'quizá'),(2347,'quizás'),(2347,'sabe'),(2347,'sabes'),(2347,'saben'),(2347,'sabéis'),(2347,'sabemos'),(2347,'saber'),(2347,'se'),(2347,'según'),(2347,'ser'),(2347,'si'),(2347,'sí'),(2347,'siempre'),(2347,'siendo'),(2347,'sin'),(2347,'sino'),(2347,'so'),(2347,'sobre'),(2347,'sois'),(2347,'solamente'),(2347,'solo'),(2347,'sólo'),(2347,'somos'),(2347,'soy'),(2347,'sr'),(2347,'sra'),(2347,'sres'),(2347,'sta'),(2347,'su'),(2347,'sus'),(2347,'suya'),(2347,'suyo'),(2347,'suyas'),(2347,'suyos'),(2347,'tal'),(2347,'tales'),(2347,'también'),(2347,'tampoco'),(2347,'tan'),(2347,'tanta'),(2347,'tanto'),(2347,'tantas'),(2347,'tantos'),(2347,'te'),(2347,'tenéis'),(2347,'tenemos'),(2347,'tener'),(2347,'tengo'),(2347,'ti'),(2347,'tiempo'),(2347,'tiene'),(2347,'tienen'),(2347,'toda'),(2347,'todo'),(2347,'todas'),(2347,'todos'),(2347,'tomar'),(2347,'trabaja'),(2347,'trabajo'),(2347,'trabajáis'),(2347,'trabajamos'),(2347,'trabajan'),(2347,'trabajar'),(2347,'trabajas'),(2347,'tras'),(2347,'tú'),(2347,'tu'),(2347,'tus'),(2347,'tuya'),(2347,'tuyo'),(2347,'tuyas'),(2347,'tuyos'),(2347,'último'),(2347,'ultimo'),(2347,'un'),(2347,'una'),(2347,'uno'),(2347,'unas'),(2347,'unos'),(2347,'usa'),(2347,'usas'),(2347,'usáis'),(2347,'usamos'),(2347,'usan'),(2347,'usar'),(2347,'uso'),(2347,'usted'),(2347,'ustedes'),(2347,'va'),(2347,'van'),(2347,'vais'),(2347,'valor'),(2347,'vamos'),(2347,'varias'),(2347,'varios'),(2347,'vaya'),(2347,'verdadera'),(2347,'vosotras'),(2347,'vosotros'),(2347,'voy'),(2347,'vuestra'),(2347,'vuestro'),(2347,'vuestras'),(2347,'vuestros'),(2347,'y'),(2347,'ya'),(2347,'yo'),(2347,'a'),(2347,'able'),(2347,'about'),(2347,'across'),(2347,'after'),(2347,'all'),(2347,'almost'),(2347,'also'),(2347,'am'),(2347,'among'),(2347,'an'),(2347,'and'),(2347,'any'),(2347,'are'),(2347,'as'),(2347,'at'),(2347,'be'),(2347,'because'),(2347,'been'),(2347,'but'),(2347,'by'),(2347,'can'),(2347,'cannot'),(2347,'could'),(2347,'dear'),(2347,'did'),(2347,'do'),(2347,'does'),(2347,'either'),(2347,'else'),(2347,'ever'),(2347,'every'),(2347,'for'),(2347,'from'),(2347,'get'),(2347,'got'),(2347,'had'),(2347,'has'),(2347,'have'),(2347,'he'),(2347,'her'),(2347,'hers'),(2347,'him'),(2347,'his'),(2347,'how'),(2347,'however'),(2347,'i'),(2347,'if'),(2347,'in'),(2347,'into'),(2347,'is'),(2347,'it'),(2347,'its'),(2347,'just'),(2347,'least'),(2347,'let'),(2347,'like'),(2347,'likely'),(2347,'may'),(2347,'me'),(2347,'might'),(2347,'most'),(2347,'must'),(2347,'my'),(2347,'neither'),(2347,'no'),(2347,'nor'),(2347,'not'),(2347,'of'),(2347,'off'),(2347,'often'),(2347,'on'),(2347,'only'),(2347,'or'),(2347,'other'),(2347,'our'),(2347,'own'),(2347,'rather'),(2347,'said'),(2347,'say'),(2347,'says'),(2347,'she'),(2347,'should'),(2347,'since'),(2347,'so'),(2347,'some'),(2347,'than'),(2347,'that'),(2347,'the'),(2347,'their'),(2347,'them'),(2347,'then'),(2347,'there'),(2347,'these'),(2347,'they'),(2347,'this'),(2347,'tis'),(2347,'to'),(2347,'too'),(2347,'twas'),(2347,'us'),(2347,'wants'),(2347,'was'),(2347,'we'),(2347,'were'),(2347,'what'),(2347,'when'),(2347,'where'),(2347,'which'),(2347,'while'),(2347,'who'),(2347,'whom'),(2347,'why'),(2347,'will'),(2347,'with'),(2347,'would'),(2347,'yet'),(2347,'you'),(2347,'your');
+INSERT INTO `system_configuration_void_words` VALUES (2760,'a'),(2760,'acá'),(2760,'ahí'),(2760,'ajena'),(2760,'ajeno'),(2760,'ajenas'),(2760,'ajenos'),(2760,'al'),(2760,'algo'),(2760,'algún'),(2760,'alguna'),(2760,'alguno'),(2760,'algunas'),(2760,'algunos'),(2760,'allá'),(2760,'allí'),(2760,'ambos'),(2760,'ante'),(2760,'antes'),(2760,'aquel'),(2760,'aquella'),(2760,'aquello'),(2760,'aquelas'),(2760,'aquellos'),(2760,'aquí'),(2760,'arriba'),(2760,'así'),(2760,'atrás'),(2760,'aun'),(2760,'aunque'),(2760,'bajo'),(2760,'bastante'),(2760,'bien'),(2760,'cabe'),(2760,'cada'),(2760,'casi'),(2760,'cierto'),(2760,'cierta'),(2760,'ciertos'),(2760,'ciertas'),(2760,'como'),(2760,'con'),(2760,'conmigo'),(2760,'conseguimos'),(2760,'conseguir'),(2760,'consigo'),(2760,'consigue'),(2760,'consiguen'),(2760,'consigues'),(2760,'contigo'),(2760,'contra'),(2760,'cual'),(2760,'cuales'),(2760,'cualquier'),(2760,'cualquiera'),(2760,'cualesquiera'),(2760,'cuan'),(2760,'cuando'),(2760,'cuanto'),(2760,'cuanta'),(2760,'cuantos'),(2760,'cuantas'),(2760,'de'),(2760,'dejar'),(2760,'del'),(2760,'demás'),(2760,'demasiada'),(2760,'demasiado'),(2760,'demasiadas'),(2760,'demasidos'),(2760,'dentro'),(2760,'desde'),(2760,'donde'),(2760,'dos'),(2760,'el'),(2760,'él'),(2760,'ella'),(2760,'ello'),(2760,'ellos'),(2760,'ellas'),(2760,'empleáis'),(2760,'emplean'),(2760,'emplear'),(2760,'empleas'),(2760,'empleo'),(2760,'en'),(2760,'encima'),(2760,'entonces'),(2760,'entre'),(2760,'era'),(2760,'eras'),(2760,'eramos'),(2760,'eran'),(2760,'eres'),(2760,'es'),(2760,'esa'),(2760,'ese'),(2760,'eso'),(2760,'esas'),(2760,'esos'),(2760,'esta'),(2760,'estas'),(2760,'estaba'),(2760,'estado'),(2760,'estáis'),(2760,'estamos'),(2760,'están'),(2760,'estar'),(2760,'este'),(2760,'esto'),(2760,'estos'),(2760,'estoy'),(2760,'etc'),(2760,'fin'),(2760,'fue'),(2760,'fueron'),(2760,'fui'),(2760,'fuimos'),(2760,'gueno'),(2760,'ha'),(2760,'hace'),(2760,'haces'),(2760,'hacéis'),(2760,'hacemos'),(2760,'hacen'),(2760,'hacer'),(2760,'hacia'),(2760,'hago'),(2760,'hasta'),(2760,'incluso'),(2760,'intenta'),(2760,'intentas'),(2760,'intentáis'),(2760,'intentamos'),(2760,'intentan'),(2760,'intentar'),(2760,'intento'),(2760,'ir'),(2760,'jamás'),(2760,'junto'),(2760,'juntos'),(2760,'la'),(2760,'lo'),(2760,'las'),(2760,'los'),(2760,'largo'),(2760,'más'),(2760,'me'),(2760,'menos'),(2760,'mi'),(2760,'mis'),(2760,'mía'),(2760,'mías'),(2760,'mientras'),(2760,'mío'),(2760,'míos'),(2760,'misma'),(2760,'mismo'),(2760,'mismas'),(2760,'mismos'),(2760,'modo'),(2760,'mucha'),(2760,'muchas'),(2760,'muchísima'),(2760,'muchísimo'),(2760,'muchísimas'),(2760,'muchísimos'),(2760,'mucho'),(2760,'muchos'),(2760,'muy'),(2760,'nada'),(2760,'ni'),(2760,'ningún'),(2760,'niguna'),(2760,'ninguno'),(2760,'ningunas'),(2760,'ningunos'),(2760,'no'),(2760,'nos'),(2760,'nosotras'),(2760,'nosotros'),(2760,'nuestra'),(2760,'nuestro'),(2760,'nuestras'),(2760,'nuestros'),(2760,'nunca'),(2760,'os'),(2760,'otra'),(2760,'otro'),(2760,'otras'),(2760,'otros'),(2760,'para'),(2760,'parecer'),(2760,'pero'),(2760,'poca'),(2760,'poco'),(2760,'pocas'),(2760,'pocos'),(2760,'podéis'),(2760,'podemos'),(2760,'poder'),(2760,'podría'),(2760,'podrías'),(2760,'podríais'),(2760,'podríamos'),(2760,'podrían'),(2760,'por'),(2760,'por qué'),(2760,'porque'),(2760,'primero'),(2760,'puede'),(2760,'pueden'),(2760,'puedo'),(2760,'pues'),(2760,'que'),(2760,'qué'),(2760,'querer'),(2760,'quién'),(2760,'quienes'),(2760,'quienesquiera'),(2760,'quienquiera'),(2760,'quizá'),(2760,'quizás'),(2760,'sabe'),(2760,'sabes'),(2760,'saben'),(2760,'sabéis'),(2760,'sabemos'),(2760,'saber'),(2760,'se'),(2760,'según'),(2760,'ser'),(2760,'si'),(2760,'sí'),(2760,'siempre'),(2760,'siendo'),(2760,'sin'),(2760,'sino'),(2760,'so'),(2760,'sobre'),(2760,'sois'),(2760,'solamente'),(2760,'solo'),(2760,'sólo'),(2760,'somos'),(2760,'soy'),(2760,'sr'),(2760,'sra'),(2760,'sres'),(2760,'sta'),(2760,'su'),(2760,'sus'),(2760,'suya'),(2760,'suyo'),(2760,'suyas'),(2760,'suyos'),(2760,'tal'),(2760,'tales'),(2760,'también'),(2760,'tampoco'),(2760,'tan'),(2760,'tanta'),(2760,'tanto'),(2760,'tantas'),(2760,'tantos'),(2760,'te'),(2760,'tenéis'),(2760,'tenemos'),(2760,'tener'),(2760,'tengo'),(2760,'ti'),(2760,'tiempo'),(2760,'tiene'),(2760,'tienen'),(2760,'toda'),(2760,'todo'),(2760,'todas'),(2760,'todos'),(2760,'tomar'),(2760,'trabaja'),(2760,'trabajo'),(2760,'trabajáis'),(2760,'trabajamos'),(2760,'trabajan'),(2760,'trabajar'),(2760,'trabajas'),(2760,'tras'),(2760,'tú'),(2760,'tu'),(2760,'tus'),(2760,'tuya'),(2760,'tuyo'),(2760,'tuyas'),(2760,'tuyos'),(2760,'último'),(2760,'ultimo'),(2760,'un'),(2760,'una'),(2760,'uno'),(2760,'unas'),(2760,'unos'),(2760,'usa'),(2760,'usas'),(2760,'usáis'),(2760,'usamos'),(2760,'usan'),(2760,'usar'),(2760,'uso'),(2760,'usted'),(2760,'ustedes'),(2760,'va'),(2760,'van'),(2760,'vais'),(2760,'valor'),(2760,'vamos'),(2760,'varias'),(2760,'varios'),(2760,'vaya'),(2760,'verdadera'),(2760,'vosotras'),(2760,'vosotros'),(2760,'voy'),(2760,'vuestra'),(2760,'vuestro'),(2760,'vuestras'),(2760,'vuestros'),(2760,'y'),(2760,'ya'),(2760,'yo'),(2760,'a'),(2760,'able'),(2760,'about'),(2760,'across'),(2760,'after'),(2760,'all'),(2760,'almost'),(2760,'also'),(2760,'am'),(2760,'among'),(2760,'an'),(2760,'and'),(2760,'any'),(2760,'are'),(2760,'as'),(2760,'at'),(2760,'be'),(2760,'because'),(2760,'been'),(2760,'but'),(2760,'by'),(2760,'can'),(2760,'cannot'),(2760,'could'),(2760,'dear'),(2760,'did'),(2760,'do'),(2760,'does'),(2760,'either'),(2760,'else'),(2760,'ever'),(2760,'every'),(2760,'for'),(2760,'from'),(2760,'get'),(2760,'got'),(2760,'had'),(2760,'has'),(2760,'have'),(2760,'he'),(2760,'her'),(2760,'hers'),(2760,'him'),(2760,'his'),(2760,'how'),(2760,'however'),(2760,'i'),(2760,'if'),(2760,'in'),(2760,'into'),(2760,'is'),(2760,'it'),(2760,'its'),(2760,'just'),(2760,'least'),(2760,'let'),(2760,'like'),(2760,'likely'),(2760,'may'),(2760,'me'),(2760,'might'),(2760,'most'),(2760,'must'),(2760,'my'),(2760,'neither'),(2760,'no'),(2760,'nor'),(2760,'not'),(2760,'of'),(2760,'off'),(2760,'often'),(2760,'on'),(2760,'only'),(2760,'or'),(2760,'other'),(2760,'our'),(2760,'own'),(2760,'rather'),(2760,'said'),(2760,'say'),(2760,'says'),(2760,'she'),(2760,'should'),(2760,'since'),(2760,'so'),(2760,'some'),(2760,'than'),(2760,'that'),(2760,'the'),(2760,'their'),(2760,'them'),(2760,'then'),(2760,'there'),(2760,'these'),(2760,'they'),(2760,'this'),(2760,'tis'),(2760,'to'),(2760,'too'),(2760,'twas'),(2760,'us'),(2760,'wants'),(2760,'was'),(2760,'we'),(2760,'were'),(2760,'what'),(2760,'when'),(2760,'where'),(2760,'which'),(2760,'while'),(2760,'who'),(2760,'whom'),(2760,'why'),(2760,'will'),(2760,'with'),(2760,'would'),(2760,'yet'),(2760,'you'),(2760,'your');
 /*!40000 ALTER TABLE `system_configuration_void_words` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1061,7 +1061,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
-INSERT INTO `topic` VALUES (2367,0,'INQUIRY','PREGUNTA'),(2368,0,'REBUTTAL','REFUTACIÓN'),(2369,0,'REGISTRATION','REGISTRO'),(2370,0,'TOPICS','TEMAS'),(2371,0,'OTHER','OTRO');
+INSERT INTO `topic` VALUES (2780,0,'INQUIRY','PREGUNTA'),(2781,0,'REBUTTAL','REFUTACIÓN'),(2782,0,'REGISTRATION','REGISTRO'),(2783,0,'TOPICS','TEMAS'),(2784,0,'OTHER','OTRO');
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1090,7 +1090,7 @@ CREATE TABLE `tutorial` (
 
 LOCK TABLES `tutorial` WRITE;
 /*!40000 ALTER TABLE `tutorial` DISABLE KEYS */;
-INSERT INTO `tutorial` VALUES (2409,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1'),(2422,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1'),(2429,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1'),(2442,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1');
+INSERT INTO `tutorial` VALUES (2845,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1'),(2858,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1'),(2865,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1'),(2878,0,60,'Room1','2019-12-10 12:00:00','Summary','TitleTutorial1');
 /*!40000 ALTER TABLE `tutorial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1117,7 +1117,7 @@ CREATE TABLE `tutorial_sections` (
 
 LOCK TABLES `tutorial_sections` WRITE;
 /*!40000 ALTER TABLE `tutorial_sections` DISABLE KEYS */;
-INSERT INTO `tutorial_sections` VALUES (2409,2410),(2409,2411),(2422,2423),(2429,2430),(2429,2431),(2442,2443),(2442,2444);
+INSERT INTO `tutorial_sections` VALUES (2845,2846),(2845,2847),(2858,2859),(2865,2866),(2865,2867),(2878,2879),(2878,2880);
 /*!40000 ALTER TABLE `tutorial_sections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1144,7 +1144,7 @@ CREATE TABLE `user_account` (
 
 LOCK TABLES `user_account` WRITE;
 /*!40000 ALTER TABLE `user_account` DISABLE KEYS */;
-INSERT INTO `user_account` VALUES (2334,0,'21232f297a57a5a743894a0e4a801fc3','admin'),(2335,0,'b312ba4ffd5245fa2a1ab819ec0d0347','author1'),(2336,0,'9bd97baef2b853ec00cc3cffd269f679','author2'),(2337,0,'c59a474d5ade296a15ebc40d6c4e8e11','author3'),(2338,0,'6ce19528a40dde9521d97cf7ba264eca','reviewer1'),(2339,0,'2693b57f0f59df94caacefb811e99851','reviewer2'),(2340,0,'315d31e7c8f3a136610aafa220d689be','reviewer3'),(2341,0,'42c63ad66d4dc07ed17753772bef96d6','sponsor1'),(2342,0,'3dc67f80a03324e01b1640f45d107485','sponsor2'),(2343,0,'857a54956061fdc1b88d7722cafe6519','sponsor3'),(2344,0,'5293e8663cbb7c157ff83eeae25177d3','reviewer4'),(2345,0,'86045e9e3b2e615d8d2484dc64b3f408','reviewer5'),(2346,0,'8c14745274135379448d482d5773ee31','reviewer6');
+INSERT INTO `user_account` VALUES (2747,0,'21232f297a57a5a743894a0e4a801fc3','admin'),(2748,0,'b312ba4ffd5245fa2a1ab819ec0d0347','author1'),(2749,0,'9bd97baef2b853ec00cc3cffd269f679','author2'),(2750,0,'c59a474d5ade296a15ebc40d6c4e8e11','author3'),(2751,0,'6ce19528a40dde9521d97cf7ba264eca','reviewer1'),(2752,0,'2693b57f0f59df94caacefb811e99851','reviewer2'),(2753,0,'315d31e7c8f3a136610aafa220d689be','reviewer3'),(2754,0,'42c63ad66d4dc07ed17753772bef96d6','sponsor1'),(2755,0,'3dc67f80a03324e01b1640f45d107485','sponsor2'),(2756,0,'857a54956061fdc1b88d7722cafe6519','sponsor3'),(2757,0,'5293e8663cbb7c157ff83eeae25177d3','reviewer4'),(2758,0,'86045e9e3b2e615d8d2484dc64b3f408','reviewer5'),(2759,0,'8c14745274135379448d482d5773ee31','reviewer6');
 /*!40000 ALTER TABLE `user_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1169,7 +1169,7 @@ CREATE TABLE `user_account_authorities` (
 
 LOCK TABLES `user_account_authorities` WRITE;
 /*!40000 ALTER TABLE `user_account_authorities` DISABLE KEYS */;
-INSERT INTO `user_account_authorities` VALUES (2334,'ADMIN'),(2335,'AUTHOR'),(2336,'AUTHOR'),(2337,'AUTHOR'),(2338,'REVIEWER'),(2339,'REVIEWER'),(2340,'REVIEWER'),(2341,'SPONSOR'),(2342,'SPONSOR'),(2343,'SPONSOR'),(2344,'REVIEWER'),(2345,'REVIEWER'),(2346,'REVIEWER');
+INSERT INTO `user_account_authorities` VALUES (2747,'ADMIN'),(2748,'AUTHOR'),(2749,'AUTHOR'),(2750,'AUTHOR'),(2751,'REVIEWER'),(2752,'REVIEWER'),(2753,'REVIEWER'),(2754,'SPONSOR'),(2755,'SPONSOR'),(2756,'SPONSOR'),(2757,'REVIEWER'),(2758,'REVIEWER'),(2759,'REVIEWER');
 /*!40000 ALTER TABLE `user_account_authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1182,4 +1182,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-30 16:46:23
+-- Dump completed on 2019-08-31 18:50:10
+
+commit;
