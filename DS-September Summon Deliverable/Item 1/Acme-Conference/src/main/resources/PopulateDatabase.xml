@@ -1,0 +1,3361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2019 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="author1" />
+		<property name="password" value="b312ba4ffd5245fa2a1ab819ec0d0347" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUTHOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="author2" />
+		<property name="password" value="9bd97baef2b853ec00cc3cffd269f679" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUTHOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="author3" />
+		<property name="password" value="c59a474d5ade296a15ebc40d6c4e8e11" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUTHOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="reviewer1" />
+		<property name="password" value="6ce19528a40dde9521d97cf7ba264eca" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="reviewer2" />
+		<property name="password" value="2693b57f0f59df94caacefb811e99851" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="reviewer3" />
+		<property name="password" value="315d31e7c8f3a136610aafa220d689be" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="sponsor1" />
+		<property name="password" value="42c63ad66d4dc07ed17753772bef96d6" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="sponsor2" />
+		<property name="password" value="3dc67f80a03324e01b1640f45d107485" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="sponsor3" />
+		<property name="password" value="857a54956061fdc1b88d7722cafe6519" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="reviewer4" />
+		<property name="password" value="5293e8663cbb7c157ff83eeae25177d3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="reviewer5" />
+		<property name="password" value="86045e9e3b2e615d8d2484dc64b3f408" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="reviewer6" />
+		<property name="password" value="8c14745274135379448d482d5773ee31" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REVIEWER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Other domain beans come here -->
+
+	<!-- **************************** START SYSTEM CONFIG **************************** -->
+
+	<bean id="systemConfig" class="domain.SystemConfiguration">
+		<property name="systemName" value="Acme Conference" />
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="welcomeMessage"
+			value="Welcome to Acme Conference! Your scientific event manager" />
+		<property name="welcomeMessageES"
+			value="¡Bienvenidos a Acme Conference! Su gestor de eventos científicos" />
+		<property name="countryCode" value="+34" />
+		<property name="creditCardMakes">
+			<list>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+				<value>AMEX</value>
+			</list>
+		</property>
+		<property name="voidWords">
+			<list>
+				<value>a</value>
+				<value>acá</value>
+				<value>ahí</value>
+				<value>ajena</value>
+				<value>ajeno</value>
+				<value>ajenas</value>
+				<value>ajenos</value>
+				<value>al</value>
+				<value>algo</value>
+				<value>algún</value>
+				<value>alguna</value>
+				<value>alguno</value>
+				<value>algunas</value>
+				<value>algunos</value>
+				<value>allá</value>
+				<value>allí</value>
+				<value>ambos</value>
+				<value>ante</value>
+				<value>antes</value>
+				<value>aquel</value>
+				<value>aquella</value>
+				<value>aquello</value>
+				<value>aquelas</value>
+				<value>aquellos</value>
+				<value>aquí</value>
+				<value>arriba</value>
+				<value>así</value>
+				<value>atrás</value>
+				<value>aun</value>
+				<value>aunque</value>
+				<value>bajo</value>
+				<value>bastante</value>
+				<value>bien</value>
+				<value>cabe</value>
+				<value>cada</value>
+				<value>casi</value>
+				<value>cierto</value>
+				<value>cierta</value>
+				<value>ciertos</value>
+				<value>ciertas</value>
+				<value>como</value>
+				<value>con</value>
+				<value>conmigo</value>
+				<value>conseguimos</value>
+				<value>conseguir</value>
+				<value>consigo</value>
+				<value>consigue</value>
+				<value>consiguen</value>
+				<value>consigues</value>
+				<value>contigo</value>
+				<value>contra</value>
+				<value>cual</value>
+				<value>cuales</value>
+				<value>cualquier</value>
+				<value>cualquiera</value>
+				<value>cualesquiera</value>
+				<value>cuan</value>
+				<value>cuando</value>
+				<value>cuanto</value>
+				<value>cuanta</value>
+				<value>cuantos</value>
+				<value>cuantas</value>
+				<value>de</value>
+				<value>dejar</value>
+				<value>del</value>
+				<value>demás</value>
+				<value>demasiada</value>
+				<value>demasiado</value>
+				<value>demasiadas</value>
+				<value>demasidos</value>
+				<value>dentro</value>
+				<value>desde</value>
+				<value>donde</value>
+				<value>dos</value>
+				<value>el</value>
+				<value>él</value>
+				<value>ella</value>
+				<value>ello</value>
+				<value>ellos</value>
+				<value>ellas</value>
+				<value>empleáis</value>
+				<value>emplean</value>
+				<value>emplear</value>
+				<value>empleas</value>
+				<value>empleo</value>
+				<value>en</value>
+				<value>encima</value>
+				<value>entonces</value>
+				<value>entre</value>
+				<value>era</value>
+				<value>eras</value>
+				<value>eramos</value>
+				<value>eran</value>
+				<value>eres</value>
+				<value>es</value>
+				<value>esa</value>
+				<value>ese</value>
+				<value>eso</value>
+				<value>esas</value>
+				<value>esos</value>
+				<value>esta</value>
+				<value>estas</value>
+				<value>estaba</value>
+				<value>estado</value>
+				<value>estáis</value>
+				<value>estamos</value>
+				<value>están</value>
+				<value>estar</value>
+				<value>este</value>
+				<value>esto</value>
+				<value>estos</value>
+				<value>estoy</value>
+				<value>etc</value>
+				<value>fin</value>
+				<value>fue</value>
+				<value>fueron</value>
+				<value>fui</value>
+				<value>fuimos</value>
+				<value>gueno</value>
+				<value>ha</value>
+				<value>hace</value>
+				<value>haces</value>
+				<value>hacéis</value>
+				<value>hacemos</value>
+				<value>hacen</value>
+				<value>hacer</value>
+				<value>hacia</value>
+				<value>hago</value>
+				<value>hasta</value>
+				<value>incluso</value>
+				<value>intenta</value>
+				<value>intentas</value>
+				<value>intentáis</value>
+				<value>intentamos</value>
+				<value>intentan</value>
+				<value>intentar</value>
+				<value>intento</value>
+				<value>ir</value>
+				<value>jamás</value>
+				<value>junto</value>
+				<value>juntos</value>
+				<value>la</value>
+				<value>lo</value>
+				<value>las</value>
+				<value>los</value>
+				<value>largo</value>
+				<value>más</value>
+				<value>me</value>
+				<value>menos</value>
+				<value>mi</value>
+				<value>mis</value>
+				<value>mía</value>
+				<value>mías</value>
+				<value>mientras</value>
+				<value>mío</value>
+				<value>míos</value>
+				<value>misma</value>
+				<value>mismo</value>
+				<value>mismas</value>
+				<value>mismos</value>
+				<value>modo</value>
+				<value>mucha</value>
+				<value>muchas</value>
+				<value>muchísima</value>
+				<value>muchísimo</value>
+				<value>muchísimas</value>
+				<value>muchísimos</value>
+				<value>mucho</value>
+				<value>muchos</value>
+				<value>muy</value>
+				<value>nada</value>
+				<value>ni</value>
+				<value>ningún</value>
+				<value>niguna</value>
+				<value>ninguno</value>
+				<value>ningunas</value>
+				<value>ningunos</value>
+				<value>no</value>
+				<value>nos</value>
+				<value>nosotras</value>
+				<value>nosotros</value>
+				<value>nuestra</value>
+				<value>nuestro</value>
+				<value>nuestras</value>
+				<value>nuestros</value>
+				<value>nunca</value>
+				<value>os</value>
+				<value>otra</value>
+				<value>otro</value>
+				<value>otras</value>
+				<value>otros</value>
+				<value>para</value>
+				<value>parecer</value>
+				<value>pero</value>
+				<value>poca</value>
+				<value>poco</value>
+				<value>pocas</value>
+				<value>pocos</value>
+				<value>podéis</value>
+				<value>podemos</value>
+				<value>poder</value>
+				<value>podría</value>
+				<value>podrías</value>
+				<value>podríais</value>
+				<value>podríamos</value>
+				<value>podrían</value>
+				<value>por</value>
+				<value>por qué</value>
+				<value>porque</value>
+				<value>primero</value>
+				<value>puede</value>
+				<value>pueden</value>
+				<value>puedo</value>
+				<value>pues</value>
+				<value>que</value>
+				<value>qué</value>
+				<value>querer</value>
+				<value>quién</value>
+				<value>quienes</value>
+				<value>quienesquiera</value>
+				<value>quienquiera</value>
+				<value>quizá</value>
+				<value>quizás</value>
+				<value>sabe</value>
+				<value>sabes</value>
+				<value>saben</value>
+				<value>sabéis</value>
+				<value>sabemos</value>
+				<value>saber</value>
+				<value>se</value>
+				<value>según</value>
+				<value>ser</value>
+				<value>si</value>
+				<value>sí</value>
+				<value>siempre</value>
+				<value>siendo</value>
+				<value>sin</value>
+				<value>sino</value>
+				<value>so</value>
+				<value>sobre</value>
+				<value>sois</value>
+				<value>solamente</value>
+				<value>solo</value>
+				<value>sólo</value>
+				<value>somos</value>
+				<value>soy</value>
+				<value>sr</value>
+				<value>sra</value>
+				<value>sres</value>
+				<value>sta</value>
+				<value>su</value>
+				<value>sus</value>
+				<value>suya</value>
+				<value>suyo</value>
+				<value>suyas</value>
+				<value>suyos</value>
+				<value>tal</value>
+				<value>tales</value>
+				<value>también</value>
+				<value>tampoco</value>
+				<value>tan</value>
+				<value>tanta</value>
+				<value>tanto</value>
+				<value>tantas</value>
+				<value>tantos</value>
+				<value>te</value>
+				<value>tenéis</value>
+				<value>tenemos</value>
+				<value>tener</value>
+				<value>tengo</value>
+				<value>ti</value>
+				<value>tiempo</value>
+				<value>tiene</value>
+				<value>tienen</value>
+				<value>toda</value>
+				<value>todo</value>
+				<value>todas</value>
+				<value>todos</value>
+				<value>tomar</value>
+				<value>trabaja</value>
+				<value>trabajo</value>
+				<value>trabajáis</value>
+				<value>trabajamos</value>
+				<value>trabajan</value>
+				<value>trabajar</value>
+				<value>trabajas</value>
+				<value>tras</value>
+				<value>tú</value>
+				<value>tu</value>
+				<value>tus</value>
+				<value>tuya</value>
+				<value>tuyo</value>
+				<value>tuyas</value>
+				<value>tuyos</value>
+				<value>último</value>
+				<value>ultimo</value>
+				<value>un</value>
+				<value>una</value>
+				<value>uno</value>
+				<value>unas</value>
+				<value>unos</value>
+				<value>usa</value>
+				<value>usas</value>
+				<value>usáis</value>
+				<value>usamos</value>
+				<value>usan</value>
+				<value>usar</value>
+				<value>uso</value>
+				<value>usted</value>
+				<value>ustedes</value>
+				<value>va</value>
+				<value>van</value>
+				<value>vais</value>
+				<value>valor</value>
+				<value>vamos</value>
+				<value>varias</value>
+				<value>varios</value>
+				<value>vaya</value>
+				<value>verdadera</value>
+				<value>vosotras</value>
+				<value>vosotros</value>
+				<value>voy</value>
+				<value>vuestra</value>
+				<value>vuestro</value>
+				<value>vuestras</value>
+				<value>vuestros</value>
+				<value>y</value>
+				<value>ya</value>
+				<value>yo</value>
+				<value>a</value>
+				<value>able</value>
+				<value>about</value>
+				<value>across</value>
+				<value>after</value>
+				<value>all</value>
+				<value>almost</value>
+				<value>also</value>
+				<value>am</value>
+				<value>among</value>
+				<value>an</value>
+				<value>and</value>
+				<value>any</value>
+				<value>are</value>
+				<value>as</value>
+				<value>at</value>
+				<value>be</value>
+				<value>because</value>
+				<value>been</value>
+				<value>but</value>
+				<value>by</value>
+				<value>can</value>
+				<value>cannot</value>
+				<value>could</value>
+				<value>dear</value>
+				<value>did</value>
+				<value>do</value>
+				<value>does</value>
+				<value>either</value>
+				<value>else</value>
+				<value>ever</value>
+				<value>every</value>
+				<value>for</value>
+				<value>from</value>
+				<value>get</value>
+				<value>got</value>
+				<value>had</value>
+				<value>has</value>
+				<value>have</value>
+				<value>he</value>
+				<value>her</value>
+				<value>hers</value>
+				<value>him</value>
+				<value>his</value>
+				<value>how</value>
+				<value>however</value>
+				<value>i</value>
+				<value>if</value>
+				<value>in</value>
+				<value>into</value>
+				<value>is</value>
+				<value>it</value>
+				<value>its</value>
+				<value>just</value>
+				<value>least</value>
+				<value>let</value>
+				<value>like</value>
+				<value>likely</value>
+				<value>may</value>
+				<value>me</value>
+				<value>might</value>
+				<value>most</value>
+				<value>must</value>
+				<value>my</value>
+				<value>neither</value>
+				<value>no</value>
+				<value>nor</value>
+				<value>not</value>
+				<value>of</value>
+				<value>off</value>
+				<value>often</value>
+				<value>on</value>
+				<value>only</value>
+				<value>or</value>
+				<value>other</value>
+				<value>our</value>
+				<value>own</value>
+				<value>rather</value>
+				<value>said</value>
+				<value>say</value>
+				<value>says</value>
+				<value>she</value>
+				<value>should</value>
+				<value>since</value>
+				<value>so</value>
+				<value>some</value>
+				<value>than</value>
+				<value>that</value>
+				<value>the</value>
+				<value>their</value>
+				<value>them</value>
+				<value>then</value>
+				<value>there</value>
+				<value>these</value>
+				<value>they</value>
+				<value>this</value>
+				<value>tis</value>
+				<value>to</value>
+				<value>too</value>
+				<value>twas</value>
+				<value>us</value>
+				<value>wants</value>
+				<value>was</value>
+				<value>we</value>
+				<value>were</value>
+				<value>what</value>
+				<value>when</value>
+				<value>where</value>
+				<value>which</value>
+				<value>while</value>
+				<value>who</value>
+				<value>whom</value>
+				<value>why</value>
+				<value>will</value>
+				<value>with</value>
+				<value>would</value>
+				<value>yet</value>
+				<value>you</value>
+				<value>your</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END SYSTEM CONFIG ************ -->
+
+
+	<!-- **************************** START CATEGORIES **************************** -->
+
+	<bean id="category1" class="domain.Category">
+		<property name="title" value="CONFERENCE" />
+	</bean>
+
+	<bean id="category2" class="domain.Category">
+		<property name="title" value="Computer Science" />
+		<property name="parent" ref="category1" />
+	</bean>
+
+	<bean id="category3" class="domain.Category">
+		<property name="title" value="Artificial Intelligence" />
+		<property name="parent" ref="category2" />
+	</bean>
+
+	<bean id="category4" class="domain.Category">
+		<property name="title" value="Deep Learning" />
+		<property name="parent" ref="category3" />
+	</bean>
+
+	<bean id="category5" class="domain.Category">
+		<property name="title" value="Instance-based learning" />
+		<property name="parent" ref="category3" />
+	</bean>
+
+	<bean id="category6" class="domain.Category">
+		<property name="title" value="Regression" />
+		<property name="parent" ref="category3" />
+	</bean>
+
+	<bean id="category7" class="domain.Category">
+		<property name="title" value="Software Engineering" />
+		<property name="parent" ref="category2" />
+	</bean>
+
+	<bean id="category8" class="domain.Category">
+		<property name="title" value="Big Data" />
+		<property name="parent" ref="category7" />
+	</bean>
+
+	<bean id="category9" class="domain.Category">
+		<property name="title" value="Big Processing" />
+		<property name="parent" ref="category7" />
+	</bean>
+
+	<bean id="category10" class="domain.Category">
+		<property name="title" value="Methods" />
+		<property name="parent" ref="category7" />
+	</bean>
+
+	<bean id="category11" class="domain.Category">
+		<property name="title" value="Tools" />
+		<property name="parent" ref="category7" />
+	</bean>
+
+	<bean id="category12" class="domain.Category">
+		<property name="title" value="Physics" />
+		<property name="parent" ref="category1" />
+	</bean>
+
+	<bean id="category13" class="domain.Category">
+		<property name="title" value="Cinematic" />
+		<property name="parent" ref="category12" />
+	</bean>
+
+	<bean id="category14" class="domain.Category">
+		<property name="title" value="Electricity" />
+		<property name="parent" ref="category12" />
+	</bean>
+
+	<bean id="category15" class="domain.Category">
+		<property name="title" value="Electronics" />
+		<property name="parent" ref="category12" />
+	</bean>
+
+	<bean id="category16" class="domain.Category">
+		<property name="title" value="Biology" />
+		<property name="parent" ref="category1" />
+	</bean>
+
+	<bean id="category17" class="domain.Category">
+		<property name="title" value="Animals" />
+		<property name="parent" ref="category16" />
+	</bean>
+
+	<bean id="category18" class="domain.Category">
+		<property name="title" value="Plants" />
+		<property name="parent" ref="category16" />
+	</bean>
+
+	<bean id="category19" class="domain.Category">
+		<property name="title" value="Fungi" />
+		<property name="parent" ref="category16" />
+	</bean>
+
+	<!-- **************************** END CATEGORIES **************************** -->
+
+
+
+	<!-- **************************** START TOPICS **************************** -->
+
+	<bean id="topic1" class="domain.Topic">
+		<property name="name" value="INQUIRY" />
+		<property name="nameES" value="PREGUNTA" />
+	</bean>
+
+	<bean id="topic2" class="domain.Topic">
+		<property name="name" value="REBUTTAL" />
+		<property name="nameES" value="REFUTACIÓN" />
+	</bean>
+
+	<bean id="topic3" class="domain.Topic">
+		<property name="name" value="REGISTRATION" />
+		<property name="nameES" value="REGISTRO" />
+	</bean>
+
+	<bean id="topic4" class="domain.Topic">
+		<property name="name" value="TOPICS" />
+		<property name="nameES" value="TEMAS" />
+	</bean>
+
+	<bean id="topic5" class="domain.Topic">
+		<property name="name" value="OTHER" />
+		<property name="nameES" value="OTRO" />
+	</bean>
+
+	<!-- **************************** END TOPICS **************************** -->
+
+
+
+
+	<!-- **************************** START ADMIN **************************** -->
+
+	<bean id="admin" class="domain.Administrator">
+		<property name="name" value="Admin" />
+		<property name="middleName" value="Admin" />
+		<property name="surname" value="Admin" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+
+	<!-- ************ START ADMIN MESSAGE1 ************ -->
+
+	<bean id="adminmessage1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="true" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+				<ref bean="reviewer1" />
+				<ref bean="sponsor1" />
+				<ref bean="author2" />
+				<ref bean="reviewer2" />
+				<ref bean="sponsor2" />
+				<ref bean="author3" />
+				<ref bean="reviewer3" />
+				<ref bean="sponsor3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
+	<bean id="adminmessage2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
+	<bean id="adminmessage3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="adminmessage4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="adminmessage5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="adminmessage6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="admin" />
+		<property name="sender" ref="admin" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+
+	<!-- ************ END ADMIN MESSAGE1 ************ -->
+
+	<!-- **************************** END ADMIN **************************** -->
+
+
+	<!-- **************************** START AUTHOR1 **************************** -->
+
+	<bean id="author1" class="domain.Author">
+		<property name="name" value="Author1" />
+		<property name="middleName" value="Author1" />
+		<property name="surname" value="Author1" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount2" />
+	</bean>
+
+	<!-- ************ START AUTHOR1 FINDER ************ -->
+
+	<bean id="author1finder" class="domain.Finder">
+		<property name="startDate" value="01/01/2019" />
+		<property name="endDate" value="01/01/2020" />
+		<property name="author" ref="author1" />
+		<property name="conferences">
+			<list>
+				<ref bean="conference1" />
+				<ref bean="conference2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR1 FINDER ************ -->
+
+	<!-- ************ START AUTHOR1 SUBMISSION1 (TO CONFERENCE1) ************ -->
+
+	<bean id="author1submission1" class="domain.Submission">
+		<property name="ticker" value="AAA-O3L6" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="cameraReadyPaper" ref="paper2" />
+		<property name="status" value="ACCEPTED" />
+		<property name="reportsAvailable" value="true" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference1" />
+		<property name="reviewers">
+			<list>
+				<ref bean="reviewer1" />
+				<ref bean="reviewer2" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR1 SUBMISSION1 (TO CONFERENCE1) ************ -->
+
+	<!-- ************ START AUTHOR1 SUBMISSION2 (TO CONFERENCE2) ************ -->
+
+	<bean id="author1submission2" class="domain.Submission">
+		<property name="ticker" value="AAA-K3GU" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference2" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR1 SUBMISSION2 (TO CONFERENCE2) ************ -->
+
+
+	<!-- ************ START AUTHOR1 SUBMISSION3 (TO CONFERENCE4) ************ -->
+
+	<bean id="author1submission3" class="domain.Submission">
+		<property name="ticker" value="AAA-A1B2" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="REJECTED" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference4" />
+		<property name="reviewers">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR1 SUBMISSION3 (TO CONFERENCE4) ************ -->
+
+
+	<!-- ************ START AUTHOR1 SUBMISSION4 (TO CONFERENCE5) ************ -->
+
+	<bean id="author1submission4" class="domain.Submission">
+		<property name="ticker" value="AAA-5A57" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="true" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference5" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR1 SUBMISSION4 (TO CONFERENCE5) ************ -->
+
+
+
+	<!-- ************ START AUTHOR1 REGISTRATION1 (TO CONFERENCE2) ************ -->
+
+	<bean id="author1registration1" class="domain.Registration">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference2" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 REGISTRATION1 (TO CONFERENCE2) ************ -->
+
+	<!-- ************ START AUTHOR1 REGISTRATION2 (TO CONFERENCE4) ************ -->
+
+	<bean id="author1registration2" class="domain.Registration">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference4" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 REGISTRATION2 (TO CONFERENCE4) ************ -->
+
+	<!-- ************ START AUTHOR1 REGISTRATION3 (TO CONFERENCE5) ************ -->
+
+	<bean id="author1registration3" class="domain.Registration">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference5" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 REGISTRATION3 (TO CONFERENCE5) ************ -->
+
+	<!-- ************ START AUTHOR1 REGISTRATION4 (TO CONFERENCE1) ************ -->
+
+	<bean id="author1registration4" class="domain.Registration">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="author" ref="author1" />
+		<property name="conference" ref="conference1" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 REGISTRATION4 (TO CONFERENCE1) ************ -->
+
+
+	<!-- ************ START AUTHOR1 MESSAGE1 ************ -->
+
+	<bean id="author1message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author1" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+				<ref bean="author3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 MESSAGE1 ************ -->
+
+	<!-- ************ START AUTHOR1 MESSAGE2 ************ -->
+
+	<bean id="author1message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author1" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 MESSAGE2 ************ -->
+
+	<!-- ************ START AUTHOR1 MESSAGE3 ************ -->
+
+	<bean id="author1message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author1" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer2" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 MESSAGE3 ************ -->
+
+	<!-- ************ START AUTHOR1 MESSAGE4 ************ -->
+
+	<bean id="author1message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author1" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 MESSAGE4 ************ -->
+
+	<!-- ************ START AUTHOR1 MESSAGE5 ************ -->
+
+	<bean id="author1message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author1" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor2" />
+				<ref bean="sponsor3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 MESSAGE5 ************ -->
+
+	<!-- ************ START AUTHOR1 MESSAGE6 ************ -->
+
+	<bean id="author1message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author1" />
+		<property name="sender" ref="author1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+				<ref bean="reviewer1" />
+				<ref bean="sponsor3" />
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+
+	<!-- ************ END AUTHOR1 MESSAGE6 ************ -->
+
+	<!-- **************************** END AUTHOR1 **************************** -->
+
+
+
+
+	<!-- **************************** START AUTHOR2 **************************** -->
+
+	<bean id="author2" class="domain.Author">
+		<property name="name" value="Author2" />
+		<property name="middleName" value="Author2" />
+		<property name="surname" value="Author2" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount3" />
+	</bean>
+
+	<!-- ************ START AUTHOR2 SUBMISSION1 (TO CONFERENCE2) ************ -->
+
+	<bean id="author2submission1" class="domain.Submission">
+		<property name="ticker" value="AAA-FHK7" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="cameraReadyPaper" ref="paper3" />
+		<property name="status" value="ACCEPTED" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference2" />
+		<property name="reviewers">
+			<list>
+				<ref bean="reviewer1" />
+				<ref bean="reviewer2" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR2 SUBMISSION1 (TO CONFERENCE2) ************ -->
+
+	<!-- ************ START AUTHOR2 SUBMISSION2 (TO CONFERENCE1) ************ -->
+
+	<bean id="author2submission2" class="domain.Submission">
+		<property name="ticker" value="AAA-LJK7" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference1" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR2 SUBMISSION2 (TO CONFERENCE1) ************ -->
+
+	<!-- ************ START AUTHOR2 SUBMISSION3 (TO CONFERENCE3) ************ -->
+
+	<bean id="author2submission3" class="domain.Submission">
+		<property name="ticker" value="AAA-AAAA" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference3" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR2 SUBMISSION3 (TO CONFERENCE3) ************ -->
+
+	<!-- ************ START AUTHOR2 SUBMISSION4 (TO CONFERENCE4) ************ -->
+
+	<bean id="author2submission4" class="domain.Submission">
+		<property name="ticker" value="AAA-12BB" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference4" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR2 SUBMISSION4 (TO CONFERENCE4) ************ -->
+
+	<!-- ************ START AUTHOR2 SUBMISSION5 (TO CONFERENCE5) ************ -->
+
+	<bean id="author2submission5" class="domain.Submission">
+		<property name="ticker" value="AAA-5F6A" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference5" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR2 SUBMISSION5 (TO CONFERENCE5) ************ -->
+
+	<!-- ************ START AUTHOR2 SUBMISSION6 (TO CONFERENCE6) ************ -->
+
+	<bean id="author2submission6" class="domain.Submission">
+		<property name="ticker" value="AAA-1234" />
+		<property name="moment" value="07/03/2019 12:00" />
+		<property name="paper" ref="paper1" />
+		<property name="status" value="UNDER-REVIEW" />
+		<property name="reportsAvailable" value="false" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference3" />
+		<property name="reviewers">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ END AUTHOR2 SUBMISSION6 (TO CONFERENCE6) ************ -->
+
+
+	<!-- ************ START AUTHOR2 REGISTRATION1 (TO CONFERENCE1) ************ -->
+
+	<bean id="author2registration1" class="domain.Registration">
+		<property name="creditCard" ref="creditCard2" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference1" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 REGISTRATION1 (TO CONFERENCE1) ************ -->
+
+	<!-- ************ START AUTHOR2 REGISTRATION2 (TO CONFERENCE2) ************ -->
+
+	<bean id="author2registration2" class="domain.Registration">
+		<property name="creditCard" ref="creditCard2" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference2" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 REGISTRATION2 (TO CONFERENCE2) ************ -->
+
+	<!-- ************ START AUTHOR2 REGISTRATION3 (TO CONFERENCE3) ************ -->
+
+	<bean id="author2registration3" class="domain.Registration">
+		<property name="creditCard" ref="creditCard2" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference3" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 REGISTRATION3 (TO CONFERENCE3) ************ -->
+
+	<!-- ************ START AUTHOR2 REGISTRATION4 (TO CONFERENCE4) ************ -->
+
+	<bean id="author2registration4" class="domain.Registration">
+		<property name="creditCard" ref="creditCard2" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference4" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 REGISTRATION4 (TO CONFERENCE4) ************ -->
+
+	<!-- ************ START AUTHOR2 REGISTRATION5 (TO CONFERENCE5) ************ -->
+
+	<bean id="author2registration5" class="domain.Registration">
+		<property name="creditCard" ref="creditCard2" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference5" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 REGISTRATION5 (TO CONFERENCE5) ************ -->
+
+	<!-- ************ START AUTHOR2 REGISTRATION6 (TO CONFERENCE6) ************ -->
+
+	<bean id="author2registration6" class="domain.Registration">
+		<property name="creditCard" ref="creditCard2" />
+		<property name="author" ref="author2" />
+		<property name="conference" ref="conference6" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 REGISTRATION6 (TO CONFERENCE6) ************ -->
+
+
+	<!-- ************ START AUTHOR2 MESSAGE1 ************ -->
+
+	<bean id="author2message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author2" />
+		<property name="sender" ref="author2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+				<ref bean="author3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 MESSAGE1 ************ -->
+
+	<!-- ************ START AUTHOR2 MESSAGE2 ************ -->
+
+	<bean id="author2message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author2" />
+		<property name="sender" ref="author2" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 MESSAGE2 ************ -->
+
+	<!-- ************ START AUTHOR2 MESSAGE3 ************ -->
+
+	<bean id="author2message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author2" />
+		<property name="sender" ref="author2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 MESSAGE3 ************ -->
+
+	<!-- ************ START AUTHOR2 MESSAGE4 ************ -->
+
+	<bean id="author2message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author2" />
+		<property name="sender" ref="author2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 MESSAGE4 ************ -->
+
+	<!-- ************ START AUTHOR2 MESSAGE5 ************ -->
+
+	<bean id="author2message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author2" />
+		<property name="sender" ref="author2" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 MESSAGE5 ************ -->
+
+	<!-- ************ START AUTHOR2 MESSAGE6 ************ -->
+
+	<bean id="author2message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author2" />
+		<property name="sender" ref="author2" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+
+	<!-- ************ END AUTHOR2 MESSAGE6 ************ -->
+
+	<!-- **************************** END AUTHOR2 **************************** -->
+
+
+
+
+	<!-- **************************** START AUTHOR3 **************************** -->
+
+	<bean id="author3" class="domain.Author">
+		<property name="name" value="Author3" />
+		<property name="middleName" value="Author3" />
+		<property name="surname" value="Author3" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount4" />
+	</bean>
+
+	<!-- ************ START AUTHOR3 REGISTRATION1 (TO CONFERENCE1) ************ -->
+
+	<bean id="author3registration1" class="domain.Registration">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="author" ref="author3" />
+		<property name="conference" ref="conference1" />
+	</bean>
+
+	<!-- ************ END AUTHOR3 REGISTRATION1 (TO CONFERENCE1) ************ -->
+
+	<!-- ************ START AUTHOR3 REGISTRATION2 (TO CONFERENCE2) ************ -->
+
+	<bean id="author3registration2" class="domain.Registration">
+		<property name="creditCard" ref="creditCard1" />
+		<property name="author" ref="author3" />
+		<property name="conference" ref="conference2" />
+	</bean>
+
+	<!-- ************ END AUTHOR3 REGISTRATION2 (TO CONFERENCE2) ************ -->
+
+	<!-- ************ START AUTHOR3 MESSAGE1 ************ -->
+
+	<bean id="author3message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="author3" />
+		<property name="sender" ref="author3" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+
+	<!-- ************ END AUTHOR3 MESSAGE1 ************ -->
+
+	<!-- **************************** END AUTHOR3 **************************** -->
+
+
+
+
+	<!-- **************************** START REVIEWER1 **************************** -->
+
+	<bean id="reviewer1" class="domain.Reviewer">
+		<property name="name" value="Reviewer1" />
+		<property name="middleName" value="Reviewer1" />
+		<property name="surname" value="Reviewer1" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount5" />
+		<property name="keywords">
+			<list>
+				<value>data</value>
+				<value>science</value>
+				<value>computer</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ START REVIEWER1 REPORT1 TO SUBMISSION1 ************ -->
+
+	<bean id="reviewer1report1" class="domain.Report">
+		<property name="originality" value="9.9" />
+		<property name="quality" value="9.9" />
+		<property name="readability" value="9.9" />
+		<property name="decision" value="ACCEPT" />
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+			</list>
+		</property>
+		<property name="reviewer" ref="reviewer1" />
+		<property name="submission" ref="author1submission1" />
+	</bean>
+
+	<!-- ************ END REVIEWER1 REPORT1 TO SUBMISSION1 ************ -->
+
+	<!-- ************ START REVIEWER1 REPORT2 TO SUBMISSION1 ************ -->
+
+	<bean id="reviewer1report2" class="domain.Report">
+		<property name="originality" value="0.9" />
+		<property name="quality" value="0.9" />
+		<property name="readability" value="0.9" />
+		<property name="decision" value="REJECT" />
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+			</list>
+		</property>
+		<property name="reviewer" ref="reviewer1" />
+		<property name="submission" ref="author1submission3" />
+	</bean>
+
+	<!-- ************ END REVIEWER1 REPORT2 TO SUBMISSION1 ************ -->
+
+	<!-- ************ START REVIEWER1 MESSAGE1 ************ -->
+
+	<bean id="reviewer1message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+
+	<!-- ************ END REVIEWER1 MESSAGE1 ************ -->
+
+	<!-- ************ START REVIEWER1 MESSAGE2 ************ -->
+
+	<bean id="reviewer1message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="reviewer1message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="reviewer1message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="reviewer1message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="reviewer1message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer1" />
+		<property name="sender" ref="reviewer1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+
+	<!-- ************ END REVIEWER1 MESSAGE2 ************ -->
+
+	<!-- **************************** END REVIEWER1 **************************** -->
+
+	<!-- **************************** START REVIEWER2 **************************** -->
+
+	<bean id="reviewer2" class="domain.Reviewer">
+		<property name="name" value="Reviewer2" />
+		<property name="middleName" value="Reviewer2" />
+		<property name="surname" value="Reviewer2" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount6" />
+		<property name="keywords">
+			<list>
+				<value>science</value>
+				<value>economy</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ START REVIEWER2 REPORT1 TO SUBMISSION1 ************ -->
+
+	<bean id="reviewer2report1" class="domain.Report">
+		<property name="originality" value="0.1" />
+		<property name="quality" value="0.1" />
+		<property name="readability" value="0.1" />
+		<property name="decision" value="REJECT" />
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+			</list>
+		</property>
+		<property name="reviewer" ref="reviewer2" />
+		<property name="submission" ref="author1submission1" />
+	</bean>
+
+	<!-- ************ END REVIEWER2 REPORT1 TO SUBMISSION1 ************ -->
+
+	<!-- ************ START REVIEWER2 MESSAGE1 ************ -->
+
+	<bean id="reviewer2message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="reviewer2message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="reviewer2message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="reviewer2message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="reviewer2message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="reviewer2message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer2" />
+		<property name="sender" ref="reviewer2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
+	<!-- ************ END REVIEWER2 MESSAGE1 ************ -->
+
+	<!-- **************************** END REVIEWER2 **************************** -->
+
+	<!-- **************************** START REVIEWER3 **************************** -->
+
+	<bean id="reviewer3" class="domain.Reviewer">
+		<property name="name" value="Reviewer3" />
+		<property name="middleName" value="Reviewer3" />
+		<property name="surname" value="Reviewer3" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount7" />
+		<property name="keywords">
+			<list>
+				<value>business</value>
+				<value>computer</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************ START REVIEWER3 REPORT1 TO SUBMISSION1 ************ -->
+
+	<bean id="reviewer3report1" class="domain.Report">
+		<property name="originality" value="5.0" />
+		<property name="quality" value="5.0" />
+		<property name="readability" value="5.0" />
+		<property name="decision" value="BORDER-LINE" />
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+			</list>
+		</property>
+		<property name="reviewer" ref="reviewer3" />
+		<property name="submission" ref="author1submission1" />
+	</bean>
+
+	<!-- ************ END REVIEWER3 REPORT1 TO SUBMISSION1 ************ -->
+
+	<!-- ************ START REVIEWER3 MESSAGE1 ************ -->
+
+	<bean id="reviewer3message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="reviewer3" />
+		<property name="sender" ref="reviewer3" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+
+	<!-- ************ END REVIEWER3 MESSAGE1 ************ -->
+
+	<!-- **************************** END REVIEWER3 **************************** -->
+
+	<!-- **************************** START REVIEWER4 **************************** -->
+
+	<bean id="reviewer4" class="domain.Reviewer">
+		<property name="name" value="Reviewer4" />
+		<property name="middleName" value="Reviewer4" />
+		<property name="surname" value="Reviewer4" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount11" />
+		<property name="keywords">
+			<list>
+				<value>data</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- **************************** END REVIEWER4 **************************** -->
+
+	<!-- **************************** START REVIEWER5 **************************** -->
+
+	<bean id="reviewer5" class="domain.Reviewer">
+		<property name="name" value="Reviewer5" />
+		<property name="middleName" value="Reviewer5" />
+		<property name="surname" value="Reviewer5" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount12" />
+		<property name="keywords">
+			<list>
+				<value>biology</value>
+				<value>nature</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- **************************** END REVIEWER5 **************************** -->
+
+	<!-- **************************** START REVIEWER6 **************************** -->
+
+	<bean id="reviewer6" class="domain.Reviewer">
+		<property name="name" value="Reviewer6" />
+		<property name="middleName" value="Reviewer6" />
+		<property name="surname" value="Reviewer6" />
+		<property name="photo" value="http://photo.com" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount13" />
+		<property name="keywords">
+			<list>
+				<value>architecture</value>
+				<value>design</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- **************************** END REVIEWER6 **************************** -->
+
+
+
+
+	<!-- **************************** START SPONSOR1 **************************** -->
+
+	<bean id="sponsor1" class="domain.Sponsor">
+		<property name="name" value="Sponsor1" />
+		<property name="middleName" value="Sponsor1" />
+		<property name="surname" value="Sponsor1" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount8" />
+	</bean>
+
+	<!-- ************ START SPONSOR1 MESSAGE1 ************ -->
+
+	<bean id="sponsor1message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author3" />
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 MESSAGE1 ************ -->
+
+	<!-- ************ START SPONSOR1 MESSAGE2 ************ -->
+
+	<bean id="sponsor1message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author3" />
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="sponsor1message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor2" />
+				<ref bean="sponsor3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="sponsor1message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer3" />
+				<ref bean="author1" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="sponsor1message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="admin" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="sponsor1message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor1" />
+		<property name="sender" ref="sponsor1" />
+		<property name="recipients">
+			<list>
+				<ref bean="author2" />
+				<ref bean="sponsor3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 MESSAGE2 ************ -->
+
+	<!-- ************ START SPONSOR1 SPONSORSHIP1 (TO CONFERENCE 1)************ -->
+
+	<bean id="sponsor1sponsorship1" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="sponsor" ref="sponsor1" />
+		<property name="conference" ref="conference1" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 SPONSORSHIP1 ************ -->
+
+	<!-- ************ START SPONSOR1 SPONSORSHIP2 (TO CONFERENCE 2)************ -->
+
+	<bean id="sponsor1sponsorship2" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="sponsor" ref="sponsor1" />
+		<property name="conference" ref="conference2" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 SPONSORSHIP2 ************ -->
+
+	<!-- ************ START SPONSOR1 SPONSORSHIP3 (TO CONFERENCE 3)************ -->
+
+	<bean id="sponsor1sponsorship3" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="sponsor" ref="sponsor1" />
+		<property name="conference" ref="conference3" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 SPONSORSHIP3 ************ -->
+
+	<!-- ************ START SPONSOR1 SPONSORSHIP4 (TO CONFERENCE 4)************ -->
+
+	<bean id="sponsor1sponsorship4" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="sponsor" ref="sponsor1" />
+		<property name="conference" ref="conference4" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 SPONSORSHIP4 ************ -->
+
+	<!-- ************ START SPONSOR1 SPONSORSHIP5 (TO CONFERENCE 5)************ -->
+
+	<bean id="sponsor1sponsorship5" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="sponsor" ref="sponsor1" />
+		<property name="conference" ref="conference5" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 SPONSORSHIP5 ************ -->
+
+	<!-- ************ START SPONSOR1 SPONSORSHIP6 (TO CONFERENCE 6)************ -->
+
+	<bean id="sponsor1sponsorship6" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard3" />
+		<property name="sponsor" ref="sponsor1" />
+		<property name="conference" ref="conference6" />
+	</bean>
+
+	<!-- ************ END SPONSOR1 SPONSORSHIP6 ************ -->
+
+
+	<!-- **************************** END SPONSOR1 **************************** -->
+
+
+
+
+
+	<!-- **************************** START SPONSOR2 **************************** -->
+
+	<bean id="sponsor2" class="domain.Sponsor">
+		<property name="name" value="Sponsor2" />
+		<property name="middleName" value="Sponsor2" />
+		<property name="surname" value="Sponsor2" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount9" />
+	</bean>
+
+	<!-- ************ START SPONSOR2 MESSAGE1 ************ -->
+
+	<bean id="sponsor2message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+	<bean id="sponsor2message2" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+	<bean id="sponsor2message3" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+	<bean id="sponsor2message4" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+	<bean id="sponsor2message5" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic5" />
+	</bean>
+	
+	<bean id="sponsor2message6" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor2" />
+		<property name="sender" ref="sponsor2" />
+		<property name="recipients">
+			<list>
+				<ref bean="sponsor3" />
+				<ref bean="reviewer3" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 MESSAGE1 ************ -->
+
+	<!-- ************ START SPONSOR2 SPONSORSHIP1 (TO CONFERENCE1) ************ -->
+
+	<bean id="sponsor2sponsorship1" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="sponsor" ref="sponsor2" />
+		<property name="conference" ref="conference1" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 SPONSORSHIP1 ************ -->
+
+	<!-- ************ START SPONSOR2 SPONSORSHIP2 (TO CONFERENCE1) ************ -->
+
+	<bean id="sponsor2sponsorship2" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="sponsor" ref="sponsor2" />
+		<property name="conference" ref="conference1" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 SPONSORSHIP2 ************ -->
+
+	<!-- ************ START SPONSOR2 SPONSORSHIP3 (TO CONFERENCE2) ************ -->
+
+	<bean id="sponsor2sponsorship3" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="sponsor" ref="sponsor2" />
+		<property name="conference" ref="conference2" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 SPONSORSHIP1 ************ -->
+
+	<!-- ************ START SPONSOR2 SPONSORSHIP4 (TO CONFERENCE3) ************ -->
+
+	<bean id="sponsor2sponsorship4" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="sponsor" ref="sponsor2" />
+		<property name="conference" ref="conference3" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 SPONSORSHIP4 ************ -->
+
+	<!-- ************ START SPONSOR2 SPONSORSHIP5 (TO CONFERENCE4) ************ -->
+
+	<bean id="sponsor2sponsorship5" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="sponsor" ref="sponsor2" />
+		<property name="conference" ref="conference4" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 SPONSORSHIP5 ************ -->
+
+	<!-- ************ START SPONSOR2 SPONSORSHIP6 (TO CONFERENCE5) ************ -->
+
+	<bean id="sponsor2sponsorship6" class="domain.Sponsorship">
+		<property name="banner" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="targetURL" value="https://www.targeturl.com" />
+		<property name="creditCard" ref="creditCard4" />
+		<property name="sponsor" ref="sponsor2" />
+		<property name="conference" ref="conference5" />
+	</bean>
+
+	<!-- ************ END SPONSOR2 SPONSORSHIP1 ************ -->
+
+	<!-- **************************** END SPONSOR2 **************************** -->
+
+
+
+
+
+	<!-- **************************** START SPONSOR3 **************************** -->
+
+	<bean id="sponsor3" class="domain.Sponsor">
+		<property name="name" value="Sponsor3" />
+		<property name="middleName" value="Sponsor3" />
+		<property name="surname" value="Sponsor3" />
+		<property name="photo" value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="email" value="email@email.com" />
+		<property name="phone" value="123456789" />
+		<property name="address" value="address" />
+		<property name="userAccount" ref="userAccount10" />
+	</bean>
+
+	<!-- ************ START SPONSOR3 MESSAGE1 ************ -->
+
+	<bean id="sponsor3message1" class="domain.Message">
+		<property name="moment" value="01/01/2019 12:00" />
+		<property name="subject" value="Subject" />
+		<property name="body" value="Body" />
+		<property name="isBroadcast" value="false" />
+		<property name="owner" ref="sponsor3" />
+		<property name="sender" ref="sponsor3" />
+		<property name="recipients">
+			<list>
+				<ref bean="reviewer1" />
+				<ref bean="reviewer2" />
+			</list>
+		</property>
+		<property name="topic" ref="topic1" />
+	</bean>
+
+	<!-- ************ END SPONSOR3 MESSAGE1 ************ -->
+
+	<!-- **************************** END SPONSOR3 **************************** -->
+
+
+
+	<!-- **************************** START CONFERENCE1 **************************** -->
+
+	<bean id="conference1" class="domain.Conference">
+		<property name="title" value="Conference on Data" />
+		<property name="acronym" value="Acronym1" />
+		<property name="venue" value="Venue1" />
+		<property name="submissionDeadline" value="07/17/2019 12:00" />
+		<property name="notificationDeadline" value="07/24/2019 12:00" />
+		<property name="cameraReadyDeadline" value="07/26/2019 12:00" />
+		<property name="startDate" value="07/26/2019" />
+		<property name="endDate" value="07/31/2019" />
+		<property name="summary" value="This science conference focuses on technologies to deal with nowadays data" />
+		<property name="fee" value="100.00" />
+		<property name="isFinal" value="true" />
+		<property name="category" ref="category7" />
+		<property name="activities">
+			<list>
+				<ref bean="conference1tutorial1" />
+				<ref bean="conference1panel1" />
+				<ref bean="conference1panel2" />
+				<ref bean="conference1presentation1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** START CONFERENCE1 TUTORIAL1 ************** -->
+
+	<bean id="conference1tutorial1" class="domain.Tutorial">
+		<property name="title" value="TitleTutorial1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker1</value>
+				<value>Speaker2</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 12:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room1" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="sections">
+			<list>
+				<ref bean="conference1tutorial1section1" />
+				<ref bean="conference1tutorial1section2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE1 TUTORIAL1 SECTION1 ****** -->
+
+	<bean id="conference1tutorial1section1" class="domain.Section">
+		<property name="title" value="Title1" />
+		<property name="summary" value="Summary" />
+		<property name="pictures">
+			<list>
+				<value>https://picture1.jpg</value>
+				<value>https://picture2.jpg</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE1 TUTORIAL1 SECTION1 ****** -->
+
+	<!-- ****** START CONFERENCE1 TUTORIAL1 SECTION2 ****** -->
+
+	<bean id="conference1tutorial1section2" class="domain.Section">
+		<property name="title" value="Title2" />
+		<property name="summary" value="Summary2" />
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE1 TUTORIAL1 SECTION2 ****** -->
+
+	<!-- ****** START CONFERENCE1 TUTORIAL1 COMMENT1 ****** -->
+
+	<bean id="conference1tutorial1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference1tutorial1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE1 TUTORIAL1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE1 TUTORIAL1 ************** -->
+
+	<!-- ************** START CONFERENCE1 PANEL1 ************** -->
+
+	<bean id="conference1panel1" class="domain.Panel">
+		<property name="title" value="TitlePanel1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker3</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 16:00" />
+		<property name="duration" value="30" />
+		<property name="room" value="Room2" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE1 PANEL1 COMMENT1 ****** -->
+
+	<bean id="conference1panel1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference1panel1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE1 PANEL1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE1 PANEL1 ************** -->
+
+	<!-- ************** START CONFERENCE1 PANEL2 ************** -->
+
+	<bean id="conference1panel2" class="domain.Panel">
+		<property name="title" value="TitlePanel2" />
+		<property name="speakers">
+			<list>
+				<value>Speaker4</value>
+				<value>Speaker5</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 20:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room3" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE1 PANEL2 ************** -->
+
+	<!-- ************** START CONFERENCE1 PRESENTATION1 ************** -->
+
+	<bean id="conference1presentation1" class="domain.Presentation">
+		<property name="title" value="TitlePresentation1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker6</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/11/2019 12:00" />
+		<property name="duration" value="20" />
+		<property name="room" value="Room4" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="cameraReadyPaper" ref="paper1" />
+	</bean>
+
+	<!-- ****** START CONFERENCE1 PRESENTATION1 COMMENT1 ****** -->
+
+	<bean id="conference1presentation1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference1presentation1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE1 PRESENTATION1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE1 PRESENTATION1 ************** -->
+
+	<!-- ************** START CONFERENCE1 COMMENT1 ************** -->
+
+	<bean id="conference1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference1" />
+	</bean>
+
+	<!-- ************** END CONFERENCE1 COMMENT1 ************** -->
+
+	<!-- ************** START CONFERENCE1 COMMENT2 ************** -->
+
+	<bean id="conference1comment2" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference1" />
+	</bean>
+
+	<!-- ************** END CONFERENCE2 COMMENT2 ************** -->
+
+	<!-- ************** START CONFERENCE1 COMMENT3 ************** -->
+
+	<bean id="conference1comment3" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference1" />
+	</bean>
+
+	<!-- ************** END CONFERENCE1 COMMENT3 ************** -->
+
+	<!-- **************************** END CONFERENCE1 **************************** -->
+
+	<!-- **************************** START CONFERENCE2 **************************** -->
+
+	<bean id="conference2" class="domain.Conference">
+		<property name="title" value="International Data Science Conference" />
+		<property name="acronym" value="Acronym2" />
+		<property name="venue" value="Venue2" />
+		<property name="submissionDeadline" value="11/10/2019 12:00" />
+		<property name="notificationDeadline" value="11/20/2019 12:00" />
+		<property name="cameraReadyDeadline" value="11/30/2019 12:00" />
+		<property name="startDate" value="12/01/2019" />
+		<property name="endDate" value="12/31/2019" />
+		<property name="summary" value="Data Science is a hot topic nowadays; find the latest research results in this conference" />
+		<property name="fee" value="100.00" />
+		<property name="isFinal" value="true" />
+		<property name="category" ref="category7" />
+		<property name="activities">
+			<list>
+				<ref bean="conference2tutorial1" />
+				<ref bean="conference2panel1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** START CONFERENCE2 TUTORIAL1 ************** -->
+
+	<bean id="conference2tutorial1" class="domain.Tutorial">
+		<property name="title" value="TitleTutorial1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker1</value>
+				<value>Speaker2</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 12:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room1" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="sections">
+			<list>
+				<ref bean="conference2tutorial1section1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE2 TUTORIAL1 SECTION1 ****** -->
+
+	<bean id="conference2tutorial1section1" class="domain.Section">
+		<property name="title" value="Title1" />
+		<property name="summary" value="Summary" />
+		<property name="pictures">
+			<list>
+				<value>https://picture1.jpg</value>
+				<value>https://picture2.jpg</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE2 TUTORIAL1 SECTION1 ****** -->
+
+	<!-- ************** END CONFERENCE2 TUTORIAL1 ************** -->
+
+	<!-- ************** START CONFERENCE2 PANEL1 ************** -->
+
+	<bean id="conference2panel1" class="domain.Panel">
+		<property name="title" value="TitlePanel1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker3</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 16:00" />
+		<property name="duration" value="30" />
+		<property name="room" value="Room2" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE2 PANEL1 ************** -->
+
+	<!-- **************************** END CONFERENCE2 **************************** -->
+
+	<!-- **************************** START CONFERENCE3 **************************** -->
+
+	<bean id="conference3" class="domain.Conference">
+		<property name="title" value="World Multi-Conference on Big Data Science" />
+		<property name="acronym" value="Acronym3" />
+		<property name="venue" value="Venue3" />
+		<property name="submissionDeadline" value="10/10/2019 12:00" />
+		<property name="notificationDeadline" value="10/20/2019 12:00" />
+		<property name="cameraReadyDeadline" value="10/30/2019 12:00" />
+		<property name="startDate" value="11/01/2019" />
+		<property name="endDate" value="11/30/2019" />
+		<property name="summary" value="Nowhere have you found more papers on big data science" />
+		<property name="fee" value="100.00" />
+		<property name="isFinal" value="false" />
+		<property name="category" ref="category7" />
+		<property name="activities">
+			<list>
+				<ref bean="conference3panel1" />
+				<ref bean="conference3panel2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** START CONFERENCE3 PANEL1 ************** -->
+
+	<bean id="conference3panel1" class="domain.Panel">
+		<property name="title" value="TitlePanel1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker3</value>
+			</list>
+		</property>
+		<property name="startMoment" value="11/10/2019 16:00" />
+		<property name="duration" value="30" />
+		<property name="room" value="Room2" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE3 PANEL1 ************** -->
+
+	<!-- ************** START CONFERENCE3 PANEL2 ************** -->
+
+	<bean id="conference3panel2" class="domain.Panel">
+		<property name="title" value="TitlePanel2" />
+		<property name="speakers">
+			<list>
+				<value>Speaker4</value>
+				<value>Speaker5</value>
+			</list>
+		</property>
+		<property name="startMoment" value="11/10/2019 20:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room3" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE3 PANEL2 ************** -->
+
+	<!-- **************************** END CONFERENCE3 **************************** -->
+
+
+	<!-- **************************** START CONFERENCE4 **************************** -->
+
+	<bean id="conference4" class="domain.Conference">
+		<property name="title" value="Artificial Intelligence on Computer Science" />
+		<property name="acronym" value="Acronym4" />
+		<property name="venue" value="Venue4" />
+		<property name="submissionDeadline" value="07/01/2019 12:00" />
+		<property name="notificationDeadline" value="11/10/2019 12:00" />
+		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
+		<property name="startDate" value="12/01/2019" />
+		<property name="endDate" value="12/31/2019" />
+		<property name="summary" value="A conference about artificial intelligence and its role on computer science" />
+		<property name="fee" value="100.00" />
+		<property name="isFinal" value="true" />
+		<property name="category" ref="category2" />
+		<property name="activities">
+			<list>
+				<ref bean="conference4tutorial1" />
+				<ref bean="conference4panel1" />
+				<ref bean="conference4panel2" />
+				<ref bean="conference4presentation1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** START CONFERENCE4 TUTORIAL1 ************** -->
+
+	<bean id="conference4tutorial1" class="domain.Tutorial">
+		<property name="title" value="TitleTutorial1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker1</value>
+				<value>Speaker2</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 12:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room1" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="sections">
+			<list>
+				<ref bean="conference4tutorial1section1" />
+				<ref bean="conference4tutorial1section2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE4 TUTORIAL1 SECTION1 ****** -->
+
+	<bean id="conference4tutorial1section1" class="domain.Section">
+		<property name="title" value="Title1" />
+		<property name="summary" value="Summary" />
+		<property name="pictures">
+			<list>
+				<value>https://picture1.jpg</value>
+				<value>https://picture2.jpg</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE4 TUTORIAL1 SECTION1 ****** -->
+
+	<!-- ****** START CONFERENCE4 TUTORIAL1 SECTION2 ****** -->
+
+	<bean id="conference4tutorial1section2" class="domain.Section">
+		<property name="title" value="Title2" />
+		<property name="summary" value="Summary2" />
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE4 TUTORIAL1 SECTION2 ****** -->
+
+	<!-- ****** START CONFERENCE4 TUTORIAL1 COMMENT1 ****** -->
+
+	<bean id="conference4tutorial1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference4tutorial1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE4 TUTORIAL1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE4 TUTORIAL1 ************** -->
+
+	<!-- ************** START CONFERENCE4 PANEL1 ************** -->
+
+	<bean id="conference4panel1" class="domain.Panel">
+		<property name="title" value="TitlePanel1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker3</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 16:00" />
+		<property name="duration" value="30" />
+		<property name="room" value="Room2" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE4 PANEL1 COMMENT1 ****** -->
+
+	<bean id="conference4panel1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference4panel1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE4 PANEL1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE4 PANEL1 ************** -->
+
+	<!-- ************** START CONFERENCE4 PANEL2 ************** -->
+
+	<bean id="conference4panel2" class="domain.Panel">
+		<property name="title" value="TitlePanel2" />
+		<property name="speakers">
+			<list>
+				<value>Speaker4</value>
+				<value>Speaker5</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 20:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room3" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE4 PANEL2 ************** -->
+
+	<!-- ************** START CONFERENCE4 PRESENTATION1 ************** -->
+
+	<bean id="conference4presentation1" class="domain.Presentation">
+		<property name="title" value="TitlePresentation1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker6</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/11/2019 12:00" />
+		<property name="duration" value="20" />
+		<property name="room" value="Room4" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="cameraReadyPaper" ref="paper1" />
+	</bean>
+
+	<!-- ****** START CONFERENCE4 PRESENTATION1 COMMENT1 ****** -->
+
+	<bean id="conference4presentation1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference4presentation1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE4 PRESENTATION1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE4 PRESENTATION1 ************** -->
+
+	<!-- ************** START CONFERENCE4 COMMENT1 ************** -->
+
+	<bean id="conference4comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference4" />
+	</bean>
+
+	<!-- ************** END CONFERENCE4 COMMENT1 ************** -->
+
+	<!-- ************** START CONFERENCE4 COMMENT2 ************** -->
+
+	<bean id="conference4comment2" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference4" />
+	</bean>
+
+	<!-- ************** END CONFERENCE4 COMMENT2 ************** -->
+
+	<!-- ************** START CONFERENCE4 COMMENT3 ************** -->
+
+	<bean id="conference4comment3" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference4" />
+	</bean>
+
+	<!-- ************** END CONFERENCE4 COMMENT3 ************** -->
+
+	<!-- **************************** END CONFERENCE4 **************************** -->
+
+
+	<!-- **************************** START CONFERENCE5 **************************** -->
+
+	<bean id="conference5" class="domain.Conference">
+		<property name="title" value="Data, business and economy" />
+		<property name="acronym" value="Acronym5" />
+		<property name="venue" value="Venue5" />
+		<property name="submissionDeadline" value="07/01/2019 12:00" />
+		<property name="notificationDeadline" value="11/10/2019 12:00" />
+		<property name="cameraReadyDeadline" value="11/20/2019 12:00" />
+		<property name="startDate" value="12/01/2019" />
+		<property name="endDate" value="12/31/2019" />
+		<property name="summary" value="Data science and its influence on business and macro economy" />
+		<property name="fee" value="100.00" />
+		<property name="isFinal" value="true" />
+		<property name="category" ref="category7" />
+		<property name="activities">
+			<list>
+				<ref bean="conference5tutorial1" />
+				<ref bean="conference5panel1" />
+				<ref bean="conference5panel2" />
+				<ref bean="conference5presentation1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** START CONFERENCE5 TUTORIAL1 ************** -->
+
+	<bean id="conference5tutorial1" class="domain.Tutorial">
+		<property name="title" value="TitleTutorial1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker1</value>
+				<value>Speaker2</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 12:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room1" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="sections">
+			<list>
+				<ref bean="conference5tutorial1section1" />
+				<ref bean="conference5tutorial1section2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE5 TUTORIAL1 SECTION1 ****** -->
+
+	<bean id="conference5tutorial1section1" class="domain.Section">
+		<property name="title" value="Title1" />
+		<property name="summary" value="Summary" />
+		<property name="pictures">
+			<list>
+				<value>https://picture1.jpg</value>
+				<value>https://picture2.jpg</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE5 TUTORIAL1 SECTION1 ****** -->
+
+	<!-- ****** START CONFERENCE5 TUTORIAL1 SECTION2 ****** -->
+
+	<bean id="conference5tutorial1section2" class="domain.Section">
+		<property name="title" value="Title2" />
+		<property name="summary" value="Summary2" />
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** END CONFERENCE5 TUTORIAL1 SECTION2 ****** -->
+
+	<!-- ****** START CONFERENCE5 TUTORIAL1 COMMENT1 ****** -->
+
+	<bean id="conference5tutorial1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference5tutorial1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE5 TUTORIAL1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE5 TUTORIAL1 ************** -->
+
+	<!-- ************** START CONFERENCE5 PANEL1 ************** -->
+
+	<bean id="conference5panel1" class="domain.Panel">
+		<property name="title" value="TitlePanel1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker3</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 16:00" />
+		<property name="duration" value="30" />
+		<property name="room" value="Room2" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ****** START CONFERENCE5 PANEL1 COMMENT1 ****** -->
+
+	<bean id="conference5panel1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference5panel1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE5 PANEL1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE5 PANEL1 ************** -->
+
+	<!-- ************** START CONFERENCE5 PANEL2 ************** -->
+
+	<bean id="conference5panel2" class="domain.Panel">
+		<property name="title" value="TitlePanel2" />
+		<property name="speakers">
+			<list>
+				<value>Speaker4</value>
+				<value>Speaker5</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/10/2019 20:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room3" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE5 PANEL2 ************** -->
+
+	<!-- ************** START CONFERENCE5 PRESENTATION1 ************** -->
+
+	<bean id="conference5presentation1" class="domain.Presentation">
+		<property name="title" value="TitlePresentation1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker6</value>
+			</list>
+		</property>
+		<property name="startMoment" value="12/11/2019 12:00" />
+		<property name="duration" value="20" />
+		<property name="room" value="Room4" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+		<property name="cameraReadyPaper" ref="paper1" />
+	</bean>
+
+	<!-- ****** START CONFERENCE5 PRESENTATION1 COMMENT1 ****** -->
+
+	<bean id="conference5presentation1comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference5presentation1" />
+	</bean>
+
+	<!-- ****** END CONFERENCE5 PRESENTATION1 COMMENT1 ****** -->
+
+	<!-- ************** END CONFERENCE5 PRESENTATION1 ************** -->
+
+	<!-- ************** START CONFERENCE5 COMMENT1 ************** -->
+
+	<bean id="conference5comment1" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference5" />
+	</bean>
+
+	<!-- ************** END CONFERENCE5 COMMENT1 ************** -->
+
+	<!-- ************** START CONFERENCE5 COMMENT2 ************** -->
+
+	<bean id="conference5comment2" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference5" />
+	</bean>
+
+	<!-- ************** END CONFERENCE5 COMMENT2 ************** -->
+
+	<!-- ************** START CONFERENCE5 COMMENT3 ************** -->
+
+	<bean id="conference5comment3" class="domain.Comment">
+		<property name="title" value="TitleComment" />
+		<property name="moment" value="07/03/2019 15:00" />
+		<property name="text" value="Text Comment" />
+		<property name="author" value="author1" />
+		<property name="commentable" ref="conference5" />
+	</bean>
+
+	<!-- ************** END CONFERENCE5 COMMENT3 ************** -->
+
+	<!-- **************************** END CONFERENCE5 **************************** -->
+
+
+	<!-- **************************** START CONFERENCE6 **************************** -->
+
+	<bean id="conference6" class="domain.Conference">
+		<property name="title" value="Scutoid's discovery" />
+		<property name="acronym" value="Acronym6" />
+		<property name="venue" value="Venue6" />
+		<property name="submissionDeadline" value="10/10/2019 12:00" />
+		<property name="notificationDeadline" value="10/20/2019 12:00" />
+		<property name="cameraReadyDeadline" value="10/30/2019 12:00" />
+		<property name="startDate" value="11/01/2019" />
+		<property name="endDate" value="11/30/2019" />
+		<property name="summary" value="A conference about the discovery of the scutoid" />
+		<property name="fee" value="100.00" />
+		<property name="isFinal" value="false" />
+		<property name="category" ref="category16" />
+		<property name="activities">
+			<list>
+				<ref bean="conference6panel1" />
+				<ref bean="conference6panel2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** START CONFERENCE6 PANEL1 ************** -->
+
+	<bean id="conference6panel1" class="domain.Panel">
+		<property name="title" value="TitlePanel1" />
+		<property name="speakers">
+			<list>
+				<value>Speaker3</value>
+			</list>
+		</property>
+		<property name="startMoment" value="11/10/2019 16:00" />
+		<property name="duration" value="30" />
+		<property name="room" value="Room2" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE6 PANEL1 ************** -->
+
+	<!-- ************** START CONFERENCE6 PANEL2 ************** -->
+
+	<bean id="conference6panel2" class="domain.Panel">
+		<property name="title" value="TitlePanel2" />
+		<property name="speakers">
+			<list>
+				<value>Speaker4</value>
+				<value>Speaker5</value>
+			</list>
+		</property>
+		<property name="startMoment" value="11/10/2019 20:00" />
+		<property name="duration" value="60" />
+		<property name="room" value="Room3" />
+		<property name="summary" value="Summary" />
+		<property name="attachments">
+			<list>
+				<value>https://attachment.com</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ************** END CONFERENCE6 PANEL2 ************** -->
+
+	<!-- **************************** END CONFERENCE6 **************************** -->
+
+
+	<!-- **************************** START PAPER1 **************************** -->
+
+	<bean id="paper1" class="domain.Paper">
+		<property name="title" value="Paper1" />
+		<property name="authors" value="Author1, Author2" />
+		<property name="summary" value="Summary" />
+		<property name="document" value="http://document.com" />
+	</bean>
+
+	<bean id="paper2" class="domain.Paper">
+		<property name="title" value="Paper about data" />
+		<property name="authors" value="Author1, Author2" />
+		<property name="summary" value="This paper is about the conference about data science" />
+		<property name="document" value="http://document.com" />
+	</bean>
+	
+	<bean id="paper3" class="domain.Paper">
+		<property name="title" value="Camera ready paper" />
+		<property name="authors" value="Author1" />
+		<property name="summary" value="Paper about data" />
+		<property name="document" value="http://document.com" />
+	</bean>
+
+	<!-- **************************** END PAPER1 **************************** -->
+
+	<!-- **************************** START CREDITCARD1 **************************** -->
+
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holder" value="Holder" />
+		<property name="brand" value="VISA" />
+		<property name="number" value="4043492660454935" />
+		<property name="expirationMonth" value="10" />
+		<property name="expirationYear" value="22" />
+		<property name="cvv" value="123" />
+	</bean>
+
+	<!-- **************************** END CREDITCARD1 **************************** -->
+
+	<!-- **************************** START CREDITCARD2 **************************** -->
+
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holder" value="Holder" />
+		<property name="brand" value="AMEX" />
+		<property name="number" value="373809536446159" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="21" />
+		<property name="cvv" value="409" />
+	</bean>
+
+	<!-- **************************** END CREDITCARD2 **************************** -->
+
+	<!-- **************************** START CREDITCARD3 **************************** -->
+
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holder" value="Holder" />
+		<property name="brand" value="MASTER" />
+		<property name="number" value="5301584370515122" />
+		<property name="expirationMonth" value="09" />
+		<property name="expirationYear" value="22" />
+		<property name="cvv" value="774" />
+	</bean>
+
+	<!-- **************************** END CREDITCARD3 **************************** -->
+
+	<!-- **************************** START CREDITCARD4 **************************** -->
+
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holder" value="Holder" />
+		<property name="brand" value="DINERS" />
+		<property name="number" value="30718500054540" />
+		<property name="expirationMonth" value="01" />
+		<property name="expirationYear" value="21" />
+		<property name="cvv" value="975" />
+	</bean>
+
+	<!-- **************************** END CREDITCARD4 **************************** -->
+
+</beans>

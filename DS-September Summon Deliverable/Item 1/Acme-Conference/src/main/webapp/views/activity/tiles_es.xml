@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	
+	<definition name="activity/list" extends="master.page">	
+		<put-attribute name="title" value="Listar Actividades" />
+		<put-attribute name="body" value="/views/activity/list.jsp" />
+	</definition>
+	
+	<definition name="activity/displayTutorial" extends="master.page">	
+		<put-attribute name="title" value="Mostrar Tutorial" />
+		<put-attribute name="body" value="/views/activity/display.jsp" />
+	</definition>
+	
+	<definition name="activity/createTutorial" extends="master.page">	
+		<put-attribute name="title" value="Crear Tutorial" />
+		<put-attribute name="body" value="/views/activity/create.jsp" />
+	</definition>
+	
+	<definition name="activity/updateTutorial" extends="master.page">	
+		<put-attribute name="title" value="Actualizar Tutorial" />
+		<put-attribute name="body" value="/views/activity/update.jsp" />
+	</definition>
+	
+	<definition name="activity/displayPanel" extends="master.page">	
+		<put-attribute name="title" value="Mostrar Panel" />
+		<put-attribute name="body" value="/views/activity/display.jsp" />
+	</definition>
+	
+	<definition name="activity/createPanel" extends="master.page">	
+		<put-attribute name="title" value="Crear Panel" />
+		<put-attribute name="body" value="/views/activity/create.jsp" />
+	</definition>
+	
+	<definition name="activity/updatePanel" extends="master.page">	
+		<put-attribute name="title" value="Actualizar Panel" />
+		<put-attribute name="body" value="/views/activity/update.jsp" />
+	</definition>
+	
+	<definition name="activity/displayPresentation" extends="master.page">	
+		<put-attribute name="title" value="Mostrar Presentación" />
+		<put-attribute name="body" value="/views/activity/display.jsp" />
+	</definition>
+	
+	<definition name="activity/createPresentation" extends="master.page">	
+		<put-attribute name="title" value="Crear Presentación" />
+		<put-attribute name="body" value="/views/activity/create.jsp" />
+	</definition>
+	
+	<definition name="activity/updatePresentation" extends="master.page">	
+		<put-attribute name="title" value="Actualizar Presentación" />
+		<put-attribute name="body" value="/views/activity/update.jsp" />
+	</definition>
+	
+</tiles-definitions>
