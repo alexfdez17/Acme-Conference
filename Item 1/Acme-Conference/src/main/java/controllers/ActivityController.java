@@ -89,7 +89,7 @@ public class ActivityController extends AbstractController {
 		}
 
 		Conference conference = new Conference();
-		final Collection<Conference> conferences = this.conferenceService.findAll();
+		final Collection<Conference> conferences = this.conferenceService.findAllNoAccessControl();
 		for (final Conference c : conferences)
 			if (c.getActivities().contains(activity))
 				conference = c;

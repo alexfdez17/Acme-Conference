@@ -85,6 +85,14 @@ public class ConferenceService {
 		return this.conferenceRepository.findAll();
 	}
 
+	public Collection<Conference> findAllNoAccessControl() {
+		Collection<Conference> result;
+
+		result = this.conferenceRepository.findAll();
+
+		return result;
+	}
+
 	public Conference findOne(final int conferenceId) {
 		final Conference result;
 
