@@ -26,6 +26,6 @@
 	</jstl:if>
 	
 	<acme:submit name="save" code="topic.save" />
-	<acme:cancel url="topic/administrator/list" code="topic.cancel" />
+	<acme:cancel url="topic/administrator/list.do" code="topic.cancel" />
 
 </form:form>
