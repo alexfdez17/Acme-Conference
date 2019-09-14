@@ -23,17 +23,11 @@
 	<acme:textbox code="finder.maximumFee" path="maximumFee" />
 	<acme:textbox code="finder.category" path="category" />
 
-	<form:label path="startDate">
-		<spring:message code="finder.startDate" />:
-	</form:label>
-	<form:input type="date" path="startDate"
-		format="{0,date,dd/MM/yyyy}" placeholder="dd/MM/yyyy" />
+	<acme:textbox code="finder.startDate"
+			path="startDate" placeholder="dd/MM/yyyy" />
 		
-	<form:label path="endDate">
-		<spring:message code="finder.endDate" />:
-	</form:label>
-	<form:input type="date" path="endDate"
-		format="{0,date,dd/MM/yyyy}" placeholder="dd/MM/yyy" />
+	<acme:textbox code="finder.endDate"
+			path="endDate" placeholder="dd/MM/yyyy" />
 	<br />
 
 	<acme:submit name="save" code="finder.save" />

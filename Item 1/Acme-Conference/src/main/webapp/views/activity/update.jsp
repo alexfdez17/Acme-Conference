@@ -23,11 +23,8 @@
 	<acme:textbox code="activity.title" path="title"/>
 	<acme:textbox code="activity.speakers" path="speakers"/>
 	
-	<form:label path="startMoment">
-		<spring:message code="activity.startMoment" />:
-	</form:label>
-	<form:input type="date" path="startMoment"
-		format="{0,date,MM/dd/yyyy HH:mm}" placeholder="MM/dd/yyyy HH:mm" />
+	<acme:textbox code="activity.startMoment"
+			path="startMoment" placeholder="MM/dd/yyyy HH:mm" />
 		
 	<acme:textbox code="activity.duration" path="duration"/>
 	<acme:textbox code="activity.room" path="room"/>
