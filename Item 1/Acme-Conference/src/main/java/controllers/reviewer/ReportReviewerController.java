@@ -1,6 +1,7 @@
 
 package controllers.reviewer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.ValidationException;
@@ -89,8 +90,14 @@ public class ReportReviewerController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(final Report report, final String messageCode) {
 		final ModelAndView result = new ModelAndView("report/create");
+		final Collection<String> decisions = new ArrayList<>();
+
+		decisions.add("ACCEPT");
+		decisions.add("REJECT");
+		decisions.add("BORDER-LINE");
 
 		result.addObject("report", report);
+		result.addObject("decisions", decisions);
 		result.addObject("message", messageCode);
 		result.addObject("requestURI", "report/reviewer/edit.do");
 

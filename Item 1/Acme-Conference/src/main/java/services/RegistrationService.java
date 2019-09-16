@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -16,6 +17,7 @@ import org.springframework.validation.Validator;
 import repositories.RegistrationRepository;
 import domain.Author;
 import domain.Conference;
+import domain.CreditCard;
 import domain.Registration;
 
 @Service
@@ -73,6 +75,10 @@ public class RegistrationService {
 		Assert.isTrue(!conferences.contains(conference));
 		Assert.isTrue(conference.getStartDate().after(new Date()));
 
+		final CreditCard creditCard = registration.getCreditCard();
+
+		this.checkExpirationOnSave(creditCard);
+
 		return this.registrationRepository.save(registration);
 	}
 
@@ -102,7 +108,8 @@ public class RegistrationService {
 	public Registration reconstruct(final Registration registration, final BindingResult binding) {
 		final Registration result = registration;
 		final Author principal = this.authorService.findByPrincipal();
-		final String creditCardNumber = registration.getCreditCard().getNumber();
+		final CreditCard creditCard = registration.getCreditCard();
+		final String creditCardNumber = creditCard.getNumber();
 
 		result.setAuthor(principal);
 
@@ -111,6 +118,7 @@ public class RegistrationService {
 		if (!creditCardNumber.matches(isNumber))
 			binding.rejectValue("creditCard.number", "registration.credit.card.number.error");
 
+		this.checkExpiration(creditCard, binding);
 		this.validator.validate(result, binding);
 
 		if (binding.hasErrors())
@@ -129,6 +137,40 @@ public class RegistrationService {
 	// ---------
 
 	// Auxiliary methods
+	private void checkExpiration(final CreditCard creditCard, final BindingResult binding) {
+		final Date today = new Date();
+		final Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(today);
+
+		final int currentYear = calendar.get(Calendar.YEAR) % 100;
+		final int currentMonth = calendar.get(Calendar.MONTH) + 1;
+
+		final int expirationYear = creditCard.getExpirationYear();
+
+		if (expirationYear < currentYear)
+			binding.rejectValue("creditCard.expirationYear", "registration.credit.card.expiration.year.error");
+		else if (expirationYear == currentYear && creditCard.getExpirationMonth() < currentMonth)
+			binding.rejectValue("creditCard.expirationMonth", "registration.credit.card.expiration.month.error");
+	}
+
+	private void checkExpirationOnSave(final CreditCard creditCard) {
+		final Date today = new Date();
+		final Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(today);
+
+		final int currentYear = calendar.get(Calendar.YEAR) % 100;
+		final int currentMonth = calendar.get(Calendar.MONTH) + 1;
+
+		final int expirationYear = creditCard.getExpirationYear();
+
+		Assert.isTrue(expirationYear >= currentYear);
+
+		if (expirationYear == currentYear)
+			Assert.isTrue(creditCard.getExpirationMonth() >= currentMonth);
+	}
+
 	private Collection<Registration> findAllByAuthorId(final int authorId) {
 		return this.registrationRepository.findAllByAuthorId(authorId);
 	}

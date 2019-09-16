@@ -13,6 +13,7 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -75,6 +76,7 @@ public class Report extends DomainEntity {
 
 	@NotBlank
 	@SafeHtml
+	@Pattern(regexp = "BORDER-LINE|ACCEPT|REJECT")
 	public String getDecision() {
 		return this.decision;
 	}

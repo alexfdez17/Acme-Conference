@@ -45,6 +45,8 @@
 	placeholder="<spring:message code="conference.keyword.placeholder" />"
 	value="${category}" />
 <br />
+
+<spring:message code="conference.list.help.text"/>
 <!--  Listing grid -->
 
 <display:table pagesize="5" class="displaytag" name="conferences"

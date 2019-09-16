@@ -80,7 +80,8 @@
 			<spring:message code="report.decision.comments.info" />
 		</legend>
 
-		<acme:textarea code="report.decision" path="decision" />
+		<acme:select items="${decisions}" code="report.decision"
+			path="decision" />
 		<acme:textarea code="report.comments" path="comments" />
 	</fieldset>
 
