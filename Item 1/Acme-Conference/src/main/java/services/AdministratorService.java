@@ -50,11 +50,8 @@ public class AdministratorService {
 		Assert.notNull(administrator);
 		Administrator result;
 
-		if (administrator.getPhone().matches("\\d{4,99}")) {
-			String newPhone = this.systemConfigurationService.findCountryCode();
-			newPhone += " " + administrator.getPhone();
-			administrator.setPhone(newPhone);
-		}
+		if (!administrator.getPhone().equals(""))
+			Assert.isTrue(administrator.getPhone().matches("\\d{4,99}"));
 
 		result = this.administratorRepository.save(administrator);
 		this.administratorRepository.flush();
@@ -113,7 +110,8 @@ public class AdministratorService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		Assert.isTrue(registerAdministratorForm.getPhone().matches("\\d{4,99}"));
+		if (!registerAdministratorForm.getPhone().equals(""))
+			Assert.isTrue(registerAdministratorForm.getPhone().matches("\\d{4,99}"));
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerAdministratorForm.getAddress());

@@ -48,7 +48,8 @@ public class ReviewerService {
 		Assert.notNull(reviewer);
 		Reviewer result;
 
-		Assert.isTrue(reviewer.getPhone().matches("\\d{4,99}"));
+		if (!reviewer.getPhone().equals(""))
+			Assert.isTrue(reviewer.getPhone().matches("\\d{4,99}"));
 
 		result = this.reviewerRepository.save(reviewer);
 		this.reviewerRepository.flush();
@@ -140,7 +141,8 @@ public class ReviewerService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		Assert.isTrue(registerReviewerForm.getPhone().matches("\\d{4,99}"));
+		if (!registerReviewerForm.getPhone().equals(""))
+			Assert.isTrue(registerReviewerForm.getPhone().matches("\\d{4,99}"));
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerReviewerForm.getAddress());

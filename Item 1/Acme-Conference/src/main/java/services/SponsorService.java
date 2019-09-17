@@ -47,7 +47,8 @@ public class SponsorService {
 		Assert.notNull(sponsor);
 		Sponsor result;
 
-		Assert.isTrue(sponsor.getPhone().matches("\\d{4,99}"));
+		if (!sponsor.getPhone().equals(""))
+			Assert.isTrue(sponsor.getPhone().matches("\\d{4,99}"));
 
 		result = this.sponsorRepository.save(sponsor);
 		this.sponsorRepository.flush();
@@ -106,7 +107,8 @@ public class SponsorService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		Assert.isTrue(registerSponsorForm.getPhone().matches("\\d{4,99}"));
+		if (!registerSponsorForm.getPhone().equals(""))
+			Assert.isTrue(registerSponsorForm.getPhone().matches("\\d{4,99}"));
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerSponsorForm.getAddress());
