@@ -11,7 +11,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="${requestURI}" modelAttribute="mezzage">
+<form:form action="${requestURI}" modelAttribute="mezzage" htmlEscape="true">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
