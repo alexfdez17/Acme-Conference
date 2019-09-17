@@ -59,7 +59,8 @@ public class AuthorService {
 		Assert.notNull(author);
 		Author result;
 
-		Assert.isTrue(author.getPhone().matches("\\d{4,99}"));
+		if (!author.getPhone().equals(""))
+			Assert.isTrue(author.getPhone().matches("\\d{4,99}"));
 
 		result = this.authorRepository.save(author);
 		this.authorRepository.flush();
@@ -178,7 +179,8 @@ public class AuthorService {
 		authorities.add(authority);
 		userAccount.setAuthorities(authorities);
 
-		Assert.isTrue(registerAuthorForm.getPhone().matches("\\d{4,99}"));
+		if (!registerAuthorForm.getPhone().equals(""))
+			Assert.isTrue(registerAuthorForm.getPhone().matches("\\d{4,99}"));
 
 		result.setUserAccount(userAccount);
 		result.setAddress(registerAuthorForm.getAddress());
