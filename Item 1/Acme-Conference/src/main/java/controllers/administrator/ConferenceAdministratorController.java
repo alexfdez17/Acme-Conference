@@ -82,6 +82,7 @@ public class ConferenceAdministratorController extends AbstractController {
 			final Conference conference = this.conferenceService.findOne(conferenceId);
 
 			Assert.notNull(conference);
+			Assert.isTrue(!conference.getIsFinal());
 
 			result = this.createEditModelAndView(conference, "edit");
 		} catch (final IllegalArgumentException oops) {

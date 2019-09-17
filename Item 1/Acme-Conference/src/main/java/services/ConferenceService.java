@@ -100,6 +100,7 @@ public class ConferenceService {
 
 		return result;
 	}
+
 	public boolean exists(final int conferenceId) {
 		return this.conferenceRepository.exists(conferenceId);
 	}
